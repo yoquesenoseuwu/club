@@ -19,6 +19,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
 
         label1 = new java.awt.Label();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -31,14 +32,21 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Ver Los Guardias");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2)))
                 .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -49,6 +57,8 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                 .addContainerGap(262, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButton1)
+                .addGap(80, 80, 80)
+                .addComponent(jButton2)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -97,6 +107,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }
