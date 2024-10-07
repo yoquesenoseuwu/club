@@ -12,10 +12,10 @@ import java.sql.*;
 public class Conexion_Bdd {
     
     
-    public static void main(String [] args){
+    public void Conectar(){
         try{
             //Crear conexion
-            Connection miConexion=DriverManager.getConnection("jdbc:mysql://bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
             
             //Crear un obj statement
             
@@ -23,12 +23,12 @@ public class Conexion_Bdd {
             
             //Ejecutar sql
             
-            ResultSet miResultset=miStatement.executeQuery("SELECT * FROM USERS");
+            ResultSet miResultset=miStatement.executeQuery("SELECT * FROM Guardia_Contratado");
             
             //Leer el resultado
             
             while(miResultset.next()){
-                System.out.println(miResultset.getString("id") + "" + miResultset.getString("username") + "" + miResultset.getString("email") + "" + miResultset.getString("password") + "" + miResultset.getString("created_at"));
+                System.out.println(miResultset.getString("ID") + "/" + miResultset.getString("ID_Zona_de_seguridad") + "/" + miResultset.getString("Nombre") + "/" + miResultset.getString("Apellido") + "/" + miResultset.getString("Coste") + "/" + miResultset.getString("Fecha_Contratacion"));
             }
             
         }catch(Exception e){
@@ -37,5 +37,6 @@ public class Conexion_Bdd {
             e.printStackTrace();
         }
     }
+
     
 }

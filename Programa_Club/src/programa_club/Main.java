@@ -5,7 +5,8 @@ vS=Pantalla de seguridad del paquete Modulo_Seguridad
 package programa_club;
 
 import Modulo_Seguridad.Pantalla_Seguridad;
-/**
+
+        /**
  *
  * @author HP OMEN
  */
@@ -59,7 +60,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(128, 128, 128)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
+                        .addGap(146, 146, 146)
                         .addComponent(jButton2)))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
@@ -83,7 +84,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        Conexion_Bdd bd = new Conexion_Bdd();
+        bd.Conectar(); 
+        
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
