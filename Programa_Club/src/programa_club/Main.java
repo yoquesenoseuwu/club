@@ -5,6 +5,7 @@ vS=Pantalla de seguridad del paquete Modulo_Seguridad
 package programa_club;
 
 import Modulo_Seguridad.Pantalla_Seguridad;
+import Modulo_Seguridad.Abrir_Seguridad;
 
         /**
  *
@@ -78,8 +79,8 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Pantalla_Seguridad vS= new Pantalla_Seguridad();
-        vS.setVisible(true);
+        Abrir_Seguridad Seguridad = new Abrir_Seguridad();
+        Seguridad.Open_Security();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
