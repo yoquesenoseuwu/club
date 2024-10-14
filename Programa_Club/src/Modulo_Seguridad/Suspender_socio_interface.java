@@ -3,7 +3,10 @@
 package Modulo_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 
 public class Suspender_socio_interface extends javax.swing.JFrame {
     Suspender_socio_codigo S_S_C = new Suspender_socio_codigo();
@@ -13,6 +16,9 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
         initComponents();
         modelo=S_S_C.mostrar(modelo);
         jListSocio.setModel(modelo);
+        jListSocio.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        
         
         
         
@@ -24,6 +30,7 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jListSocio = new javax.swing.JList<>();
+        btn_Volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -34,27 +41,52 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jListSocio);
 
+        btn_Volver.setText("<--");
+        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_Volver))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addComponent(btn_Volver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
+        Pantalla_Seguridad pM = new Pantalla_Seguridad();
+        pM.setVisible(true);
+        this.setVisible(false);
+        pM.setSize(1530,900);
+        pM.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btn_VolverActionPerformed
 
+  
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -88,6 +120,7 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Volver;
     private javax.swing.JList<String> jListSocio;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
