@@ -19,5 +19,14 @@ public class Ver_Guardias_Codigo {
                 array.add(""+i);
         }
         }
+        
+public DefaultListModel mostrar(DefaultListModel modelo){
+        modelo.removeAllElements();
+        for (int i=0; i<array.size(); i++){
+            modelo.addElement(array.get(i));
+        }
+        return modelo;
+        
+    }
 
 }
