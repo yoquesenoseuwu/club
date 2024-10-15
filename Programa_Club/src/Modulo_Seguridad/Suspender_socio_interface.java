@@ -11,17 +11,27 @@ import java.awt.*;
 public class Suspender_socio_interface extends javax.swing.JFrame {
     Suspender_socio_codigo S_S_C = new Suspender_socio_codigo();
     DefaultListModel modelo = new DefaultListModel();
+    
+    
+    
 
     public Suspender_socio_interface() {
         initComponents();
         modelo=S_S_C.mostrar(modelo);
         jListSocio.setModel(modelo);
         jListSocio.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jListSocio.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String itemSeleccionado = jListSocio.getSelectedValue();
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
+                    
+                    
+                }
+            }
+        });
         
-        
-        
-        
-        
+  
     }
 
     @SuppressWarnings("unchecked")
@@ -31,6 +41,7 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListSocio = new javax.swing.JList<>();
         btn_Volver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +59,8 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Pantalla de suspención de socio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -55,21 +68,25 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btn_Volver))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(297, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_Volver)
+                        .addGap(267, 267, 267)
+                        .addComponent(jLabel1)))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_Volver)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Volver)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,6 +138,7 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Volver;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jListSocio;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

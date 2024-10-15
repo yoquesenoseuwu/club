@@ -1,22 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+arrar= Es un array/vector con la info de los socios,
  */
 package Modulo_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-/**
- *
- * @author HP OMEN
- */
+
 public class Suspender_socio_codigo {
     
-    ArrayList<Integer> array = new ArrayList<Integer>();
+    ArrayList<String> array = new ArrayList<String>();
     
     public Suspender_socio_codigo(){
         for (int i=0; i<10; i++){
-            array.add(i);
+            array.add(""+i);
         }
     }
 
