@@ -5,17 +5,40 @@
  */
 package Modulo_Seguridad;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import Modulo_Seguridad.Ver_Zonas_codigo;
+
+
 /**
  *
  * @author PC
  */
 public class Ver_Zonas extends javax.swing.JFrame {
+    Ver_Zonas_codigo vZc = new Ver_Zonas_codigo();
+    DefaultListModel modelo = new DefaultListModel();
 
     /**
      * Creates new form Ver_Zonas
      */
     public Ver_Zonas() {
         initComponents();
+        modelo=vZc.mostrar(modelo);
+        list_zonas.setModel(modelo);
+        list_zonas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list_zonas.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String itemSeleccionado = list_zonas.getSelectedValue();
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
+                    
+                    
+                }
+            }
+        });
     }
 
     /**
@@ -27,21 +50,57 @@ public class Ver_Zonas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btn_Volver = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        list_zonas = new javax.swing.JList<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btn_Volver.setText("<--");
+        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VolverActionPerformed(evt);
+            }
+        });
+
+        list_zonas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(list_zonas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btn_Volver)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btn_Volver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 62, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
+        Pantalla_Seguridad pM = new Pantalla_Seguridad();
+        pM.setVisible(true);
+        this.setVisible(false);
+        pM.setSize(1530,900);
+        pM.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btn_VolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +138,8 @@ public class Ver_Zonas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Volver;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> list_zonas;
     // End of variables declaration//GEN-END:variables
 }
