@@ -17,26 +17,15 @@ public class Conexion_Bdd {
             //Crear conexion
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
             
-            //Crear un obj statement
-            
-            Statement miStatement=miConexion.createStatement();
-            
-            //Ejecutar sql
-            
-            ResultSet miResultset=miStatement.executeQuery("SELECT * FROM Guardia_Contratado");
-            
-            //Leer el resultado
-            
-            while(miResultset.next()){
-                System.out.println(miResultset.getString("ID") + "/" + miResultset.getString("ID_Zona_de_seguridad") + "/" + miResultset.getString("Nombre") + "/" + miResultset.getString("Apellido") + "/" + miResultset.getString("Coste") + "/" + miResultset.getString("Fecha_Contratacion"));
-            }
-            
         }catch(Exception e){
             System.out.println("No funca");
             
             e.printStackTrace();
         }
     }
+    
+    //Falta metodo para hacer un select 
+    
 
     
 }
