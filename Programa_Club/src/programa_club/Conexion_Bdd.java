@@ -11,32 +11,48 @@ import java.sql.*;
  */
 public class Conexion_Bdd {
     
+   /*
+    ------------------------ACLARACION----------------------------
+    Por lo que vi, en cada funcion se debe conectarse a la bdd, tipo no se puede tener un metodo especifico para la conexion
+    y usarlo en otros lugares.
     
-    public void Conectar(){
+    
+     
+    */
+    
+    
+    public ResultSet Select(String Nombre_Tabla){
         try{
             //Crear conexion
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele = miConexion.prepareStatement("SELECT * FROM ?");
+            sele.setString(0, Nombre_Tabla);
+            ResultSet resul=sele.executeQuery();
             
-            //Crear un obj statement
+            miConexion.close();
+        
+    
             
-            Statement miStatement=miConexion.createStatement();
-            
-            //Ejecutar sql
-            
-            ResultSet miResultset=miStatement.executeQuery("SELECT * FROM Guardia_Contratado");
-            
-            //Leer el resultado
-            
-            while(miResultset.next()){
-                System.out.println(miResultset.getString("ID") + "/" + miResultset.getString("ID_Zona_de_seguridad") + "/" + miResultset.getString("Nombre") + "/" + miResultset.getString("Apellido") + "/" + miResultset.getString("Coste") + "/" + miResultset.getString("Fecha_Contratacion"));
-            }
-            
+            return resul;
         }catch(Exception e){
             System.out.println("No funca");
             
             e.printStackTrace();
+            
+            return null;
         }
     }
+    
+    
+            
+            
+            
+            //Ejecutar sql
+            
+            
+            
+            //Leer el resultado
+           
 
     
 }
