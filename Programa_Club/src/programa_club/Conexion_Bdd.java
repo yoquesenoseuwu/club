@@ -5,6 +5,7 @@
  */
 package programa_club;
 import java.sql.*;
+import java.util.ArrayList;
 /**
  *
  * @author HP OMEN
@@ -20,7 +21,7 @@ public class Conexion_Bdd {
      
     */
     
-    
+    //Este es un metodo que podemos usar para cualquier tabla
     public ResultSet Select(String Nombre_Tabla){
         try{
             //Crear conexion
@@ -30,9 +31,6 @@ public class Conexion_Bdd {
             ResultSet resul=sele.executeQuery();
             
             miConexion.close();
-        
-    
-            
             return resul;
         }catch(Exception e){
             System.out.println("No funca");
@@ -42,17 +40,30 @@ public class Conexion_Bdd {
             return null;
         }
     }
-    
-    
+  
+    //Metodo usado por los de seguridad
+    public ArrayList Select_socios(){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String query="SELECT s.IDUsuario, u.Nombre_usuario FROM Usuario u,Socio s WHERE u.IDUsuario=s.IDUsuario;";
+            Statement  sele = miConexion.createStatement();
+            ResultSet result=sele.executeQuery(query);
+            while(result.next()){
+                String Item=result.getInt("IDUsuario") + "-" + result.getString("Nombre_usuario");
+                array.add(Item);
+            }
             
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
             
+            e.printStackTrace();
             
-            //Ejecutar sql
-            
-            
-            
-            //Leer el resultado
-           
-
+            return null;
+        }
+        
+    }
     
 }

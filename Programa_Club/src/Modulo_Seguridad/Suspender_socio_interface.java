@@ -24,9 +24,11 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     String itemSeleccionado = jListSocio.getSelectedValue();
-                    String[] separado=itemSeleccionado.split(" ");
+                    String[] separado=itemSeleccionado.split("-");
                     JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
-                    JOptionPane.showMessageDialog(null, "" + separado[2]);
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + separado[0]);
+                    int id=Integer.parseInt(separado[0]);
+                    S_S_C.Pantalla_socio(id);
                     
                     
                 }
@@ -70,13 +72,13 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btn_Volver)
                         .addGap(267, 267, 267)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(277, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -86,9 +88,9 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Volver)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(67, 67, 67)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
