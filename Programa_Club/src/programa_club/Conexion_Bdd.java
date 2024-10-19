@@ -6,6 +6,7 @@
 package programa_club;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Properties;
 /**
  *
  * @author HP OMEN
@@ -61,9 +62,36 @@ public class Conexion_Bdd {
             
             e.printStackTrace();
             
-            return null;
+            return null;    
         }
         
     }
+    //Metodo usado por los de seguridad
+    public ArrayList Select_unique_socio(int id){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String str="SELECT * FROM Usuario u WHERE u.IDUsuario=?";
+            PreparedStatement  query=miConexion.prepareStatement(str);
+            query.setInt(1,id);
+            ResultSet result = query.executeQuery();
+            
+            while(result.next()){
+                String Item=result.getInt("IDUsuario") + "-" + result.getString("Nombre_usuario");
+                array.add(Item);
+            }
+            
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;
+        }
+        
+       
+   }
     
 }

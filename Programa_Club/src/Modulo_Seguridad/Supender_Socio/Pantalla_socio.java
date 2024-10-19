@@ -5,16 +5,17 @@
  */
 package Modulo_Seguridad.Supender_Socio;
 import Modulo_Seguridad.Pantalla_Seguridad;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import programa_club.Conexion_Bdd;
 
 /**
  *
  * @author HP OMEN
  */
 public class Pantalla_socio extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Pantalla_socio
-     */
+    DefaultListModel modelo = new DefaultListModel();
+    javax.swing.JLabel label_socio = new javax.swing.JLabel();
     public Pantalla_socio() {
         initComponents();
     }
@@ -29,7 +30,7 @@ public class Pantalla_socio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btn_Volver = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        javax.swing.JLabel label_socio = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -44,8 +45,6 @@ public class Pantalla_socio extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/humano.png"))); // NOI18N
 
-        jLabel1.setText("jLabel1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -55,9 +54,9 @@ public class Pantalla_socio extends javax.swing.JFrame {
                 .addComponent(btn_Volver)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
+                .addComponent(label_socio, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(126, 126, 126))
         );
@@ -69,7 +68,7 @@ public class Pantalla_socio extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label_socio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -117,6 +116,13 @@ public class Pantalla_socio extends javax.swing.JFrame {
     }
     
     public void agregar_socio(int id){
+        modelo.removeAllElements();
+        Conexion_Bdd conexion= new Conexion_Bdd();
+        ArrayList array=conexion.Select_unique_socio(id);
+        label_socio.setText("array");
+        
+        
+        
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

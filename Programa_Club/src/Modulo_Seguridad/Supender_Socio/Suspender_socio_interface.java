@@ -30,7 +30,6 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
                     int id=Integer.parseInt(separado[0]);
                     S_S_C.Pantalla_socio(id);
                     
-                    
                 }
             }
         });
@@ -105,7 +104,6 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_VolverActionPerformed
 
   
-    
     
     
     public static void main(String args[]) {

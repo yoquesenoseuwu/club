@@ -31,8 +31,8 @@ public class Suspender_socio_codigo {
     
     public void Pantalla_socio(int id){
         Pantalla_socio Ps = new Pantalla_socio();
-        Ps.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Ps.setVisible(true); // Mostrar la ventana
+        Ps.agregar_socio(id);
+        Ps.setVisible(true);
     }
     
 }
