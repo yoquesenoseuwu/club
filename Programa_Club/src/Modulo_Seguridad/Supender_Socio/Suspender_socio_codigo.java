@@ -1,11 +1,12 @@
 /*
 arrar= Es un array/vector con la info de los socios,
  */
-package Modulo_Seguridad;
+package Modulo_Seguridad.Supender_Socio;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import programa_club.Conexion_Bdd;
+import javax.swing.*;
 
 public class Suspender_socio_codigo {
     Conexion_Bdd conexion= new Conexion_Bdd();
@@ -29,7 +30,9 @@ public class Suspender_socio_codigo {
     }
     
     public void Pantalla_socio(int id){
-        
+        Pantalla_socio Ps = new Pantalla_socio();
+        Ps.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Ps.setVisible(true); // Mostrar la ventana
     }
     
 }

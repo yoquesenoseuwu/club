@@ -5,6 +5,7 @@ vM=La pantalla del Main del paquete programa_club
  */
 package Modulo_Seguridad;
 
+import Modulo_Seguridad.Supender_Socio.Suspender_socio_interface;
 import java.awt.Dimension;
 import programa_club.Main;
 import Modulo_Seguridad.Ver_Guardias;

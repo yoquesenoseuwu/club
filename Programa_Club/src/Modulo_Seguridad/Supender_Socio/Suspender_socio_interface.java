@@ -1,6 +1,7 @@
 
 
-package Modulo_Seguridad;
+package Modulo_Seguridad.Supender_Socio;
+import Modulo_Seguridad.Pantalla_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.*;
@@ -26,7 +27,6 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
                     String itemSeleccionado = jListSocio.getSelectedValue();
                     String[] separado=itemSeleccionado.split("-");
                     JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + separado[0]);
                     int id=Integer.parseInt(separado[0]);
                     S_S_C.Pantalla_socio(id);
                     
