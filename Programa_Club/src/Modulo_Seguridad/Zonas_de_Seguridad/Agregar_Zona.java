@@ -5,6 +5,7 @@
  */
 package Modulo_Seguridad.Zonas_de_Seguridad;
 import Modulo_Seguridad.Pantalla_Seguridad;
+import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 /**
  *
  * @author PC
@@ -125,10 +126,12 @@ public class Agregar_Zona extends javax.swing.JFrame {
     }//GEN-LAST:event_txtField_NombreActionPerformed
 
     private void btn_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EnviarActionPerformed
+        Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
         Nombre=txtField_Nombre.getText();
         Tamaño=txtField_Tamaño.getText();
         Descripcion=txtField_Descripcion.getText();
-        Consulta="INSERT INTO Zona_de_Seguridad VALUES ("+ Nombre+","+Tamaño+","+Descripcion+")";
+        //Consulta="INSERT INTO Zona_de_Seguridad (Nombre, Tamaño, Descripcion) VALUES ("+ Nombre+","+Tamaño+","+Descripcion+")";
+        conexion.Insert_Zona_Seguridad(Nombre, Tamaño, Descripcion);
     }//GEN-LAST:event_btn_EnviarActionPerformed
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed

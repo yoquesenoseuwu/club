@@ -15,6 +15,7 @@ import Modulo_Seguridad.Conexion_Bdd_Seguridad;
  */
 public class Ver_Zonas_codigo {
         Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
+        private String Nom;
     
     public Ver_Zonas_codigo(){
 
@@ -23,7 +24,9 @@ public class Ver_Zonas_codigo {
     
     public DefaultListModel mostrar(DefaultListModel modelo){
         modelo.removeAllElements();
-        ArrayList array=conexion.Select_Zona_de_Seguridad();
+        ArrayList array=conexion.Select_Zona_de_Seguridad_nombre();
+        System.out.println(array);
+        
         for (int i=0; i<array.size(); i++){
             modelo.addElement(array.get(i));
         }

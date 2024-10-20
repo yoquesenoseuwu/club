@@ -17,6 +17,9 @@ import programa_club.Conexion_Bdd;
  * @author PC
  */
 public class Conexion_Bdd_Seguridad {
+    private String Nom_z;
+    private int id_z;
+    private String[] vector;
     public Connection Conectar() {
         Connection miConexion = null; // Inicializa la conexión como nula
         try {
@@ -116,6 +119,7 @@ public class Conexion_Bdd_Seguridad {
    }
     public ArrayList Select_Zona_de_Seguridad(){
         try{
+            //vector=new [2];
             ArrayList<String> array = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
             String query="SELECT ID,Nombre,Tamaño,Descripcion FROM Zona_de_Seguridad;";
@@ -123,6 +127,55 @@ public class Conexion_Bdd_Seguridad {
             ResultSet result=sele.executeQuery(query);
             while(result.next()){
                 String Item=result.getInt("ID") + "-" + result.getString("Nombre")+ "-" + result.getString("Tamaño")+ "-" + result.getString("Descripcion");
+                array.add(Item);
+                //vector[0]=getString(result.getInt("ID"));
+
+            }
+            
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;    
+        }
+        
+    }
+    public int Select_Zona_de_Seguridad_id(){
+        try{
+            
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String query="SELECT ID FROM Zona_de_Seguridad;";
+            Statement  sele = miConexion.createStatement();
+            ResultSet result=sele.executeQuery(query);
+            while(result.next()){
+                id_z=result.getInt("ID");
+                
+            }
+            
+            miConexion.close();
+            return id_z;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return 0;    
+        }
+        
+    }
+    
+    public ArrayList Select_Zona_de_Seguridad_nombre(){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String query="SELECT Nombre FROM Zona_de_Seguridad;";
+            Statement  sele = miConexion.createStatement();
+            ResultSet result=sele.executeQuery(query);
+            while(result.next()){
+                String Item=result.getString("Nombre");
                 array.add(Item);
             }
             
@@ -136,6 +189,31 @@ public class Conexion_Bdd_Seguridad {
             return null;    
         }
         
+    }
+    
+    public Boolean Insert_Zona_Seguridad(String Nombre, String Tamaño, String Descripcion){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Zona_de_Seguridad (Nombre, Tamaño, Descripcion) VALUES (?,?,?)");
+
+            
+            sele.setString(1,Nombre);
+            sele.setString(2,Tamaño);
+            sele.setString(3,Descripcion);
+            
+
+            sele.executeUpdate();
+
+            miConexion.close();
+            return(true);
+
+        }catch(Exception e){
+            System.out.println("No funca");
+
+            e.printStackTrace();
+            return(false);
+
+        }
     }
     
     public ArrayList Select_Guardias(){
