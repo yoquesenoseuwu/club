@@ -5,6 +5,7 @@
  */
 package Modulo_Seguridad;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -63,7 +64,7 @@ public class Conexion_Bdd_Seguridad {
         try{
             ArrayList<String> array = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            String query="SELECT s.IDUsuario, u.Nombre_usuario FROM Usuario u,Socio s WHERE u.IDUsuario=s.IDUsuario;";
+            String query="SELECT s.IDUsuario, u.Nombre_usuario FROM Usuario u,Socio s WHERE (u.IDUsuario=s.IDUsuario) and s.IDUsuario NOT IN (SELECT ID_Usuario FROM Socios_Suspendidos);";
             Statement  sele = miConexion.createStatement();
             ResultSet result=sele.executeQuery(query);
             while(result.next()){
@@ -238,6 +239,29 @@ public class Conexion_Bdd_Seguridad {
             return null;    
         }
         
+    }
+    public Boolean Insert_socio_mal(int Id ,String Razon, int Tiempo, Date sqlDate){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Socios_Suspendidos (ID_Usuario, Tiempo_Suspendido, razon, Fecha) VALUES (?,?,?,?)");
+            
+            sele.setInt(1,Id);
+            sele.setInt(2, Tiempo);
+            sele.setString(3,Razon);
+            sele.setDate(4,sqlDate);
+            
+            sele.executeUpdate();
+            
+            miConexion.close();
+            return(true);
+            
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            return(false);
+            
+        }
     }
     
 }

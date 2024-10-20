@@ -7,15 +7,17 @@ package Modulo_Seguridad.Supender_Socio;
 import Modulo_Seguridad.Pantalla_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import programa_club.Conexion_Bdd;
-
+import Modulo_Seguridad.Conexion_Bdd_Seguridad;
+import java.time.LocalDate;
+import java.sql.Date;
 /**
  *
  * @author HP OMEN
  */
 public class Pantalla_socio extends javax.swing.JFrame {
     DefaultListModel modelo = new DefaultListModel();
-    javax.swing.JLabel label_socio = new javax.swing.JLabel();
+    Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
+    int id_usuario;
     public Pantalla_socio() {
         initComponents();
     }
@@ -31,6 +33,14 @@ public class Pantalla_socio extends javax.swing.JFrame {
         btn_Volver = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         javax.swing.JLabel label_socio = new javax.swing.JLabel();
+        Direccion_s = new javax.swing.JLabel();
+        Idsoci = new javax.swing.JLabel();
+        Nombre_s = new javax.swing.JLabel();
+        Email = new javax.swing.JLabel();
+        Contraseña_s2 = new javax.swing.JLabel();
+        Razon_s = new javax.swing.JTextField();
+        Tiempo_s = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -45,31 +55,98 @@ public class Pantalla_socio extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/humano.png"))); // NOI18N
 
+        Direccion_s.setText("4");
+
+        Idsoci.setText("1");
+
+        Nombre_s.setText("2");
+
+        Email.setText("5");
+
+        Contraseña_s2.setText("3");
+
+        Razon_s.setText("Escriba la razon para su suspención");
+        Razon_s.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Razon_sActionPerformed(evt);
+            }
+        });
+
+        Tiempo_s.setText("Cant. de tiempo suspendido (Dias)");
+        Tiempo_s.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tiempo_sActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Enviar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_Volver)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_Volver))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Direccion_s, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Email, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Idsoci, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Contraseña_s2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Nombre_s, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Razon_s, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Tiempo_s, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel3)
+                        .addGap(106, 106, 106)
+                        .addComponent(label_socio, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(label_socio, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(126, 126, 126))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_Volver)
-                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(label_socio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_socio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(Idsoci, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(Nombre_s, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(Contraseña_s2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Direccion_s, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(Razon_s, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(Tiempo_s, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -82,6 +159,28 @@ public class Pantalla_socio extends javax.swing.JFrame {
         pM.setSize(1530,900);
         pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
+
+    private void Razon_sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Razon_sActionPerformed
+        
+    }//GEN-LAST:event_Razon_sActionPerformed
+
+    private void Tiempo_sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tiempo_sActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tiempo_sActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        String Razon= Razon_s.getText();
+        int tiempo= Integer.parseInt(Tiempo_s.getText());
+        LocalDate fechaActual = LocalDate.now();
+        Date sqlDate = Date.valueOf(fechaActual);
+        Boolean resul=conexion.Insert_socio_mal(id_usuario,Razon,tiempo,sqlDate);
+        
+        this.setVisible(false);
+        
+       
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -117,16 +216,39 @@ public class Pantalla_socio extends javax.swing.JFrame {
     
     public void agregar_socio(int id){
         modelo.removeAllElements();
-        Conexion_Bdd conexion= new Conexion_Bdd();
         ArrayList array=conexion.Select_unique_socio(id);
-        label_socio.setText("array");
+        
+        String Id=(String) array.get(0);
+        id_usuario=id;
+        Idsoci.setText(Id);
+        
+        String nombre=(String) array.get(1);
+        Nombre_s.setText(nombre);
+        
+        String contraseña=(String) array.get(2);
+        Contraseña_s2.setText(contraseña);
+        
+        String direccion=(String) array.get(3);
+        Direccion_s.setText(direccion);
+        
+        String email=(String) array.get(4);
+        Email.setText(email);
+        
         
         
         
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Contraseña_s2;
+    private javax.swing.JLabel Direccion_s;
+    private javax.swing.JLabel Email;
+    private javax.swing.JLabel Idsoci;
+    private javax.swing.JLabel Nombre_s;
+    private javax.swing.JTextField Razon_s;
+    private javax.swing.JTextField Tiempo_s;
     private javax.swing.JButton btn_Volver;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
