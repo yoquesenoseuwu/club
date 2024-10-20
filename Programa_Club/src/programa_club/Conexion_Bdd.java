@@ -21,6 +21,7 @@ public class Conexion_Bdd {
     
      
     */
+<<<<<<< HEAD
     public Connection Conectar() {
     Connection miConexion = null; // Inicializa la conexión como nula
     try {
@@ -39,6 +40,8 @@ public class Conexion_Bdd {
     return miConexion; // Retorna la conexión (puede ser nula si hubo un error)
     }
 
+=======
+>>>>>>> 5bf21324d750ed4f27a7c497add0c449f1960264
     
     //Este es un metodo que podemos usar para cualquier tabla
     public ResultSet Select(String Nombre_Tabla){
