@@ -4,16 +4,8 @@ vS=Pantalla de seguridad del paquete Modulo_Seguridad
  */
 package programa_club;
 
-<<<<<<< HEAD
-import programa_club.Conexion_Bdd;
 import Modulo_Seguridad.Pantalla_Seguridad;
 import Modulo_Seguridad.Abrir_Seguridad;
-import Modulo_Ventas.Pantalla_Ventas;
-import java.sql.ResultSet;
-=======
-import Modulo_Seguridad.Pantalla_Seguridad;
-import Modulo_Seguridad.Abrir_Seguridad;
->>>>>>> 5bf21324d750ed4f27a7c497add0c449f1960264
 
         /**
  *
@@ -40,10 +32,6 @@ public class Main extends javax.swing.JFrame {
         button1 = new java.awt.Button();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-<<<<<<< HEAD
-        jButton3 = new javax.swing.JButton();
-=======
->>>>>>> 5bf21324d750ed4f27a7c497add0c449f1960264
 
         button1.setLabel("button1");
 
@@ -63,32 +51,11 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
-        jButton3.setText("Entrar a Ventas");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-=======
->>>>>>> 5bf21324d750ed4f27a7c497add0c449f1960264
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(128, 128, 128)
-                            .addComponent(jButton1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(141, 141, 141)
-                            .addComponent(jButton2))))
-=======
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(128, 128, 128)
@@ -96,7 +63,6 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addComponent(jButton2)))
->>>>>>> 5bf21324d750ed4f27a7c497add0c449f1960264
                 .addContainerGap(133, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,17 +70,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jButton1)
-<<<<<<< HEAD
-                .addGap(44, 44, 44)
-                .addComponent(jButton3)
-                .addGap(48, 48, 48)
-                .addComponent(jButton2)
-                .addContainerGap(91, Short.MAX_VALUE))
-=======
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addContainerGap(188, Short.MAX_VALUE))
->>>>>>> 5bf21324d750ed4f27a7c497add0c449f1960264
         );
 
         pack();
@@ -131,24 +89,9 @@ public class Main extends javax.swing.JFrame {
         bd.Conectar(); 
         
         
-<<<<<<< HEAD
-     
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        Pantalla_Ventas vV= new Pantalla_Ventas();
-        vV.setVisible(true);
-        this.setVisible(false);
-        vV.setLocationRelativeTo(null);
-        vV.setSize(1530,900);    
-    }//GEN-LAST:event_jButton3ActionPerformed
-                                                   
-=======
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
->>>>>>> 5bf21324d750ed4f27a7c497add0c449f1960264
     /**
      * @param args the command line arguments
      */
@@ -188,11 +131,5 @@ public class Main extends javax.swing.JFrame {
     private java.awt.Button button1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-<<<<<<< HEAD
-    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }
-=======
-    // End of variables declaration//GEN-END:variables
-}
->>>>>>> 5bf21324d750ed4f27a7c497add0c449f1960264

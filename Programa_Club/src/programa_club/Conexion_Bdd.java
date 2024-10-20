@@ -21,27 +21,24 @@ public class Conexion_Bdd {
     
      
     */
-<<<<<<< HEAD
     public Connection Conectar() {
-    Connection miConexion = null; // Inicializa la conexión como nula
-    try {
-        // Asegúrate de que la URL esté correctamente formateada
-        String url = "jdbc:mysql://bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb";
-        String user = "uwwqerjcglxxweor"; // Nombre de usuario
-        String password = "vWobxeLnCiH11WTJg6N"; // Contraseña
-        
-        // Intenta establecer la conexión
-        miConexion = DriverManager.getConnection(url, user, password);
-        System.out.println("Conexión exitosa a la base de datos.");
-    } catch (SQLException e) {
-        System.out.println("No se pudo conectar a la base de datos.");
-        e.printStackTrace();
-    }
-    return miConexion; // Retorna la conexión (puede ser nula si hubo un error)
+        Connection miConexion = null; // Inicializa la conexión como nula
+        try {
+            // Asegúrate de que la URL esté correctamente formateada
+            String url = "jdbc:mysql://bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb";
+            String user = "uwwqerjcglxxweor"; // Nombre de usuario
+            String password = "vWobxeLnCiH11WTJg6N"; // Contraseña
+
+            // Intenta establecer la conexión
+            miConexion = DriverManager.getConnection(url, user, password);
+            System.out.println("Conexión exitosa a la base de datos.");
+        } catch (SQLException e) {
+            System.out.println("No se pudo conectar a la base de datos.");
+            e.printStackTrace();
+        }
+        return miConexion; // Retorna la conexión (puede ser nula si hubo un error)
     }
 
-=======
->>>>>>> 5bf21324d750ed4f27a7c497add0c449f1960264
     
     //Este es un metodo que podemos usar para cualquier tabla
     public ResultSet Select(String Nombre_Tabla){
@@ -62,8 +59,7 @@ public class Conexion_Bdd {
             return null;
         }
     }
-  
-    //Metodo usado por los de seguridad
+ //Metodo usado por los de seguridad
     public ArrayList Select_socios(){
         try{
             ArrayList<String> array = new ArrayList<String>();
@@ -98,8 +94,16 @@ public class Conexion_Bdd {
             ResultSet result = query.executeQuery();
             
             while(result.next()){
-                String Item=result.getInt("IDUsuario") + "-" + result.getString("Nombre_usuario");
-                array.add(Item);
+                String Id="ID DE USUARIO/SOCIO=" + result.getInt("IDUsuario");
+                array.add(Id);
+                String Nombre="NOMBRE DE SOCIO=" + result.getString("Nombre_usuario");
+                array.add(Nombre);
+                String Contra="CONTRASEÑA=" + result.getString("Contraseña");
+                array.add(Contra);
+                String Direccion="DIRECCION=" + result.getString("Direccion");
+                array.add(Direccion);
+                String Email="EMAIL=" + result.getString("Email");
+                array.add(Email);
             }
             
             miConexion.close();
