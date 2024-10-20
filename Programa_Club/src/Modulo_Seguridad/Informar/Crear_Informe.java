@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulo_Seguridad;
+package Modulo_Seguridad.Informar;
 
 /**
  *

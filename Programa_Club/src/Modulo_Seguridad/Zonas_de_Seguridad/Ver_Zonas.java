@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulo_Seguridad;
+package Modulo_Seguridad.Zonas_de_Seguridad;
 
+import Modulo_Seguridad.Pantalla_Seguridad;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import Modulo_Seguridad.Ver_Zonas_codigo;
+import Modulo_Seguridad.Zonas_de_Seguridad.Ver_Zonas_codigo;
 
 
 /**
@@ -53,6 +54,7 @@ public class Ver_Zonas extends javax.swing.JFrame {
         btn_Volver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         list_zonas = new javax.swing.JList<>();
+        btn_Agregar_Zona = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +72,13 @@ public class Ver_Zonas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(list_zonas);
 
+        btn_Agregar_Zona.setText("Agregar zona");
+        btn_Agregar_Zona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Agregar_ZonaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,14 +89,21 @@ public class Ver_Zonas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(btn_Agregar_Zona)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btn_Volver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(btn_Agregar_Zona)))
                 .addGap(0, 62, Short.MAX_VALUE))
         );
 
@@ -101,6 +117,12 @@ public class Ver_Zonas extends javax.swing.JFrame {
         pM.setSize(1530,900);
         pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
+
+    private void btn_Agregar_ZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Agregar_ZonaActionPerformed
+        Agregar_Zona aZ=new Agregar_Zona();
+        aZ.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_Agregar_ZonaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,6 +160,7 @@ public class Ver_Zonas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Agregar_Zona;
     private javax.swing.JButton btn_Volver;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> list_zonas;
