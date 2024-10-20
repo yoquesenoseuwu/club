@@ -9,7 +9,7 @@ import Modulo_Seguridad.Zonas_de_Seguridad.Ver_Zonas;
 import Modulo_Seguridad.Supender_Socio.Suspender_socio_interface;
 import java.awt.Dimension;
 import programa_club.Main;
-import Modulo_Seguridad.Ver_Guardias;
+import Modulo_Seguridad.Ver_Equipar_Guardias.Ver_Guardias;
 
 public class Pantalla_Seguridad extends javax.swing.JFrame {
 

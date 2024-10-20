@@ -3,20 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulo_Seguridad;
+package Modulo_Seguridad.Ver_Equipar_Guardias;
 
 import Modulo_Seguridad.Pantalla_Seguridad;
+import Modulo_Seguridad.Pantalla_Seguridad;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 /**
  *
  * @author HP OMEN
  */
 public class Ver_Guardias extends javax.swing.JFrame {
-
+    Ver_Guardias_Codigo vGc = new Ver_Guardias_Codigo();
+    DefaultListModel modelo = new DefaultListModel();
     /**
      * Creates new form Ver_Guardias
      */
     public Ver_Guardias() {
         initComponents();
+        modelo=vGc.mostrar(modelo);
+        list_Guardias.setModel(modelo);
+        list_Guardias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list_Guardias.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String itemSeleccionado = list_Guardias.getSelectedValue();
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
+                    
+                    
+                }
+            }
+        });
     }
 
     /**
@@ -30,7 +50,7 @@ public class Ver_Guardias extends javax.swing.JFrame {
 
         btn_Volver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        list_Guardias = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,12 +61,12 @@ public class Ver_Guardias extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        list_Guardias.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(list_Guardias);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,7 +76,7 @@ public class Ver_Guardias extends javax.swing.JFrame {
                 .addComponent(btn_Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 333, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addGap(53, 53, 53)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -64,9 +84,9 @@ public class Ver_Guardias extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(btn_Volver)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,7 +138,7 @@ public class Ver_Guardias extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Volver;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> list_Guardias;
     // End of variables declaration//GEN-END:variables
 }
