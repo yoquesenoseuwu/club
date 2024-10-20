@@ -44,5 +44,7 @@ public class CrudProducto {
     public void setStockProductos(int stockProductos) {
         this.stockProductos = stockProductos;
     }
-
+    public void InsertarProducto(){
+    
+    }
 }

@@ -21,24 +21,16 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        Btn_Gestionar_Productos = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         Btn_Gestionar_Pedidos = new javax.swing.JButton();
         Btn_Gestionar_Proveedores = new javax.swing.JButton();
         Volver = new javax.swing.JButton();
-        Btn_Gestionar_Productos1 = new javax.swing.JButton();
-        Btn_Gestionar_Productos2 = new javax.swing.JButton();
+        Btn_Gestionar_Productos = new javax.swing.JButton();
+        Btn_Gestionar_Promocion = new javax.swing.JButton();
+        Btn_Gestionar_Categoria = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("      Gestion de Ventas");
-
-        Btn_Gestionar_Productos.setText("Gestionar Categoria");
-        Btn_Gestionar_Productos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Gestionar_ProductosActionPerformed(evt);
-            }
-        });
 
         Btn_Gestionar_Pedidos.setText("Gestionar Pedidos");
         Btn_Gestionar_Pedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -61,17 +53,24 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
             }
         });
 
-        Btn_Gestionar_Productos1.setText("Gestionar Productos");
-        Btn_Gestionar_Productos1.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Gestionar_Productos.setText("Gestionar Productos");
+        Btn_Gestionar_Productos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Gestionar_Productos1ActionPerformed(evt);
+                Btn_Gestionar_ProductosActionPerformed(evt);
             }
         });
 
-        Btn_Gestionar_Productos2.setText("Gestionar Promocion");
-        Btn_Gestionar_Productos2.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Gestionar_Promocion.setText("Gestionar Promocion");
+        Btn_Gestionar_Promocion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Gestionar_Productos2ActionPerformed(evt);
+                Btn_Gestionar_PromocionActionPerformed(evt);
+            }
+        });
+
+        Btn_Gestionar_Categoria.setText("Gestionar Categoria");
+        Btn_Gestionar_Categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Gestionar_CategoriaActionPerformed(evt);
             }
         });
 
@@ -80,23 +79,22 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Btn_Gestionar_Productos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_Gestionar_Pedidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(Btn_Gestionar_Proveedores)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_Gestionar_Productos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_Gestionar_Productos2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(121, Short.MAX_VALUE))
+                            .addComponent(Btn_Gestionar_Productos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_Gestionar_Promocion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_Gestionar_Categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,18 +105,16 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addComponent(Volver))
                 .addGap(55, 55, 55)
+                .addComponent(Btn_Gestionar_Categoria)
+                .addGap(18, 18, 18)
                 .addComponent(Btn_Gestionar_Productos)
                 .addGap(18, 18, 18)
-                .addComponent(Btn_Gestionar_Productos1)
-                .addGap(18, 18, 18)
-                .addComponent(Btn_Gestionar_Productos2)
+                .addComponent(Btn_Gestionar_Promocion)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_Gestionar_Pedidos)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_Gestionar_Proveedores)
-                .addGap(111, 111, 111)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,13 +131,6 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Btn_Gestionar_ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_ProductosActionPerformed
-        Gestion_Productos vP= new Gestion_Productos();
-        vP.setVisible(true);
-        this.setVisible(false);
-        vP.setLocationRelativeTo(null);
-        vP.setSize(1530,900);    }//GEN-LAST:event_Btn_Gestionar_ProductosActionPerformed
-
     private void Btn_Gestionar_PedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_PedidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Btn_Gestionar_PedidosActionPerformed
@@ -157,13 +146,22 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         vM.setSize(1530,900);
     }//GEN-LAST:event_VolverActionPerformed
 
-    private void Btn_Gestionar_Productos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_Productos1ActionPerformed
+    private void Btn_Gestionar_ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_ProductosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_Gestionar_Productos1ActionPerformed
+        Gestion_Productos vP= new Gestion_Productos();
+        vP.setVisible(true);
+        this.setVisible(false);
+        vP.setLocationRelativeTo(null);
+        vP.setSize(1530,900);
+    }//GEN-LAST:event_Btn_Gestionar_ProductosActionPerformed
 
-    private void Btn_Gestionar_Productos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_Productos2ActionPerformed
+    private void Btn_Gestionar_PromocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_PromocionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_Gestionar_Productos2ActionPerformed
+    }//GEN-LAST:event_Btn_Gestionar_PromocionActionPerformed
+
+    private void Btn_Gestionar_CategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_CategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_Gestionar_CategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,13 +199,12 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_Gestionar_Categoria;
     private javax.swing.JButton Btn_Gestionar_Pedidos;
     private javax.swing.JButton Btn_Gestionar_Productos;
-    private javax.swing.JButton Btn_Gestionar_Productos1;
-    private javax.swing.JButton Btn_Gestionar_Productos2;
+    private javax.swing.JButton Btn_Gestionar_Promocion;
     private javax.swing.JButton Btn_Gestionar_Proveedores;
     private javax.swing.JButton Volver;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
