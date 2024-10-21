@@ -2,7 +2,7 @@ package Modulo_Ventas;
 
 import programa_club.Main;
 import Modulo_Ventas.Gestion_Productos;
-
+import Modulo_Ventas.Gestion_Categorias;
 
 public class Pantalla_Ventas extends javax.swing.JFrame {
 
@@ -161,6 +161,11 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
 
     private void Btn_Gestionar_CategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_CategoriaActionPerformed
         // TODO add your handling code here:
+        Gestion_Categorias vC= new Gestion_Categorias();
+        vC.setVisible(true);
+        this.setVisible(false);
+        vC.setLocationRelativeTo(null);
+        vC.setSize(1530,900);
     }//GEN-LAST:event_Btn_Gestionar_CategoriaActionPerformed
 
     /**
