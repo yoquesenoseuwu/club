@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Modulo_Seguridad.Supender_Socio;
-import Modulo_Seguridad.Pantalla_Seguridad;
+import Modulo_Seguridad.Supender_Socio.Suspender_socio_interface;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import Modulo_Seguridad.Conexion_Bdd_Seguridad;
@@ -153,13 +153,19 @@ public class Pantalla_socio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
-        Pantalla_Seguridad pM = new Pantalla_Seguridad();
+        Suspender_socio_interface pM = new Suspender_socio_interface();
         pM.setVisible(true);
         this.setVisible(false);
         pM.setSize(1530,900);
         pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
-
+    private void lomismoqueelbotonparaatras(){
+        Suspender_socio_interface pM = new Suspender_socio_interface();
+        pM.setVisible(true);
+        this.setVisible(false);
+        pM.setSize(1530,900);
+        pM.setLocationRelativeTo(null);
+    }
     private void Razon_sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Razon_sActionPerformed
         
     }//GEN-LAST:event_Razon_sActionPerformed
@@ -175,9 +181,7 @@ public class Pantalla_socio extends javax.swing.JFrame {
         LocalDate fechaActual = LocalDate.now();
         Date sqlDate = Date.valueOf(fechaActual);
         Boolean resul=conexion.Insert_socio_mal(id_usuario,Razon,tiempo,sqlDate);
-        
-        this.setVisible(false);
-        
+        lomismoqueelbotonparaatras();
        
         
     }//GEN-LAST:event_jButton1ActionPerformed

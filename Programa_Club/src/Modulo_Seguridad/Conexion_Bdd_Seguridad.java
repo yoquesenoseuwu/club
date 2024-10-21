@@ -68,8 +68,9 @@ public class Conexion_Bdd_Seguridad {
             Statement  sele = miConexion.createStatement();
             ResultSet result=sele.executeQuery(query);
             while(result.next()){
-                String Item=result.getInt("IDUsuario") + "-" + result.getString("Nombre_usuario");
+                String Item=result.getInt("IDUsuario") + "-------" + result.getString("Nombre_usuario");
                 array.add(Item);
+                System.out.println("hola");
             }
             
             miConexion.close();
@@ -252,6 +253,9 @@ public class Conexion_Bdd_Seguridad {
             
             sele.executeUpdate();
             
+            PreparedStatement sele2= miConexion.prepareStatement("CREATE EVENT borrar_registro ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL ? DAY DO DELETE FROM Socios_Suspendidos WHERE ID_Usuario = ?");
+            sele2.setInt(1,Tiempo);
+            sele2.setInt(2,Id);
             miConexion.close();
             return(true);
             
@@ -263,5 +267,6 @@ public class Conexion_Bdd_Seguridad {
             
         }
     }
+    
     
 }
