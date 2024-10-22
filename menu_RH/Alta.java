@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package menu;
+package menu_RH;
 
 /**
  *
@@ -49,7 +49,8 @@ public class Alta extends javax.swing.JFrame {
         ingre_tel = new javax.swing.JTextField();
         btn_enviar_alta = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        ing_edad = new javax.swing.JTextField();
+        Volver_alta = new javax.swing.JButton();
 
         ingre_edad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,11 +82,21 @@ public class Alta extends javax.swing.JFrame {
                 ingr_nombreActionPerformed(evt);
             }
         });
+        ingr_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ingr_nombreKeyTyped(evt);
+            }
+        });
 
         ingre_ape.setForeground(new java.awt.Color(61, 61, 61));
         ingre_ape.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingre_apeActionPerformed(evt);
+            }
+        });
+        ingre_ape.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ingre_apeKeyTyped(evt);
             }
         });
 
@@ -110,6 +121,11 @@ public class Alta extends javax.swing.JFrame {
                 tipo_nacioActionPerformed(evt);
             }
         });
+        tipo_nacio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tipo_nacioKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Waree", 0, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(229, 232, 236));
@@ -119,6 +135,11 @@ public class Alta extends javax.swing.JFrame {
         nro_documen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nro_documenActionPerformed(evt);
+            }
+        });
+        nro_documen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nro_documenKeyTyped(evt);
             }
         });
 
@@ -143,6 +164,11 @@ public class Alta extends javax.swing.JFrame {
                 ingre_telActionPerformed(evt);
             }
         });
+        ingre_tel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ingre_telKeyTyped(evt);
+            }
+        });
 
         btn_enviar_alta.setText("Enviar");
         btn_enviar_alta.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +181,19 @@ public class Alta extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(229, 232, 236));
         jLabel9.setText("Edad:");
 
-        jTextField1.setForeground(new java.awt.Color(61, 61, 61));
+        ing_edad.setForeground(new java.awt.Color(61, 61, 61));
+        ing_edad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ing_edadKeyTyped(evt);
+            }
+        });
+
+        Volver_alta.setText("<-");
+        Volver_alta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Volver_altaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,64 +202,68 @@ public class Alta extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(ingre_mail, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addContainerGap()
+                        .addComponent(Volver_alta)
+                        .addGap(284, 284, 284)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(btn_enviar_alta, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ingre_tel))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(ingre_mail))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(nro_documen))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(tipo_docu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(ingre_ape, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ingr_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addComponent(jLabel9)
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jTextField1))
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tipo_nacio, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel8)
+                                            .addComponent(ingr_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel9)
+                                .addGap(3, 3, 3)
+                                .addComponent(ing_edad))
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ingre_tel, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(319, 319, 319)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(btn_enviar_alta, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tipo_nacio, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Volver_alta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ingr_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ing_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +301,7 @@ public class Alta extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -298,8 +340,87 @@ public class Alta extends javax.swing.JFrame {
     }//GEN-LAST:event_ingre_edadActionPerformed
 
     private void btn_enviar_altaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviar_altaActionPerformed
-        // TODO add your handling code here:
+        limpiarFormulario();
     }//GEN-LAST:event_btn_enviar_altaActionPerformed
+    private void limpiarFormulario() {
+    ingr_nombre.setText("");
+    ingre_ape.setText("");
+    tipo_docu.setSelectedIndex(0); // Resetea a la primera opción
+    tipo_nacio.setText("");
+    nro_documen.setText("");
+    ingre_mail.setText("");
+    ingre_tel.setText("");
+    ing_edad.setText("");
+}
+    
+    
+    
+    private void Volver_altaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Volver_altaActionPerformed
+        Gtn_personal newframe = new Gtn_personal();
+        
+        newframe.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_Volver_altaActionPerformed
+
+    private void nro_documenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nro_documenKeyTyped
+        if(nro_documen.getText().length() >= 8)
+        {
+            evt.consume();
+        
+        }
+        
+        
+        char c = evt.getKeyChar();
+        
+        if(c<'0' || c>'9') evt.consume();
+        
+        
+    }//GEN-LAST:event_nro_documenKeyTyped
+
+    private void ingr_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ingr_nombreKeyTyped
+         char c = evt.getKeyChar();
+        
+        if((c<'a' || c>'z') && (c<'A') | c>'Z') evt.consume();
+    }//GEN-LAST:event_ingr_nombreKeyTyped
+
+    private void ingre_apeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ingre_apeKeyTyped
+         char c = evt.getKeyChar();
+        
+        if((c<'a' || c>'z') && (c<'A') | c>'Z') evt.consume();
+    }//GEN-LAST:event_ingre_apeKeyTyped
+
+    private void tipo_nacioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tipo_nacioKeyTyped
+         char c = evt.getKeyChar();
+        
+        if((c<'a' || c>'z') && (c<'A') | c>'Z') evt.consume();
+    }//GEN-LAST:event_tipo_nacioKeyTyped
+
+    private void ingre_telKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ingre_telKeyTyped
+        if(ingre_tel.getText().length() >= 10)
+        {
+            evt.consume();
+        
+        }
+        
+        
+        char c = evt.getKeyChar();
+        
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_ingre_telKeyTyped
+
+    private void ing_edadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ing_edadKeyTyped
+        if(ing_edad.getText().length() >= 2)
+        {
+            evt.consume();
+        
+        }
+        
+        
+        char c = evt.getKeyChar();
+        
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_ing_edadKeyTyped
 
     /**
      * @param args the command line arguments
@@ -337,7 +458,9 @@ public class Alta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Volver_alta;
     private javax.swing.JButton btn_enviar_alta;
+    private javax.swing.JTextField ing_edad;
     private javax.swing.JTextField ingr_nombre;
     private javax.swing.JTextField ingre_ape;
     private javax.swing.JTextField ingre_edad;
@@ -356,7 +479,6 @@ public class Alta extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nro_documen;
     private javax.swing.JComboBox<String> tipo_docu;
     private javax.swing.JTextField tipo_nacio;
