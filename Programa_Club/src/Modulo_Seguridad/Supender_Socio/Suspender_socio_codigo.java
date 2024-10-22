@@ -1,30 +1,41 @@
 /*
 arrar= Es un array/vector con la info de los socios,
  */
-package Modulo_Seguridad;
+package Modulo_Seguridad.Supender_Socio;
+import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import Modulo_Seguridad.Conexion_Bdd_Seguridad;
+import javax.swing.*;
 
 public class Suspender_socio_codigo {
+    Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
     
-    ArrayList<String> array = new ArrayList<String>();
+    
     
     public Suspender_socio_codigo(){
-        for (int i=0; i<10; i++){
-            array.add(""+i);
-        }
+    
+       
     }
 
     
     public DefaultListModel mostrar(DefaultListModel modelo){
         modelo.removeAllElements();
+        ArrayList array=conexion.Select_socios();
+        
         for (int i=0; i<array.size(); i++){
             modelo.addElement(array.get(i));
         }
         return modelo;
-        
     }
-
     
+    public void Pantalla_socio(int id){
+
+        Pantalla_socio Ps;
+        Ps = new Pantalla_socio();
+        Ps.agregar_socio(id);
+        Ps.setVisible(true);
+    }
     
 }
+ 
