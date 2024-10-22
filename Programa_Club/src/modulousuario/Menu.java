@@ -1,4 +1,4 @@
-package modulousuario;
+package ModuloUsuarios;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -21,7 +21,7 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Abre el historial completo al hacer click en el botón
-                new Informe().setVisible(true);
+                new Historial().setVisible(true);
             }
         });
 

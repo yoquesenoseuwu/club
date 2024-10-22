@@ -1,4 +1,4 @@
-package modulousuario;
+package ModuloUsuarios;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package modulousuario;
+package ModuloUsuarios;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +20,10 @@ public class Inicio extends javax.swing.JFrame {
         lblconstraseña = new javax.swing.JLabel();
         txtusuario = new javax.swing.JTextField();
         passwordconstraseña = new javax.swing.JPasswordField();
+        lblDireccion = new javax.swing.JLabel();
+        txtDireccion = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
         btniniciosesion = new javax.swing.JButton();
         btnregistro = new javax.swing.JButton();
         lblregistro = new javax.swing.JLabel();
@@ -50,7 +54,8 @@ public class Inicio extends javax.swing.JFrame {
 
         lblusuario.setText("Usuario:");
         lblconstraseña.setText("Contraseña:");
-
+        lblDireccion.setText("Dirección:");
+        lblEmail.setText("Email:");
 
         btniniciosesion.setText("Iniciar Sesión");
         btniniciosesion.addActionListener(new java.awt.event.ActionListener() {
@@ -80,11 +85,15 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblusuario)
-                            .addComponent(lblconstraseña))
+                            .addComponent(lblconstraseña)
+                            .addComponent(lblDireccion)
+                            .addComponent(lblEmail))
                         .addGap(53, 53, 53)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtusuario)
-                            .addComponent(passwordconstraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)))
+                            .addComponent(passwordconstraseña)
+                            .addComponent(txtDireccion)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -108,9 +117,13 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(lblconstraseña)
                     .addComponent(passwordconstraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDireccion)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmail)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(btniniciosesion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -137,8 +150,10 @@ public class Inicio extends javax.swing.JFrame {
     private void btniniciosesionActionPerformed(java.awt.event.ActionEvent evt) {
     String usuario = txtusuario.getText();
     String constrasena = new String(passwordconstraseña.getPassword());
+    String direccion = txtDireccion.getText();
+    String email = txtEmail.getText();
 
-    if (usuario.isEmpty() || constrasena.isEmpty()) {
+    if (usuario.isEmpty() || constrasena.isEmpty() || direccion.isEmpty() || email.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
@@ -148,14 +163,16 @@ public class Inicio extends javax.swing.JFrame {
         Connection con = DatabaseConnection.getConnection();
        
         // Verificar si el usuario está registrado
-        String queryUsuario = "SELECT * FROM Usuario WHERE Nombre_usuario = ?";
+        String queryUsuario = "SELECT * FROM Usuario WHERE Nombre_usuario = ? AND Direccion = ? AND Email = ?";
         PreparedStatement pstUsuario = con.prepareStatement(queryUsuario);
         pstUsuario.setString(1, usuario);
+        pstUsuario.setString(2, direccion);
+        pstUsuario.setString(3, email);
         ResultSet rsUsuario = pstUsuario.executeQuery();
        
         if (!rsUsuario.next()) {
             // Si el usuario no está registrado
-            JOptionPane.showMessageDialog(this, "Usuario incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Usuario, dirección o email incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             // Verificar la contraseña
             String queryContrasena = "SELECT * FROM Usuario WHERE Nombre_usuario = ? AND Contraseña = ?";
@@ -201,11 +218,15 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btniniciosesion;
     private javax.swing.JButton btnregistro;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblconstraseña;
     private javax.swing.JLabel lblregistro;
     private javax.swing.JLabel lbltitulo;
     private javax.swing.JLabel lblusuario;
     private javax.swing.JPasswordField passwordconstraseña;
     private javax.swing.JPanel paneltitulo;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtusuario;
 }

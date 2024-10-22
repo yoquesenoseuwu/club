@@ -1,7 +1,4 @@
-package modulousuario;
-
-import modulousuario.DatabaseConnection;
-import modulousuario.Inicio;
+package ModuloUsuarios;
 
 public class ModuloUsuarios {
 
