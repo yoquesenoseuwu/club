@@ -224,17 +224,22 @@ public class Gestion_Categorias extends javax.swing.JFrame {
         CrudCategoria objetoCategoria = new CrudCategoria();
         objetoCategoria.ModificarCategoria(Btn_IDCategoria,Btn_nombreCategoria);
         objetoCategoria.MostrarCategorias(TablaCategorias);
+        objetoCategoria.LimpiarCampos(Btn_IDCategoria,Btn_nombreCategoria);
+
     }//GEN-LAST:event_Btn_ModActionPerformed
 
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
         CrudCategoria objetoCategoria = new CrudCategoria();
         objetoCategoria.EliminarCategoria(Btn_IDCategoria);
+        objetoCategoria.LimpiarCampos(Btn_IDCategoria,Btn_nombreCategoria);
         objetoCategoria.MostrarCategorias(TablaCategorias);    }//GEN-LAST:event_Btn_EliminarActionPerformed
 
+    
     private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
         CrudCategoria objetoCategoria = new CrudCategoria();
         objetoCategoria.InsertarCategoria(Btn_nombreCategoria);
         objetoCategoria.MostrarCategorias(TablaCategorias);
+        objetoCategoria.LimpiarCampos(Btn_IDCategoria,Btn_nombreCategoria);
         
     }//GEN-LAST:event_Btn_GuardarActionPerformed
 

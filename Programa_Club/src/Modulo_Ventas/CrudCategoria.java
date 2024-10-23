@@ -164,4 +164,9 @@ public class CrudCategoria {
             JOptionPane.showMessageDialog(null,"No se eliminó correctamente el registro, error:"+ e.toString())  ;
         }
     }
+    public void LimpiarCampos(JTextField paramID, JTextField paramNombre) {
+        paramID.setText("");
+        paramNombre.setText("");
+        
+    }
 }
