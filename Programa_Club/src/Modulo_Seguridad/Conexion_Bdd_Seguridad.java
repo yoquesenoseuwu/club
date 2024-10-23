@@ -245,19 +245,31 @@ public class Conexion_Bdd_Seguridad {
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
             PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Socios_Suspendidos (ID_Usuario, Tiempo_Suspendido, razon, Fecha) VALUES (?,?,?,?)");
-            
-            sele.setInt(1,Id);
-            sele.setInt(2, Tiempo);
-            sele.setString(3,Razon);
-            sele.setDate(4,sqlDate);
-            
-            sele.executeUpdate();
-            
-            PreparedStatement sele2= miConexion.prepareStatement("CREATE EVENT borrar_registro ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL ? DAY DO DELETE FROM Socios_Suspendidos WHERE ID_Usuario = ?");
-            sele2.setInt(1,Tiempo);
-            sele2.setInt(2,Id);
-            miConexion.close();
-            return(true);
+            if (Tiempo!=0){
+                sele.setInt(1,Id);
+                sele.setInt(2, Tiempo);
+                sele.setString(3,Razon);
+                sele.setDate(4,sqlDate);
+
+                sele.executeUpdate();
+
+                PreparedStatement sele2= miConexion.prepareStatement("CREATE EVENT borrar_registro ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL ? DAY DO DELETE FROM Socios_Suspendidos WHERE ID_Usuario = ?");
+                sele2.setInt(1,Tiempo);
+                sele2.setInt(1,Id);
+                sele2.execute();
+                miConexion.close();
+                return(true);
+            }else{
+                sele.setInt(1,Id);
+                sele.setInt(2, 999999999);
+                sele.setString(3,Razon);
+                sele.setDate(4,sqlDate);
+
+                sele.executeUpdate();
+                 miConexion.close();
+                return(true);
+                
+            }
             
         }catch(Exception e){
             System.out.println("No funca");
@@ -266,6 +278,30 @@ public class Conexion_Bdd_Seguridad {
             return(false);
             
         }
+    }
+    
+    public ArrayList Select_s_s(){
+        try{
+        ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String query="SELECT * FROM Socios_Suspendidos";//necesito mas datos en la base de datos
+            Statement  sele = miConexion.createStatement();
+            ResultSet result=sele.executeQuery(query);
+            while(result.next()){
+                String Item=result.getInt("ID") + "-" + result.getInt("ID_Usuario")+ "-" + result.getInt("Tiempo_Suspendido") + "-" + result.getString("razon")+ "-" + result.getDate("Fecha");
+                array.add(Item);
+            }
+            
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;    
+        }
+        
     }
     
     

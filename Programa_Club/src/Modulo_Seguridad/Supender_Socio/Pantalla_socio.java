@@ -41,6 +41,7 @@ public class Pantalla_socio extends javax.swing.JFrame {
         Razon_s = new javax.swing.JTextField();
         Tiempo_s = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        S_D = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -86,6 +87,13 @@ public class Pantalla_socio extends javax.swing.JFrame {
             }
         });
 
+        S_D.setText("Suspender Definitivamente");
+        S_D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                S_DActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,24 +105,27 @@ public class Pantalla_socio extends javax.swing.JFrame {
                         .addComponent(btn_Volver))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Direccion_s, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Email, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Idsoci, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Contraseña_s2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Tiempo_s, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(S_D)))
+                                .addGap(36, 36, 36))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Nombre_s, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Razon_s, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(Tiempo_s, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(80, 80, 80)
+                                        .addComponent(Direccion_s, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Email, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Idsoci, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Contraseña_s2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Nombre_s, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Razon_s, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(66, 66, 66)))
                         .addComponent(jLabel3)
-                        .addGap(106, 106, 106)
+                        .addGap(150, 150, 150)
                         .addComponent(label_socio, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -140,11 +151,13 @@ public class Pantalla_socio extends javax.swing.JFrame {
                         .addComponent(Direccion_s, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
+                        .addGap(37, 37, 37)
                         .addComponent(Razon_s, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(Tiempo_s, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Tiempo_s, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(S_D))
+                        .addGap(26, 26, 26)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -170,21 +183,36 @@ public class Pantalla_socio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_Razon_sActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        
+        if (Tiempo_s.isEnabled()){
+            String Razon= Razon_s.getText();
+            int tiempo= Integer.parseInt(Tiempo_s.getText());
+            LocalDate fechaActual = LocalDate.now();
+            Date sqlDate = Date.valueOf(fechaActual);
+            Boolean resul=conexion.Insert_socio_mal(id_usuario,Razon,tiempo,sqlDate);
+            lomismoqueelbotonparaatras();
+        }
+        else{
+            String Razon= Razon_s.getText();
+            int tiempo= 0;
+            LocalDate fechaActual = LocalDate.now();
+            Date sqlDate = Date.valueOf(fechaActual);
+            Boolean resul=conexion.Insert_socio_mal(id_usuario,Razon,tiempo,sqlDate);
+            lomismoqueelbotonparaatras();
+        }
+       
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void Tiempo_sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tiempo_sActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Tiempo_sActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String Razon= Razon_s.getText();
-        int tiempo= Integer.parseInt(Tiempo_s.getText());
-        LocalDate fechaActual = LocalDate.now();
-        Date sqlDate = Date.valueOf(fechaActual);
-        Boolean resul=conexion.Insert_socio_mal(id_usuario,Razon,tiempo,sqlDate);
-        lomismoqueelbotonparaatras();
-       
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void S_DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_S_DActionPerformed
+        Tiempo_s.setEnabled(false);
+    }//GEN-LAST:event_S_DActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -250,6 +278,7 @@ public class Pantalla_socio extends javax.swing.JFrame {
     private javax.swing.JLabel Idsoci;
     private javax.swing.JLabel Nombre_s;
     private javax.swing.JTextField Razon_s;
+    private javax.swing.JButton S_D;
     private javax.swing.JTextField Tiempo_s;
     private javax.swing.JButton btn_Volver;
     private javax.swing.JButton jButton1;

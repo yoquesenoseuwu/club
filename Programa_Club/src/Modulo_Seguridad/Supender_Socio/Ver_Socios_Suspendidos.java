@@ -1,62 +1,51 @@
-
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Modulo_Seguridad.Supender_Socio;
+
+import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.*;
 import Modulo_Seguridad.Pantalla_Seguridad;
 
-public class Suspender_socio_interface extends javax.swing.JFrame {
+/**
+ *
+ * @author HP OMEN
+ */
+public class Ver_Socios_Suspendidos extends javax.swing.JFrame {
+    Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
     Suspender_socio_codigo S_S_C = new Suspender_socio_codigo();
     DefaultListModel modelo = new DefaultListModel();
     
     
-    
-
-    public Suspender_socio_interface() {
+    public Ver_Socios_Suspendidos() {
         initComponents();
-        modelo=S_S_C.mostrar(modelo);
-        jListSocio.setModel(modelo);
-        jListSocio.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        jListSocio.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    String itemSeleccionado = jListSocio.getSelectedValue();
-                    String[] separado=itemSeleccionado.split("-");
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
-                    int id=Integer.parseInt(separado[0]);
-                    S_S_C.Pantalla_socio(id);
-                    Suspender_socio_interface.this.setVisible(false);
-
-                    
-                    
-                }
-            }
-        });
+        S_S_C.mostrar(modelo);
+        jList1.setModel(modelo);
         
-  
+    }
+
+    private void mostrar(){
+        modelo.removeAllElements();
+        ArrayList array=conexion.Select_s_s();
+        
+        for (int i=0; i<array.size(); i++){
+            modelo.addElement(array.get(i));
+        }
+        
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListSocio = new javax.swing.JList<>();
         btn_Volver = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jListSocio.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jListSocio);
 
         btn_Volver.setText("<--");
         btn_Volver.addActionListener(new java.awt.event.ActionListener() {
@@ -65,7 +54,12 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Pantalla de suspención de socio");
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,25 +68,21 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btn_Volver)
-                        .addGap(267, 267, 267)
-                        .addComponent(jLabel1)))
-                .addContainerGap(277, Short.MAX_VALUE))
+                        .addComponent(btn_Volver))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Volver)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addComponent(btn_Volver)
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,10 +96,9 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
         pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
 
-  
-    
-    
-    
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -124,28 +113,27 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Suspender_socio_interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Socios_Suspendidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Suspender_socio_interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Socios_Suspendidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Suspender_socio_interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Socios_Suspendidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Suspender_socio_interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Socios_Suspendidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Suspender_socio_interface().setVisible(true);
+                new Ver_Socios_Suspendidos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Volver;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jListSocio;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

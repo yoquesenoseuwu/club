@@ -7,6 +7,7 @@ package Modulo_Seguridad;
 
 import Modulo_Seguridad.Zonas_de_Seguridad.Ver_Zonas;
 import Modulo_Seguridad.Supender_Socio.Suspender_socio_interface;
+import Modulo_Seguridad.Supender_Socio.Ver_Socios_Suspendidos;
 import java.awt.Dimension;
 import programa_club.Main;
 import Modulo_Seguridad.Ver_Equipar_Guardias.Ver_Guardias;
@@ -43,6 +44,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         btn_equiparGuardias = new javax.swing.JButton();
         btn_comprarEquipamiento = new javax.swing.JButton();
         btn_crearInforme = new javax.swing.JButton();
+        btn_v_s_s = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,13 +84,20 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
 
         btn_crearInforme.setText("Crear informe");
 
+        btn_v_s_s.setText("Ver Socios Suspendidos");
+        btn_v_s_s.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_v_s_sActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btn_Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(165, 165, 165)
+                .addGap(70, 70, 70)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btn_crearInforme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -103,6 +112,10 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                         .addComponent(btn_verZonas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(217, 217, 217)
                         .addComponent(btn_equiparGuardias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(107, 107, 107))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(277, 277, 277)
+                .addComponent(btn_v_s_s, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -111,21 +124,23 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_Volver)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel1)))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_verGuardias)
-                    .addComponent(btn_suspenderSocios))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_verZonas)
-                    .addComponent(btn_equiparGuardias))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_comprarEquipamiento)
-                    .addComponent(btn_crearInforme))
-                .addContainerGap(84, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_verGuardias)
+                            .addComponent(btn_suspenderSocios))
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_verZonas)
+                            .addComponent(btn_equiparGuardias))
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_comprarEquipamiento)
+                            .addComponent(btn_crearInforme))))
+                .addGap(18, 18, 18)
+                .addComponent(btn_v_s_s)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -173,6 +188,14 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         VerZonas.setSize(1530,900);
     }//GEN-LAST:event_btn_verZonasActionPerformed
 
+    private void btn_v_s_sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_v_s_sActionPerformed
+        Ver_Socios_Suspendidos V_S_S=new Ver_Socios_Suspendidos();
+        V_S_S.setVisible(true);
+        V_S_S.setLocationRelativeTo(null);
+        this.setVisible(false);
+        V_S_S.setSize(1530,900);
+    }//GEN-LAST:event_btn_v_s_sActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -213,6 +236,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
     private javax.swing.JButton btn_crearInforme;
     private javax.swing.JButton btn_equiparGuardias;
     private javax.swing.JButton btn_suspenderSocios;
+    private javax.swing.JButton btn_v_s_s;
     private javax.swing.JButton btn_verGuardias;
     private javax.swing.JButton btn_verZonas;
     private javax.swing.JLabel jLabel1;
