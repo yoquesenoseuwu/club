@@ -9,6 +9,7 @@ import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import Modulo_Seguridad.Pantalla_Seguridad;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -22,8 +23,9 @@ public class Ver_Socios_Suspendidos extends javax.swing.JFrame {
     
     public Ver_Socios_Suspendidos() {
         initComponents();
-        S_S_C.mostrar(modelo);
+        mostrar();
         jList1.setModel(modelo);
+        jList1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
     }
 
