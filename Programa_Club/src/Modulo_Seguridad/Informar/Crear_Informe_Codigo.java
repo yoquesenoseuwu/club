@@ -8,14 +8,14 @@ package Modulo_Seguridad.Informar;
 import Modulo_Seguridad.Zonas_de_Seguridad.Pantalla_Zona;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import programa_club.Conexion_Bdd;
+import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 
 /**
  *
  * @author PC
  */
 public class Crear_Informe_Codigo {
-    Conexion_Bdd conexion= new Conexion_Bdd();
+    Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
     
     public Crear_Informe_Codigo(){
 
