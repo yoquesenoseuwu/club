@@ -45,6 +45,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         btn_comprarEquipamiento = new javax.swing.JButton();
         btn_crearInforme = new javax.swing.JButton();
         btn_v_s_s = new javax.swing.JButton();
+        btn_v_s_s1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,32 +92,42 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
             }
         });
 
+        btn_v_s_s1.setText("Comprar Equipamiento");
+        btn_v_s_s1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_v_s_s1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btn_Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_crearInforme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(217, 217, 217)
-                        .addComponent(btn_comprarEquipamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btn_Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_crearInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                                .addGap(217, 217, 217)
+                                .addComponent(btn_comprarEquipamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_verGuardias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(217, 217, 217)
+                                .addComponent(btn_suspenderSocios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_verZonas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(217, 217, 217)
+                                .addComponent(btn_equiparGuardias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_verGuardias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(217, 217, 217)
-                        .addComponent(btn_suspenderSocios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_verZonas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(217, 217, 217)
-                        .addComponent(btn_equiparGuardias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(107, 107, 107))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(277, 277, 277)
-                .addComponent(btn_v_s_s, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_v_s_s)
+                        .addGap(201, 201, 201)
+                        .addComponent(btn_v_s_s1)))
+                .addGap(98, 98, 98))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +150,9 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                             .addComponent(btn_comprarEquipamiento)
                             .addComponent(btn_crearInforme))))
                 .addGap(18, 18, 18)
-                .addComponent(btn_v_s_s)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_v_s_s)
+                    .addComponent(btn_v_s_s1))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -196,6 +209,10 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         V_S_S.setSize(1530,900);
     }//GEN-LAST:event_btn_v_s_sActionPerformed
 
+    private void btn_v_s_s1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_v_s_s1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_v_s_s1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,6 +254,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
     private javax.swing.JButton btn_equiparGuardias;
     private javax.swing.JButton btn_suspenderSocios;
     private javax.swing.JButton btn_v_s_s;
+    private javax.swing.JButton btn_v_s_s1;
     private javax.swing.JButton btn_verGuardias;
     private javax.swing.JButton btn_verZonas;
     private javax.swing.JLabel jLabel1;
