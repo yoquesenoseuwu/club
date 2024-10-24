@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Modulo_Entradas;
+
+import programa_club.Main;
+
 /**
  *
  * @author Agustín Salinas
@@ -43,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("ENTRADAS");
+        jLabel1.setText("-ENTRADAS");
 
         cerrar.setBackground(new java.awt.Color(255, 255, 255));
         cerrar.setForeground(new java.awt.Color(31, 50, 69));
@@ -56,6 +59,11 @@ public class Principal extends javax.swing.JFrame {
         cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cerrarMouseClicked(evt);
+            }
+        });
+        cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarActionPerformed(evt);
             }
         });
 
@@ -77,7 +85,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         notificaciones.setBackground(new java.awt.Color(31, 50, 69));
-        notificaciones.setIcon(new javax.swing.ImageIcon("C:\\Users\\Agustín Salinas\\Downloads\\klipartz.com.png")); // NOI18N
+        notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/klipartz.com.png"))); // NOI18N
         notificaciones.setText("    Notificaciones");
         notificaciones.setBorderPainted(false);
         notificaciones.setColorHover(new java.awt.Color(47, 94, 141));
@@ -96,7 +104,6 @@ public class Principal extends javax.swing.JFrame {
         });
 
         grupo.setBackground(new java.awt.Color(31, 50, 69));
-        grupo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Agustín Salinas\\Downloads\\klipartz.com.png")); // NOI18N
         grupo.setText("     Mi Grupo         ");
         grupo.setColorHover(new java.awt.Color(47, 94, 141));
         grupo.setColorNormal(new java.awt.Color(31, 50, 69));
@@ -114,7 +121,6 @@ public class Principal extends javax.swing.JFrame {
         });
 
         historial.setBackground(new java.awt.Color(31, 50, 69));
-        historial.setIcon(new javax.swing.ImageIcon("C:\\Users\\Agustín Salinas\\Downloads\\klipartz.com.png")); // NOI18N
         historial.setText("     Historial         ");
         historial.setColorHover(new java.awt.Color(47, 94, 141));
         historial.setColorNormal(new java.awt.Color(31, 50, 69));
@@ -139,11 +145,11 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(notificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(cerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(grupo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(historial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(historial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,6 +264,14 @@ public class Principal extends javax.swing.JFrame {
     private void cerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_cerrarMouseClicked
+
+    private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
+        Main vM = new Main();
+        vM.setVisible(true);
+        this.setVisible(false);
+        vM.setSize(1530,900);
+        vM.setLocationRelativeTo(null);
+    }//GEN-LAST:event_cerrarActionPerformed
 
     /**
      * @param args the command line arguments

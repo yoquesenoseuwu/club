@@ -127,7 +127,7 @@ public class Main extends javax.swing.JFrame {
         wdw.setVisible(true);
         this.setVisible(false);
         wdw.setLocationRelativeTo(null);
-        wdw.setSize(1530,900);
+        wdw.setSize(900,520);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
