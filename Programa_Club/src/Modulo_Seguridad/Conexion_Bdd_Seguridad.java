@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -41,16 +42,20 @@ public class Conexion_Bdd_Seguridad {
 
     
     //Este es un metodo que podemos usar para cualquier tabla
-    public ResultSet Select(String Nombre_Tabla){
+    public ArrayList Select_Equipo(){
         try{
-            //Crear conexion
+            ArrayList<String> resultados = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            PreparedStatement sele = miConexion.prepareStatement("SELECT * FROM ?");
-            sele.setString(0, Nombre_Tabla);
+            PreparedStatement sele = miConexion.prepareStatement("SELECT * FROM Tipo_Equipamiento");
             ResultSet resul=sele.executeQuery();
+             while(resul.next()){
+                String Item=resul.getInt("Tipo_Id") + "-------" + resul.getString("Nombre")+ "-------" + resul.getString("Precio")+ "-------" + resul.getString("Descripcion");
+                resultados.add(Item);
+                System.out.println(Item);
+            }
             
             miConexion.close();
-            return resul;
+            return resultados;
         }catch(Exception e){
             System.out.println("No funca");
             

@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+
 package Modulo_Entradas;
 import com.toedter.calendar.JDateChooser;
 import java.sql.Date;
@@ -17,7 +17,7 @@ import javax.swing.table.TableModel;
 /**
  *
  * @author Agustín Salinas
- */
+
 public class controladorHistorial {
     public void verHistorial(JTable tablaCompras,JLabel totalCompras){
         BDD.DBConexion conexion = new BDD.DBConexion();
@@ -30,7 +30,7 @@ public class controladorHistorial {
         modelo.addColumn("Sector");
         modelo.addColumn("Fila");
         modelo.addColumn("Asiento");
-        modelo.addColumn("Costo");*/
+        modelo.addColumn("Costo");
         DefaultTableModel modelo = (DefaultTableModel) tablaCompras.getModel();
         
         try{
@@ -76,7 +76,7 @@ public class controladorHistorial {
         modelo.addColumn("Sector");
         modelo.addColumn("Fila");
         modelo.addColumn("Asiento");
-        modelo.addColumn("Coste");*/
+        modelo.addColumn("Coste");
         DefaultTableModel modelo = (DefaultTableModel) tablaCompras.getModel();
         
         
@@ -119,3 +119,4 @@ public class controladorHistorial {
         }
     }
 }
+ */

@@ -11,6 +11,8 @@ import Modulo_Seguridad.Supender_Socio.Ver_Socios_Suspendidos;
 import java.awt.Dimension;
 import programa_club.Main;
 import Modulo_Seguridad.Ver_Equipar_Guardias.Ver_Guardias;
+import Modulo_Seguridad.Comprar_equip.Pantalla_eleccion;
+
 
 public class Pantalla_Seguridad extends javax.swing.JFrame {
 
@@ -45,7 +47,6 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         btn_comprarEquipamiento = new javax.swing.JButton();
         btn_crearInforme = new javax.swing.JButton();
         btn_v_s_s = new javax.swing.JButton();
-        btn_v_s_s1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +83,11 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         btn_equiparGuardias.setText("Equipar Guardias");
 
         btn_comprarEquipamiento.setText("Comprar equipamiento");
+        btn_comprarEquipamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_comprarEquipamientoActionPerformed(evt);
+            }
+        });
 
         btn_crearInforme.setText("Crear informe");
 
@@ -89,13 +95,6 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         btn_v_s_s.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_v_s_sActionPerformed(evt);
-            }
-        });
-
-        btn_v_s_s1.setText("Comprar Equipamiento");
-        btn_v_s_s1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_v_s_s1ActionPerformed(evt);
             }
         });
 
@@ -125,8 +124,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_v_s_s)
-                        .addGap(201, 201, 201)
-                        .addComponent(btn_v_s_s1)))
+                        .addGap(364, 364, 364)))
                 .addGap(98, 98, 98))
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,9 +148,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                             .addComponent(btn_comprarEquipamiento)
                             .addComponent(btn_crearInforme))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_v_s_s)
-                    .addComponent(btn_v_s_s1))
+                .addComponent(btn_v_s_s)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -209,9 +205,13 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         V_S_S.setSize(1530,900);
     }//GEN-LAST:event_btn_v_s_sActionPerformed
 
-    private void btn_v_s_s1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_v_s_s1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_v_s_s1ActionPerformed
+    private void btn_comprarEquipamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_comprarEquipamientoActionPerformed
+        Pantalla_eleccion cE=new Pantalla_eleccion();
+        cE.setVisible(true);
+        cE.setLocationRelativeTo(null);
+        this.setVisible(false);
+        cE.setSize(500,500);
+    }//GEN-LAST:event_btn_comprarEquipamientoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,7 +254,6 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
     private javax.swing.JButton btn_equiparGuardias;
     private javax.swing.JButton btn_suspenderSocios;
     private javax.swing.JButton btn_v_s_s;
-    private javax.swing.JButton btn_v_s_s1;
     private javax.swing.JButton btn_verGuardias;
     private javax.swing.JButton btn_verZonas;
     private javax.swing.JLabel jLabel1;
