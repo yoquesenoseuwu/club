@@ -9,11 +9,10 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import programa_club.Conexion_Bdd;
+import java.util.Base64;
 /**
  *
  * @author PC
@@ -289,15 +288,16 @@ public class Conexion_Bdd_Seguridad {
         
     }
     
-    public void Insert_Tipo_equipamiento(String Nombre, int Precio, String Descripcion,String link){
+    public void Insert_Tipo_equipamiento(String Nombre, int Precio, String Descripcion,String link,byte[] ByteImagen){
         
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Tipo_Equipamiento(Nombre, Precio, Descripcion, Link) VALUES (?,?,?,?)");
+            PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Tipo_Equipamiento(Nombre, Precio, Descripcion, Link,ByteImagen) VALUES (?,?,?,?,?)");
             sele.setString(1, Nombre);
             sele.setInt(2, Precio);
             sele.setString(3, Descripcion);
             sele.setString(4, link);
+            sele.setBytes(5, ByteImagen);
             sele.executeUpdate();
             miConexion.close();
             
@@ -317,7 +317,7 @@ public class Conexion_Bdd_Seguridad {
             PreparedStatement sele = miConexion.prepareStatement("SELECT * FROM Tipo_Equipamiento");
             ResultSet resul=sele.executeQuery();
              while(resul.next()){
-                String Item=resul.getInt("Tipo_Id") + " / " + resul.getString("Nombre")+ " / " + resul.getString("Precio")+ " / " + resul.getString("Descripcion") + " / " + resul.getString("Link");
+                String Item=resul.getInt("Tipo_Id") + " / " + resul.getString("Nombre")+ " / " + resul.getString("Precio");
                 resultados.add(Item);
                 System.out.println(Item);
             }
@@ -348,6 +348,44 @@ public class Conexion_Bdd_Seguridad {
             
             
         }
+    }
+    
+    public ArrayList Select_Equipo_con_Imagen(int id){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String str="SELECT * FROM Tipo_Equipamiento WHERE Tipo_Id=?";
+            PreparedStatement  query=miConexion.prepareStatement(str);
+            query.setInt(1,id);
+            ResultSet result = query.executeQuery();
+            
+            while(result.next()){
+                String Id="ID DE Equipamiento=" + result.getInt("Tipo_Id");
+                array.add(Id);
+                String Nombre="NOMBRE DE Equipamiento=" + result.getString("Nombre");
+                array.add(Nombre);
+                String Desc="Descripcion=" + result.getString("Descripcion");
+                array.add(Desc);
+                String Precio="PRECIO=" + result.getInt("Precio");
+                array.add(Precio);
+                String Link="LINK=" + result.getString("Link");
+                array.add(Link);
+                byte[] ByteImagen= result.getBytes("ByteImagen");
+                if(ByteImagen!=null){
+                    String imagen=Base64.getEncoder().encodeToString(ByteImagen);
+                    array.add(imagen);
+                }else{
+                    array.add(null);
+                }
+            }
+            
+            miConexion.close();
+            return array;
+        
+        }catch(Exception e){
+            return null;
+        }
+        
     }
     
     

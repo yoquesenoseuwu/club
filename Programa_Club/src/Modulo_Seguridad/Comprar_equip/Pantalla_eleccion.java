@@ -36,7 +36,12 @@ public class Pantalla_eleccion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Comprar Equipamiento");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Configurar equipamiento a comprar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -57,9 +62,9 @@ public class Pantalla_eleccion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(22, 22, 22)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
@@ -86,7 +91,7 @@ public class Pantalla_eleccion extends javax.swing.JFrame {
         Mod_equip mE = new Mod_equip();
         mE.setVisible(true);
         this.setVisible(false);
-        mE.setSize(1530,900);
+        mE.setSize(1432,620);
         mE.setLocationRelativeTo(null);        
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -97,6 +102,14 @@ public class Pantalla_eleccion extends javax.swing.JFrame {
         pM.setSize(1530,900);
         pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Com_equip cE = new Com_equip();
+        cE.setVisible(true);
+        this.setVisible(false);
+        cE.setSize(1530,900);
+        cE.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
