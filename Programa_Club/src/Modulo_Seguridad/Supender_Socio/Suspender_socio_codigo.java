@@ -5,11 +5,11 @@ package Modulo_Seguridad.Supender_Socio;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import programa_club.Conexion_Bdd;
+import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 import javax.swing.*;
 
 public class Suspender_socio_codigo {
-    Conexion_Bdd conexion= new Conexion_Bdd();
+    Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
     
     
     

@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import programa_club.Conexion_Bdd;
+import java.util.Base64;
 /**
  *
  * @author PC
@@ -41,24 +41,7 @@ public class Conexion_Bdd_Seguridad {
 
     
     //Este es un metodo que podemos usar para cualquier tabla
-    public ResultSet Select(String Nombre_Tabla){
-        try{
-            //Crear conexion
-            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            PreparedStatement sele = miConexion.prepareStatement("SELECT * FROM ?");
-            sele.setString(0, Nombre_Tabla);
-            ResultSet resul=sele.executeQuery();
-            
-            miConexion.close();
-            return resul;
-        }catch(Exception e){
-            System.out.println("No funca");
-            
-            e.printStackTrace();
-            
-            return null;
-        }
-    }
+   
     
     public ArrayList Select_socios(){
         try{
@@ -68,8 +51,9 @@ public class Conexion_Bdd_Seguridad {
             Statement  sele = miConexion.createStatement();
             ResultSet result=sele.executeQuery(query);
             while(result.next()){
-                String Item=result.getInt("IDUsuario") + "-" + result.getString("Nombre_usuario");
+                String Item=result.getInt("IDUsuario") + "-------" + result.getString("Nombre_usuario");
                 array.add(Item);
+                System.out.println("hola");
             }
             
             miConexion.close();
@@ -240,20 +224,36 @@ public class Conexion_Bdd_Seguridad {
         }
         
     }
+    
     public Boolean Insert_socio_mal(int Id ,String Razon, int Tiempo, Date sqlDate){
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
             PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Socios_Suspendidos (ID_Usuario, Tiempo_Suspendido, razon, Fecha) VALUES (?,?,?,?)");
-            
-            sele.setInt(1,Id);
-            sele.setInt(2, Tiempo);
-            sele.setString(3,Razon);
-            sele.setDate(4,sqlDate);
-            
-            sele.executeUpdate();
-            
-            miConexion.close();
-            return(true);
+            if (Tiempo!=0){
+                sele.setInt(1,Id);
+                sele.setInt(2, Tiempo);
+                sele.setString(3,Razon);
+                sele.setDate(4,sqlDate);
+
+                sele.executeUpdate();
+
+                PreparedStatement sele2= miConexion.prepareStatement("CREATE EVENT borrar_registro ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL ? DAY DO DELETE FROM Socios_Suspendidos WHERE ID_Usuario = ?");
+                sele2.setInt(1,Tiempo);
+                sele2.setInt(1,Id);
+                sele2.execute();
+                miConexion.close();
+                return(true);
+            }else{
+                sele.setInt(1,Id);
+                sele.setInt(2, 999999999);
+                sele.setString(3,Razon);
+                sele.setDate(4,sqlDate);
+
+                sele.executeUpdate();
+                 miConexion.close();
+                return(true);
+                
+            }
             
         }catch(Exception e){
             System.out.println("No funca");
@@ -263,5 +263,150 @@ public class Conexion_Bdd_Seguridad {
             
         }
     }
+    
+    public ArrayList Select_s_s(){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String query="SELECT * FROM Socios_Suspendidos";//necesito mas datos en la base de datos
+            Statement  sele = miConexion.createStatement();
+            ResultSet result=sele.executeQuery(query);
+            while(result.next()){
+                String Item=result.getInt("ID") + "-" + result.getInt("ID_Usuario")+ "-" + result.getInt("Tiempo_Suspendido") + "-" + result.getString("razon")+ "-" + result.getDate("Fecha");
+                array.add(Item);
+            }
+            
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;    
+        }
+        
+    }
+    
+    public void Insert_Tipo_equipamiento(String Nombre, int Precio, String Descripcion,String link,byte[] ByteImagen){
+        
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Tipo_Equipamiento(Nombre, Precio, Descripcion, Link,ByteImagen) VALUES (?,?,?,?,?)");
+            sele.setString(1, Nombre);
+            sele.setInt(2, Precio);
+            sele.setString(3, Descripcion);
+            sele.setString(4, link);
+            sele.setBytes(5, ByteImagen);
+            sele.executeUpdate();
+            miConexion.close();
+            
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+        }
+  
+    }
+    
+    public ArrayList Select_Equipo(){
+        try{
+            ArrayList<String> resultados = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele = miConexion.prepareStatement("SELECT * FROM Tipo_Equipamiento");
+            ResultSet resul=sele.executeQuery();
+             while(resul.next()){
+                String Item=resul.getInt("Tipo_Id") + " / " + resul.getString("Nombre")+ " / " + resul.getString("Precio");
+                resultados.add(Item);
+                System.out.println(Item);
+            }
+            
+            miConexion.close();
+            return resultados;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;
+        }
+    }
+    
+    public void Delete_tipo_equipo(int Id){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele= miConexion.prepareStatement("DELETE FROM Tipo_Equipamiento WHERE Tipo_Id=?");
+            sele.setInt(1, Id);
+            sele.executeUpdate();
+            miConexion.close();
+            
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            
+        }
+    }
+    
+    public ArrayList Select_Equipo_con_Imagen(int id){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String str="SELECT * FROM Tipo_Equipamiento WHERE Tipo_Id=?";
+            PreparedStatement  query=miConexion.prepareStatement(str);
+            query.setInt(1,id);
+            ResultSet result = query.executeQuery();
+            
+            while(result.next()){
+                String Id="ID DE Equipamiento=" + result.getInt("Tipo_Id");
+                array.add(Id);
+                String Nombre="NOMBRE DE Equipamiento=" + result.getString("Nombre");
+                array.add(Nombre);
+                String Desc="Descripcion=" + result.getString("Descripcion");
+                array.add(Desc);
+                String Precio="PRECIO=" + result.getInt("Precio");
+                array.add(Precio);
+                String Link="LINK=" + result.getString("Link");
+                array.add(Link);
+                byte[] ByteImagen= result.getBytes("ByteImagen");
+                if(ByteImagen!=null){
+                    String imagen=Base64.getEncoder().encodeToString(ByteImagen);
+                    array.add(imagen);
+                }else{
+                    array.add(null);
+                }
+            }
+            
+            miConexion.close();
+            return array;
+        
+        }catch(Exception e){
+            return null;
+        }
+        
+    }
+    
+    public void Insert_equipamiento(String Nombre,int cant, int id){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            for(int i=0;i<cant;i++){
+                PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Equipamiento(Nombre, Tipo_id) VALUES (?,?)");
+                sele.setString(1,Nombre);
+                sele.setInt(2, id);
+                sele.executeUpdate();
+            }
+            miConexion.close();
+            
+        }catch(Exception e){
+             System.out.println("No funca");
+            
+            e.printStackTrace();
+        }
+
+    }
+    
+    
     
 }

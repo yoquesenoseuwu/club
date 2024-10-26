@@ -2,7 +2,7 @@ package Modulo_Ventas;
 
 import programa_club.Main;
 import Modulo_Ventas.Gestion_Productos;
-
+import Modulo_Ventas.Gestion_Categorias;
 
 public class Pantalla_Ventas extends javax.swing.JFrame {
 
@@ -22,7 +22,6 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Btn_Gestionar_Pedidos = new javax.swing.JButton();
-        Btn_Gestionar_Proveedores = new javax.swing.JButton();
         Volver = new javax.swing.JButton();
         Btn_Gestionar_Productos = new javax.swing.JButton();
         Btn_Gestionar_Promocion = new javax.swing.JButton();
@@ -36,13 +35,6 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         Btn_Gestionar_Pedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_Gestionar_PedidosActionPerformed(evt);
-            }
-        });
-
-        Btn_Gestionar_Proveedores.setText("Gestionar Proveedores");
-        Btn_Gestionar_Proveedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Gestionar_ProveedoresActionPerformed(evt);
             }
         });
 
@@ -60,7 +52,7 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
             }
         });
 
-        Btn_Gestionar_Promocion.setText("Gestionar Promocion");
+        Btn_Gestionar_Promocion.setText("Gestionar Descuentos");
         Btn_Gestionar_Promocion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_Gestionar_PromocionActionPerformed(evt);
@@ -85,11 +77,8 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
                         .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Btn_Gestionar_Pedidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(Btn_Gestionar_Proveedores)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(Btn_Gestionar_Productos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_Gestionar_Promocion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_Gestionar_Promocion, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                             .addComponent(Btn_Gestionar_Categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
@@ -112,9 +101,7 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
                 .addComponent(Btn_Gestionar_Promocion)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_Gestionar_Pedidos)
-                .addGap(18, 18, 18)
-                .addComponent(Btn_Gestionar_Proveedores)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,10 +121,6 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
     private void Btn_Gestionar_PedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_PedidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Btn_Gestionar_PedidosActionPerformed
-
-    private void Btn_Gestionar_ProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_ProveedoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_Gestionar_ProveedoresActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         Main vM = new Main();
@@ -161,6 +144,11 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
 
     private void Btn_Gestionar_CategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_CategoriaActionPerformed
         // TODO add your handling code here:
+        Gestion_Categorias vC= new Gestion_Categorias();
+        vC.setVisible(true);
+        this.setVisible(false);
+        vC.setLocationRelativeTo(null);
+        vC.setSize(1530,900);
     }//GEN-LAST:event_Btn_Gestionar_CategoriaActionPerformed
 
     /**
@@ -203,7 +191,6 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
     private javax.swing.JButton Btn_Gestionar_Pedidos;
     private javax.swing.JButton Btn_Gestionar_Productos;
     private javax.swing.JButton Btn_Gestionar_Promocion;
-    private javax.swing.JButton Btn_Gestionar_Proveedores;
     private javax.swing.JButton Volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

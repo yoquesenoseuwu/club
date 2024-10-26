@@ -1,13 +1,13 @@
 
 
 package Modulo_Seguridad.Supender_Socio;
-import Modulo_Seguridad.Pantalla_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import Modulo_Seguridad.Pantalla_Seguridad;
 
 public class Suspender_socio_interface extends javax.swing.JFrame {
     Suspender_socio_codigo S_S_C = new Suspender_socio_codigo();
@@ -29,6 +29,9 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
                     int id=Integer.parseInt(separado[0]);
                     S_S_C.Pantalla_socio(id);
+                    Suspender_socio_interface.this.setVisible(false);
+
+                    
                     
                 }
             }
@@ -45,6 +48,8 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
         jListSocio = new javax.swing.JList<>();
         btn_Volver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jListSocio.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -69,13 +74,13 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btn_Volver)
                         .addGap(267, 267, 267)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)))
                 .addContainerGap(277, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,9 +90,9 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Volver)
                     .addComponent(jLabel1))
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,6 +107,7 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_VolverActionPerformed
 
   
+    
     
     
     public static void main(String args[]) {
