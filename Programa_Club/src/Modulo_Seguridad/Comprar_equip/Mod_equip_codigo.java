@@ -7,6 +7,7 @@ package Modulo_Seguridad.Comprar_equip;
 import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,4 +26,15 @@ public class Mod_equip_codigo {
         return modelo;
     }
     
+    public void Insert(String Nombre, int Precio, String Descripcion,String link){
+        conexion.Insert_Tipo_equipamiento(Nombre, 0, Descripcion,link);
+    }
+    
+    public void Delete(String itemSeleccionado){
+        String[] separado=itemSeleccionado.split(" / ");
+        JOptionPane.showMessageDialog(null, "Seleccionaste: " + separado);
+        int id=Integer.parseInt(separado[0]);
+        conexion.Delete_tipo_equipo(id);
+        
+    }
 }
