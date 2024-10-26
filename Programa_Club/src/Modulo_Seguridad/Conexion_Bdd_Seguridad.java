@@ -388,6 +388,25 @@ public class Conexion_Bdd_Seguridad {
         
     }
     
+    public void Insert_equipamiento(String Nombre,int cant, int id){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            for(int i=0;i<cant;i++){
+                PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Equipamiento(Nombre, Tipo_id) VALUES (?,?)");
+                sele.setString(1,Nombre);
+                sele.setInt(2, id);
+                sele.executeUpdate();
+            }
+            miConexion.close();
+            
+        }catch(Exception e){
+             System.out.println("No funca");
+            
+            e.printStackTrace();
+        }
+
+    }
+    
     
     
 }

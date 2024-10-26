@@ -67,6 +67,14 @@ public class Pantalla_socio extends javax.swing.JFrame {
         Contraseña_s2.setText("3");
 
         Razon_s.setText("Escriba la razon para su suspención");
+        Razon_s.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                Razon_sFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                Razon_sFocusLost(evt);
+            }
+        });
         Razon_s.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Razon_sActionPerformed(evt);
@@ -213,6 +221,14 @@ public class Pantalla_socio extends javax.swing.JFrame {
     private void S_DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_S_DActionPerformed
         Tiempo_s.setEnabled(false);
     }//GEN-LAST:event_S_DActionPerformed
+
+    private void Razon_sFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Razon_sFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Razon_sFocusGained
+
+    private void Razon_sFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Razon_sFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Razon_sFocusLost
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

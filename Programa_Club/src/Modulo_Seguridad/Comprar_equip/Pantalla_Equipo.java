@@ -18,6 +18,9 @@ import javax.swing.ImageIcon;
 public class Pantalla_Equipo extends javax.swing.JFrame {
     Com_equip_codigo CeC = new Com_equip_codigo();
     Conexion_Bdd_Seguridad conexion = new Conexion_Bdd_Seguridad();
+    boolean bandera=true;
+    int ID_Guardar;
+    String[] nombre_vec;
     /**
      * Creates new form Pantalla_Equipo
      */
@@ -36,6 +39,12 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
 
         Imagen = new javax.swing.JLabel();
         btn_Volver1 = new javax.swing.JButton();
+        Nom = new javax.swing.JLabel();
+        Descri = new javax.swing.JLabel();
+        Lin = new javax.swing.JLabel();
+        Preci = new javax.swing.JLabel();
+        cant = new javax.swing.JTextField();
+        btn_comprar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,17 +57,60 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
             }
         });
 
+        Nom.setText("Nombre");
+
+        Descri.setText("Descripcion");
+
+        Lin.setText("Link");
+
+        Preci.setText("Precio");
+
+        cant.setText("Cant. a comprar");
+        cant.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cantFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cantFocusLost(evt);
+            }
+        });
+        cant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cantActionPerformed(evt);
+            }
+        });
+
+        btn_comprar.setText("Comprar");
+        btn_comprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_comprarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(567, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Descri, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Preci, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Lin, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Nom, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_Volver1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_Volver1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_comprar)
+                            .addComponent(cant, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -67,8 +119,22 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btn_Volver1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Nom, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(Descri)
+                        .addGap(43, 43, 43)
+                        .addComponent(Preci)
+                        .addGap(49, 49, 49)
+                        .addComponent(Lin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(95, 95, 95))
+                    .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addComponent(cant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btn_comprar)
+                .addGap(101, 101, 101))
         );
 
         pack();
@@ -81,6 +147,29 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
         cE.setSize(1530,900);
         cE.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_Volver1ActionPerformed
+
+    private void cantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantActionPerformed
+        
+    }//GEN-LAST:event_cantActionPerformed
+
+    private void cantFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cantFocusGained
+        if (bandera) {
+                    cant.setText("");
+                    bandera = false;
+                }     
+    }//GEN-LAST:event_cantFocusGained
+
+    private void cantFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cantFocusLost
+        if(cant.getText().isEmpty()){
+            cant.setText("Cant. a comprar");
+            bandera = true;
+        }
+    }//GEN-LAST:event_cantFocusLost
+
+    private void btn_comprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_comprarActionPerformed
+        int canti = Integer.parseInt(cant.getText());
+        conexion.Insert_equipamiento(nombre_vec[1],canti,ID_Guardar);
+    }//GEN-LAST:event_btn_comprarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,6 +207,7 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
     }
     
     public void agregar_equipo(int Id){
+        ID_Guardar=Id;
         ArrayList<String> array=conexion.Select_Equipo_con_Imagen(Id);
         
         
@@ -139,12 +229,33 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
         } else {
             
         }
+       
+        
+        String Nombre=array.get(1);
+        Nom.setText(Nombre);
+        
+        nombre_vec=Nombre.split("=");
+        
+        String Descripcion=array.get(3);
+        Descri.setText(Descripcion);
+        
+        String Precio=(String) array.get(2);
+        Preci.setText(Precio);
+        
+        String Link=array.get(4);
+        Lin.setText(Link);
         
         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Descri;
     private javax.swing.JLabel Imagen;
+    private javax.swing.JLabel Lin;
+    private javax.swing.JLabel Nom;
+    private javax.swing.JLabel Preci;
     private javax.swing.JButton btn_Volver1;
+    private javax.swing.JButton btn_comprar;
+    private javax.swing.JTextField cant;
     // End of variables declaration//GEN-END:variables
 }
