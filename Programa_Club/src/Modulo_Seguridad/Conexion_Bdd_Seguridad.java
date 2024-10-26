@@ -102,6 +102,7 @@ public class Conexion_Bdd_Seguridad {
         
        
    }
+    //--- ZONA DE SEGURIDAD ---//
     public ArrayList Select_Zona_de_Seguridad(){
         try{
             //vector=new [2];
@@ -111,7 +112,7 @@ public class Conexion_Bdd_Seguridad {
             Statement  sele = miConexion.createStatement();
             ResultSet result=sele.executeQuery(query);
             while(result.next()){
-                String Item=result.getInt("ID") + "-" + result.getString("Nombre")+ "-" + result.getString("Tamaño")+ "-" + result.getString("Descripcion");
+                String Item=result.getInt("ID") + "-" + result.getString("Nombre");//+ "-" + result.getString("Tamaño")+ "-" + result.getString("Descripcion");
                 array.add(Item);
                 //vector[0]=getString(result.getInt("ID"));
 
@@ -128,40 +129,24 @@ public class Conexion_Bdd_Seguridad {
         }
         
     }
-    public int Select_Zona_de_Seguridad_id(){
-        try{
-            
-            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            String query="SELECT ID FROM Zona_de_Seguridad;";
-            Statement  sele = miConexion.createStatement();
-            ResultSet result=sele.executeQuery(query);
-            while(result.next()){
-                id_z=result.getInt("ID");
-                
-            }
-            
-            miConexion.close();
-            return id_z;
-        }catch(Exception e){
-            System.out.println("No funca");
-            
-            e.printStackTrace();
-            
-            return 0;    
-        }
-        
-    }
-    
-    public ArrayList Select_Zona_de_Seguridad_nombre(){
+   public ArrayList Select_unique_zona(int id){
         try{
             ArrayList<String> array = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            String query="SELECT Nombre FROM Zona_de_Seguridad;";
-            Statement  sele = miConexion.createStatement();
-            ResultSet result=sele.executeQuery(query);
+            String str="SELECT * FROM Zona_de_Seguridad WHERE ID=?";
+            PreparedStatement  query=miConexion.prepareStatement(str);
+            query.setInt(1,id);
+            ResultSet result = query.executeQuery();
+            
             while(result.next()){
-                String Item=result.getString("Nombre");
-                array.add(Item);
+                String Id="ID DE LA ZONA=" + result.getInt("ID");
+                array.add(Id);
+                String Nombre="NOMBRE DE LA ZONA=" + result.getString("Nombre");
+                array.add(Nombre);
+                String Tamaño="TAMAÑO=" + result.getString("Tamaño");
+                array.add(Tamaño);
+                String Descripcion="DESCRIPCION=" + result.getString("Descripcion");
+                array.add(Descripcion);
             }
             
             miConexion.close();
@@ -171,11 +156,13 @@ public class Conexion_Bdd_Seguridad {
             
             e.printStackTrace();
             
-            return null;    
+            return null;
         }
         
-    }
-    
+       
+   }
+   
+   
     public Boolean Insert_Zona_Seguridad(String Nombre, String Tamaño, String Descripcion){
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
@@ -185,6 +172,53 @@ public class Conexion_Bdd_Seguridad {
             sele.setString(1,Nombre);
             sele.setString(2,Tamaño);
             sele.setString(3,Descripcion);
+            
+
+            sele.executeUpdate();
+
+            miConexion.close();
+            return(true);
+
+        }catch(Exception e){
+            System.out.println("No funca");
+
+            e.printStackTrace();
+            return(false);
+
+        }
+    }
+    public Boolean Delete_Zona_Seguridad(int id_Zona){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele= miConexion.prepareStatement("DELETE FROM Zona_de_Seguridad WHERE ID=?");
+
+            
+            sele.setInt(1,id_Zona);
+            
+
+            sele.executeUpdate();
+
+            miConexion.close();
+            return(true);
+
+        }catch(Exception e){
+            System.out.println("No funca");
+
+            e.printStackTrace();
+            return(false);
+
+        }
+    }
+    public Boolean Modificar_Zona_Seguridad(int id_Zona, String Nombre, String Tamaño, String Descripcion){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele= miConexion.prepareStatement("UPDATE Zona_de_Seguridad SET Nombre=?, Tamaño=?, Descripcion=? WHERE ID=?");
+
+            
+            sele.setString(1,Nombre);
+            sele.setString(2,Tamaño);
+            sele.setString(3,Descripcion);
+            sele.setInt(4,id_Zona);
             
 
             sele.executeUpdate();
