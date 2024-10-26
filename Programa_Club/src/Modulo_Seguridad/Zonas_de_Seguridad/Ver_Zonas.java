@@ -21,6 +21,7 @@ import Modulo_Seguridad.Zonas_de_Seguridad.Ver_Zonas_codigo;
 public class Ver_Zonas extends javax.swing.JFrame {
     Ver_Zonas_codigo vZc = new Ver_Zonas_codigo();
     DefaultListModel modelo = new DefaultListModel();
+    public String Nomopc;
 
     /**
      * Creates new form Ver_Zonas
@@ -34,12 +35,17 @@ public class Ver_Zonas extends javax.swing.JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     String itemSeleccionado = list_zonas.getSelectedValue();
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
-                    
+                    String[] separado=itemSeleccionado.split("-");
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + separado[1]);
+                    int id=Integer.parseInt(separado[0]);
+                    vZc.Pantalla_Zona(id);
                     
                 }
             }
         });
+    }
+    public String Nom(){
+        return(Nomopc);
     }
 
     /**

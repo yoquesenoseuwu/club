@@ -24,7 +24,7 @@ public class Ver_Zonas_codigo {
     
     public DefaultListModel mostrar(DefaultListModel modelo){
         modelo.removeAllElements();
-        ArrayList array=conexion.Select_Zona_de_Seguridad_nombre();
+        ArrayList array=conexion.Select_Zona_de_Seguridad();
         System.out.println(array);
         
         for (int i=0; i<array.size(); i++){
@@ -35,6 +35,12 @@ public class Ver_Zonas_codigo {
     }
     public void Pantalla_Zona(int id){
         Pantalla_Zona Pz = new Pantalla_Zona();
+        Pz.mostrarZona(id);
         Pz.setVisible(true);
+    }
+    public void Modificar_Zona(int id){
+        Modificar_Zona mZ = new Modificar_Zona();
+        mZ.mostrarId(id);
+        mZ.setVisible(true);
     }
 }

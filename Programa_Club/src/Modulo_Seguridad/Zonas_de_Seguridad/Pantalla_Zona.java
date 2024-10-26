@@ -4,20 +4,34 @@
  * and open the template in the editor.
  */
 package Modulo_Seguridad.Zonas_de_Seguridad;
-
+import Modulo_Seguridad.Zonas_de_Seguridad.Ver_Zonas;
+import Modulo_Seguridad.Conexion_Bdd_Seguridad;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 /**
  *
  * @author PC
  */
 public class Pantalla_Zona extends javax.swing.JFrame {
-
+    Ver_Zonas_codigo vZc = new Ver_Zonas_codigo();
+    DefaultListModel modelo = new DefaultListModel();
+    Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
+    int id_zona;
+    
+    
+    //lbl_Nombre_z.setText(Nomopc);
     /**
      * Creates new form Pantalla_Zona
      */
     public Pantalla_Zona() {
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +41,115 @@ public class Pantalla_Zona extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        lbl_ID_z = new javax.swing.JLabel();
+        lbl_Nombre_z = new javax.swing.JLabel();
+        lbl_Tamaño_z = new javax.swing.JLabel();
+        lbl_Descripcion_z = new javax.swing.JLabel();
+        btn_Eliminar = new javax.swing.JButton();
+        btn_Modificar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btn_Eliminar.setText("Eliminar");
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
+
+        btn_Modificar.setText("Modificar");
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_Descripcion_z, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_ID_z, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_Tamaño_z, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_Nombre_z, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_Eliminar)
+                            .addComponent(btn_Modificar))))
+                .addGap(39, 39, 39))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_ID_z, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Eliminar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(lbl_Nombre_z, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(btn_Modificar)))
+                .addGap(29, 29, 29)
+                .addComponent(lbl_Tamaño_z, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_Descripcion_z, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(139, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+        modelo.removeAllElements();
+        ArrayList array=conexion.Select_unique_zona(id_zona);
+        
+        String Id=(String) array.get(0);
+        
+        conexion.Delete_Zona_Seguridad(id_zona);
+        Ver_Zonas vZ = new Ver_Zonas();
+        vZ.setVisible(true);
+        this.setVisible(false);
+        vZ.setSize(1530,900);
+        vZ.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btn_EliminarActionPerformed
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+        
+        /*modelo.removeAllElements();
+        ArrayList array=conexion.Select_unique_zona(id_zona);
+        
+        String Id=(String) array.get(0);*/
+        vZc.Modificar_Zona(id_zona);
+        /*
+        Ver_Zonas vZ = new Ver_Zonas();
+        vZ.setVisible(true);
+        this.setVisible(false);
+        vZ.setSize(1530,900);
+        vZ.setLocationRelativeTo(null);*/
+        
+    }//GEN-LAST:event_btn_ModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,7 +185,31 @@ public class Pantalla_Zona extends javax.swing.JFrame {
             }
         });
     }
-
+    public void mostrarZona(int id){
+        modelo.removeAllElements();
+        ArrayList array=conexion.Select_unique_zona(id);
+        
+        String Id=(String) array.get(0);
+        id_zona=id;
+        lbl_ID_z.setText(Id);
+        
+        String Nombre=(String) array.get(1);
+        lbl_Nombre_z.setText(Nombre);
+        
+        String Tamaño=(String) array.get(2);
+        lbl_Tamaño_z.setText(Tamaño);
+        
+        String Descripcion=(String) array.get(3);
+        lbl_Descripcion_z.setText(Descripcion);
+    
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Eliminar;
+    private javax.swing.JButton btn_Modificar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_Descripcion_z;
+    private javax.swing.JLabel lbl_ID_z;
+    private javax.swing.JLabel lbl_Nombre_z;
+    private javax.swing.JLabel lbl_Tamaño_z;
     // End of variables declaration//GEN-END:variables
 }
