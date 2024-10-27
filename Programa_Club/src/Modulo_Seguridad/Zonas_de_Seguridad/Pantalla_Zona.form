@@ -41,24 +41,32 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="lbl_Descripcion_z" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbl_ID_z" alignment="0" min="-2" pref="308" max="-2" attributes="0"/>
-                              <Component id="lbl_Tamaño_z" min="-2" pref="308" max="-2" attributes="0"/>
-                              <Component id="lbl_Nombre_z" min="-2" pref="308" max="-2" attributes="0"/>
+                          <Component id="textPanel_Descripcion" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lbl_Descripcion_z" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lbl_ID_z" alignment="0" min="-2" pref="308" max="-2" attributes="0"/>
+                                      <Component id="lbl_Tamaño_z" min="-2" pref="308" max="-2" attributes="0"/>
+                                      <Component id="lbl_Nombre_z" min="-2" pref="308" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="85" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="btn_Eliminar" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btn_Modificar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <EmptySpace pref="85" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btn_Eliminar" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_Modificar" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -84,7 +92,9 @@
                   <Component id="lbl_Tamaño_z" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lbl_Descripcion_z" min="-2" pref="24" max="-2" attributes="0"/>
-                  <EmptySpace pref="139" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="textPanel_Descripcion" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -97,6 +107,9 @@
         <Component class="javax.swing.JLabel" name="lbl_Tama&#xf1;o_z">
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_Descripcion_z">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Descripcion:"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn_Eliminar">
           <Properties>
@@ -114,6 +127,21 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ModificarActionPerformed"/>
           </Events>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="textPanel_Descripcion">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="textpanel_descripcion">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

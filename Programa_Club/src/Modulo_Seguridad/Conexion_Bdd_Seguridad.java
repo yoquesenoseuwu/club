@@ -53,7 +53,6 @@ public class Conexion_Bdd_Seguridad {
             while(result.next()){
                 String Item=result.getInt("IDUsuario") + "-------" + result.getString("Nombre_usuario");
                 array.add(Item);
-                System.out.println("hola");
             }
             
             miConexion.close();
@@ -145,7 +144,7 @@ public class Conexion_Bdd_Seguridad {
                 array.add(Nombre);
                 String Tamaño="TAMAÑO=" + result.getString("Tamaño");
                 array.add(Tamaño);
-                String Descripcion="DESCRIPCION=" + result.getString("Descripcion");
+                String Descripcion=result.getString("Descripcion");
                 array.add(Descripcion);
             }
             
@@ -440,7 +439,87 @@ public class Conexion_Bdd_Seguridad {
         }
 
     }
-    
-    
-    
+    //---INFORMES---///
+    public ArrayList Select_informes(){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String query="SELECT ID, Titulo FROM Informe";
+            Statement  sele = miConexion.createStatement();
+            ResultSet result=sele.executeQuery(query);
+            while(result.next()){
+                String Item=result.getInt("ID") + "-" + result.getString("Titulo");
+                array.add(Item);
+            }
+            
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;    
+        }
+        
+    }
+    public Boolean Insert_Informe(Date Fecha, String Texto_de_informe, String Autor, String Titulo){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Informe (Fecha, Texto_de_informe, Autor, Titulo) VALUES (?,?,?,?)");
+
+            
+            sele.setDate(1,Fecha);
+            sele.setString(2,Texto_de_informe);
+            sele.setString(3,Autor);
+            sele.setString(4,Titulo);
+            
+
+            sele.executeUpdate();
+
+            miConexion.close();
+            return(true);
+
+        }catch(Exception e){
+            System.out.println("No funca");
+
+            e.printStackTrace();
+            return(false);
+
+        }
+    }
+    public ArrayList Select_unique_informe(int id){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String str="SELECT * FROM Informe WHERE ID=?";
+            PreparedStatement  query=miConexion.prepareStatement(str);
+            query.setInt(1,id);
+            ResultSet result = query.executeQuery();
+            
+            while(result.next()){
+                String Id="ID del Informe:" + result.getInt("ID");
+                array.add(Id);
+                String Fecha="Fecha del informe:" + result.getString("Fecha");
+                array.add(Fecha);
+                String Autor="Autor:=" + result.getString("Autor");
+                array.add(Autor);
+                String Titulo="Titulo:=" + result.getString("Titulo");
+                array.add(Titulo);
+                String Descripcion=result.getString("Texto_de_informe");
+                array.add(Descripcion);
+            }
+            
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;
+        }
+        
+       
+   }
 }

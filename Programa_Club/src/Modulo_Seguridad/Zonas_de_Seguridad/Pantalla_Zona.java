@@ -48,8 +48,12 @@ public class Pantalla_Zona extends javax.swing.JFrame {
         lbl_Descripcion_z = new javax.swing.JLabel();
         btn_Eliminar = new javax.swing.JButton();
         btn_Modificar = new javax.swing.JButton();
+        textPanel_Descripcion = new javax.swing.JScrollPane();
+        textpanel_descripcion = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lbl_Descripcion_z.setText("Descripcion:");
 
         btn_Eliminar.setText("Eliminar");
         btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -65,24 +69,33 @@ public class Pantalla_Zona extends javax.swing.JFrame {
             }
         });
 
+        textpanel_descripcion.setColumns(20);
+        textpanel_descripcion.setRows(5);
+        textPanel_Descripcion.setViewportView(textpanel_descripcion);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_Descripcion_z, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_ID_z, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_Tamaño_z, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_Nombre_z, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_Eliminar)
-                            .addComponent(btn_Modificar))))
-                .addGap(39, 39, 39))
+                        .addComponent(textPanel_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbl_Descripcion_z, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_ID_z, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbl_Tamaño_z, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbl_Nombre_z, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_Eliminar)
+                                    .addComponent(btn_Modificar))))
+                        .addGap(39, 39, 39))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +115,9 @@ public class Pantalla_Zona extends javax.swing.JFrame {
                 .addComponent(lbl_Tamaño_z, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_Descripcion_z, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textPanel_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,18 +151,9 @@ public class Pantalla_Zona extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_EliminarActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
-        
-        /*modelo.removeAllElements();
-        ArrayList array=conexion.Select_unique_zona(id_zona);
-        
-        String Id=(String) array.get(0);*/
+
         vZc.Modificar_Zona(id_zona);
-        /*
-        Ver_Zonas vZ = new Ver_Zonas();
-        vZ.setVisible(true);
-        this.setVisible(false);
-        vZ.setSize(1530,900);
-        vZ.setLocationRelativeTo(null);*/
+
         
     }//GEN-LAST:event_btn_ModificarActionPerformed
 
@@ -200,7 +206,7 @@ public class Pantalla_Zona extends javax.swing.JFrame {
         lbl_Tamaño_z.setText(Tamaño);
         
         String Descripcion=(String) array.get(3);
-        lbl_Descripcion_z.setText(Descripcion);
+        textpanel_descripcion.append(Descripcion);
     
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -211,5 +217,7 @@ public class Pantalla_Zona extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_ID_z;
     private javax.swing.JLabel lbl_Nombre_z;
     private javax.swing.JLabel lbl_Tamaño_z;
+    private javax.swing.JScrollPane textPanel_Descripcion;
+    private javax.swing.JTextArea textpanel_descripcion;
     // End of variables declaration//GEN-END:variables
 }

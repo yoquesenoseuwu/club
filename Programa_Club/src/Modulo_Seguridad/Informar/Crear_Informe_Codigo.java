@@ -5,7 +5,7 @@
  */
 package Modulo_Seguridad.Informar;
 
-import Modulo_Seguridad.Zonas_de_Seguridad.Pantalla_Zona;
+import Modulo_Seguridad.Informar.Crear_Informe;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import Modulo_Seguridad.Conexion_Bdd_Seguridad;
@@ -24,15 +24,21 @@ public class Crear_Informe_Codigo {
     
     public DefaultListModel mostrar(DefaultListModel modelo){
         modelo.removeAllElements();
-        ArrayList array=conexion.Select_Zona_de_Seguridad();
+        ArrayList array=conexion.Select_informes();
         for (int i=0; i<array.size(); i++){
             modelo.addElement(array.get(i));
         }
         return modelo;
         
     }
-    public void Pantalla_Zona(int id){
-        Pantalla_Zona Pz = new Pantalla_Zona();
+    public void Crear_Informe(int id){
+        Crear_Informe Pz = new Crear_Informe();
         Pz.setVisible(true);
+    }
+    public void Mos_Informe(int id){
+        Pantalla_Informe pI = new Pantalla_Informe();
+        pI.Mostrar_Informe_Seleccionado(id);
+        pI.setVisible(true);
+        
     }
 }

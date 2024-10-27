@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import programa_club.Main;
 import Modulo_Seguridad.Ver_Equipar_Guardias.Ver_Guardias;
 import Modulo_Seguridad.Comprar_equip.Pantalla_eleccion;
+import Modulo_Seguridad.Informar.Mostrar_Informe;
 
 
 public class Pantalla_Seguridad extends javax.swing.JFrame {
@@ -27,8 +28,8 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         btn_suspenderSocios.setMaximumSize(new Dimension(141,50));
         btn_equiparGuardias.setMinimumSize(new Dimension(141,50));
         btn_equiparGuardias.setMaximumSize(new Dimension(141,50));
-        btn_crearInforme.setMinimumSize(new Dimension(141,50));
-        btn_crearInforme.setMaximumSize(new Dimension(141,50));
+        btn_mostrarInforme.setMinimumSize(new Dimension(141,50));
+        btn_mostrarInforme.setMaximumSize(new Dimension(141,50));
         btn_comprarEquipamiento.setMinimumSize(new Dimension(141,50));
         btn_comprarEquipamiento.setMaximumSize(new Dimension(141,50));
     }
@@ -45,7 +46,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         btn_verZonas = new javax.swing.JButton();
         btn_equiparGuardias = new javax.swing.JButton();
         btn_comprarEquipamiento = new javax.swing.JButton();
-        btn_crearInforme = new javax.swing.JButton();
+        btn_mostrarInforme = new javax.swing.JButton();
         btn_v_s_s = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,7 +90,12 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
             }
         });
 
-        btn_crearInforme.setText("Crear informe");
+        btn_mostrarInforme.setText("Mostrar informes");
+        btn_mostrarInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mostrarInformeActionPerformed(evt);
+            }
+        });
 
         btn_v_s_s.setText("Ver Socios Suspendidos");
         btn_v_s_s.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +115,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btn_crearInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                                .addComponent(btn_mostrarInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                                 .addGap(217, 217, 217)
                                 .addComponent(btn_comprarEquipamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
@@ -146,7 +152,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_comprarEquipamiento)
-                            .addComponent(btn_crearInforme))))
+                            .addComponent(btn_mostrarInforme))))
                 .addGap(18, 18, 18)
                 .addComponent(btn_v_s_s)
                 .addContainerGap(49, Short.MAX_VALUE))
@@ -213,6 +219,14 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         cE.setSize(500,500);
     }//GEN-LAST:event_btn_comprarEquipamientoActionPerformed
 
+    private void btn_mostrarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mostrarInformeActionPerformed
+        Mostrar_Informe mI=new Mostrar_Informe();
+        mI.setVisible(true);
+        mI.setLocationRelativeTo(null);
+        this.setVisible(false);
+        mI.setSize(500,500);
+    }//GEN-LAST:event_btn_mostrarInformeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,8 +264,8 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Volver;
     private javax.swing.JButton btn_comprarEquipamiento;
-    private javax.swing.JButton btn_crearInforme;
     private javax.swing.JButton btn_equiparGuardias;
+    private javax.swing.JButton btn_mostrarInforme;
     private javax.swing.JButton btn_suspenderSocios;
     private javax.swing.JButton btn_v_s_s;
     private javax.swing.JButton btn_verGuardias;

@@ -5,12 +5,22 @@
  */
 package Modulo_Seguridad.Informar;
 
+import Modulo_Seguridad.Conexion_Bdd_Seguridad;
+import Modulo_Seguridad.Informar.Crear_Informe_Codigo;
+import java.sql.Date;
+import java.time.LocalDate;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author PC
  */
 public class Crear_Informe extends javax.swing.JFrame {
-
+    Crear_Informe_Codigo vZc = new Crear_Informe_Codigo();
+    DefaultListModel modelo = new DefaultListModel();
+    String Autor;
+    String Texto;
+    String Titulo;
     /**
      * Creates new form Crear_Informe
      */
@@ -27,21 +37,104 @@ public class Crear_Informe extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        txtField_titulo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtField_autor = new javax.swing.JTextField();
+        btn_confirmar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        txtField_titulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtField_tituloActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Titulo:");
+
+        jLabel2.setText("Autor");
+
+        txtField_autor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtField_autorActionPerformed(evt);
+            }
+        });
+
+        btn_confirmar.setText("Confirmar y Guardar");
+        btn_confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_confirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_confirmar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtField_autor, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1)
+                        .addComponent(txtField_titulo)
+                        .addComponent(jScrollPane2)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtField_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtField_autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(btn_confirmar)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtField_tituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtField_tituloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtField_tituloActionPerformed
+
+    private void btn_confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirmarActionPerformed
+        Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
+        Titulo=txtField_titulo.getText();
+        Texto=jTextArea1.getText();
+        Autor=txtField_autor.getText();
+        LocalDate fechaActual = LocalDate.now();
+        Date sqlDate = Date.valueOf(fechaActual);
+        conexion.Insert_Informe(sqlDate, Texto, Autor, Titulo);
+        Mostrar_Informe mI=new Mostrar_Informe();
+        mI.setVisible(true);
+        mI.setLocationRelativeTo(null);
+        this.setVisible(false);
+        mI.setSize(500,500);
+    }//GEN-LAST:event_btn_confirmarActionPerformed
+
+    private void txtField_autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtField_autorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtField_autorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +172,12 @@ public class Crear_Informe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_confirmar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField txtField_autor;
+    private javax.swing.JTextField txtField_titulo;
     // End of variables declaration//GEN-END:variables
 }

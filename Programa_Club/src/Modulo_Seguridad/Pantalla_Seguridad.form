@@ -45,7 +45,7 @@
                           <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="2" attributes="0">
-                                  <Component id="btn_crearInforme" pref="118" max="32767" attributes="0"/>
+                                  <Component id="btn_mostrarInforme" pref="118" max="32767" attributes="0"/>
                                   <EmptySpace min="217" pref="217" max="217" attributes="0"/>
                                   <Component id="btn_comprarEquipamiento" pref="167" max="32767" attributes="0"/>
                               </Group>
@@ -93,7 +93,7 @@
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btn_comprarEquipamiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_crearInforme" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_mostrarInforme" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -155,10 +155,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_comprarEquipamientoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_crearInforme">
+        <Component class="javax.swing.JButton" name="btn_mostrarInforme">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Crear informe"/>
+            <Property name="text" type="java.lang.String" value="Mostrar informes"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_mostrarInformeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_v_s_s">
           <Properties>
