@@ -9,12 +9,12 @@ package Modulo_Ventas;
  *
  * @author tm_galli
  */
-public class Gestion_Proveedores extends javax.swing.JFrame {
+public class Gestion_Descuento extends javax.swing.JFrame {
 
     /**
-     * Creates new form Gestion_Proveedores
+     * Creates new form Gestion_Promocion
      */
-    public Gestion_Proveedores() {
+    public Gestion_Descuento() {
         initComponents();
     }
 
@@ -60,20 +60,21 @@ public class Gestion_Proveedores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gestion_Descuento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gestion_Descuento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gestion_Descuento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gestion_Descuento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Gestion_Proveedores().setVisible(true);
+                new Gestion_Descuento().setVisible(true);
             }
         });
     }
