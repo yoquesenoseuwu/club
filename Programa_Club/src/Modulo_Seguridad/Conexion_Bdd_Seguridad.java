@@ -238,7 +238,7 @@ public class Conexion_Bdd_Seguridad {
         try{
             ArrayList<String> array = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            String query="SELECT e.idempleado, e.nombre, c.cargos FROM Empleado e, Cargo c WHERE e.idcargo=c.idcargo;";//necesito mas datos en la base de datos
+            String query="SELECT e.idempleado, e.nombre, c.cargos FROM Empleado e, Cargo c WHERE e.idcargo=c.idcargo and (e.idcargo=1 OR e.idcargo=2) group by e.nombre;";
             Statement  sele = miConexion.createStatement();
             ResultSet result=sele.executeQuery(query);
             while(result.next()){
