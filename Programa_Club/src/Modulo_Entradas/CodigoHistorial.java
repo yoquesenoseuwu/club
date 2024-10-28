@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+// To change this license header, choose License Headers in Project Properties.
+// To change this template file, choose Tools | Templates
+// and open the template in the editor.
 
 package Modulo_Entradas;
 import com.toedter.calendar.JDateChooser;
@@ -16,12 +15,12 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author Agustín Salinas
+ * @author Agustín Salinas**/
 
-public class controladorHistorial {
+public class CodigoHistorial {
+    BDD.DBConexion conexion = new BDD.DBConexion();
+    
     public void verHistorial(JTable tablaCompras,JLabel totalCompras){
-        BDD.DBConexion conexion = new BDD.DBConexion();
-        
         /*DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("NroDeCompra");
         modelo.addColumn("Fecha");
@@ -30,7 +29,7 @@ public class controladorHistorial {
         modelo.addColumn("Sector");
         modelo.addColumn("Fila");
         modelo.addColumn("Asiento");
-        modelo.addColumn("Costo");
+        modelo.addColumn("Costo");*/
         DefaultTableModel modelo = (DefaultTableModel) tablaCompras.getModel();
         
         try{
@@ -41,7 +40,7 @@ public class controladorHistorial {
                                 "INNER JOIN Sector S ON C.IdSector=S.idSector WHERE C.CompraID=?;";
             
             PreparedStatement ps = conexion.Conectar().prepareStatement(consulta);
-            ps.setInt(0, 1);
+            ps.setInt(1, 1);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 int CompraID= rs.getInt("CompraID");
@@ -63,22 +62,17 @@ public class controladorHistorial {
         }finally{
             conexion.Desconectar();
         }
+        
+        //desabilita jtable
+        for (int col = 0; col<tablaCompras.getColumnCount();col++){
+            Class <?> columna = tablaCompras.getColumnClass(col);
+            tablaCompras.setDefaultEditor(columna,null);
+        }
     }
             
     public void comprasFecha(JDateChooser desde,JDateChooser hasta,JTable tablaCompras,JLabel totalCompras){
-        BDD.DBConexion conexion = new BDD.DBConexion();
         
-        /*DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("NroDeCompra");
-        modelo.addColumn("Fecha");
-        modelo.addColumn("Medio");
-        modelo.addColumn("Evento");
-        modelo.addColumn("Sector");
-        modelo.addColumn("Fila");
-        modelo.addColumn("Asiento");
-        modelo.addColumn("Coste");
         DefaultTableModel modelo = (DefaultTableModel) tablaCompras.getModel();
-        
         
         try{
             int compras = 0;
@@ -92,14 +86,14 @@ public class controladorHistorial {
             java.sql.Date desdeSQL = new java.sql.Date(fechaDesde.getTime());
             java.sql.Date hastaSQL = new java.sql.Date(fechaHasta.getTime());
             
-            ps.setInt(0, 1);
-            ps.setDate(1,desdeSQL);
-            ps.setDate(2,hastaSQL);
+            ps.setInt(1, 1);
+            ps.setDate(2,desdeSQL);
+            ps.setDate(3,hastaSQL);
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
                 int CompraID= rs.getInt("CompraID");
-                Date Fecha= rs.getDate("Fecha");
+                String Fecha= rs.getDate("Fecha").toString();
                 String Tipo= rs.getString("Tipo");
                 String nombreEvento= rs.getString("nombreEvento");
                 String NombreSector= rs.getString("NombreSector");
@@ -117,6 +111,10 @@ public class controladorHistorial {
         }finally{
             conexion.Desconectar();
         }
+        
+        for (int col = 0; col<tablaCompras.getColumnCount();col++){
+            Class <?> columna = tablaCompras.getColumnClass(col);
+            tablaCompras.setDefaultEditor(columna,null);
+        }
     }
 }
- */
