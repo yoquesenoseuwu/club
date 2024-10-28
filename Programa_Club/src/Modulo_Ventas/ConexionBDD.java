@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
  * @author thiag
  */
 public class ConexionBDD {
-    public Connection Conectar() {
-        Connection miConexion = null; // Inicializa la conexión como nula
+    Connection miConexion = null; // Inicializa la conexión como nula
+    public Connection Conectar(){
         try {
             // Asegúrate de que la URL esté correctamente formateada
             String url = "jdbc:mysql://bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb";
@@ -29,6 +29,15 @@ public class ConexionBDD {
             JOptionPane.showMessageDialog(null, "No se conecto correctamente la BDD"+e.toString());
         }
         return miConexion; // Retorna la conexión (puede ser nula si hubo un error)
+    }
+    public void cerrarConexion(){
+        try{
+            if(miConexion != null && !miConexion.isClosed()){
+                JOptionPane.showMessageDialog(null,"Conexion Cerrada");
+            }
+        }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"No se pudo cerrar conexion");
+        }
     }
    
             

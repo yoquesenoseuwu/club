@@ -267,10 +267,10 @@ public class Gestion_Productos extends javax.swing.JFrame {
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         Pantalla_Ventas vV= new Pantalla_Ventas();
-        vV.setVisible(true);
         this.setVisible(false);
+        vV.setSize(500,500);
         vV.setLocationRelativeTo(null);
-        vV.setSize(1530,900);
+        vV.setVisible(true);
     }//GEN-LAST:event_VolverActionPerformed
 
     private void Btn_IDProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_IDProductoActionPerformed

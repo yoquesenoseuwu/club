@@ -46,7 +46,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="Btn_Gestionar_Pedidos" alignment="1" max="32767" attributes="0"/>
                               <Component id="Btn_Gestionar_Productos" max="32767" attributes="0"/>
-                              <Component id="Btn_Gestionar_Promocion" pref="169" max="32767" attributes="0"/>
+                              <Component id="Btn_Gestionar_Descuento" pref="169" max="32767" attributes="0"/>
                               <Component id="Btn_Gestionar_Categoria" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -74,7 +74,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Btn_Gestionar_Productos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="Btn_Gestionar_Promocion" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_Gestionar_Descuento" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Btn_Gestionar_Pedidos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="176" max="32767" attributes="0"/>
@@ -112,12 +112,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Gestionar_ProductosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Btn_Gestionar_Promocion">
+        <Component class="javax.swing.JButton" name="Btn_Gestionar_Descuento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gestionar Descuentos"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Gestionar_PromocionActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Gestionar_DescuentoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Btn_Gestionar_Categoria">
