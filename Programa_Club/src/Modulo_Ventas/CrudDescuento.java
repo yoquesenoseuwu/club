@@ -193,4 +193,6 @@ public class CrudDescuento {
             objetoConexion.cerrarConexion();
         }
     }
+
+    //Funciones para la ventana APLICAR DESCUENTO===============================
 }
