@@ -10,6 +10,7 @@ import java.awt.*;
 import Modulo_Seguridad.Pantalla_Seguridad;
 
 public class Suspender_socio_interface extends javax.swing.JFrame {
+    //Crea la conexion con la bdd y crea el modelo de datos
     Suspender_socio_codigo S_S_C = new Suspender_socio_codigo();
     DefaultListModel modelo = new DefaultListModel();
     
@@ -17,6 +18,7 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
     
 
     public Suspender_socio_interface() {
+        //Llama los componentes, le da los datos al modelo y lo pone en la lista y´pone que hacer cuando se selecciona un socio de la lista
         initComponents();
         modelo=S_S_C.mostrar(modelo);
         jListSocio.setModel(modelo);
@@ -99,6 +101,7 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
+        //Boton para volver atras
         Pantalla_Seguridad pM = new Pantalla_Seguridad();
         pM.setVisible(true);
         this.setVisible(false);

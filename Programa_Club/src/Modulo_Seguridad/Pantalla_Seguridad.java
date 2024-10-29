@@ -16,6 +16,8 @@ import Modulo_Seguridad.Informar.Mostrar_Informe;
 
 
 public class Pantalla_Seguridad extends javax.swing.JFrame {
+    //En serio tengo que comentarizar aca? aaaaaaaaaaaaaaaaa
+    //Simple, crea botones y les dice a que clase se conectan
 
     public Pantalla_Seguridad() {
         initComponents();

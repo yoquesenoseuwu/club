@@ -16,12 +16,14 @@ import javax.swing.ListSelectionModel;
  * @author HP OMEN
  */
 public class Ver_Socios_Suspendidos extends javax.swing.JFrame {
+    //Crea la conexion con la clase de codigo, con la bdd y crea un modelo de datos
     Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
     Suspender_socio_codigo S_S_C = new Suspender_socio_codigo();
     DefaultListModel modelo = new DefaultListModel();
     
     
     public Ver_Socios_Suspendidos() {
+        //Muestra los componentes, le da datos al modelo y lo pone en la lista
         initComponents();
         mostrar();
         jList1.setModel(modelo);
@@ -91,6 +93,7 @@ public class Ver_Socios_Suspendidos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
+        //Boton para volver atras
         Pantalla_Seguridad pM = new Pantalla_Seguridad();
         pM.setVisible(true);
         this.setVisible(false);

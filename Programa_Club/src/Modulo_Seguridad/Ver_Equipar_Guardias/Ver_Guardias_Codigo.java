@@ -13,7 +13,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 
 public class Ver_Guardias_Codigo {
-        Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
+    //Crea la conexion con la bdd
+    Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
     
     public Ver_Guardias_Codigo(){
 
@@ -21,6 +22,7 @@ public class Ver_Guardias_Codigo {
 
     
     public DefaultListModel mostrar(DefaultListModel modelo){
+        //Le da datos al modelo
         modelo.removeAllElements();
         ArrayList array=conexion.Select_Guardias();
         for (int i=0; i<array.size(); i++){

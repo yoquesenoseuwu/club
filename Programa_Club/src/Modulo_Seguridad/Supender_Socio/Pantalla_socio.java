@@ -15,6 +15,7 @@ import java.sql.Date;
  * @author HP OMEN
  */
 public class Pantalla_socio extends javax.swing.JFrame {
+    //Crea la conexion con la clase de codigo y crea un modelo de datos
     DefaultListModel modelo = new DefaultListModel();
     Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
     int id_usuario;
@@ -140,15 +141,15 @@ public class Pantalla_socio extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_Volver)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label_socio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_Volver)
                         .addGap(41, 41, 41)
                         .addComponent(Idsoci, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)
@@ -174,6 +175,7 @@ public class Pantalla_socio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
+        //Boton para volver atras
         Suspender_socio_interface pM = new Suspender_socio_interface();
         pM.setVisible(true);
         this.setVisible(false);
@@ -181,6 +183,7 @@ public class Pantalla_socio extends javax.swing.JFrame {
         pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
     private void lomismoqueelbotonparaatras(){
+        //Es lo mismo que el Boton para volver atras, solo que no es un boton y es para usar en codigo
         Suspender_socio_interface pM = new Suspender_socio_interface();
         pM.setVisible(true);
         this.setVisible(false);
@@ -192,8 +195,7 @@ public class Pantalla_socio extends javax.swing.JFrame {
     }//GEN-LAST:event_Razon_sActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        
+        //Boton para enviar datos, pregunta si el usuario puso tiempo o puso para de por vida. Luego envia los datos a la bdd
         if (Tiempo_s.isEnabled()){
             String Razon= Razon_s.getText();
             int tiempo= Integer.parseInt(Tiempo_s.getText());
@@ -263,6 +265,7 @@ public class Pantalla_socio extends javax.swing.JFrame {
     }
     
     public void agregar_socio(int id){
+        //Agrega el socio a la tabla de suspendido
         modelo.removeAllElements();
         ArrayList array=conexion.Select_unique_socio(id);
         
