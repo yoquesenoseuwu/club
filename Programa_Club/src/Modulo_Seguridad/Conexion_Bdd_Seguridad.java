@@ -432,7 +432,18 @@ public class Conexion_Bdd_Seguridad {
         }
 
     }
-    //--- ZONA DE INFORMES ---//
+    
+    public void Insert_Pedido(String Nombre,int cant, int id,String Precio){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String mensaje=("Pedido de compra: Desde el modulo de Seguridad, requerimos nos autorizen la compra del equipamiento" + Nombre +"");
+        }catch(Exception e){
+            
+        }
+        
+    }
+            
+            //--- ZONA DE INFORMES ---//
     public ArrayList Select_informes(){
         try{
             ArrayList<String> array = new ArrayList<String>();

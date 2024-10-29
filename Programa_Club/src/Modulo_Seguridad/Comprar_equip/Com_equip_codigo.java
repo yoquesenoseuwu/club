@@ -10,10 +10,11 @@ import javax.swing.DefaultListModel;
  * @author HP OMEN
  */
 public class Com_equip_codigo {
-    
+    //Crea la conexion con la bdd
     Conexion_Bdd_Seguridad conexion = new Conexion_Bdd_Seguridad();
     
     public DefaultListModel Cargar_datos(DefaultListModel modelo){
+        //Carga los datos al modelo
         modelo.removeAllElements();
         ArrayList array_carga= conexion.Select_Equipo();
         for (int i=0; i<array_carga.size(); i++){
@@ -23,6 +24,7 @@ public class Com_equip_codigo {
     }
     
     public void Pantalla_equipo(int Id){
+        //Muestra la pantalla de equipo
         Pantalla_Equipo Ps;
         Ps = new Pantalla_Equipo();
         Ps.agregar_equipo(Id);

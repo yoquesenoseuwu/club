@@ -30,6 +30,7 @@ public class Com_equip extends javax.swing.JFrame {
                     int id=Integer.parseInt(separado[0]);
                     mec.Pantalla_equipo(id);
                     Com_equip.this.setVisible(false);
+                    
 
                     
                     

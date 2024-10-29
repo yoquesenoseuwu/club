@@ -5,25 +5,18 @@
  */
 package Modulo_Seguridad.Comprar_equip;
 
-import Modulo_Seguridad.Supender_Socio.Suspender_socio_interface;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.*;
 
 /**
  *
  * @author HP OMEN
  */
-public class Mod_equip extends javax.swing.JFrame {
+public class Mod_equip extends javax.swing.JFrame { 
+    //Crea la conexion con el codigo, crea el modelo de datos y las variables booleanas de bandera
      Mod_equip_codigo mec= new Mod_equip_codigo();
      DefaultListModel modelo = new DefaultListModel();
      boolean textoInicial_nombre=true;
@@ -36,6 +29,7 @@ public class Mod_equip extends javax.swing.JFrame {
      * Creates new form Mod_equip
      */
     public Mod_equip() {
+       //Muestra los componentes, llena el modelo de datos y lo pone en la lista
        initComponents();
        
        modelo=mec.Cargar_datos(modelo);
@@ -269,6 +263,7 @@ public class Mod_equip extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_VolverActionPerformed
 
     private void btn_Volver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Volver1ActionPerformed
+        //Botón para volver atras
         Pantalla_eleccion pE = new Pantalla_eleccion();
         pE.setVisible(true);
         this.setVisible(false);
@@ -281,6 +276,7 @@ public class Mod_equip extends javax.swing.JFrame {
     }//GEN-LAST:event_formFocusGained
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        //Si el usuario pone para escribir, se quita el texto de ejemplo y se activa la bandera
         if (textoInicial_nombre) {
                     jTextField1.setText("");
                     textoInicial_nombre = false;
@@ -288,6 +284,7 @@ public class Mod_equip extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1FocusGained
 
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        //Si el usuario deja de escribir, se vuelve a poner el texto de ejemplo y se desactiva la bandera
         if(jTextField1.getText().isEmpty()){
             jTextField1.setText("Nombre");
             textoInicial_nombre = true;
@@ -295,6 +292,7 @@ public class Mod_equip extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1FocusLost
 
     private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
+        //Si el usuario pone para escribir, se quita el texto de ejemplo y se activa la bandera
         if (textoInicial_precio) {
                     jTextField2.setText("");
                     textoInicial_precio = false;
@@ -302,6 +300,7 @@ public class Mod_equip extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2FocusGained
 
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
+        //Si el usuario deja de escribir, se vuelve a poner el texto de ejemplo y se desactiva la bandera
         if(jTextField2.getText().isEmpty()){
             jTextField2.setText("Precio");
             textoInicial_precio = true;
@@ -313,13 +312,15 @@ public class Mod_equip extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
-                if (textoInicial_descripcion) {
+        //Si el usuario pone para escribir, se quita el texto de ejemplo y se activa la bandera        
+        if (textoInicial_descripcion) {
                     jTextField3.setText("");
                     textoInicial_descripcion = false;
                 }    
     }//GEN-LAST:event_jTextField3FocusGained
 
     private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
+       //Si el usuario deja de escribir, se vuelve a poner el texto de ejemplo y se desactiva la bandera 
         if(jTextField3.getText().isEmpty()){
             jTextField3.setText("Descripcion");
             textoInicial_descripcion = true;
@@ -331,6 +332,7 @@ public class Mod_equip extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void Btn_EnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EnvioActionPerformed
+        //Agarra el texto ingresado, lo envia a la bdd y lo muestra
         String Nombre=jTextField1.getText();
         int Precio=Integer.parseInt(jTextField2.getText());
         String Descripcion=jTextField3.getText();
@@ -347,6 +349,7 @@ public class Mod_equip extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_EnvioActionPerformed
 
     private void jTextField4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusGained
+        //Si el usuario pone para escribir, se quita el texto de ejemplo y se activa la bandera
         if (textoInicial_link) {
                     jTextField4.setText("");
                     textoInicial_link = false;
@@ -354,6 +357,7 @@ public class Mod_equip extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4FocusGained
 
     private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusLost
+        //Si el usuario deja de escribir, se vuelve a poner el texto de ejemplo y se desactiva la bandera
         if(jTextField4.getText().isEmpty()){
             jTextField4.setText("Link");
             textoInicial_link = true;
@@ -365,6 +369,7 @@ public class Mod_equip extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void btn_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarActionPerformed
+        //Borra el equipo seleccionado
         if(!Lista_equipamiento.isSelectionEmpty()){
            String itemSeleccionado = Lista_equipamiento.getSelectedValue();
            mec.Delete(itemSeleccionado);
@@ -375,6 +380,7 @@ public class Mod_equip extends javax.swing.JFrame {
 
     private void btn_imagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imagenActionPerformed
          try {
+             //Se devuelve la imagen en binario
             ByteImagen=mec.Crear_file();
             
          } catch (IOException ex) {

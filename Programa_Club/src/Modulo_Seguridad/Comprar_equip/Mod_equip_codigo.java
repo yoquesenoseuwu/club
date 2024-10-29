@@ -20,9 +20,12 @@ import javax.swing.JOptionPane;
  */
 public class Mod_equip_codigo {
     
+    //Crea una conexion con la bdd
+    
     Conexion_Bdd_Seguridad conexion = new Conexion_Bdd_Seguridad();
     
     public DefaultListModel Cargar_datos(DefaultListModel modelo){
+        //Carga datos al modelo
         modelo.removeAllElements();
         ArrayList array_carga= conexion.Select_Equipo();
         for (int i=0; i<array_carga.size(); i++){
@@ -32,10 +35,12 @@ public class Mod_equip_codigo {
     }
     
     public void Insert(String Nombre, int Precio, String Descripcion,String link,byte[] ByteImage){
+        //Inserta datos a la bdd
         conexion.Insert_Tipo_equipamiento(Nombre, Precio, Descripcion,link,ByteImage);
     }
     
     public void Delete(String itemSeleccionado){
+        //Elimina el equipo seleccionado
         String[] separado=itemSeleccionado.split(" / ");
         JOptionPane.showMessageDialog(null, "Seleccionaste: " + separado);
         int id=Integer.parseInt(separado[0]);
@@ -44,6 +49,7 @@ public class Mod_equip_codigo {
     }
     
     public byte[] Crear_file() throws IOException{
+        //Crea un seleccionador de archivos que solo permita imagenes
         JFileChooser file_imagen= new JFileChooser();
         
         file_imagen.setDialogTitle("Seleccionar imagen");
@@ -52,7 +58,7 @@ public class Mod_equip_codigo {
         file_imagen.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Imágenes", "jpg", "jpeg", "png"));
 
         int result = file_imagen.showOpenDialog(null);
-
+        //Cuando seleccione una imagen, se envia a que se convierta en binario
         if (result == JFileChooser.APPROVE_OPTION) {
             File Imagen= file_imagen.getSelectedFile();
             byte[] imageBytes =convertirImagenAByte(Imagen);
@@ -61,6 +67,7 @@ public class Mod_equip_codigo {
         return null;
     }
     public byte[] convertirImagenAByte(File Imagen) throws IOException{
+        //Convierte la imagen a binario
         try (FileInputStream fis = new FileInputStream(Imagen);
                ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
 
