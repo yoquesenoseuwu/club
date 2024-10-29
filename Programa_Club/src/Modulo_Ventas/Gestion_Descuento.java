@@ -259,6 +259,7 @@ public class Gestion_Descuento extends javax.swing.JFrame {
         vV.setSize(500,500);
         vV.setLocationRelativeTo(null);
         vV.setVisible(true);
+        
     }//GEN-LAST:event_Volver_BtnActionPerformed
     
     /**

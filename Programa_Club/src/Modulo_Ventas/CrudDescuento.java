@@ -80,7 +80,12 @@ public class CrudDescuento {
             JOptionPane.showMessageDialog(null, "Se guardó el descuento correctamente");
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Ocurrió un error, error: " + e.toString());
+        }finally{
+            objetoConexion.cerrarConexion();
         }
+        
     }
-    
+    public void MostrarDescuentos(JTable tablaTotalDescuentos){
+        
+    }    
 }
