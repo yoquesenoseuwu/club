@@ -18,12 +18,6 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        
-        grupoBtn.add(eventos);
-        grupoBtn.add(notificaciones);
-        grupoBtn.add(grupo);
-        grupoBtn.add(historial);
-        //grupoBtn.setSelected(eventos.getModel(),true);
         this.eventos.setSelected(true);
     }
 
@@ -36,7 +30,6 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBtn = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -177,7 +170,6 @@ public class Principal extends javax.swing.JFrame {
         );
 
         panelPrincipal.setBackground(new java.awt.Color(229, 232, 236));
-        panelPrincipal.setMinimumSize(new java.awt.Dimension(700, 0));
         panelPrincipal.setLayout(new javax.swing.BoxLayout(panelPrincipal, javax.swing.BoxLayout.LINE_AXIS));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -213,71 +205,60 @@ public class Principal extends javax.swing.JFrame {
 
     private void notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificacionesActionPerformed
         new CambiaPanel(panelPrincipal, new panelNotificaciones());
-        this.notificaciones.setColorNormal(new java.awt.Color(229,232,236));
-        this.notificaciones.setColorTextNormal(new java.awt.Color(31,50,69));
-            
-        this.eventos.setColorNormal(new java.awt.Color(31,50,69));
-        this.eventos.setColorTextNormal(new java.awt.Color(255,255,255));
-        this.historial.setColorNormal(new java.awt.Color(31,50,69));
-        this.historial.setColorTextNormal(new java.awt.Color(255,255,255));
-        this.grupo.setColorNormal(new java.awt.Color(31,50,69));
-        this.grupo.setColorTextNormal(new java.awt.Color(255,255,255));
     }//GEN-LAST:event_notificacionesActionPerformed
 
     private void grupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grupoActionPerformed
         new CambiaPanel(panelPrincipal, new panelGrupo());
-        this.grupo.setColorNormal(new java.awt.Color(229,232,236));
-        this.grupo.setColorTextNormal(new java.awt.Color(31,50,69));
-            
-        this.eventos.setColorNormal(new java.awt.Color(31,50,69));
-        this.eventos.setColorTextNormal(new java.awt.Color(255,255,255));
-        this.historial.setColorNormal(new java.awt.Color(31,50,69));
-        this.historial.setColorTextNormal(new java.awt.Color(255,255,255));
-        this.notificaciones.setColorNormal(new java.awt.Color(31,50,69));
-        this.notificaciones.setColorTextNormal(new java.awt.Color(255,255,255));
     }//GEN-LAST:event_grupoActionPerformed
 
     private void historialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialActionPerformed
         new CambiaPanel(panelPrincipal, new panelHistorial());
-        this.historial.setColorNormal(new java.awt.Color(229,232,236));
-        this.historial.setColorTextNormal(new java.awt.Color(31,50,69));
-            
-        this.eventos.setColorNormal(new java.awt.Color(31,50,69));
-        this.eventos.setColorTextNormal(new java.awt.Color(255,255,255));
-        this.notificaciones.setColorNormal(new java.awt.Color(31,50,69));
-        this.notificaciones.setColorTextNormal(new java.awt.Color(255,255,255));
-        this.grupo.setColorNormal(new java.awt.Color(31,50,69));
-        this.grupo.setColorTextNormal(new java.awt.Color(255,255,255));
     }//GEN-LAST:event_historialActionPerformed
 
     private void eventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventosActionPerformed
         // TODO add your handling code here:
         new CambiaPanel(panelPrincipal, new panelEventos());
-        this.eventos.setColorNormal(new java.awt.Color(229,232,236));
-        this.eventos.setColorTextNormal(new java.awt.Color(31,50,69));
+        /*if(this.eventos.isSelected()){
+            this.eventos.setColorNormal(new java.awt.Color(229,232,236));
+            this.eventos.setColorTextNormal(new java.awt.Color(31,50,69));
+            this.eventos.setEnabled(false);
             
-        this.notificaciones.setColorNormal(new java.awt.Color(31,50,69));
-        this.notificaciones.setColorTextNormal(new java.awt.Color(255,255,255));
-        this.historial.setColorNormal(new java.awt.Color(31,50,69));
-        this.historial.setColorTextNormal(new java.awt.Color(255,255,255));
-        this.grupo.setColorNormal(new java.awt.Color(31,50,69));
-        this.grupo.setColorTextNormal(new java.awt.Color(255,255,255));
+            this.notificaciones.setColorNormal(new java.awt.Color(31,50,69));
+            this.eventos.setColorTextNormal(new java.awt.Color(255,255,255));
+            this.historial.setColorNormal(new java.awt.Color(31,50,69));
+            this.eventos.setColorTextNormal(new java.awt.Color(255,255,255));
+            this.grupo.setColorNormal(new java.awt.Color(31,50,69));
+            this.eventos.setColorTextNormal(new java.awt.Color(255,255,255));
+        }*/
     }//GEN-LAST:event_eventosActionPerformed
 
     private void eventosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventosMousePressed
+        this.eventos.setSelected(true);
+        this.notificaciones.setSelected(false);
+        this.grupo.setSelected(false);
+        this.historial.setSelected(false);
         
     }//GEN-LAST:event_eventosMousePressed
 
     private void notificacionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificacionesMousePressed
-        
+        this.eventos.setSelected(false);
+        this.notificaciones.setSelected(true);
+        this.grupo.setSelected(false);
+        this.historial.setSelected(false);
     }//GEN-LAST:event_notificacionesMousePressed
 
     private void grupoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grupoMousePressed
-        
+        this.grupo.setSelected(true);
+        this.notificaciones.setSelected(false);
+        this.eventos.setSelected(false);
+        this.historial.setSelected(false);
     }//GEN-LAST:event_grupoMousePressed
 
     private void historialMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historialMousePressed
-        
+        this.historial.setSelected(true);
+        this.notificaciones.setSelected(false);
+        this.grupo.setSelected(false);
+        this.eventos.setSelected(false);
     }//GEN-LAST:event_historialMousePressed
 
     private void cerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarMouseClicked
@@ -331,7 +312,6 @@ public class Principal extends javax.swing.JFrame {
     private rsbuttom.RSButtonMetro cerrar;
     private rsbuttom.RSButtonMetro eventos;
     private rsbuttom.RSButtonMetro grupo;
-    private javax.swing.ButtonGroup grupoBtn;
     private rsbuttom.RSButtonMetro historial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
