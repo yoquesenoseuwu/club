@@ -179,7 +179,7 @@ public class Conexion_Bdd_Seguridad {
         try{
             ArrayList<String> array = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            String query="SELECT e.idempleado, e.nombre, c.cargos FROM Empleado e, Cargo c WHERE e.idcargo=c.idcargo and (e.idcargo=1 OR e.idcargo=2) group by e.nombre;";
+            String query="CALL Seleccionar_Guardias()";
             Statement  sele = miConexion.createStatement();
             ResultSet result=sele.executeQuery(query);
             while(result.next()){
@@ -421,7 +421,7 @@ public class Conexion_Bdd_Seguridad {
                 sele.setString(1,"Pedido de compra del modulo de seguridad: Se solicita comprar el material "+Nombre+" en una cantidad de "+cant+" con un precio de "+ cant*Precio+".");
                 sele.setInt(2, id);
                 sele.setInt(3, cant);
-                sele.setInt(4, Precio);
+                sele.setInt(4, cant*Precio);
                 sele.executeUpdate();
             miConexion.close();
             

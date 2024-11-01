@@ -84,6 +84,11 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         });
 
         btn_equiparGuardias.setText("Equipar Guardias");
+        btn_equiparGuardias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_equiparGuardiasActionPerformed(evt);
+            }
+        });
 
         btn_comprarEquipamiento.setText("Comprar equipamiento");
         btn_comprarEquipamiento.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +122,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btn_mostrarInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                                .addComponent(btn_mostrarInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 118, Short.MAX_VALUE)
                                 .addGap(217, 217, 217)
                                 .addComponent(btn_comprarEquipamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
@@ -228,6 +233,10 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         this.setVisible(false);
         mI.setSize(500,500);
     }//GEN-LAST:event_btn_mostrarInformeActionPerformed
+
+    private void btn_equiparGuardiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_equiparGuardiasActionPerformed
+        
+    }//GEN-LAST:event_btn_equiparGuardiasActionPerformed
 
     /**
      * @param args the command line arguments
