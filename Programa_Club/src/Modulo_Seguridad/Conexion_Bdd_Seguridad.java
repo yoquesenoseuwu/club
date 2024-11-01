@@ -393,7 +393,7 @@ public class Conexion_Bdd_Seguridad {
                 array.add(Nombre);
                 String Desc="Descripcion=" + result.getString("Descripcion");
                 array.add(Desc);
-                String Precio="PRECIO=" + result.getInt("Precio");
+                String Precio= ""+result.getInt("Precio");
                 array.add(Precio);
                 String Link="LINK=" + result.getString("Link");
                 array.add(Link);
@@ -414,15 +414,15 @@ public class Conexion_Bdd_Seguridad {
         }
         
     }
-    public void Insert_equipamiento(String Nombre,int cant, int id){
+    public void Insert_pedido_equipamiento(String Nombre,int cant, int id,int Precio){
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            for(int i=0;i<cant;i++){
-                PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Equipamiento(Nombre, Tipo_id) VALUES (?,?)");
-                sele.setString(1,Nombre);
+                PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Pedido_Compra (Mensaje, Id_Equipamiento,Cant_Comprar,Precio) VALUES (?,?,?,?)");
+                sele.setString(1,"Pedido de compra del modulo de seguridad: Se solicita comprar el material "+Nombre+" en una cantidad de "+cant+" con un precio de "+ cant*Precio+".");
                 sele.setInt(2, id);
+                sele.setInt(3, cant);
+                sele.setInt(4, Precio);
                 sele.executeUpdate();
-            }
             miConexion.close();
             
         }catch(Exception e){
@@ -432,6 +432,7 @@ public class Conexion_Bdd_Seguridad {
         }
 
     }
+    //"INSERT INTO Equipamiento(Nombre, Tipo_id) VALUES (?,?)"
     
     public void Insert_Pedido(String Nombre,int cant, int id,String Precio){
         try{

@@ -16,7 +16,7 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
     Conexion_Bdd_Seguridad conexion = new Conexion_Bdd_Seguridad();
     boolean bandera=true;
     int ID_Guardar;
-    String Precio;
+    int Precio;
     String[] nombre_vec;
 
     public Pantalla_Equipo() {
@@ -162,7 +162,8 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
     private void btn_comprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_comprarActionPerformed
         //Se selecciona para comprar
         int canti = Integer.parseInt(cant.getText());
-        conexion.Insert_equipamiento(nombre_vec[1],canti,ID_Guardar);
+        conexion.Insert_pedido_equipamiento(nombre_vec[1],canti,ID_Guardar,Precio);
+        cant.setText("Cant. a comprar");
     }//GEN-LAST:event_btn_comprarActionPerformed
 
     /**
@@ -230,11 +231,13 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
         
         nombre_vec=Nombre.split("=");
         
-        String Descripcion=array.get(3);
+        String Descripcion=array.get(2);
         Descri.setText(Descripcion);
         
-        Precio=(String) array.get(2);
-        Preci.setText(Precio);
+        String precio=(String) array.get(3);
+        Preci.setText(precio);
+        
+        Precio=Integer.parseInt(precio);
         
         String Link=array.get(4);
         Lin.setText(Link);
