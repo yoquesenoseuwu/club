@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulo_Seguridad.Ver_Equipar_Guardias;
+package Modulo_Seguridad.Ver_Guardia;
 import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;

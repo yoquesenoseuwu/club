@@ -16,7 +16,7 @@ public class Com_equip_codigo {
     public DefaultListModel Cargar_datos(DefaultListModel modelo){
         //Carga los datos al modelo
         modelo.removeAllElements();
-        ArrayList array_carga= conexion.Select_Equipo();
+        ArrayList array_carga= conexion.Select_tipo_Equipo();
         for (int i=0; i<array_carga.size(); i++){
             modelo.addElement(array_carga.get(i));
         }

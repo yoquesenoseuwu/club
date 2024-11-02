@@ -10,7 +10,7 @@ import Modulo_Seguridad.Supender_Socio.Suspender_socio_interface;
 import Modulo_Seguridad.Supender_Socio.Ver_Socios_Suspendidos;
 import java.awt.Dimension;
 import programa_club.Main;
-import Modulo_Seguridad.Ver_Equipar_Guardias.Ver_Guardias;
+import Modulo_Seguridad.Ver_Guardia.Ver_Guardias;
 import Modulo_Seguridad.Comprar_equip.Pantalla_eleccion;
 import Modulo_Seguridad.Informar.Mostrar_Informe;
 import Modulo_Seguridad.Posicionar_Guardias.Ver_Zonas_Guardia;

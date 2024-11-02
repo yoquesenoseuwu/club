@@ -198,6 +198,30 @@ public class Conexion_Bdd_Seguridad {
         }
         
     }
+    
+        public ArrayList Select_Guardias_sin_estatal(){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String query="SELECT e.idempleado, e.nombre, c.cargos FROM Empleado e, Cargo c WHERE e.idcargo=c.idcargo and (e.idcargo=1) group by e.nombre;";
+            Statement  sele = miConexion.createStatement();
+            ResultSet result=sele.executeQuery(query);
+            while(result.next()){
+                String Item=result.getInt("idempleado") + "/" + result.getString("nombre")+ "/" + result.getString("cargos");
+                array.add(Item);
+            }
+            
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;    
+        }
+        
+    }
     //--- ZONA DE SOCIOS ---//
     public ArrayList Select_socios(){
         try{
@@ -442,6 +466,29 @@ public class Conexion_Bdd_Seguridad {
             
         }
         
+    }
+    
+    public ArrayList Select_tipo_Equipo(){
+        try{
+            ArrayList<String> resultados = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele = miConexion.prepareStatement("SELECT * FROM Tipo_Equipamiento");
+            ResultSet resul=sele.executeQuery();
+             while(resul.next()){
+                String Item=resul.getInt("Tipo_Id") + " / " + resul.getString("Nombre")+ " / " + resul.getString("Precio");
+                resultados.add(Item);
+                System.out.println(Item);
+            }
+            
+            miConexion.close();
+            return resultados;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;
+        }
     }
             
             //--- ZONA DE INFORMES ---//
