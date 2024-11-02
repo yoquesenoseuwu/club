@@ -41,4 +41,12 @@ public class Crear_Informe_Codigo {
         pI.setVisible(true);
         
     }
+    public DefaultListModel mostrar_Ordenado(DefaultListModel modelo, String consulta){
+        modelo.removeAllElements();
+        ArrayList array=conexion.Ordenar_informes(consulta);
+        for (int i=0; i<array.size(); i++){
+            modelo.addElement(array.get(i));
+        }
+        return modelo;
+    }
 }

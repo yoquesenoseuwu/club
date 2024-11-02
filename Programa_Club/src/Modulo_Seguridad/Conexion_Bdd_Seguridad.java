@@ -449,7 +449,7 @@ public class Conexion_Bdd_Seguridad {
         try{
             ArrayList<String> array = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            String query="SELECT ID, Titulo FROM Informe";
+            String query="SELECT ID, Titulo FROM Informe ORDER BY Fecha DESC";
             Statement  sele = miConexion.createStatement();
             ResultSet result=sele.executeQuery(query);
             while(result.next()){
@@ -527,4 +527,28 @@ public class Conexion_Bdd_Seguridad {
         
        
    }
+    public ArrayList Ordenar_informes(String consulta){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String query=consulta;
+            Statement  sele = miConexion.createStatement();
+            ResultSet result=sele.executeQuery(query);
+            while(result.next()){
+                String Item=result.getInt("ID") + "-" + result.getString("Titulo");
+                array.add(Item);
+            }
+           
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+           
+            e.printStackTrace();
+           
+            return null;    
+        }
+       
+    }
+
 }

@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import Modulo_Seguridad.Pantalla_Seguridad;
+
 /**
  *
  * @author PC
@@ -17,6 +19,8 @@ import javax.swing.event.ListSelectionListener;
 public class Mostrar_Informe extends javax.swing.JFrame {
     Crear_Informe_Codigo cIc = new Crear_Informe_Codigo();
     DefaultListModel modelo = new DefaultListModel();
+    String opc;
+    String consulta;
     /**
      * Creates new form Mostrar_Informe
      */
@@ -52,7 +56,8 @@ public class Mostrar_Informe extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         list_Informes = new javax.swing.JList<>();
         btn_crearInforme = new javax.swing.JButton();
-        btn_ordenar = new javax.swing.JButton();
+        ComboBox_Ordenar = new javax.swing.JComboBox<>();
+        btn_Volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,7 +75,19 @@ public class Mostrar_Informe extends javax.swing.JFrame {
             }
         });
 
-        btn_ordenar.setText("Ordenar informes");
+        ComboBox_Ordenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mas reciente", "Mas antiguo" }));
+        ComboBox_Ordenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBox_OrdenarActionPerformed(evt);
+            }
+        });
+
+        btn_Volver.setText("<--");
+        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,19 +98,23 @@ public class Mostrar_Informe extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_ordenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_crearInforme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_crearInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                    .addComponent(ComboBox_Ordenar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(78, 78, 78))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btn_Volver)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addComponent(btn_Volver)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_crearInforme)
-                        .addGap(44, 44, 44)
-                        .addComponent(btn_ordenar))
+                        .addGap(29, 29, 29)
+                        .addComponent(ComboBox_Ordenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
@@ -108,6 +129,24 @@ public class Mostrar_Informe extends javax.swing.JFrame {
         this.setVisible(false);
         cI.setSize(500,500);
     }//GEN-LAST:event_btn_crearInformeActionPerformed
+
+    private void ComboBox_OrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_OrdenarActionPerformed
+        opc=ComboBox_Ordenar.getSelectedItem().toString();
+        if (opc=="Mas reciente"){
+            consulta = "SELECT ID, Titulo FROM Informe ORDER BY Fecha DESC";
+        }else{
+            consulta = "SELECT ID, Titulo FROM Informe ORDER BY Fecha ASC";
+        }
+        cIc.mostrar_Ordenado(modelo, consulta);
+    }//GEN-LAST:event_ComboBox_OrdenarActionPerformed
+
+    private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
+        Pantalla_Seguridad pM = new Pantalla_Seguridad();
+        pM.setVisible(true);
+        this.setVisible(false);
+        pM.setSize(1530,900);
+        pM.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btn_VolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,8 +184,9 @@ public class Mostrar_Informe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboBox_Ordenar;
+    private javax.swing.JButton btn_Volver;
     private javax.swing.JButton btn_crearInforme;
-    private javax.swing.JButton btn_ordenar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> list_Informes;
     // End of variables declaration//GEN-END:variables
