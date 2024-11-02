@@ -58,7 +58,9 @@ public class CrudCategoria {
             
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, "No se inserto correctamente la categoria, error: "+e.toString());
-
+        }
+        finally{
+            objetoConexion.cerrarConexion();
         }
     }
     //Mostrar
@@ -95,6 +97,8 @@ public class CrudCategoria {
             paramTablaTotalCategorias.setModel(modelo);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"No se pudo mostrar correctamente los registros, error:"+e.toString());
+        }finally{
+            objetoConexion.cerrarConexion();
         }
     }
     //Seleccionar
@@ -139,6 +143,8 @@ public class CrudCategoria {
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "No se modificó"+ e.toString());
 
+        }finally{
+            objetoConexion.cerrarConexion();
         }
     }
     
@@ -162,6 +168,8 @@ public class CrudCategoria {
             
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"No se eliminó correctamente el registro, error:"+ e.toString())  ;
+        }finally{
+            objetoConexion.cerrarConexion();
         }
     }
     public void LimpiarCampos(JTextField paramID, JTextField paramNombre) {

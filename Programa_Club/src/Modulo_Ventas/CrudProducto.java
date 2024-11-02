@@ -156,6 +156,8 @@ public class CrudProducto {
             paramTablaProductos.setModel(modelo);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se pudo mostrar correctamente los registros, error: " + e.getMessage());
+        }finally{
+            objetoConexion.cerrarConexion();
         }
     }
 
@@ -177,7 +179,9 @@ public class CrudProducto {
         }
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error al cargar categorías: " + e.getMessage());
-    }
+    }finally{
+            objetoConexion.cerrarConexion();
+        }
     }
 
 
@@ -269,7 +273,9 @@ public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, 
         JOptionPane.showMessageDialog(null, "No se modificó: " + e.getMessage());
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "Error en el formato de los números: " + e.getMessage());
-    }
+    }finally{
+            objetoConexion.cerrarConexion();
+        }
 }
 
 
@@ -286,6 +292,8 @@ public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, 
             JOptionPane.showMessageDialog(null, "Se eliminó correctamente el registro");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se eliminó correctamente el registro, error: " + e.getMessage());
+        }finally{
+            objetoConexion.cerrarConexion();
         }
     }
     

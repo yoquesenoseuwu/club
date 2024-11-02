@@ -4,6 +4,7 @@ import programa_club.Main;
 import Modulo_Ventas.Gestion_Productos;
 import Modulo_Ventas.Gestion_Categorias;
 import Modulo_Ventas.Gestion_Descuento;
+import Modulo_Ventas.Gestion_Reembolso;
 
 public class Pantalla_Ventas extends javax.swing.JFrame {
 
@@ -27,6 +28,7 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         Btn_Gestionar_Productos = new javax.swing.JButton();
         Btn_Gestionar_Descuento = new javax.swing.JButton();
         Btn_Gestionar_Categoria = new javax.swing.JButton();
+        Btn_Gestionar_Reembolso = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +69,13 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
             }
         });
 
+        Btn_Gestionar_Reembolso.setText("Gestionar Reembolso");
+        Btn_Gestionar_Reembolso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Gestionar_ReembolsoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -80,7 +89,8 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
                             .addComponent(Btn_Gestionar_Pedidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_Gestionar_Productos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_Gestionar_Descuento, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                            .addComponent(Btn_Gestionar_Categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(Btn_Gestionar_Categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_Gestionar_Reembolso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -102,7 +112,9 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
                 .addComponent(Btn_Gestionar_Descuento)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_Gestionar_Pedidos)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(Btn_Gestionar_Reembolso)
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,6 +169,14 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         vC.setVisible(true); 
     }//GEN-LAST:event_Btn_Gestionar_CategoriaActionPerformed
 
+    private void Btn_Gestionar_ReembolsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_ReembolsoActionPerformed
+        Gestion_Reembolso  vR = new Gestion_Reembolso();
+        this.setVisible(false);
+        vR.setSize(1300,700);
+        vR.setLocationRelativeTo(null);
+        vR.setVisible(true);
+    }//GEN-LAST:event_Btn_Gestionar_ReembolsoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,6 +217,7 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
     private javax.swing.JButton Btn_Gestionar_Descuento;
     private javax.swing.JButton Btn_Gestionar_Pedidos;
     private javax.swing.JButton Btn_Gestionar_Productos;
+    private javax.swing.JButton Btn_Gestionar_Reembolso;
     private javax.swing.JButton Volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
