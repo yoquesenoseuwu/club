@@ -15,7 +15,7 @@ import Modulo_Seguridad.Conexion_Bdd_Seguridad;
  */
 public class Ver_Zonas_codigo {
         Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
-        private String Nom;
+        //private String Nom;
     
     public Ver_Zonas_codigo(){
 

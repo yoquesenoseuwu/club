@@ -13,7 +13,7 @@ import programa_club.Main;
 import Modulo_Seguridad.Ver_Equipar_Guardias.Ver_Guardias;
 import Modulo_Seguridad.Comprar_equip.Pantalla_eleccion;
 import Modulo_Seguridad.Informar.Mostrar_Informe;
-
+import Modulo_Seguridad.Posicionar_Guardias.Ver_Zonas_Guardia;
 
 public class Pantalla_Seguridad extends javax.swing.JFrame {
     //En serio tengo que comentarizar aca? aaaaaaaaaaaaaaaaa
@@ -50,6 +50,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         btn_comprarEquipamiento = new javax.swing.JButton();
         btn_mostrarInforme = new javax.swing.JButton();
         btn_v_s_s = new javax.swing.JButton();
+        btn_posicionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +112,13 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
             }
         });
 
+        btn_posicionar.setText("Posicionar Guardias");
+        btn_posicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_posicionarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -122,10 +130,6 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btn_mostrarInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 118, Short.MAX_VALUE)
-                                .addGap(217, 217, 217)
-                                .addComponent(btn_comprarEquipamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btn_verGuardias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(217, 217, 217)
                                 .addComponent(btn_suspenderSocios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -133,7 +137,15 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btn_verZonas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(217, 217, 217)
-                                .addComponent(btn_equiparGuardias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(btn_equiparGuardias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_mostrarInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                                .addGap(217, 217, 217)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btn_posicionar)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(btn_comprarEquipamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_v_s_s)
@@ -161,7 +173,9 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                             .addComponent(btn_comprarEquipamiento)
                             .addComponent(btn_mostrarInforme))))
                 .addGap(18, 18, 18)
-                .addComponent(btn_v_s_s)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_v_s_s, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_posicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -238,6 +252,14 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_equiparGuardiasActionPerformed
 
+    private void btn_posicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_posicionarActionPerformed
+        Ver_Zonas_Guardia vZg=new Ver_Zonas_Guardia();
+        vZg.setVisible(true);
+        vZg.setLocationRelativeTo(null);
+        this.setVisible(false);
+        vZg.setSize(500,500);
+    }//GEN-LAST:event_btn_posicionarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -277,6 +299,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
     private javax.swing.JButton btn_comprarEquipamiento;
     private javax.swing.JButton btn_equiparGuardias;
     private javax.swing.JButton btn_mostrarInforme;
+    private javax.swing.JButton btn_posicionar;
     private javax.swing.JButton btn_suspenderSocios;
     private javax.swing.JButton btn_v_s_s;
     private javax.swing.JButton btn_verGuardias;

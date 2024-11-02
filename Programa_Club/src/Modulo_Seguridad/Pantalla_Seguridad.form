@@ -45,11 +45,6 @@
                           <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="2" attributes="0">
-                                  <Component id="btn_mostrarInforme" pref="118" max="32767" attributes="0"/>
-                                  <EmptySpace min="217" pref="217" max="217" attributes="0"/>
-                                  <Component id="btn_comprarEquipamiento" pref="167" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="2" attributes="0">
                                   <Component id="btn_verGuardias" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
                                   <Component id="btn_suspenderSocios" max="32767" attributes="0"/>
@@ -59,6 +54,17 @@
                                   <Component id="btn_verZonas" max="32767" attributes="0"/>
                                   <EmptySpace min="217" pref="217" max="217" attributes="0"/>
                                   <Component id="btn_equiparGuardias" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="btn_mostrarInforme" pref="118" max="32767" attributes="0"/>
+                                  <EmptySpace min="217" pref="217" max="217" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="btn_posicionar" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="btn_comprarEquipamiento" pref="167" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -98,7 +104,10 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btn_v_s_s" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btn_v_s_s" max="32767" attributes="0"/>
+                      <Component id="btn_posicionar" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="49" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -172,6 +181,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_v_s_sActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_posicionar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Posicionar Guardias"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_posicionarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
