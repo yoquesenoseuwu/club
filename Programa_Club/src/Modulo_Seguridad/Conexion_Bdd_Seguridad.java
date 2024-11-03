@@ -222,6 +222,57 @@ public class Conexion_Bdd_Seguridad {
         }
         
     }
+    //--- ASIGNAR GUARDIAS ---//
+    public Boolean Insert_Z_Guardia(int ID_zona, int ID_guardia){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Z_Guardia (ID_Zona, ID_Guardia) VALUES (?,?)");
+
+            
+            sele.setInt(1,ID_zona);
+            sele.setInt(2,ID_guardia);
+            
+
+            sele.executeUpdate();
+
+            miConexion.close();
+            return(true);
+
+        }catch(Exception e){
+            System.out.println("No funca");
+
+            e.printStackTrace();
+            return(false);
+
+        }
+    }
+    public ArrayList Select_Z_Guardias(int id){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String str="SELECT e.idempleado, e.nombre FROM Z_Guardia z, Empleado e WHERE z.ID_Zona=? and z.ID_Guardia=e.idempleado;";
+            PreparedStatement  query=miConexion.prepareStatement(str);
+            query.setInt(1,id);
+            ResultSet result = query.executeQuery();
+            
+            while(result.next()){
+                String Item=result.getInt("e.idempleado") + "-" + result.getString("e.nombre")+ "-";// + result.getString("cargos");
+                array.add(Item);
+            }
+            
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;
+        }
+        
+       
+   }
+    
     //--- ZONA DE SOCIOS ---//
     public ArrayList Select_socios(){
         try{

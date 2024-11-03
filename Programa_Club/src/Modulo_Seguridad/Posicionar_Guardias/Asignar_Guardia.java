@@ -5,6 +5,8 @@
  */
 package Modulo_Seguridad.Posicionar_Guardias;
 
+import Modulo_Seguridad.Conexion_Bdd_Seguridad;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -19,6 +21,8 @@ import javax.swing.event.ListSelectionListener;
 public class Asignar_Guardia extends javax.swing.JFrame {
     Posicionar_Guardias_Codigo vZc = new Posicionar_Guardias_Codigo();
     DefaultListModel modelo = new DefaultListModel();
+    Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
+    int id_Zona;
     /**
      * Creates new form Asignar_Guardia
      */
@@ -33,9 +37,10 @@ public class Asignar_Guardia extends javax.swing.JFrame {
                     String itemSeleccionado = list_Guardias.getSelectedValue();
                     String[] separado=itemSeleccionado.split("-");
                     JOptionPane.showMessageDialog(null, "Seleccionaste: " + separado[1]);
-                    int id=Integer.parseInt(separado[0]);
-                    vZc.Pantalla_Zona_Guardias(id);
+                    int id_Guardia=Integer.parseInt(separado[0]);
+                    Asignar_Z_Guardia(id_Zona,  id_Guardia);
                     
+                   
                 }
             }
         });
@@ -52,6 +57,7 @@ public class Asignar_Guardia extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         list_Guardias = new javax.swing.JList<>();
+        btn_Volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,25 +68,41 @@ public class Asignar_Guardia extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(list_Guardias);
 
+        btn_Volver.setText("<--");
+        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(btn_Volver)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(146, 146, 146)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(195, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addComponent(btn_Volver)
+                .addGap(61, 61, 61)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_VolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,8 +138,21 @@ public class Asignar_Guardia extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void ID_ZONA_GET (int ID_Zona){
+        id_Zona=ID_Zona;
+    }
+    
+    public void Asignar_Z_Guardia(int id_Zona, int id_Guardia){
+        conexion.Insert_Z_Guardia(id_Zona, id_Guardia);
+        
+        //String Id=(String) array.get(0);
+    
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Volver;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> list_Guardias;
     // End of variables declaration//GEN-END:variables
