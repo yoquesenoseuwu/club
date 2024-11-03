@@ -14,6 +14,7 @@ import Modulo_Seguridad.Ver_Guardia.Ver_Guardias;
 import Modulo_Seguridad.Comprar_equip.Pantalla_eleccion;
 import Modulo_Seguridad.Informar.Mostrar_Informe;
 import Modulo_Seguridad.Posicionar_Guardias.Ver_Zonas_Guardia;
+import Modulo_Seguridad.Equip_G.Pantalla_Guardias;
 
 public class Pantalla_Seguridad extends javax.swing.JFrame {
     //En serio tengo que comentarizar aca? aaaaaaaaaaaaaaaaa
@@ -139,7 +140,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
                                 .addGap(217, 217, 217)
                                 .addComponent(btn_equiparGuardias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btn_mostrarInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                                .addComponent(btn_mostrarInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 118, Short.MAX_VALUE)
                                 .addGap(217, 217, 217)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -249,7 +250,11 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_mostrarInformeActionPerformed
 
     private void btn_equiparGuardiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_equiparGuardiasActionPerformed
-        
+        Pantalla_Guardias pG=new Pantalla_Guardias();
+        pG.setVisible(true);
+        pG.setLocationRelativeTo(null);
+        this.setVisible(false);
+        pG.setSize(915,395);
     }//GEN-LAST:event_btn_equiparGuardiasActionPerformed
 
     private void btn_posicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_posicionarActionPerformed

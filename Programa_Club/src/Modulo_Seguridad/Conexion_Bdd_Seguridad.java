@@ -456,6 +456,18 @@ public class Conexion_Bdd_Seguridad {
         }
 
     }
+    
+    public ArrayList Select_equipo_de_guardia_x(int Id){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String str="SELECT * FROM Tipo_Equipamiento WHERE Tipo_Id=?";
+            return array;
+        }catch(Exception e){
+            return null;
+        }
+        
+    }
     //"INSERT INTO Equipamiento(Nombre, Tipo_id) VALUES (?,?)"
     
     public void Insert_Pedido(String Nombre,int cant, int id,String Precio){
