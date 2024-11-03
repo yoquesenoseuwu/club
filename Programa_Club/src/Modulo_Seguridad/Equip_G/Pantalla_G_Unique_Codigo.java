@@ -18,7 +18,7 @@ public class Pantalla_G_Unique_Codigo {
     
     public ArrayList<String> cargar_datos (int Id){
         
-        Array.add("hola");
+        Array=conexion.Select_equipo_de_guardia_x(Id);
          
         return Array;
     } 

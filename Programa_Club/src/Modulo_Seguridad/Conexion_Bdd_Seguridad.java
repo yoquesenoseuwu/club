@@ -434,6 +434,9 @@ public class Conexion_Bdd_Seguridad {
             return array;
         
         }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
             return null;
         }
         
@@ -461,24 +464,27 @@ public class Conexion_Bdd_Seguridad {
         try{
             ArrayList<String> array = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            String str="SELECT * FROM Tipo_Equipamiento WHERE Tipo_Id=?";
+            PreparedStatement sele = miConexion.prepareStatement("SELECT E.Nombre,GE.Id_Guardia FROM Equipamiento E, Guardia_Equipamiento GE, Z_Guardia ZG WHERE E.ID=GE.Id_Equipamiento AND GE.Id_Guardia=? group by E.Nombre");
+            sele.setInt(1,Id);
+            ResultSet result = sele.executeQuery();
+            
+            while(result.next()){
+                array.add(result.getString("E.Nombre") + "//" +result.getInt("GE.Id_Guardia"));
+            }
+            
+            miConexion.close();
             return array;
         }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
             return null;
         }
         
     }
     //"INSERT INTO Equipamiento(Nombre, Tipo_id) VALUES (?,?)"
     
-    public void Insert_Pedido(String Nombre,int cant, int id,String Precio){
-        try{
-            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            String mensaje=("Pedido de compra: Desde el modulo de Seguridad, requerimos nos autorizen la compra del equipamiento" + Nombre +"");
-        }catch(Exception e){
-            
-        }
-        
-    }
+
     
     public ArrayList Select_tipo_Equipo(){
         try{

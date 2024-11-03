@@ -150,7 +150,28 @@ public class Pantalla_G_Unique extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void Cargar_Datos(int Id){
-         ArrayList<String> array =pGuC.cargar_datos(Id);
+        ArrayList<String> array =pGuC.cargar_datos(Id);
+         
+        System.out.println(array.size());
+         String[] stri = array.toArray(new String[0]);
+        
+        try{
+            Equipo1.setText(stri[0]);
+        }catch(Exception e){
+            Equipo1.setText("Sin Equipo");
+        }
+        
+        try{
+            Equipo2.setText(stri[1]);
+        }catch(Exception e){
+            Equipo2.setText("Sin Equipo");
+        }
+        
+        try{
+            Equipo3.setText(stri[2]);
+        }catch(Exception e){
+            Equipo3.setText("Sin Equipo");
+        }
     }
     
     public static void main(String args[]) {
