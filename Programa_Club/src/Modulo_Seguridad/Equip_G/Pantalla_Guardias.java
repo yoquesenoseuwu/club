@@ -29,7 +29,6 @@ public class Pantalla_Guardias extends javax.swing.JFrame {
                 if (!e.getValueIsAdjusting()) {
                     String itemSeleccionado = G_Contratados.getSelectedValue();
                     String[] separado=itemSeleccionado.split("/");
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
                     int id=Integer.parseInt(separado[0]);
                     pGc.Pantalla_Guardi(id);
                     Pantalla_Guardias.this.setVisible(false);
@@ -106,7 +105,7 @@ public class Pantalla_Guardias extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel2)))
-                        .addGap(0, 20, Short.MAX_VALUE))
+                        .addGap(0, 25, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3)))
@@ -126,7 +125,7 @@ public class Pantalla_Guardias extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         pack();
