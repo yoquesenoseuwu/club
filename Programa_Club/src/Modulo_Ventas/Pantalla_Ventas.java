@@ -5,6 +5,7 @@ import Modulo_Ventas.Gestion_Productos;
 import Modulo_Ventas.Gestion_Categorias;
 import Modulo_Ventas.Gestion_Descuento;
 import Modulo_Ventas.Gestion_Reembolso;
+import Modulo_Ventas.Usuario.Ingreso_Usuario;
 
 public class Pantalla_Ventas extends javax.swing.JFrame {
 
@@ -29,6 +30,7 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         Btn_Gestionar_Descuento = new javax.swing.JButton();
         Btn_Gestionar_Categoria = new javax.swing.JButton();
         Btn_Gestionar_Reembolso = new javax.swing.JButton();
+        Btn_Gestionar_VistaUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +78,13 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
             }
         });
 
+        Btn_Gestionar_VistaUsuario.setText("Vista Usuario(Momentaneo)");
+        Btn_Gestionar_VistaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Gestionar_VistaUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -90,7 +99,8 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
                             .addComponent(Btn_Gestionar_Productos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_Gestionar_Descuento, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                             .addComponent(Btn_Gestionar_Categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_Gestionar_Reembolso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(Btn_Gestionar_Reembolso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_Gestionar_VistaUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -114,7 +124,9 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
                 .addComponent(Btn_Gestionar_Pedidos)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_Gestionar_Reembolso)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(Btn_Gestionar_VistaUsuario)
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,6 +189,14 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         vR.setVisible(true);
     }//GEN-LAST:event_Btn_Gestionar_ReembolsoActionPerformed
 
+    private void Btn_Gestionar_VistaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_VistaUsuarioActionPerformed
+        Ingreso_Usuario  vIU = new Ingreso_Usuario();
+        this.setVisible(false);
+        vIU.setSize(1000,600);
+        vIU.setLocationRelativeTo(null);
+        vIU.setVisible(true); 
+    }//GEN-LAST:event_Btn_Gestionar_VistaUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -218,6 +238,7 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
     private javax.swing.JButton Btn_Gestionar_Pedidos;
     private javax.swing.JButton Btn_Gestionar_Productos;
     private javax.swing.JButton Btn_Gestionar_Reembolso;
+    private javax.swing.JButton Btn_Gestionar_VistaUsuario;
     private javax.swing.JButton Volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

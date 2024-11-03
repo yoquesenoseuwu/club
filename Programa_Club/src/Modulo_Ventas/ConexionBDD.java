@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Modulo_Ventas;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-
-/**
- *
- * @author thiag
- */
 public class ConexionBDD {
-    Connection miConexion = null; // Inicializa la conexión como nula
-    public Connection Conectar(){
+    private Connection miConexion = null; // Inicializa la conexión como nula
+
+    public Connection Conectar() {
         try {
             // Asegúrate de que la URL esté correctamente formateada
             String url = "jdbc:mysql://bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb";
@@ -24,22 +15,21 @@ public class ConexionBDD {
 
             // Intenta establecer la conexión
             miConexion = DriverManager.getConnection(url, user, password);
-            JOptionPane.showMessageDialog(null, "Se conecto correctamente la BDD");        
+            JOptionPane.showMessageDialog(null, "Se conectó correctamente a la BDD");        
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No se conecto correctamente la BDD"+e.toString());
+            JOptionPane.showMessageDialog(null, "No se conectó correctamente a la BDD: " + e.toString());
         }
         return miConexion; // Retorna la conexión (puede ser nula si hubo un error)
     }
-    public void cerrarConexion(){
-        try{
-            if(miConexion != null && !miConexion.isClosed()){
-                JOptionPane.showMessageDialog(null,"Conexion Cerrada");
+
+    public void cerrarConexion() {
+        try {
+            if (miConexion != null && !miConexion.isClosed()) {
+                miConexion.close(); // Cierra la conexión
+                JOptionPane.showMessageDialog(null, "Conexión cerrada");
             }
-        }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"No se pudo cerrar conexion");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se pudo cerrar la conexión: " + e.toString());
         }
     }
-   
-            
-
 }
