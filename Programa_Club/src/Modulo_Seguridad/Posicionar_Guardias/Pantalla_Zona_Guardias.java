@@ -8,6 +8,10 @@ package Modulo_Seguridad.Posicionar_Guardias;
 import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -17,14 +21,35 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
     Posicionar_Guardias_Codigo vZc = new Posicionar_Guardias_Codigo();
     DefaultListModel modelo = new DefaultListModel();
     Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
+    
     int id_zona;
     /**
      * Creates new form Pantalla_Zona_Guardias
      */
     public Pantalla_Zona_Guardias() {
         initComponents();
+        
+        
     }
-
+    
+    public void ID_ZONA_GET (int ID_Zona){
+        id_zona=ID_Zona;
+        modelo=vZc.mostrar_Guardias_Zona(modelo, id_zona);
+        lista_Guardia.setModel(modelo);
+        lista_Guardia.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lista_Guardia.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String itemSeleccionado = lista_Guardia.getSelectedValue();
+                    String[] separado=itemSeleccionado.split("-");
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + separado[1]);
+                    int id=Integer.parseInt(separado[0]);
+                    vZc.Pantalla_Zona_Guardias(id);
+                }
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,9 +66,9 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
         lbl_Descripcion_z = new javax.swing.JLabel();
         textPanel_Descripcion = new javax.swing.JScrollPane();
         textpanel_descripcion = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        list_Guardias = new javax.swing.JList<>();
         btn_asignarGuardias = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lista_Guardia = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,19 +78,19 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
         textpanel_descripcion.setRows(5);
         textPanel_Descripcion.setViewportView(textpanel_descripcion);
 
-        list_Guardias.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(list_Guardias);
-
         btn_asignarGuardias.setText("Asignar guardia");
         btn_asignarGuardias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_asignarGuardiasActionPerformed(evt);
             }
         });
+
+        lista_Guardia.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(lista_Guardia);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,15 +100,6 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(textPanel_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(lbl_Descripcion_z, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbl_ID_z, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl_Tamaño_z, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -91,8 +107,15 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
                                 .addComponent(lbl_Nombre_z, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_asignarGuardias)))
-                        .addGap(0, 43, Short.MAX_VALUE)))
-                .addGap(39, 39, 39))
+                        .addGap(0, 82, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(textPanel_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbl_Descripcion_z, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(163, 163, 163))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,13 +129,12 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(lbl_Tamaño_z, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(lbl_Descripcion_z, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbl_Descripcion_z, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textPanel_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textPanel_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,11 +156,9 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_asignarGuardiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_asignarGuardiasActionPerformed
-        Asignar_Guardia aG=new Asignar_Guardia();
-        aG.setVisible(true);
-        aG.setLocationRelativeTo(null);
-        this.setVisible(false);
-        aG.setSize(500,500);
+
+        vZc.Asignar_Guardia_C(id_zona);
+        
     }//GEN-LAST:event_btn_asignarGuardiasActionPerformed
 
     /**
@@ -175,25 +195,19 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
             }
         });
     }
-    public void mostrarZona(int id){
-        modelo.removeAllElements();
-        ArrayList array=conexion.Select_unique_zona(id);
-        
-        String Id=(String) array.get(0);
-        id_zona=id;
+    
+    public void mostrarZona(String Id, String Nombre, String Tamaño, String Descripcion, int id_Zona){
+        id_zona=id_Zona;
         lbl_ID_z.setText(Id);
         
-        String Nombre=(String) array.get(1);
         lbl_Nombre_z.setText(Nombre);
         
-        String Tamaño=(String) array.get(2);
         lbl_Tamaño_z.setText(Tamaño);
         
-        String Descripcion=(String) array.get(3);
         textpanel_descripcion.append(Descripcion);
-    
+        
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_asignarGuardias;
     private javax.swing.JPanel jPanel1;
@@ -202,7 +216,7 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_ID_z;
     private javax.swing.JLabel lbl_Nombre_z;
     private javax.swing.JLabel lbl_Tamaño_z;
-    private javax.swing.JList<String> list_Guardias;
+    private javax.swing.JList<String> lista_Guardia;
     private javax.swing.JScrollPane textPanel_Descripcion;
     private javax.swing.JTextArea textpanel_descripcion;
     // End of variables declaration//GEN-END:variables

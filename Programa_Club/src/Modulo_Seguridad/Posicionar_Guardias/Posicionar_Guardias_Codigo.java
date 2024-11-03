@@ -25,7 +25,6 @@ public class Posicionar_Guardias_Codigo {
     public DefaultListModel mostrar(DefaultListModel modelo){
         modelo.removeAllElements();
         ArrayList array=conexion.Select_Zona_de_Seguridad();
-        System.out.println(array);
         
         for (int i=0; i<array.size(); i++){
             modelo.addElement(array.get(i));
@@ -34,15 +33,24 @@ public class Posicionar_Guardias_Codigo {
         
     }
     public void Pantalla_Zona_Guardias(int id){
+        
+        
+        ArrayList array=conexion.Select_unique_zona(id);
+        int id_Zona=id;
+        System.out.println(id_Zona);
+        String Id=(String) array.get(0);
+        String Nombre=(String) array.get(1);
+        String Tamaño=(String) array.get(2);        
+        String Descripcion=(String) array.get(3);
         Pantalla_Zona_Guardias Pz = new Pantalla_Zona_Guardias();
-        Pz.mostrarZona(id);
+        Pz.ID_ZONA_GET(id);
         Pz.setVisible(true);
+        Pz.mostrarZona(Id, Nombre, Tamaño, Descripcion, id_Zona);
     }
     
     public DefaultListModel mostrar_Guardias(DefaultListModel modelo){
         modelo.removeAllElements();
         ArrayList array=conexion.Select_Guardias();
-        System.out.println(array);
         
         for (int i=0; i<array.size(); i++){
             modelo.addElement(array.get(i));
@@ -50,4 +58,23 @@ public class Posicionar_Guardias_Codigo {
         return modelo;
         
     }
+    public DefaultListModel mostrar_Guardias_Zona(DefaultListModel modelo, int id){
+        modelo.removeAllElements();
+        ArrayList array=conexion.Select_Z_Guardias(id);
+        
+        for (int i=0; i<array.size(); i++){
+            modelo.addElement(array.get(i));
+        }
+        return modelo;
+        
+    }
+    
+    public void Asignar_Guardia_C(int id){
+        Asignar_Guardia aG=new Asignar_Guardia();
+        aG.setVisible(true);
+        aG.setLocationRelativeTo(null);
+        aG.ID_ZONA_GET(id);
+        aG.setSize(500,500);
+    }
+    
 }
