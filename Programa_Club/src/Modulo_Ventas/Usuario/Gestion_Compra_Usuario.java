@@ -28,7 +28,6 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     private String productoID;
     private int cantidadSeleccionada; // Variable para almacenar la cantidad seleccionada
     private static final Logger logger = Logger.getLogger(Gestion_Compra_Usuario.class.getName());
-
     /**
      * Creates new form Gestion_Compra_Reembolso_Usuario
      */
@@ -42,7 +41,8 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
         Btn_Categoria.setEnabled(false);
         Btn_Precio.setEnabled(false);
         Compra_Usuario compra_usuario = new Compra_Usuario(); // Inicializar compra_usuario
-        compra_usuario.MostrarProductos(TablaProductos); // Mostrar productos          
+        compra_usuario.MostrarProductos(TablaProductos); // Mostrar productos   
+        
     }
 
     /**
@@ -66,7 +66,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
         Btn_Precio = new javax.swing.JTextField();
         Btn_Comprar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        Btn_Cantidad = new javax.swing.JTextField();
+        JTextField_Cantidad = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaProductos = new javax.swing.JTable();
@@ -97,9 +97,9 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
 
         jLabel4.setText("Cantidad");
 
-        Btn_Cantidad.addActionListener(new java.awt.event.ActionListener() {
+        JTextField_Cantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_CantidadActionPerformed(evt);
+                JTextField_CantidadActionPerformed(evt);
             }
         });
 
@@ -130,7 +130,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addComponent(jLabel4))
-                            .addComponent(Btn_Cantidad))
+                            .addComponent(JTextField_Cantidad))
                         .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -155,7 +155,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Btn_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JTextField_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(datechooser_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -249,10 +249,34 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_TablaProductosMouseClicked
 
     private void Btn_ComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ComprarActionPerformed
+     System.out.println("Iniciando Btn_ComprarActionPerformed...");
+
     // Verifica que se haya seleccionado un producto
     if (productoID != null && !productoID.isEmpty()) {
-        // Asegúrate de que cantidadSeleccionada tenga un valor válido
-        if (cantidadSeleccionada > 0) { 
+        // Obtén el texto del JTextField y conviértelo a un número
+        String cantidadTexto = JTextField_Cantidad.getText();
+        int cantidadSeleccionada = 0; // Cambia a 0 o a una cantidad predeterminada
+
+        try {
+            cantidadSeleccionada = Integer.parseInt(cantidadTexto); // Intenta convertir el texto a un entero
+            System.out.println("Cantidad seleccionada: " + cantidadSeleccionada);
+
+            if (cantidadSeleccionada <= 0) {
+                JOptionPane.showMessageDialog(this, "Por favor, selecciona una cantidad válida antes de continuar.");
+                return;
+            }
+
+            // Verificar stock disponible
+            Compra_Usuario compraUsuario = new Compra_Usuario();
+            int idProducto = Integer.parseInt(productoID);
+            int stockDisponible = compraUsuario.obtenerStockProducto(idProducto);
+            System.out.println("Stock disponible: " + stockDisponible);
+
+            if (cantidadSeleccionada > stockDisponible) {
+                JOptionPane.showMessageDialog(this, "No hay suficiente stock disponible. Stock actual: " + stockDisponible, "Error", JOptionPane.ERROR_MESSAGE);
+                return; // Salimos si no hay suficiente stock
+            }
+
             // Verifica que se haya seleccionado una fecha
             if (datechooser_Fecha.getDate() != null) {
                 // Formatear la fecha a un string usando la fecha seleccionada
@@ -270,26 +294,28 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
                 // Oculta la ventana actual
                 this.setVisible(false);
             } else {
-                // Mensaje de error si no hay fecha seleccionada
                 JOptionPane.showMessageDialog(this, "Por favor, selecciona una fecha para la compra.");
             }
-        } else {
-            // Mensaje de error si la cantidad seleccionada no es válida
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona una cantidad válida antes de continuar.");
+        } catch (NumberFormatException e) {
+            // Manejo de error si la conversión falla
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa una cantidad válida.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     } else {
         // Mensaje de error si no hay producto seleccionado
         JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para comprar.");
-        System.out.println("Cantidad seleccionada al comprar: " + cantidadSeleccionada);
-
     }
+
+    System.out.println("Finalizando Btn_ComprarActionPerformed.");
+
+
+    
 // TODO add your handling code here:
     }//GEN-LAST:event_Btn_ComprarActionPerformed
 
-    private void Btn_CantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CantidadActionPerformed
+    private void JTextField_CantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextField_CantidadActionPerformed
     System.out.println("Iniciando Btn_CantidadActionPerformed...");
-    
-    String cantidadTexto = Btn_Cantidad.getText();
+
+    String cantidadTexto = JTextField_Cantidad.getText(); // Obtén el texto del JTextField
     System.out.println("Texto ingresado en Btn_Cantidad: " + cantidadTexto);
     int cantidad;
 
@@ -317,6 +343,9 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
                 cantidadSeleccionada = cantidad; // Asignar cantidad seleccionada
                 System.out.println("Cantidad seleccionada correctamente: " + cantidadSeleccionada);
                 JOptionPane.showMessageDialog(this, "Cantidad seleccionada: " + cantidadSeleccionada);
+                
+                // Aquí puedes habilitar el botón de compra si lo has deshabilitado
+                Btn_Comprar.setEnabled(true); // Habilita el botón de compra
             }
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para verificar el stock.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -329,7 +358,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
 
     System.out.println("Finalizando Btn_CantidadActionPerformed.");
 // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_CantidadActionPerformed
+    }//GEN-LAST:event_JTextField_CantidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,12 +397,12 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Btn_Cantidad;
     private javax.swing.JTextField Btn_Categoria;
     private javax.swing.JButton Btn_Comprar;
     private javax.swing.JTextField Btn_ID;
     private javax.swing.JTextField Btn_Nombre;
     private javax.swing.JTextField Btn_Precio;
+    private javax.swing.JTextField JTextField_Cantidad;
     private javax.swing.JTable TablaProductos;
     private javax.swing.JButton VolverPantalla;
     private com.toedter.calendar.JDateChooser datechooser_Fecha;

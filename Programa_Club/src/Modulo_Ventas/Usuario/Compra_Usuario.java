@@ -134,8 +134,8 @@ public class Compra_Usuario {
             
             // Almacenar otros datos en los JTextFields correspondientes
             paramNombreProducto.setText(paramTablaProductos.getValueAt(fila, 1).toString()); // Nombre
-            paramPrecioProducto.setText(paramTablaProductos.getValueAt(fila, 2).toString()); // Precio
-            paramCategoria.setText(paramTablaProductos.getValueAt(fila, 3).toString()); // NombreCategoria
+            paramPrecioProducto.setText(paramTablaProductos.getValueAt(fila, 3).toString()); // Precio
+            paramCategoria.setText(paramTablaProductos.getValueAt(fila, 4).toString()); // NombreCategoria
             
             // Actualiza el productoID en una variable (por ejemplo, una variable de clase)
             productoID = paramTablaProductos.getValueAt(fila, 0).toString(); // Asegúrate de que esta línea esté presente
@@ -160,6 +160,7 @@ public class Compra_Usuario {
 
         if (rs.next()) {
             stock = rs.getInt("Stock"); // Obtener el stock del resultado
+            System.out.println("Llamando a obtenerStockProducto con idProducto: " + idProducto);
         }
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error al obtener el stock del producto: " + e.getMessage());
