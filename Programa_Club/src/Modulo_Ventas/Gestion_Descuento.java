@@ -288,6 +288,7 @@ public class Gestion_Descuento extends javax.swing.JFrame {
         objetoDescuento.SeleccionarDescuentos(jTable1, jTextField1, textfield_Descuento, datechooser_FechaInicio, datechooser_FechaFinal);
     }//GEN-LAST:event_jTable1MouseClicked
     
+    
     /**
      * @param args the command line arguments
      */

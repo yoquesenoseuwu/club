@@ -16,6 +16,17 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
      */
     public Pantalla_AplicarDescuento() {
         initComponents();
+        
+        
+        Modulo_Ventas.CrudDescuento objetoDescuento = new Modulo_Ventas.CrudDescuento();
+        objetoDescuento.MostrarDescuentos(table_DescuentosExistentes);
+        
+        objetoDescuento.MostrarDescuentosAplicados(table_DescuentosAplicados);
+        
+        Modulo_Ventas.CrudProducto crudProducto = new CrudProducto();
+        crudProducto.MostrarProductos(table_Productos); // Mostrar productos 
+        
+        
     }
 
     /**
@@ -29,26 +40,28 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        table_Productos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btn_Volver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        table_DescuentosExistentes = new javax.swing.JTable();
+        textfield_Productos = new javax.swing.JTextField();
+        textfield_Descuentos = new javax.swing.JTextField();
+        btn_aplicarDescuento = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        table_DescuentosAplicados = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        textfield_DescuentoID = new javax.swing.JTextField();
+        textfield_ProductoID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        table_Productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -59,7 +72,12 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        table_Productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_ProductosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(table_Productos);
 
         jLabel3.setText("PRODUCTOS EXISTENTES");
 
@@ -96,7 +114,7 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_DescuentosExistentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -107,7 +125,12 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        table_DescuentosExistentes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_DescuentosExistentesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table_DescuentosExistentes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -132,22 +155,28 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textfield_Productos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                textfield_ProductosActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Aplicar Descuento al Producto");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        textfield_Descuentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                textfield_DescuentosActionPerformed(evt);
+            }
+        });
+
+        btn_aplicarDescuento.setText("Aplicar Descuento al Producto");
+        btn_aplicarDescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_aplicarDescuentoActionPerformed(evt);
             }
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        table_DescuentosAplicados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -158,7 +187,7 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(table_DescuentosAplicados);
 
         jLabel2.setText("DESCUENTOS APLICADOS A PRODUCTOS");
 
@@ -191,22 +220,29 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(183, 183, 183)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(222, 222, 222)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(174, 174, 174))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(158, 158, 158)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(146, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textfield_DescuentoID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textfield_Descuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(btn_aplicarDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(textfield_ProductoID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textfield_Productos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(141, 141, 141))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -228,9 +264,12 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(textfield_Descuentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textfield_DescuentoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textfield_Productos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textfield_ProductoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_aplicarDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -250,13 +289,29 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
         vD.setVisible(true);
     }//GEN-LAST:event_btn_VolverActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void textfield_ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfield_ProductosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_textfield_ProductosActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btn_aplicarDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicarDescuentoActionPerformed
+         Modulo_Ventas.CrudDescuento objetoDescuento = new Modulo_Ventas.CrudDescuento();
+         objetoDescuento.AplicacionDelDescuento(textfield_DescuentoID,textfield_ProductoID);
+    }//GEN-LAST:event_btn_aplicarDescuentoActionPerformed
+
+    private void textfield_DescuentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfield_DescuentosActionPerformed
+        
+    }//GEN-LAST:event_textfield_DescuentosActionPerformed
+
+    private void table_DescuentosExistentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_DescuentosExistentesMouseClicked
+        Modulo_Ventas.CrudDescuento objetoDescuento = new Modulo_Ventas.CrudDescuento();
+        objetoDescuento.Seleccionar_AplicarDescuentos(table_DescuentosExistentes, textfield_Descuentos, textfield_DescuentoID);
+        
+    }//GEN-LAST:event_table_DescuentosExistentesMouseClicked
+
+    private void table_ProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_ProductosMouseClicked
+        Modulo_Ventas.CrudDescuento objetoDescuento = new Modulo_Ventas.CrudDescuento();
+        objetoDescuento.Seleccionar_AplicarDescuentos(table_Productos, textfield_Productos, textfield_ProductoID);
+    }//GEN-LAST:event_table_ProductosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -295,7 +350,7 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Volver;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btn_aplicarDescuento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -305,10 +360,12 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable table_DescuentosAplicados;
+    private javax.swing.JTable table_DescuentosExistentes;
+    private javax.swing.JTable table_Productos;
+    private javax.swing.JTextField textfield_DescuentoID;
+    private javax.swing.JTextField textfield_Descuentos;
+    private javax.swing.JTextField textfield_ProductoID;
+    private javax.swing.JTextField textfield_Productos;
     // End of variables declaration//GEN-END:variables
 }

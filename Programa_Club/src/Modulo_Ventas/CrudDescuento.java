@@ -85,6 +85,25 @@ public class CrudDescuento {
             objetoConexion.cerrarConexion();
         }
     }
+    public void AplicacionDelDescuento(JTextField descuentoID, JTextField productoID){
+        ConexionBDD objetoConexion = new ConexionBDD();
+        String consulta="INSERT INTO DescuentoProductos(DescuentoID, ProductoID, PrecioFinal) VALUES (?,?,(SELECT Precio - (Precio * (SELECT CantidadDescuento / 100 FROM Descuento WHERE DescuentoID = ?))FROM Productos WHERE ProductoID = ?));";
+        try{
+            CallableStatement cs = (CallableStatement) objetoConexion.Conectar().prepareCall(consulta);
+            cs.setInt(1, Integer.parseInt(descuentoID.getText()));
+            cs.setInt(2, Integer.parseInt(productoID.getText()));
+            cs.setInt(3, Integer.parseInt(descuentoID.getText()));
+            cs.setInt(4, Integer.parseInt(productoID.getText()));
+            
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se aplico el descuento correctamente");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error, error: " + e.toString());
+        }finally{
+            objetoConexion.cerrarConexion();
+        }
+        
+    }
     
     public void MostrarDescuentos(JTable tablaTotalDescuentos){
         ConexionBDD objetoConexion = new ConexionBDD();
@@ -127,6 +146,38 @@ public class CrudDescuento {
         
     }
     
+    public void MostrarDescuentosAplicados(JTable tablaDescuentosAplicados){
+            ConexionBDD objetoConexion = new ConexionBDD();
+            DefaultTableModel modelo = new DefaultTableModel();
+            String sql="";
+            modelo.addColumn("CatidadDescuento");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Precio Final");
+            
+            tablaDescuentosAplicados.setModel(modelo);
+            
+            sql="SELECT CantidadDescuento,Nombre, PrecioFinal FROM DescuentoProductos INNER JOIN Descuento ON DescuentoProductos.DescuentoID = Descuento.DescuentoID INNER JOIN Productos ON DescuentoProductos.ProductoID = Productos.ProductoID;";
+               
+           
+            try {
+                Statement st= objetoConexion.Conectar().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next()){
+                       String cantDesc = rs.getString("CantidadDescuento");
+                       String nombreP = rs.getString("Nombre");
+                       String precioFin = rs.getString("PrecioFinal");
+                       
+                       modelo.addRow(new Object[] {cantDesc,nombreP,precioFin});
+                }
+                tablaDescuentosAplicados.setModel(modelo);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Error al mostrar usuarios, error: " + e.toString());
+            }finally{
+                objetoConexion.cerrarConexion();
+            }
+        
+    }
+    
     public void SeleccionarDescuentos(JTable totalDescuentos, JTextField id, JTextField descuento, JDateChooser fechaInicio, JDateChooser fechaFinal){
           int fila = totalDescuentos.getSelectedRow();
           if(fila>=0){
@@ -151,6 +202,14 @@ public class CrudDescuento {
           }
     }
 
+    public void Seleccionar_AplicarDescuentos(JTable totalDescuentos, JTextField descuento, JTextField descuentoID){
+            int fila= totalDescuentos.getSelectedRow();
+            if(fila>=0){
+                descuentoID.setText(totalDescuentos.getValueAt(fila,0).toString());
+                descuento.setText(totalDescuentos.getValueAt(fila,1).toString());
+            }
+    }
+      
     public void ModificarDescuento(JTextField paramid,JTextField paramPorcentaje, JDateChooser paramFechaInicio, JDateChooser paramFechaFinal){
         ConexionBDD objetoConexion = new ConexionBDD();
         String consulta = "UPDATE Descuento SET CantidadDescuento=?,Fecha_Inicio=?,Fecha_Final=? WHERE DescuentoID=?;";
@@ -178,6 +237,7 @@ public class CrudDescuento {
             objetoConexion.cerrarConexion();
         }
     }
+    
 
     public void EliminarDescuento(JTextField id){
         ConexionBDD objetoConexion = new ConexionBDD();
@@ -193,6 +253,8 @@ public class CrudDescuento {
             objetoConexion.cerrarConexion();
         }
     }
+    
+
 
     //Funciones para la ventana APLICAR DESCUENTO===============================
 }
