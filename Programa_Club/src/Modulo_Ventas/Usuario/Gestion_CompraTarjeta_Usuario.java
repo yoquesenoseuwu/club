@@ -14,13 +14,15 @@ public class Gestion_CompraTarjeta_Usuario extends javax.swing.JFrame {
     private String usuarioID; // Variable para almacenar el ID del usuario
     private String productoID;
     private String fecha; 
+    private int cantidadSeleccionada;
     /**
      * Creates new form Gestion_CompraTarjeta_Usuario
      */
-    public Gestion_CompraTarjeta_Usuario(String usuarioID, String productoID, String fecha) {
+    public Gestion_CompraTarjeta_Usuario(String usuarioID, String productoID, String fecha, int cantidadSeleccionada) {
         this.usuarioID = usuarioID;
         this.productoID = productoID;
         this.fecha = fecha;
+        this.cantidadSeleccionada = cantidadSeleccionada;
         initComponents();
         
     }

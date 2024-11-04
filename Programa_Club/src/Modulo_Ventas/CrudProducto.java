@@ -95,8 +95,8 @@ public class CrudProducto {
     public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPrecioProducto, JTextField paramStockProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
     // Abrir conexión
     ConexionBDD objetoConexion = new ConexionBDD();
-    String consulta = "INSERT INTO Productos (Nombre, Stock, Precio, CategoriaID) "
-            + "VALUES (?, ?, ?, ?);";
+    String consulta = "INSERT INTO Productos (Nombre, Stock, Precio, CategoriaID,Estado) "
+            + "VALUES (?, ?, ?, ?,0);";
 
     try {
         CallableStatement cs = objetoConexion.Conectar().prepareCall(consulta);

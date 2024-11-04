@@ -9,7 +9,15 @@ import Modulo_Ventas.Pantalla_Ventas;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import Modulo_Ventas.ConexionBDD;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  *
@@ -18,6 +26,8 @@ import java.util.Date;
 public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     private String usuarioID; // Variable para almacenar el ID del usuario
     private String productoID;
+    private int cantidadSeleccionada; // Variable para almacenar la cantidad seleccionada
+    private static final Logger logger = Logger.getLogger(Gestion_Compra_Usuario.class.getName());
 
     /**
      * Creates new form Gestion_Compra_Reembolso_Usuario
@@ -55,6 +65,8 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Btn_Precio = new javax.swing.JTextField();
         Btn_Comprar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        Btn_Cantidad = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaProductos = new javax.swing.JTable();
@@ -83,6 +95,14 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Cantidad");
+
+        Btn_Cantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_CantidadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -94,29 +114,34 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
                     .addComponent(Btn_Precio, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Btn_Comprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(Btn_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(datechooser_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel2))
+                                .addComponent(Btn_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel1))
+                            .addComponent(datechooser_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
                                 .addComponent(jLabel3))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(jLabel1)))
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel4))
+                            .addComponent(Btn_Cantidad))
                         .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(Btn_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(jLabel1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Btn_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -127,7 +152,11 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Btn_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addComponent(datechooser_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Btn_Comprar)
@@ -187,11 +216,9 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
                 .addComponent(VolverPantalla)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 2, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -224,31 +251,85 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     private void Btn_ComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ComprarActionPerformed
     // Verifica que se haya seleccionado un producto
     if (productoID != null && !productoID.isEmpty()) {
-        // Asegúrate de que datechooser_Fecha no sea null antes de obtener la fecha
-        if (datechooser_Fecha.getDate() != null) {
-            // Formatear la fecha a un string usando la fecha seleccionada
-            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-            String fechaString = formatoFecha.format(datechooser_Fecha.getDate());
-            // Crea la siguiente ventana, pasando los datos necesarios
-            Gestion_CompraTarjeta_Usuario ventanaCompra = new Gestion_CompraTarjeta_Usuario(usuarioID, productoID, fechaString);
-            
-            // Configura y muestra la nueva ventana
-            ventanaCompra.setSize(500, 500);
-            ventanaCompra.setLocationRelativeTo(null);
-            ventanaCompra.setVisible(true);
-            
-            // Oculta la ventana actual
-            this.setVisible(false);
+        // Asegúrate de que cantidadSeleccionada tenga un valor válido
+        if (cantidadSeleccionada > 0) { 
+            // Verifica que se haya seleccionado una fecha
+            if (datechooser_Fecha.getDate() != null) {
+                // Formatear la fecha a un string usando la fecha seleccionada
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+                String fechaString = formatoFecha.format(datechooser_Fecha.getDate());
+
+                // Crear la siguiente ventana, pasando los datos necesarios
+                Gestion_CompraTarjeta_Usuario ventanaCompra = new Gestion_CompraTarjeta_Usuario(usuarioID, productoID, fechaString, cantidadSeleccionada);
+
+                // Configura y muestra la nueva ventana
+                ventanaCompra.setSize(500, 500);
+                ventanaCompra.setLocationRelativeTo(null);
+                ventanaCompra.setVisible(true);
+
+                // Oculta la ventana actual
+                this.setVisible(false);
+            } else {
+                // Mensaje de error si no hay fecha seleccionada
+                JOptionPane.showMessageDialog(this, "Por favor, selecciona una fecha para la compra.");
+            }
         } else {
-            // Mensaje de error si no hay fecha seleccionada
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona una fecha para la compra.");
+            // Mensaje de error si la cantidad seleccionada no es válida
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una cantidad válida antes de continuar.");
         }
     } else {
         // Mensaje de error si no hay producto seleccionado
         JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para comprar.");
-    }        
+        System.out.println("Cantidad seleccionada al comprar: " + cantidadSeleccionada);
+
+    }
 // TODO add your handling code here:
     }//GEN-LAST:event_Btn_ComprarActionPerformed
+
+    private void Btn_CantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CantidadActionPerformed
+    System.out.println("Iniciando Btn_CantidadActionPerformed...");
+    
+    String cantidadTexto = Btn_Cantidad.getText();
+    System.out.println("Texto ingresado en Btn_Cantidad: " + cantidadTexto);
+    int cantidad;
+
+    try {
+        cantidad = Integer.parseInt(cantidadTexto);
+        System.out.println("Cantidad convertida a int: " + cantidad);
+
+        if (cantidad <= 0) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa una cantidad válida mayor que 0.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Cantidad ingresada no válida (menor o igual a 0).");
+            return;
+        }
+
+        if (productoID != null && !productoID.isEmpty()) {
+            Compra_Usuario compraUsuario = new Compra_Usuario();
+            int idProducto = Integer.parseInt(productoID);
+            int stockDisponible = compraUsuario.obtenerStockProducto(idProducto);
+            System.out.println("Stock disponible: " + stockDisponible);
+
+            if (cantidad > stockDisponible) {
+                JOptionPane.showMessageDialog(this, "No hay suficiente stock disponible. Stock actual: " + stockDisponible, "Error", JOptionPane.ERROR_MESSAGE);
+                System.out.println("Cantidad ingresada mayor que el stock disponible.");
+                return;
+            } else {
+                cantidadSeleccionada = cantidad; // Asignar cantidad seleccionada
+                System.out.println("Cantidad seleccionada correctamente: " + cantidadSeleccionada);
+                JOptionPane.showMessageDialog(this, "Cantidad seleccionada: " + cantidadSeleccionada);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para verificar el stock.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("No se ha seleccionado un producto.");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingresa solo números.", "Error", JOptionPane.ERROR_MESSAGE);
+        System.out.println("Error: entrada no numérica.");
+    }
+
+    System.out.println("Finalizando Btn_CantidadActionPerformed.");
+// TODO add your handling code here:
+    }//GEN-LAST:event_Btn_CantidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,6 +368,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Btn_Cantidad;
     private javax.swing.JTextField Btn_Categoria;
     private javax.swing.JButton Btn_Comprar;
     private javax.swing.JTextField Btn_ID;
@@ -298,6 +380,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;

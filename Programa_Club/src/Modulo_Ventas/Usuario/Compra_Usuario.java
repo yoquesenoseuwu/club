@@ -75,36 +75,40 @@ public class Compra_Usuario {
 
     // Método para mostrar los reembolsos en la tabla
     public void MostrarProductos(JTable paramTablaProductos) {
-    ConexionBDD objetoConexion = new ConexionBDD();
-    DefaultTableModel modelo = new DefaultTableModel();
-    TableRowSorter<TableModel> ordenarTabla = new TableRowSorter<>(modelo);
-    paramTablaProductos.setRowSorter(ordenarTabla);
+        ConexionBDD objetoConexion = new ConexionBDD();
+        DefaultTableModel modelo = new DefaultTableModel();
+        TableRowSorter<TableModel> ordenarTabla = new TableRowSorter<>(modelo);
+        paramTablaProductos.setRowSorter(ordenarTabla);
 
-    // Agregar las columnas
-    modelo.addColumn("ProductoID"); // Esta columna se va a ocultar
-    modelo.addColumn("Nombre");
-    modelo.addColumn("Precio");
-    modelo.addColumn("Categoria");
+        // Agregar las columnas
+        modelo.addColumn("ProductoID"); // Esta columna se va a ocultar
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Stock");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Categoria");
 
-    paramTablaProductos.setModel(modelo);
+        paramTablaProductos.setModel(modelo);
 
-    // Consulta SQL para obtener información de Producto
-    String sql = "SELECT Productos.ProductoID, Productos.Nombre, Productos.Precio, " +
-                 "Categorias.NombreCategoria FROM Productos " +
-                 "INNER JOIN Categorias ON Productos.CategoriaID = Categorias.CategoriaID";
+        // Consulta SQL para obtener información de Producto
+        String sql = "SELECT Productos.ProductoID, Productos.Nombre, Productos.Stock, Productos.Precio, " +
+             "Categorias.NombreCategoria FROM Productos " +
+             "INNER JOIN Categorias ON Productos.CategoriaID = Categorias.CategoriaID " + // Añadir espacio aquí
+             "WHERE Productos.Estado = 1";
 
-    String[] datos = new String[4];
 
-    try {
-        Statement st = objetoConexion.Conectar().createStatement();
-        ResultSet rs = st.executeQuery(sql);
-        while (rs.next()) {
-            datos[0] = rs.getString("ProductoID");
-            datos[1] = rs.getString("Nombre");
-            datos[2] = rs.getString("Precio");
-            datos[3] = rs.getString("NombreCategoria");
+        String[] datos = new String[5];
 
-            modelo.addRow(datos);
+        try {
+            Statement st = objetoConexion.Conectar().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString("ProductoID");
+                datos[1] = rs.getString("Nombre");
+                datos[2] = rs.getString("Stock");
+                datos[3] = rs.getString("Precio");
+                datos[4] = rs.getString("NombreCategoria");
+
+                modelo.addRow(datos);
         }
 
         // Ocultar la columna ProductoID
@@ -112,11 +116,11 @@ public class Compra_Usuario {
         paramTablaProductos.getColumnModel().getColumn(0).setMaxWidth(0);
         paramTablaProductos.getColumnModel().getColumn(0).setWidth(0);
 
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "No se pudo mostrar correctamente los registros, error: " + e.toString());
-    } finally {
-        objetoConexion.cerrarConexion();
-    }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo mostrar correctamente los registros, error: " + e.toString());
+        } finally {
+            objetoConexion.cerrarConexion();
+        }
 }
 
     public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, JTextField paramNombreProducto, JTextField paramPrecioProducto, JTextField paramCategoria) {
@@ -141,6 +145,29 @@ public class Compra_Usuario {
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Error de selección, error: " + e.getMessage());
     }
+}
+    protected int obtenerStockProducto(int idProducto) {
+    int stock = 0; // Variable para almacenar el stock del producto
+    ConexionBDD objetoConexion = new ConexionBDD(); // Conexión a la base de datos
+
+    // Consulta SQL para obtener el stock del producto
+    String sql = "SELECT Stock FROM Productos WHERE ProductoID = ?";
+
+    try {
+        PreparedStatement pst = objetoConexion.Conectar().prepareStatement(sql);
+        pst.setInt(1, idProducto); // Establecer el ID del producto en la consulta
+        ResultSet rs = pst.executeQuery();
+
+        if (rs.next()) {
+            stock = rs.getInt("Stock"); // Obtener el stock del resultado
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al obtener el stock del producto: " + e.getMessage());
+    } finally {
+        objetoConexion.cerrarConexion(); // Cerrar la conexión
+    }
+
+    return stock; // Retornar el stock obtenido
 }
 
 }
