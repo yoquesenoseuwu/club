@@ -36,17 +36,17 @@ public class Ingreso_Usuario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Btn_ID = new javax.swing.JTextField();
-        Btn_Compra_Usuario = new javax.swing.JButton();
+        Btn_Menu_Usuario = new javax.swing.JButton();
         Volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Ingrese su ID");
 
-        Btn_Compra_Usuario.setText("Ingresar");
-        Btn_Compra_Usuario.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Menu_Usuario.setText("Ingresar");
+        Btn_Menu_Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Compra_UsuarioActionPerformed(evt);
+                Btn_Menu_UsuarioActionPerformed(evt);
             }
         });
 
@@ -56,11 +56,10 @@ public class Ingreso_Usuario extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Btn_Compra_Usuario)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(Btn_ID)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Btn_ID)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Btn_Menu_Usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -71,7 +70,7 @@ public class Ingreso_Usuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Btn_Compra_Usuario)
+                .addComponent(Btn_Menu_Usuario)
                 .addContainerGap(89, Short.MAX_VALUE))
         );
 
@@ -107,27 +106,27 @@ public class Ingreso_Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        Pantalla_Ventas vV= new Pantalla_Ventas();
+        Menu_Usuario mU= new Menu_Usuario();
         this.setVisible(false);
-        vV.setSize(500,500);
-        vV.setLocationRelativeTo(null);
-        vV.setVisible(true);
+        mU.setSize(500,500);
+        mU.setLocationRelativeTo(null);
+        mU.setVisible(true);
     }//GEN-LAST:event_VolverActionPerformed
 
-    private void Btn_Compra_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Compra_UsuarioActionPerformed
+    private void Btn_Menu_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Menu_UsuarioActionPerformed
         String usuarioID = Btn_ID.getText(); // Obtiene el texto ingresado en el JTextField
         if(verificarIDUsuario(usuarioID)) {
             // Si el ID es válido, abre la ventana de compras
-            Gestion_Compra_Usuario vCU = new Gestion_Compra_Usuario();
+            Menu_Usuario vMU = new Menu_Usuario();
             this.setVisible(false);
-            vCU.setSize(1000, 600);
-            vCU.setLocationRelativeTo(null);
-            vCU.setVisible(true); 
+            vMU.setSize(1000, 600);
+            vMU.setLocationRelativeTo(null);
+            vMU.setVisible(true); 
         } else {
             // Si el ID no es válido, muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "ID no válido. Intente nuevamente.");
         }
-    }//GEN-LAST:event_Btn_Compra_UsuarioActionPerformed
+    }//GEN-LAST:event_Btn_Menu_UsuarioActionPerformed
     private boolean verificarIDUsuario(String usuarioID) {
         ConexionBDD conexionBDD = new ConexionBDD();
         Connection conexion = conexionBDD.Conectar();
@@ -187,8 +186,8 @@ public class Ingreso_Usuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Compra_Usuario;
     private javax.swing.JTextField Btn_ID;
+    private javax.swing.JButton Btn_Menu_Usuario;
     private javax.swing.JButton Volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

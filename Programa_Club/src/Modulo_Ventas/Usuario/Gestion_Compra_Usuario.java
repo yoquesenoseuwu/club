@@ -225,11 +225,11 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverPantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverPantallaActionPerformed
-        Pantalla_Ventas vV= new Pantalla_Ventas();
+        Menu_Usuario mU= new Menu_Usuario();
         this.setVisible(false);
-        vV.setSize(500,500);
-        vV.setLocationRelativeTo(null);
-        vV.setVisible(true);
+        mU.setSize(500,500);
+        mU.setLocationRelativeTo(null);
+        mU.setVisible(true);
     }//GEN-LAST:event_VolverPantallaActionPerformed
 
     private void TablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductosMouseClicked
