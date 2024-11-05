@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -32,6 +31,8 @@ public class Menu extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jMenu1 = new javax.swing.JMenu();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btn_gestion_personal = new javax.swing.JButton();
@@ -49,6 +50,8 @@ public class Menu extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(31, 50, 69));
@@ -124,7 +127,7 @@ public class Menu extends javax.swing.JFrame {
                                 .addGap(22, 22, 22)
                                 .addComponent(jLabel2))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
+                        .addGap(214, 214, 214)
                         .addComponent(jLabel1)))
                 .addContainerGap(159, Short.MAX_VALUE))
         );
@@ -175,7 +178,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_gestion_personalActionPerformed
 
     private void btn_gestion_artActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gestion_artActionPerformed
-        // TODO add your handling code here:
+        ART_ID newframe = new ART_ID();
+        
+        newframe.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_btn_gestion_artActionPerformed
 
     private void btn_gestion_capacitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gestion_capacitacionesActionPerformed
@@ -183,7 +190,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_gestion_capacitacionesActionPerformed
 
     private void btn_gestion_nominasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gestion_nominasActionPerformed
-        // TODO add your handling code here:
+        TablaNominas newframe = new TablaNominas();
+        
+        newframe.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_btn_gestion_nominasActionPerformed
 
     /**
@@ -202,17 +213,22 @@ public class Menu extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Menu().setVisible(true);
-    
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Menu().setVisible(true);
+            }
         });
     }
 
@@ -226,7 +242,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
