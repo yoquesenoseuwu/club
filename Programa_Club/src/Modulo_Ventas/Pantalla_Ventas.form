@@ -44,9 +44,9 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Btn_Gestionar_Pedidos" alignment="1" max="32767" attributes="0"/>
+                              <Component id="Btn_Gestionar_VentaProductos" alignment="1" max="32767" attributes="0"/>
                               <Component id="Btn_Gestionar_Productos" max="32767" attributes="0"/>
-                              <Component id="Btn_Gestionar_Descuento" pref="169" max="32767" attributes="0"/>
+                              <Component id="Btn_Gestionar_Descuento" max="32767" attributes="0"/>
                               <Component id="Btn_Gestionar_Categoria" max="32767" attributes="0"/>
                               <Component id="Btn_Gestionar_Reembolso" alignment="1" max="32767" attributes="0"/>
                               <Component id="Btn_Gestionar_VistaUsuario" alignment="1" max="32767" attributes="0"/>
@@ -57,7 +57,7 @@
                           <Component id="jLabel1" min="-2" pref="143" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="105" max="32767" attributes="0"/>
+                  <EmptySpace pref="99" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -78,7 +78,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Btn_Gestionar_Descuento" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="Btn_Gestionar_Pedidos" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_Gestionar_VentaProductos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Btn_Gestionar_Reembolso" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -94,12 +94,12 @@
             <Property name="text" type="java.lang.String" value="      Gestion de Ventas"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="Btn_Gestionar_Pedidos">
+        <Component class="javax.swing.JButton" name="Btn_Gestionar_VentaProductos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gestionar Pedidos"/>
+            <Property name="text" type="java.lang.String" value="Gestionar Venta de Productos"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Gestionar_PedidosActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Gestionar_VentaProductosActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Volver">
