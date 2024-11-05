@@ -92,18 +92,18 @@ public class CrudProducto {
     }
 
     // Insertar
-    public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPrecioProducto, JTextField paramStockProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
+public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPrecioProducto, JTextField paramStockProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
     // Abrir conexión
     ConexionBDD objetoConexion = new ConexionBDD();
-    String consulta = "INSERT INTO Productos (Nombre, Stock, Precio, CategoriaID,Estado) "
+    String consulta = "INSERT INTO Productos (Nombre, Precio, Stock, CategoriaID,Estado) "
             + "VALUES (?, ?, ?, ?,0);";
 
     try {
         CallableStatement cs = objetoConexion.Conectar().prepareCall(consulta);
         cs.setString(1, paramNombreProducto.getText());
-        cs.setInt(2, Integer.parseInt(paramStockProducto.getText()));
-        cs.setFloat(3, Float.parseFloat(paramPrecioProducto.getText()));
-        
+        cs.setFloat(2, Float.parseFloat(paramPrecioProducto.getText()));
+        cs.setInt(3, Integer.parseInt(paramStockProducto.getText()));
+       
         // Obtener el objeto CategoriaItem y su idCategoria
         CategoriaItem selectedItem = (CategoriaItem) comboBoxCategorias.getSelectedItem();
         if (selectedItem != null) {
@@ -126,15 +126,15 @@ public class CrudProducto {
     public void MostrarProductos(JTable paramTablaProductos) {
         ConexionBDD objetoConexion = new ConexionBDD();
         DefaultTableModel modelo = new DefaultTableModel();
-    
+   
         String sql="";
         modelo.addColumn("ID");
         modelo.addColumn("Nombres");
-        modelo.addColumn("Stock");
         modelo.addColumn("Precio");
+        modelo.addColumn("Stock");
         modelo.addColumn("Categoría");
         paramTablaProductos.setModel(modelo);
-        
+       
         sql="SELECT Productos.ProductoID,Productos.Nombre,Productos.Stock,Productos.Precio,"
                 + "Categorias.NombreCategoria FROM Productos "
                 + "INNER JOIN Categorias ON Productos.CategoriaID = Categorias.CategoriaID";
@@ -146,11 +146,11 @@ public class CrudProducto {
             while (rs.next()) {
                 String id = rs.getString("ProductoID");
                 String nombres = rs.getString("Nombre");
-                String precios = rs.getString("Stock");
-                String stocks = rs.getString("Precio");
+                String stocks = rs.getString("Stock");
+                String precios = rs.getString("Precio");
                 String categoria = rs.getString("NombreCategoria");
 
-                
+               
                 modelo.addRow(new Object[]{id,nombres,precios,stocks,categoria});
             }
             paramTablaProductos.setModel(modelo);
@@ -216,8 +216,8 @@ public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, 
         if (fila >= 0) {
             paramID.setText(paramTablaProductos.getValueAt(fila, 0).toString());
             paramNombreProducto.setText(paramTablaProductos.getValueAt(fila, 1).toString());
-            paramStockProducto.setText(paramTablaProductos.getValueAt(fila, 2).toString());
-            paramPrecioProducto.setText(paramTablaProductos.getValueAt(fila, 3).toString());
+            paramPrecioProducto.setText(paramTablaProductos.getValueAt(fila, 2).toString());
+            paramStockProducto.setText(paramTablaProductos.getValueAt(fila, 3).toString());
 
             // Obtener el nombre de la categoría desde la tabla
             String nombreCategoria = paramTablaProductos.getValueAt(fila, 4).toString();
@@ -247,12 +247,13 @@ public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, 
 
     try {
         CallableStatement cs = objetoConexion.Conectar().prepareCall(consulta);
-        
+       
         // Asignar valores de los campos de texto
         cs.setString(1, paramNombreProducto.getText());  // Nombre del producto
-        cs.setInt(2, Integer.parseInt(paramStockProducto.getText())); // Stock
-        cs.setFloat(3, Float.parseFloat(paramPrecioProducto.getText())); // Precio
-        
+        cs.setFloat(2, Float.parseFloat(paramPrecioProducto.getText())); // Precio
+        cs.setInt(3, Integer.parseInt(paramStockProducto.getText())); // Stock
+
+       
         // Obtener el ID de la categoría seleccionada del JComboBox
         CategoriaItem selectedCategory = (CategoriaItem) comboBoxCategorias.getSelectedItem();
         if (selectedCategory != null) {
@@ -264,7 +265,7 @@ public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, 
 
         // Asignar el ID del producto
         cs.setInt(5, Integer.parseInt(paramID.getText()));  // ID del producto
-        
+       
         // Ejecutar la actualización
         cs.executeUpdate();
 
@@ -296,12 +297,12 @@ public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, 
             objetoConexion.cerrarConexion();
         }
     }
-    
+   
     public void LimpiarCampos(JTextField paramID, JTextField paramNombreProducto, JTextField paramStockProducto, JTextField paramPrecioProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
         paramID.setText("");
         paramNombreProducto.setText("");
         paramStockProducto.setText("");
         paramPrecioProducto.setText("");
-        
+       
     }
 }
