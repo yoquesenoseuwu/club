@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulo_Ventas;
+package Modulo_Ventas.Usuario;
 
 /**
  *
  * @author tm_galli
  */
-public class Gestion_Pedidos extends javax.swing.JFrame {
+public class Cancelar_Reembolso_Usuario extends javax.swing.JFrame {
 
     /**
-     * Creates new form Gestion_Pedidos
+     * Creates new form Cancelar_Reembolso_Usuario
      */
-    public Gestion_Pedidos() {
+    public Cancelar_Reembolso_Usuario() {
         initComponents();
     }
 
@@ -60,20 +60,20 @@ public class Gestion_Pedidos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Pedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cancelar_Reembolso_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Pedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cancelar_Reembolso_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Pedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cancelar_Reembolso_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Pedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cancelar_Reembolso_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Gestion_Pedidos().setVisible(true);
+                new Cancelar_Reembolso_Usuario().setVisible(true);
             }
         });
     }
