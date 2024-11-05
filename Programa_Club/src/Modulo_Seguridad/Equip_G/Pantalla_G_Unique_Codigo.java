@@ -24,7 +24,7 @@ public class Pantalla_G_Unique_Codigo {
     } 
     
     public void Eliminar_datos(int Id){
-        
+        conexion.Eliminar_equipo_de_x(Id);
     }
     
 }
