@@ -197,9 +197,8 @@ public class Conexion_Bdd_Seguridad {
             return null;    
         }
         
-    }
-    
-        public ArrayList Select_Guardias_sin_estatal(){
+    }  
+    public ArrayList Select_Guardias_sin_estatal(){
         try{
             ArrayList<String> array = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
@@ -207,7 +206,7 @@ public class Conexion_Bdd_Seguridad {
             Statement  sele = miConexion.createStatement();
             ResultSet result=sele.executeQuery(query);
             while(result.next()){
-                String Item=result.getInt("idempleado") + "/" + result.getString("nombre")+ "/" + result.getString("cargos");
+                String Item=result.getInt("e.idempleado") + "/" + result.getString("e.nombre");
                 array.add(Item);
             }
             
@@ -256,7 +255,7 @@ public class Conexion_Bdd_Seguridad {
             ResultSet result = query.executeQuery();
             
             while(result.next()){
-                String Item=result.getInt("e.idempleado") + "-" + result.getString("e.nombre")+ "-";// + result.getString("cargos");
+                String Item=result.getInt("e.idempleado") + "-" + result.getString("e.nombre");// + result.getString("cargos");
                 array.add(Item);
             }
             
@@ -272,7 +271,7 @@ public class Conexion_Bdd_Seguridad {
         
        
    }
-    
+
     //--- ZONA DE SOCIOS ---//
     public ArrayList Select_socios(){
         try{

@@ -30,7 +30,8 @@ public class Pantalla_Guardias extends javax.swing.JFrame {
                     String itemSeleccionado = G_Contratados.getSelectedValue();
                     String[] separado=itemSeleccionado.split("/");
                     int id=Integer.parseInt(separado[0]);
-                    pGc.Pantalla_Guardi(id);
+                    String nombre=separado[1];
+                    pGc.Pantalla_Guardi(id,nombre);
                     Pantalla_Guardias.this.setVisible(false);
                     
                     
