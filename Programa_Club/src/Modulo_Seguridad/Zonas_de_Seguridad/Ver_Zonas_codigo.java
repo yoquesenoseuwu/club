@@ -25,7 +25,6 @@ public class Ver_Zonas_codigo {
     public DefaultListModel mostrar(DefaultListModel modelo){
         modelo.removeAllElements();
         ArrayList array=conexion.Select_Zona_de_Seguridad();
-        System.out.println(array);
         
         for (int i=0; i<array.size(); i++){
             modelo.addElement(array.get(i));

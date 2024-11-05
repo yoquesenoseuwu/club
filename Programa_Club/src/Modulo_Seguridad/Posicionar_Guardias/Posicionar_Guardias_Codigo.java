@@ -37,7 +37,6 @@ public class Posicionar_Guardias_Codigo {
         
         ArrayList array=conexion.Select_unique_zona(id);
         int id_Zona=id;
-        System.out.println(id_Zona);
         String Id=(String) array.get(0);
         String Nombre=(String) array.get(1);
         String Tamaño=(String) array.get(2);        
@@ -50,7 +49,7 @@ public class Posicionar_Guardias_Codigo {
     
     public DefaultListModel mostrar_Guardias(DefaultListModel modelo){
         modelo.removeAllElements();
-        ArrayList array=conexion.Select_Guardias();
+        ArrayList array=conexion.Select_Guardias_Disponibles();
         
         for (int i=0; i<array.size(); i++){
             modelo.addElement(array.get(i));
@@ -75,6 +74,16 @@ public class Posicionar_Guardias_Codigo {
         aG.setLocationRelativeTo(null);
         aG.ID_ZONA_GET(id);
         aG.setSize(500,500);
+    }
+    
+    public void Pantalla_Zona_Guardia_info(int id, int id_zona, String nombre){
+        
+        
+        int id_Guardia=id;
+        String Id= id_zona+"";
+        Pantalla_Guardia pZg = new Pantalla_Guardia();
+        pZg.setVisible(true);
+        pZg.mostrarZona(Id, nombre, id_Guardia);
     }
     
 }

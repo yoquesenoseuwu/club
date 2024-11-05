@@ -142,6 +142,7 @@ public class Pantalla_Zona extends javax.swing.JFrame {
         
         String Id=(String) array.get(0);
         
+        conexion.Delete_Z_G_Seguridad(id_zona);
         conexion.Delete_Zona_Seguridad(id_zona);
         Ver_Zonas vZ = new Ver_Zonas();
         vZ.setVisible(true);

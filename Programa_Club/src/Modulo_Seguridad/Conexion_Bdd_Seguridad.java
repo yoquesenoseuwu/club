@@ -127,20 +127,40 @@ public class Conexion_Bdd_Seguridad {
 
         }
     }
-   public Boolean Delete_Zona_Seguridad(int id_Zona){
+   public Boolean Delete_Z_G_Seguridad(int id_Zona){
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            PreparedStatement sele= miConexion.prepareStatement("DELETE FROM Zona_de_Seguridad WHERE ID=?");
+            PreparedStatement sele= miConexion.prepareStatement("CALL `bbbx7cdcbcl53xxmjyxb`.`Eliminar_Zona_En_Guardia`(?); ");
 
             
             sele.setInt(1,id_Zona);
-            
 
             sele.executeUpdate();
 
             miConexion.close();
             return(true);
+        
+        }catch(Exception e){
+            System.out.println("No funca");
 
+            e.printStackTrace();
+            return(false);
+
+        }
+    }
+   public Boolean Delete_Zona_Seguridad(int id_Zona){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele= miConexion.prepareStatement("DELETE FROM Zona_de_Seguridad WHERE ID=?; ");
+
+            
+            sele.setInt(1,id_Zona);
+
+            sele.executeUpdate();
+
+            miConexion.close();
+            return(true);
+        
         }catch(Exception e){
             System.out.println("No funca");
 
@@ -222,6 +242,38 @@ public class Conexion_Bdd_Seguridad {
         }
         
     }
+    public ArrayList Select_unique_Guardia(int id){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String str="SELECT idempleado, nombre, idcargo FROM Empleado WHERE idempleado=?";
+            PreparedStatement  query=miConexion.prepareStatement(str);
+            query.setInt(1,id);
+            ResultSet result = query.executeQuery();
+            
+            while(result.next()){
+                //String Item=result.getInt("idempleado") + "-" + result.getString("nombre")+ "-" + result.getString("idcargo");
+                //array.add(Item);
+                String Id="Guardia ID=" + result.getInt("idempleado");
+                array.add(Id);
+                String Nombre="Nombre="+result.getString("nombre");
+                array.add(Nombre);
+                String Id_cargo=result.getString("idcargo");
+                array.add(Id_cargo);
+            }
+            
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;
+        }
+        
+       
+   }
     //--- ASIGNAR GUARDIAS ---//
     public Boolean Insert_Z_Guardia(int ID_zona, int ID_guardia){
         try{
@@ -272,6 +324,53 @@ public class Conexion_Bdd_Seguridad {
         
        
    }
+    public ArrayList Select_Guardias_Disponibles(){
+        try{
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String query="SELECT idempleado,nombre FROM Empleado e WHERE (e.idcargo=1 OR e.idcargo=2) AND e.idempleado NOT IN (SELECT ID_Guardia FROM Z_Guardia);";
+            Statement  sele = miConexion.createStatement();
+            ResultSet result=sele.executeQuery(query);
+            while(result.next()){
+                String Item=result.getInt("idempleado") + "-" + result.getString("nombre");
+                array.add(Item);
+            }
+           
+            miConexion.close();
+            return array;
+        }catch(Exception e){
+            System.out.println("No funca");
+           
+            e.printStackTrace();
+           
+            return null;    
+        }
+       
+    }
+    
+    public Boolean Delete_Z_Guardias(int id){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            PreparedStatement sele= miConexion.prepareStatement("CALL `bbbx7cdcbcl53xxmjyxb`.`Eliminar_Guardia_En_Zona`(?);");
+
+            
+            sele.setInt(1,id);
+            
+
+            sele.executeUpdate();
+
+            miConexion.close();
+            return(true);
+
+        }catch(Exception e){
+            System.out.println("No funca");
+
+            e.printStackTrace();
+            return(false);
+
+        }
+    }
+    
     
     //--- ZONA DE SOCIOS ---//
     public ArrayList Select_socios(){

@@ -23,6 +23,7 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
     Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
     
     int id_zona;
+    String nombre;
     /**
      * Creates new form Pantalla_Zona_Guardias
      */
@@ -44,7 +45,7 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
                     String[] separado=itemSeleccionado.split("-");
                     JOptionPane.showMessageDialog(null, "Seleccionaste: " + separado[1]);
                     int id=Integer.parseInt(separado[0]);
-                    vZc.Pantalla_Zona_Guardias(id);
+                    vZc.Pantalla_Zona_Guardia_info(id, id_zona, nombre);
                 }
             }
         });
@@ -112,10 +113,11 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(textPanel_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(lbl_Descripcion_z, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(163, 163, 163))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,8 +135,8 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(textPanel_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -198,6 +200,7 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
     
     public void mostrarZona(String Id, String Nombre, String Tamaño, String Descripcion, int id_Zona){
         id_zona=id_Zona;
+        nombre=Nombre;
         lbl_ID_z.setText(Id);
         
         lbl_Nombre_z.setText(Nombre);
