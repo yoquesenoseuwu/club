@@ -278,7 +278,7 @@ public class Gestion_Descuento extends javax.swing.JFrame {
     private void btn_AplicarDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AplicarDescuentoActionPerformed
         Pantalla_AplicarDescuento vAD = new Pantalla_AplicarDescuento();
         this.setVisible(false);
-        vAD.setSize(1250,600);
+        vAD.setSize(1250,670);
         vAD.setLocationRelativeTo(null);
         vAD.setVisible(true);
     }//GEN-LAST:event_btn_AplicarDescuentoActionPerformed

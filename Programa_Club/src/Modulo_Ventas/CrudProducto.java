@@ -92,7 +92,7 @@ public class CrudProducto {
     }
 
     // Insertar
-public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPrecioProducto, JTextField paramStockProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
+    public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPrecioProducto, JTextField paramStockProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
     // Abrir conexión
     ConexionBDD objetoConexion = new ConexionBDD();
     String consulta = "INSERT INTO Productos (Nombre, Precio, Stock, CategoriaID,Estado) "
@@ -121,7 +121,6 @@ public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPre
         JOptionPane.showMessageDialog(null, "Error al convertir los valores numéricos: " + e.getMessage());
     }
     }
-
     // Mostrar
     public void MostrarProductos(JTable paramTablaProductos) {
         ConexionBDD objetoConexion = new ConexionBDD();
@@ -135,9 +134,9 @@ public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPre
         modelo.addColumn("Categoría");
         paramTablaProductos.setModel(modelo);
        
-        sql="SELECT Productos.ProductoID,Productos.Nombre,Productos.Stock,Productos.Precio,"
+        sql="SELECT Productos.ProductoID,Productos.Nombre,Productos.Precio,Productos.Stock,"
                 + "Categorias.NombreCategoria FROM Productos "
-                + "INNER JOIN Categorias ON Productos.CategoriaID = Categorias.CategoriaID";
+                + "INNER JOIN Categorias ON Productos.CategoriaID = Categorias.CategoriaID ORDER BY Productos.ProductoID ASC";
 
         try {
             Statement st;
@@ -146,8 +145,8 @@ public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPre
             while (rs.next()) {
                 String id = rs.getString("ProductoID");
                 String nombres = rs.getString("Nombre");
-                String stocks = rs.getString("Stock");
                 String precios = rs.getString("Precio");
+                String stocks = rs.getString("Stock");
                 String categoria = rs.getString("NombreCategoria");
 
                
@@ -160,7 +159,6 @@ public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPre
             objetoConexion.cerrarConexion();
         }
     }
-
     // Cargar categorías
     public void cargarProductos(JComboBox<CategoriaItem> comboCategorias) {
     ConexionBDD objetoConexion = new ConexionBDD();
@@ -183,8 +181,6 @@ public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPre
             objetoConexion.cerrarConexion();
         }
     }
-
-
     // Seleccionar categoría
     public void SeleccionarCategoria(JComboBox<String> comboBoxCategorias, JTextField paramID, JTextField paramNombreCategoria) {
         try {
@@ -206,10 +202,8 @@ public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPre
             JOptionPane.showMessageDialog(null, "Error de selección, error: " + e.getMessage());
         }
     }
-
     // Seleccionar producto
-    // Seleccionar producto
-public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, JTextField paramNombreProducto, JTextField paramStockProducto, JTextField paramPrecioProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
+    public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, JTextField paramNombreProducto,JTextField paramPrecioProducto, JTextField paramStockProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
     try {
         int fila = paramTablaProductos.getSelectedRow();
 
@@ -237,13 +231,11 @@ public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, 
         JOptionPane.showMessageDialog(null, "Error de selección, error: " + e.getMessage());
     }
 }
-
-
     // Modificar
-    public void ModificarProducto(JTextField paramID, JTextField paramNombreProducto, JTextField paramStockProducto, JTextField paramPrecioProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
+    public void ModificarProducto(JTextField paramID, JTextField paramNombreProducto,JTextField paramPrecioProducto, JTextField paramStockProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
 
     ConexionBDD objetoConexion = new ConexionBDD();
-    String consulta = "UPDATE Productos SET Nombre=?, Stock=?, Precio=?, CategoriaID=? WHERE ProductoID=?;";
+    String consulta = "UPDATE Productos SET Nombre=?, Precio=?, Stock=?, CategoriaID=? WHERE ProductoID=?;";
 
     try {
         CallableStatement cs = objetoConexion.Conectar().prepareCall(consulta);
@@ -278,8 +270,6 @@ public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, 
             objetoConexion.cerrarConexion();
         }
 }
-
-
     // Eliminar
     public void EliminarCategoria(JTextField paramCodigo) {
         setCodigo(Integer.parseInt(paramCodigo.getText()));
@@ -298,7 +288,7 @@ public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, 
         }
     }
    
-    public void LimpiarCampos(JTextField paramID, JTextField paramNombreProducto, JTextField paramStockProducto, JTextField paramPrecioProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
+    public void LimpiarCampos(JTextField paramID, JTextField paramNombreProducto, JTextField paramPrecioProducto, JTextField paramStockProducto, JComboBox<CategoriaItem> comboBoxCategorias) {
         paramID.setText("");
         paramNombreProducto.setText("");
         paramStockProducto.setText("");
