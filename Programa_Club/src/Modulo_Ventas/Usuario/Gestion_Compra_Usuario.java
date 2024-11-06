@@ -31,9 +31,9 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     /**
      * Creates new form Gestion_Compra_Reembolso_Usuario
      */
-    public Gestion_Compra_Usuario() {
+    public Gestion_Compra_Usuario(String usuarioID) {
+        this.usuarioID = usuarioID;
         initComponents();
-        this.usuarioID = usuarioID; // Almacena el ID del usuario en la variable
         datechooser_Fecha.setDate(new java.util.Date()); 
         datechooser_Fecha.setVisible(false); 
         Btn_ID.setVisible(false); 
@@ -225,7 +225,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverPantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverPantallaActionPerformed
-        Menu_Usuario mU= new Menu_Usuario();
+        Menu_Usuario mU= new Menu_Usuario(usuarioID);
         this.setVisible(false);
         mU.setSize(500,500);
         mU.setLocationRelativeTo(null);
@@ -388,12 +388,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Gestion_Compra_Usuario().setVisible(true);
-            }
-        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

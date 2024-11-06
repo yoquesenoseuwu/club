@@ -16,11 +16,12 @@ import java.sql.SQLException;
  * @author thiag
  */
 public class Ingreso_Usuario extends javax.swing.JFrame {
-
+    private String usuarioID;
     /**
      * Creates new form Ingreso_Usuario
      */
     public Ingreso_Usuario() {
+        this.usuarioID = usuarioID;
         initComponents();
     }
 
@@ -106,7 +107,7 @@ public class Ingreso_Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        Menu_Usuario mU= new Menu_Usuario();
+        Menu_Usuario mU= new Menu_Usuario(usuarioID);
         this.setVisible(false);
         mU.setSize(500,500);
         mU.setLocationRelativeTo(null);
@@ -117,7 +118,7 @@ public class Ingreso_Usuario extends javax.swing.JFrame {
         String usuarioID = Btn_ID.getText(); // Obtiene el texto ingresado en el JTextField
         if(verificarIDUsuario(usuarioID)) {
             // Si el ID es válido, abre la ventana de compras
-            Menu_Usuario vMU = new Menu_Usuario();
+            Menu_Usuario vMU = new Menu_Usuario(usuarioID);
             this.setVisible(false);
             vMU.setSize(1000, 600);
             vMU.setLocationRelativeTo(null);
@@ -178,11 +179,7 @@ public class Ingreso_Usuario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Ingreso_Usuario().setVisible(true);
-            }
-        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

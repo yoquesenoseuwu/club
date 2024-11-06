@@ -10,11 +10,13 @@ package Modulo_Ventas.Usuario;
  * @author tm_galli
  */
 public class Cancelar_Reembolso_Usuario extends javax.swing.JFrame {
+    private String usuarioID;
 
     /**
      * Creates new form Cancelar_Reembolso_Usuario
      */
-    public Cancelar_Reembolso_Usuario() {
+    public Cancelar_Reembolso_Usuario(String usuarioID) {
+        this.usuarioID = usuarioID;
         initComponents();
     }
 
@@ -70,12 +72,6 @@ public class Cancelar_Reembolso_Usuario extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Cancelar_Reembolso_Usuario().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
