@@ -245,7 +245,7 @@ public class Gestion_Productos extends javax.swing.JFrame {
         CrudProducto objetoProducto = new CrudProducto();
         objetoProducto.EliminarCategoria(Btn_IDProducto);
         objetoProducto.MostrarProductos(TablaProductos); // Actualizar la tabla
-        objetoProducto.LimpiarCampos(Btn_IDProducto, Btn_nombreProducto, Btn_StockProducto, Btn_precioProducto, ComboBoxCategoria);
+        objetoProducto.LimpiarCampos(Btn_IDProducto, Btn_nombreProducto,Btn_precioProducto, Btn_StockProducto,  ComboBoxCategoria);
 
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
@@ -253,15 +253,15 @@ public class Gestion_Productos extends javax.swing.JFrame {
         CrudProducto objetoProducto = new CrudProducto();
         objetoProducto.ModificarProducto(Btn_IDProducto, Btn_nombreProducto, Btn_precioProducto, Btn_StockProducto, ComboBoxCategoria);
         objetoProducto.MostrarProductos(TablaProductos); // Actualizar la tabla
-        objetoProducto.LimpiarCampos(Btn_IDProducto, Btn_nombreProducto, Btn_StockProducto, Btn_precioProducto, ComboBoxCategoria);
+        objetoProducto.LimpiarCampos(Btn_IDProducto, Btn_nombreProducto, Btn_precioProducto,Btn_StockProducto,  ComboBoxCategoria);
 
     }//GEN-LAST:event_Btn_ModificarActionPerformed
 
     private void Btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AgregarActionPerformed
         CrudProducto objetoProducto = new CrudProducto();
-        objetoProducto.InsertarProducto(Btn_nombreProducto, Btn_StockProducto, Btn_precioProducto, ComboBoxCategoria);
+        objetoProducto.InsertarProducto(Btn_nombreProducto, Btn_precioProducto,Btn_StockProducto, ComboBoxCategoria);
         objetoProducto.MostrarProductos(TablaProductos); // Actualizar la tabla
-        objetoProducto.LimpiarCampos(Btn_IDProducto, Btn_nombreProducto, Btn_StockProducto, Btn_precioProducto, ComboBoxCategoria);
+        objetoProducto.LimpiarCampos(Btn_IDProducto, Btn_nombreProducto,Btn_precioProducto, Btn_StockProducto, ComboBoxCategoria);
 
     }//GEN-LAST:event_Btn_AgregarActionPerformed
 
