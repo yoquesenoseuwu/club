@@ -12,6 +12,7 @@ import Modulo_Ventas.Pantalla_Ventas;
  * @author tm_galli
  */
 public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
+    private Reembolso_Usuario objetoReembolso = new Reembolso_Usuario();
     private String usuarioID; // Variable para almacenar el ID del usuario
     private String IDPedidoSeleccionado;
     private Reembolso_Usuario reembolsoUsuario;
@@ -240,7 +241,6 @@ public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Btn_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ConfirmarActionPerformed
-        Reembolso_Usuario objetoReembolso = new Reembolso_Usuario();
         objetoReembolso.InsertarMotivo(JTextField_Motivo, datechooser_Fecha);
     }//GEN-LAST:event_Btn_ConfirmarActionPerformed
 
@@ -253,16 +253,13 @@ public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_VolverPantallaActionPerformed
 
     private void TablaPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPedidosMouseClicked
-         int filaSeleccionada = TablaPedidos.getSelectedRow();
-    if (filaSeleccionada != -1) {
-        // Convertir IDPedido a un entero y establecerlo en Reembolso_Usuario
-        int idPedido = Integer.parseInt(TablaPedidos.getValueAt(filaSeleccionada, 0).toString());
-        
-        Reembolso_Usuario objetoReembolso = new Reembolso_Usuario();
-        objetoReembolso.setIDPedidoSeleccionado(idPedido); // Ahora se pasa el int directamente
-        
-        // Llamar al método SeleccionarProducto sin el parámetro extra
-        objetoReembolso.SeleccionarProducto(TablaPedidos, JTextField_ID, JTextField_Nombre, JTextField_Precio, JTextField_Categoria, JTextField_Cantidad);
+        int filaSeleccionada = TablaPedidos.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idPedido = Integer.parseInt(TablaPedidos.getValueAt(filaSeleccionada, 0).toString());
+            System.out.println("IDPedido seleccionado: " + idPedido);
+
+            objetoReembolso.setIDPedidoSeleccionado(idPedido);
+            objetoReembolso.SeleccionarProducto(TablaPedidos, JTextField_ID, JTextField_Nombre, JTextField_Precio, JTextField_Categoria, JTextField_Cantidad);
     }
     }//GEN-LAST:event_TablaPedidosMouseClicked
 

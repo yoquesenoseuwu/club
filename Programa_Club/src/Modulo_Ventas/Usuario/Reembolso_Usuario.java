@@ -101,7 +101,8 @@ public class Reembolso_Usuario {
     public void setIDPedido(int IDPedido) {
         this.IDPedido = IDPedido;
     }
-    public void InsertarMotivo(JTextField paramMotivo, JDateChooser paramFecha) {
+    
+public void InsertarMotivo(JTextField paramMotivo, JDateChooser paramFecha) {
     setMotivo(paramMotivo.getText());
     java.util.Date fecha = paramFecha.getDate();
     
@@ -112,24 +113,29 @@ public class Reembolso_Usuario {
     
     ConexionBDD objetoConexion = new ConexionBDD();
     
-    String consulta = "INSERT INTO Reembolso (IDPedido, Motivo, Fecha, Estado) values (?, ?, ?, 0);";
+    String consulta = "INSERT INTO Reembolso_Pedido (IDPedido, FechaReembolso, Motivo, Estado) values (?, ?, ?, 0);";
     
     try {
         CallableStatement cs = objetoConexion.Conectar().prepareCall(consulta);
-        cs.setInt(1, getIDPedidoSeleccionado());
-        cs.setString(2, getMotivo());
+        // Imprimir IDPedidoSeleccionado para depuración
+        System.out.println("IDPedidoSeleccionado a insertar: " + getIDPedidoSeleccionado());
+        System.out.println(getIDPedidoSeleccionado());
+        cs.setInt(1, getIDPedidoSeleccionado()); // Asegúrate de que sea un valor existente
         
         java.sql.Date fechaSQL = new java.sql.Date(fecha.getTime());
-        cs.setDate(3, fechaSQL);
+        cs.setDate(2, fechaSQL);
+        cs.setString(3, getMotivo());
         
         cs.execute();
         JOptionPane.showMessageDialog(null, "Se confirmó el reembolso");
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "No se confirmó correctamente el reembolso, error: " + e.toString());
+        System.out.println(e.toString());
     } finally {
         objetoConexion.cerrarConexion();
     }
 }
+
 
 
     
@@ -141,39 +147,42 @@ public void MostrarProductos(JTable paramTablaProductos, String usuarioID) {
     paramTablaProductos.setRowSorter(ordenarTabla);
 
     // Agregar las columnas
-    modelo.addColumn("ProductoID"); // Esta columna se va a ocultar
+    modelo.addColumn("PedidoID"); // Esta columna es el PedidoID y la ocultaremos
+    modelo.addColumn("ProductoID");
     modelo.addColumn("Nombre");
     modelo.addColumn("Precio");
     modelo.addColumn("Categoria");
-    modelo.addColumn("Cantidad"); // Agregar columna de cantidad
+    modelo.addColumn("Cantidad");
 
     paramTablaProductos.setModel(modelo);
 
-    // Consulta SQL para obtener información de Producto y Pedido
-    String sql = "SELECT Productos.ProductoID, Productos.Nombre, Productos.Precio, " +
+    // Consulta SQL para obtener IDPedido junto con ProductoID y otra información
+     String sql = "SELECT Pedido.PedidoID, Productos.ProductoID, Productos.Nombre, Productos.Precio, " +
                  "Categorias.NombreCategoria, DetallePedido.Cantidad " +
                  "FROM Pedido " +
                  "INNER JOIN DetallePedido ON Pedido.PedidoID = DetallePedido.PedidoID " +
                  "INNER JOIN Productos ON DetallePedido.ProductoID = Productos.ProductoID " +
                  "INNER JOIN Categorias ON Productos.CategoriaID = Categorias.CategoriaID " +
-                 "WHERE Pedido.IDUsuario = ?;";
+                 "WHERE Pedido.IDUsuario = ? " +
+                 "AND Pedido.PedidoID NOT IN (SELECT IDPedido FROM Reembolso_Pedido);";
 
     try (PreparedStatement ps = objetoConexion.Conectar().prepareStatement(sql)) {
-        ps.setString(1, usuarioID); // Asigna el usuarioID al marcador "?"
+        ps.setString(1, usuarioID); // Asigna el usuarioID
         ResultSet rs = ps.executeQuery();
 
         // Recorrer resultados y agregar a la tabla
         while (rs.next()) {
-            String[] datos = new String[5];
-            datos[0] = rs.getString("ProductoID");
-            datos[1] = rs.getString("Nombre");
-            datos[2] = rs.getString("Precio");
-            datos[3] = rs.getString("NombreCategoria");
-            datos[4] = rs.getString("Cantidad");
+            String[] datos = new String[6];
+            datos[0] = rs.getString("PedidoID");       // PedidoID (oculto)
+            datos[1] = rs.getString("ProductoID");     // ProductoID
+            datos[2] = rs.getString("Nombre");
+            datos[3] = rs.getString("Precio");
+            datos[4] = rs.getString("NombreCategoria");
+            datos[5] = rs.getString("Cantidad");
             modelo.addRow(datos);
-        }
+}
 
-        // Ocultar la columna ProductoID
+        // Opcional: Ocultar la columna ProductoID si no es necesaria para el usuario
         paramTablaProductos.getColumnModel().getColumn(0).setMinWidth(0);
         paramTablaProductos.getColumnModel().getColumn(0).setMaxWidth(0);
         paramTablaProductos.getColumnModel().getColumn(0).setWidth(0);
@@ -185,20 +194,22 @@ public void MostrarProductos(JTable paramTablaProductos, String usuarioID) {
     }
 }
 
-
-    public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, JTextField paramNombreProducto, JTextField paramPrecioProducto, JTextField paramCategoria, JTextField paramCantidad) {
+public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, JTextField paramNombreProducto, JTextField paramPrecioProducto, JTextField paramCategoria, JTextField paramCantidad) {
     try {
         int fila = paramTablaProductos.getSelectedRow();
 
         // Verificar que haya una fila seleccionada
         if (fila >= 0) {
+            // Ahora asignamos el PedidoID correctamente
             setIDPedidoSeleccionado(Integer.parseInt(paramTablaProductos.getValueAt(fila, 0).toString()));
-            paramID.setText(paramTablaProductos.getValueAt(fila, 0).toString());
-            paramNombreProducto.setText(paramTablaProductos.getValueAt(fila, 1).toString());
-            paramPrecioProducto.setText(paramTablaProductos.getValueAt(fila, 2).toString());
-            paramCategoria.setText(paramTablaProductos.getValueAt(fila, 3).toString());
-            paramCantidad.setText(paramTablaProductos.getValueAt(fila, 4).toString());
-            productoID = paramTablaProductos.getValueAt(fila, 0).toString();
+            System.out.println("IDPedidoSeleccionado (seleccionado en tabla): " + getIDPedidoSeleccionado());
+
+            paramID.setText(paramTablaProductos.getValueAt(fila, 1).toString()); // ProductoID
+            paramNombreProducto.setText(paramTablaProductos.getValueAt(fila, 2).toString());
+            paramPrecioProducto.setText(paramTablaProductos.getValueAt(fila, 3).toString());
+            paramCategoria.setText(paramTablaProductos.getValueAt(fila, 4).toString());
+            paramCantidad.setText(paramTablaProductos.getValueAt(fila, 5).toString());
+            productoID = paramTablaProductos.getValueAt(fila, 1).toString(); // ProductoID
         } else {
             JOptionPane.showMessageDialog(null, "Fila no encontrada.");
         }
@@ -206,5 +217,6 @@ public void MostrarProductos(JTable paramTablaProductos, String usuarioID) {
         JOptionPane.showMessageDialog(null, "Error de selección, error: " + e.getMessage());
     }
 }
-    
 }
+
+ 
