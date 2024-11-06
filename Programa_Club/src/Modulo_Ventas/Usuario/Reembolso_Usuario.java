@@ -217,6 +217,125 @@ public void SeleccionarProducto(JTable paramTablaProductos, JTextField paramID, 
         JOptionPane.showMessageDialog(null, "Error de selección, error: " + e.getMessage());
     }
 }
+
+//Cancelar_Reembolso
+    public void SeleccionarReembolso(JTable paramTablaProductos, JTextField paramID) {
+    try {
+        int fila = paramTablaProductos.getSelectedRow();
+
+        // Verificar que haya una fila seleccionada
+        if (fila >= 0) {
+            // Asignar correctamente el PedidoID
+            setIDPedidoSeleccionado(Integer.parseInt(paramTablaProductos.getValueAt(fila, 0).toString())); // PedidoID
+            System.out.println("IDPedidoSeleccionado (seleccionado en tabla): " + getIDPedidoSeleccionado());
+
+            // Mostrar el PedidoID en el campo de texto en lugar de ProductoID
+            paramID.setText(paramTablaProductos.getValueAt(fila, 0).toString());
+        } else {
+            JOptionPane.showMessageDialog(null, "Fila no encontrada.");
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error de selección, error: " + e.getMessage());
+    }
 }
 
+    public void EliminarReembolso(JTextField paramID) {
+    // Convertir el texto del campo de ID a un número entero
+    setCodigo(Integer.parseInt(paramID.getText()));
+
+    // Crear una instancia de la conexión a la base de datos
+    ConexionBDD objetoConexion = new ConexionBDD();
+
+    // Consulta SQL para eliminar el reembolso
+    String consulta = "DELETE FROM Reembolso_Pedido WHERE IDPedido = ? AND Estado = 1;";
+    System.out.println(codigo);
+    try {
+        // Usar PreparedStatement en lugar de CallableStatement
+        PreparedStatement ps = objetoConexion.Conectar().prepareStatement(consulta);
+
+        // Asignar el parámetro IDPedido en la consulta
+        ps.setInt(1, getCodigo());
+
+        // Ejecutar la consulta
+        int filasAfectadas = ps.executeUpdate();
+
+        // Comprobar si se eliminó alguna fila
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(null, "Se eliminó correctamente el reembolso");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró un reembolso con el ID especificado o ya está en otro estado.");
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "No se eliminó correctamente el registro, error: " + e.toString());
+    } finally {
+        objetoConexion.cerrarConexion();
+    }
+}
+
+    public void MostrarReembolso(JTable paramTablaProductos, String usuarioID) {
+    ConexionBDD objetoConexion = new ConexionBDD();
+    DefaultTableModel modelo = new DefaultTableModel();
+    TableRowSorter<TableModel> ordenarTabla = new TableRowSorter<>(modelo);
+    paramTablaProductos.setRowSorter(ordenarTabla);
+
+    // Agregar las columnas
+    modelo.addColumn("PedidoID");
+    modelo.addColumn("ProductoID");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Precio");
+    modelo.addColumn("Categoria");
+    modelo.addColumn("Cantidad");
+
+    paramTablaProductos.setModel(modelo);
+
+    // Consulta SQL simplificada para verificar datos
+    String sql = "SELECT Pedido.PedidoID, Productos.ProductoID, Productos.Nombre, Productos.Precio, " +
+                 "Categorias.NombreCategoria, DetallePedido.Cantidad " +
+                 "FROM Pedido " +
+                 "INNER JOIN DetallePedido ON Pedido.PedidoID = DetallePedido.PedidoID " +
+                 "INNER JOIN Productos ON DetallePedido.ProductoID = Productos.ProductoID " +
+                 "INNER JOIN Categorias ON Productos.CategoriaID = Categorias.CategoriaID " +
+                 "INNER JOIN Reembolso_Pedido ON Pedido.PedidoID = Reembolso_Pedido.IDPedido " + 
+                 "WHERE Pedido.IDUsuario = ? " +
+                 "AND Reembolso_Pedido.Estado = 1;";
+
+    try (PreparedStatement ps = objetoConexion.Conectar().prepareStatement(sql)) {
+        // Asigna el usuarioID
+        ps.setString(1, usuarioID); 
+
+        ResultSet rs = ps.executeQuery();
+
+        // Revisar si la consulta devuelve datos
+        boolean hayDatos = false;
+        while (rs.next()) {
+            hayDatos = true; // Marca que hay al menos un registro
+
+            String[] datos = new String[6];
+            datos[0] = rs.getString("PedidoID");
+            datos[1] = rs.getString("ProductoID");
+            datos[2] = rs.getString("Nombre");
+            datos[3] = rs.getString("Precio");
+            datos[4] = rs.getString("NombreCategoria");
+            datos[5] = rs.getString("Cantidad");
+            modelo.addRow(datos);
+        }
+
+        if (!hayDatos) {
+            JOptionPane.showMessageDialog(null, "No hay datos para mostrar con el usuarioID especificado.");
+        }
+
+        // Ocultar la columna PedidoID si no es necesaria para el usuario
+        paramTablaProductos.getColumnModel().getColumn(0).setMinWidth(0);
+        paramTablaProductos.getColumnModel().getColumn(0).setMaxWidth(0);
+        paramTablaProductos.getColumnModel().getColumn(0).setWidth(0);
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al mostrar los registros, error: " + e.toString());
+    } finally {
+        objetoConexion.cerrarConexion();
+    }
+}
+
+}
  
