@@ -84,7 +84,7 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="Btn_Mod" max="32767" attributes="0"/>
                       <Component id="Btn_Guardar" alignment="0" max="32767" attributes="0"/>
-                      <Component id="Btn_Eliminar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="Btn_Eliminar" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
               </Group>
@@ -96,8 +96,8 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Btn_nombreCategoria" min="-2" pref="86" max="-2" attributes="0"/>
-                      <Component id="Btn_IDCategoria" min="-2" pref="57" max="-2" attributes="0"/>
+                      <Component id="JTextField_nombreCategoria" min="-2" pref="86" max="-2" attributes="0"/>
+                      <Component id="JTextField_IDCategoria" min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -107,12 +107,12 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Btn_IDCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTextField_IDCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Btn_nombreCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTextField_nombreCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
@@ -121,7 +121,7 @@
                   <Component id="Btn_Mod" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Btn_Eliminar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="52" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -132,9 +132,9 @@
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Btn_nombreCategoria">
+        <Component class="javax.swing.JTextField" name="JTextField_nombreCategoria">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_nombreCategoriaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTextField_nombreCategoriaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Btn_Guardar">
@@ -153,6 +153,16 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_ModActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JTextField" name="JTextField_IDCategoria">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTextField_IDCategoriaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ID"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JButton" name="Btn_Eliminar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Categoria"/>
@@ -160,16 +170,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_EliminarActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="Btn_IDCategoria">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_IDCategoriaActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="ID"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

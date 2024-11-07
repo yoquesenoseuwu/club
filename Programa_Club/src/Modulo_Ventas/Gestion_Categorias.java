@@ -4,25 +4,101 @@
  * and open the template in the editor.
  */
 package Modulo_Ventas;
+import javax.swing.*;
+import javax.swing.text.*;
+
 import Modulo_Ventas.CrudCategoria;
 /**
  *
  * @author thiag
  */
 public class Gestion_Categorias extends javax.swing.JFrame {
-
+    private String nombreOriginalCategoria = "";
     /**
      * Creates new form Gestion_Categorias
      */
     public Gestion_Categorias() {
         initComponents();
-        CrudCategoria objetoCategoria=new CrudCategoria();
+        CrudCategoria objetoCategoria = new CrudCategoria();
         objetoCategoria.MostrarCategorias(TablaCategorias);
         this.setLocationRelativeTo(null);
-        Btn_IDCategoria.setEnabled(false);
+        JTextField_IDCategoria.setEnabled(false);
+        ((AbstractDocument) JTextField_nombreCategoria.getDocument()).setDocumentFilter(new LimitDocumentFilter(16));
+        // Aplicar el filtro que permite solo letras
+        ((AbstractDocument) JTextField_nombreCategoria.getDocument()).setDocumentFilter(new LetrasSoloFilter());
+        Btn_Guardar.setEnabled(false); // Deshabilitar inicialmente el botón Guardar
+        Btn_Mod.setEnabled(false);
+        Btn_Eliminar.setEnabled(false);
+
+        // Agregar un DocumentListener al campo JTextField_nombreCategoria
+        JTextField_nombreCategoria.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                toggleGuardarButton();
+                toggleModificarButton();
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                toggleGuardarButton();
+                toggleModificarButton();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                toggleGuardarButton();
+                toggleModificarButton();
+            }
+        });
         
     }
+    // Clase interna para limitar la longitud de JTextField
+    private class LimitDocumentFilter extends DocumentFilter {
+        private final int maxCharacters;
+
+        public LimitDocumentFilter(int maxChars) {
+            this.maxCharacters = maxChars;
+        }
+
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+            if (fb.getDocument().getLength() + string.length() <= maxCharacters) {
+                super.insertString(fb, offset, string, attr);
+            }
+        }
+
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String string, AttributeSet attr) throws BadLocationException {
+            if (fb.getDocument().getLength() - length + string.length() <= maxCharacters) {
+                super.replace(fb, offset, length, string, attr);
+            }
+        }
+    }
+    public class LetrasSoloFilter extends DocumentFilter {
     
+    // Método para permitir solo letras
+    @Override
+    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+        if (string.matches("[a-zA-Z]+")) { // Verifica si solo contiene letras
+            super.insertString(fb, offset, string, attr);
+        } else {
+            // Si no es una letra, no permite insertarlo
+            JOptionPane.showMessageDialog(null, "Solo se permiten letras.");
+        }
+    }
+
+    // Método para reemplazar texto, también permitiendo solo letras
+    @Override
+    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+        if (text.matches("[a-zA-Z]+")) { // Verifica si solo contiene letras
+            super.replace(fb, offset, length, text, attrs);
+        } else {
+            // Si no es una letra, no permite reemplazarlo
+            JOptionPane.showMessageDialog(null, "Solo se permiten letras.");
+        }
+    }
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,12 +111,12 @@ public class Gestion_Categorias extends javax.swing.JFrame {
         Volver = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        Btn_nombreCategoria = new javax.swing.JTextField();
+        JTextField_nombreCategoria = new javax.swing.JTextField();
         Btn_Guardar = new javax.swing.JButton();
         Btn_Mod = new javax.swing.JButton();
-        Btn_Eliminar = new javax.swing.JButton();
-        Btn_IDCategoria = new javax.swing.JTextField();
+        JTextField_IDCategoria = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        Btn_Eliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaCategorias = new javax.swing.JTable();
@@ -59,9 +135,9 @@ public class Gestion_Categorias extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre");
 
-        Btn_nombreCategoria.addActionListener(new java.awt.event.ActionListener() {
+        JTextField_nombreCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_nombreCategoriaActionPerformed(evt);
+                JTextField_nombreCategoriaActionPerformed(evt);
             }
         });
 
@@ -79,20 +155,20 @@ public class Gestion_Categorias extends javax.swing.JFrame {
             }
         });
 
+        JTextField_IDCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTextField_IDCategoriaActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("ID");
+
         Btn_Eliminar.setText("Eliminar Categoria");
         Btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_EliminarActionPerformed(evt);
             }
         });
-
-        Btn_IDCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_IDCategoriaActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("ID");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -112,19 +188,19 @@ public class Gestion_Categorias extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Btn_nombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Btn_IDCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(JTextField_nombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTextField_IDCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Btn_IDCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTextField_IDCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Btn_nombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTextField_nombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(73, 73, 73)
                 .addComponent(Btn_Guardar)
@@ -132,7 +208,7 @@ public class Gestion_Categorias extends javax.swing.JFrame {
                 .addComponent(Btn_Mod)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_Eliminar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista Categorias"));
@@ -207,6 +283,28 @@ public class Gestion_Categorias extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+        // Método que habilita o deshabilita el botón Guardar
+    private void toggleGuardarButton() {
+        Btn_Guardar.setEnabled(!JTextField_nombreCategoria.getText().trim().isEmpty());
+    }
+    // Método que habilita o deshabilita los botones Modificar y Eliminar
+    private void toggleModificarButton() {
+    // Habilitar el botón Modificar solo si:
+    // 1. Hay una categoría seleccionada (ID no vacío)
+    // 2. El campo de nombre no está vacío
+    // 3. El nombre es diferente al nombre original
+    boolean categoriaSeleccionada = !JTextField_IDCategoria.getText().trim().isEmpty();
+    boolean nombreNoVacio = !JTextField_nombreCategoria.getText().trim().isEmpty();
+    boolean nombreModificado = !JTextField_nombreCategoria.getText().equals(nombreOriginalCategoria);
+
+    Btn_Mod.setEnabled(categoriaSeleccionada && nombreNoVacio && nombreModificado);
+    }
+
+    private void toggleEliminarButton() {
+    // Habilitar el botón Eliminar solo si hay una categoría seleccionada
+    Btn_Eliminar.setEnabled(!JTextField_IDCategoria.getText().trim().isEmpty());
+    }
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         Pantalla_Ventas vV= new Pantalla_Ventas();
@@ -216,41 +314,76 @@ public class Gestion_Categorias extends javax.swing.JFrame {
         vV.setVisible(true);
     }//GEN-LAST:event_VolverActionPerformed
 
-    private void Btn_nombreCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_nombreCategoriaActionPerformed
+    private void JTextField_nombreCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextField_nombreCategoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_nombreCategoriaActionPerformed
+    }//GEN-LAST:event_JTextField_nombreCategoriaActionPerformed
 
     private void Btn_ModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ModActionPerformed
         CrudCategoria objetoCategoria = new CrudCategoria();
-        objetoCategoria.ModificarCategoria(Btn_IDCategoria,Btn_nombreCategoria);
-        objetoCategoria.MostrarCategorias(TablaCategorias);
-        objetoCategoria.LimpiarCampos(Btn_IDCategoria,Btn_nombreCategoria);
+        try {
+            objetoCategoria.ModificarCategoria(JTextField_IDCategoria, JTextField_nombreCategoria);
+            objetoCategoria.MostrarCategorias(TablaCategorias);
+            objetoCategoria.LimpiarCampos(JTextField_IDCategoria, JTextField_nombreCategoria);
+            nombreOriginalCategoria = ""; // Restablecer el nombre original
+            toggleModificarButton(); // Actualizar el estado de los botones
+            toggleEliminarButton();
+        } catch (Exception e) {
+            System.err.println("Error al modificar categoría: " + e.getMessage());
+        }
+       
 
     }//GEN-LAST:event_Btn_ModActionPerformed
 
-    private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
-        CrudCategoria objetoCategoria = new CrudCategoria();
-        objetoCategoria.EliminarCategoria(Btn_IDCategoria);
-        objetoCategoria.LimpiarCampos(Btn_IDCategoria,Btn_nombreCategoria);
-        objetoCategoria.MostrarCategorias(TablaCategorias);    }//GEN-LAST:event_Btn_EliminarActionPerformed
-
     
     private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
-        CrudCategoria objetoCategoria = new CrudCategoria();
-        objetoCategoria.InsertarCategoria(Btn_nombreCategoria);
-        objetoCategoria.MostrarCategorias(TablaCategorias);
-        objetoCategoria.LimpiarCampos(Btn_IDCategoria,Btn_nombreCategoria);
+         CrudCategoria objetoCategoria = new CrudCategoria();
+        try {
+            if (JTextField_nombreCategoria.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El nombre de la categoría no puede estar vacío", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            objetoCategoria.InsertarCategoria(JTextField_nombreCategoria);
+            objetoCategoria.MostrarCategorias(TablaCategorias);
+            objetoCategoria.LimpiarCampos(JTextField_IDCategoria, JTextField_nombreCategoria);
+            nombreOriginalCategoria = ""; // Restablecer el nombre original
+            toggleModificarButton();
+            toggleEliminarButton();
+        } catch (Exception e) {
+            System.err.println("Error al guardar categoría: " + e.getMessage());
+        }
         
     }//GEN-LAST:event_Btn_GuardarActionPerformed
 
     private void TablaCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaCategoriasMouseClicked
         CrudCategoria objetoCategoria = new CrudCategoria();
-        objetoCategoria.SeleccionarCategoria(TablaCategorias, Btn_IDCategoria, Btn_nombreCategoria);
+        objetoCategoria.SeleccionarCategoria(TablaCategorias, JTextField_IDCategoria, JTextField_nombreCategoria);
+
+        // Guardar el nombre de la categoría seleccionada en la variable
+        nombreOriginalCategoria = JTextField_nombreCategoria.getText();
+
+        // Actualizar el estado de los botones
+        toggleModificarButton();
+        toggleEliminarButton();
     }//GEN-LAST:event_TablaCategoriasMouseClicked
 
-    private void Btn_IDCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_IDCategoriaActionPerformed
+    private void JTextField_IDCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextField_IDCategoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_IDCategoriaActionPerformed
+    }//GEN-LAST:event_JTextField_IDCategoriaActionPerformed
+
+    private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
+        CrudCategoria objetoCategoria = new CrudCategoria();
+        try {
+            objetoCategoria.EliminarCategoria(JTextField_IDCategoria);
+            objetoCategoria.LimpiarCampos(JTextField_IDCategoria, JTextField_nombreCategoria);
+            objetoCategoria.MostrarCategorias(TablaCategorias);
+            nombreOriginalCategoria = ""; // Restablecer el nombre original
+            toggleModificarButton(); // Actualizar el estado de los botones
+            toggleEliminarButton();
+        } catch (Exception e) {
+            System.err.println("Error al eliminar categoría: " + e.getMessage());
+        }
+    }//GEN-LAST:event_Btn_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,9 +423,9 @@ public class Gestion_Categorias extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Eliminar;
     private javax.swing.JButton Btn_Guardar;
-    private javax.swing.JTextField Btn_IDCategoria;
     private javax.swing.JButton Btn_Mod;
-    private javax.swing.JTextField Btn_nombreCategoria;
+    private javax.swing.JTextField JTextField_IDCategoria;
+    private javax.swing.JTextField JTextField_nombreCategoria;
     private javax.swing.JTable TablaCategorias;
     private javax.swing.JButton Volver;
     private javax.swing.JLabel jLabel1;
