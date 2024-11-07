@@ -5,14 +5,31 @@ import Modulo_Ventas.Gestion_Productos;
 import Modulo_Ventas.Gestion_Categorias;
 import Modulo_Ventas.Gestion_Descuento;
 import Modulo_Ventas.Gestion_Reembolso;
+import Modulo_Ventas.VerificarBotonMenu;
 import Modulo_Ventas.Usuario.Ingreso_Usuario;
 
 public class Pantalla_Ventas extends javax.swing.JFrame {
-
+    private final VerificarBotonMenu consultasBDD = new VerificarBotonMenu();
     public Pantalla_Ventas() {
         initComponents();
-    }
+        verificarBotones();
 
+    }
+    private void verificarBotones() {
+        // Inicialmente, el botón de Categoría estará habilitado.
+        Btn_Gestionar_Categoria.setEnabled(true);
+
+        // Verificar si existen categorías para habilitar "Productos".
+        Btn_Gestionar_Productos.setEnabled(consultasBDD.existeCategoria());
+
+        // Verificar si existen productos para habilitar "Descuentos" y "Venta de Productos".
+        boolean hayProductos = consultasBDD.existeProducto();
+        Btn_Gestionar_Descuento.setEnabled(hayProductos);
+        Btn_Gestionar_VentaProductos.setEnabled(hayProductos);
+        
+        boolean hayReembolsos = consultasBDD.existeReembolso();
+        Btn_Gestionar_Reembolso.setEnabled(hayReembolsos);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

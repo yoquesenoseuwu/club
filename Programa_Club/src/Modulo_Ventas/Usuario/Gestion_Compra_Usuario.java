@@ -284,7 +284,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
                 String fechaString = formatoFecha.format(datechooser_Fecha.getDate());
 
                 // Crear la siguiente ventana, pasando los datos necesarios
-                Gestion_CompraTarjeta_Usuario ventanaCompra = new Gestion_CompraTarjeta_Usuario(usuarioID, productoID, fechaString, cantidadSeleccionada);
+                Ventana_FormaEntrega ventanaCompra = new Ventana_FormaEntrega(usuarioID, productoID, fechaString, cantidadSeleccionada);
 
                 // Configura y muestra la nueva ventana
                 ventanaCompra.setSize(500, 500);
