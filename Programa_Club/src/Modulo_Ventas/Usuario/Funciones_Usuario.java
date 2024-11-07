@@ -11,12 +11,13 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 import java.sql.*;
 /**
  *
  * @author thiag
  */
-public class Compra_Usuario {
+public class Funciones_Usuario {
     private Date fecha;
     private String Nombre_Producto;
     private double Precio;
@@ -146,6 +147,7 @@ public class Compra_Usuario {
         JOptionPane.showMessageDialog(null, "Error de selección, error: " + e.getMessage());
     }
 }
+    
     protected int obtenerStockProducto(int idProducto) {
     int stock = 0; // Variable para almacenar el stock del producto
     ConexionBDD objetoConexion = new ConexionBDD(); // Conexión a la base de datos
@@ -170,6 +172,36 @@ public class Compra_Usuario {
 
     return stock; // Retornar el stock obtenido
 }
+    
+    //Funciones para la ventana Ventan_TarjetaUsuario
+    public void MostrarDirecciones(String usuarioID, JTextField direccion_usuario) {
+        ConexionBDD objetoConexion = new ConexionBDD();
+        String sql = "SELECT Direccion FROM Usuario WHERE IDUsuario = ?";
+        try {
+            CallableStatement st = (CallableStatement) objetoConexion.Conectar().prepareCall(sql);
+            st.setString(1, usuarioID);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                String direccion = rs.getString("Direccion");
+
+                if (direccion != null) {
+                    direccion_usuario.setText(direccion);
+                } else {
+                    direccion_usuario.setText("Dirección no disponible.");
+                }
+            } else {
+                direccion_usuario.setText("Usuario no encontrado.");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al mostrar la dirección, error: " + e.toString());
+            System.out.println("Error al mostrar la dirección, error: " + e.toString());
+        } finally {
+            objetoConexion.cerrarConexion();
+        }
+    }
+
 
 }
 

@@ -213,7 +213,7 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
     private void Btn_Gestionar_VistaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_VistaUsuarioActionPerformed
         Ingreso_Usuario  vIU = new Ingreso_Usuario();
         this.setVisible(false);
-        vIU.setSize(1000,600);
+        vIU.setSize(350,370);
         vIU.setLocationRelativeTo(null);
         vIU.setVisible(true); 
     }//GEN-LAST:event_Btn_Gestionar_VistaUsuarioActionPerformed

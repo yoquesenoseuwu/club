@@ -19,13 +19,19 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
     /**
      * Creates new form Gestion_CompraTarjeta_Usuario
      */
-    public Ventana_FormaEntrega(String usuarioID, String productoID, String fecha, int cantidadSeleccionada) {
-        this.usuarioID = usuarioID;
-        this.productoID = productoID;
-        this.fecha = fecha;
-        this.cantidadSeleccionada = cantidadSeleccionada;
+    public Ventana_FormaEntrega(String userID, String productID, String dates, int cantSeleccionada) {
+        this.usuarioID = userID;
+        this.productoID = productID;
+        this.fecha = dates;
+        this.cantidadSeleccionada = cantSeleccionada;
         initComponents();
         
+        Funciones_Usuario compra_usuario = new Funciones_Usuario(); // Inicializar compra_usuario
+        compra_usuario.MostrarDirecciones(usuarioID, textField_DireccionUsuario); // Mostrar productos 
+        
+        textField_DireccionUsuario.setEnabled(false);
+        textField_PrecioEnvio.setEnabled(false);
+        textField_DireccionRetiro.setEnabled(false);
     }
 
     /**
@@ -42,13 +48,13 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textField_DireccionUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        textField_PrecioEnvio = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        textField_DireccionRetiro = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -71,9 +77,9 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
 
         jLabel2.setText("ENVIAR A DOMICILIO");
 
-        jLabel4.setText("DIRECCION REGISTRADA");
+        jLabel4.setText("    DIRECCION REGISTRADA");
 
-        jLabel7.setText("PRECIO DE ENVIO");
+        jLabel7.setText("                PRECIO DE ENVIO");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -84,14 +90,14 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textField_DireccionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_PrecioEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
@@ -102,11 +108,11 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1))
+                    .addComponent(textField_DireccionUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textField_PrecioEnvio)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -114,22 +120,23 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
 
         jLabel3.setText("RETIRAR EN EL CLUB");
 
-        jLabel5.setText("DIRECCION DE RETIRO");
+        jLabel5.setText("     DIRECCION DE RETIRO");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addGap(141, 141, 141))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textField_DireccionRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -139,7 +146,7 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
+                    .addComponent(textField_DireccionRetiro)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -237,7 +244,8 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
         vTU.setLocationRelativeTo(null);
         vTU.setVisible(true); 
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -256,8 +264,8 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField textField_DireccionRetiro;
+    private javax.swing.JTextField textField_DireccionUsuario;
+    private javax.swing.JTextField textField_PrecioEnvio;
     // End of variables declaration//GEN-END:variables
 }
