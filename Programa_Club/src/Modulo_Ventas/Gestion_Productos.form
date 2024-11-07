@@ -92,8 +92,8 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Btn_precioProducto" min="-2" pref="88" max="-2" attributes="0"/>
-                              <Component id="Btn_StockProducto" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="JTextField_precioProducto" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="JTextField_StockProducto" min="-2" pref="88" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="Btn_Modificar" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
@@ -105,8 +105,8 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Btn_nombreProducto" pref="88" max="32767" attributes="0"/>
-                              <Component id="Btn_IDProducto" max="32767" attributes="0"/>
+                              <Component id="JTextField_nombreProducto" pref="88" max="32767" attributes="0"/>
+                              <Component id="JTextField_IDProducto" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="Btn_Agregar" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
@@ -120,22 +120,22 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Btn_IDProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTextField_IDProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Btn_nombreProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTextField_nombreProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Btn_precioProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTextField_precioProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Btn_StockProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTextField_StockProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -176,15 +176,15 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_EliminarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="Btn_IDProducto">
+        <Component class="javax.swing.JTextField" name="JTextField_IDProducto">
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Btn_IDProductoMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_IDProductoActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JTextField_IDProductoMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTextField_IDProductoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="Btn_nombreProducto">
+        <Component class="javax.swing.JTextField" name="JTextField_nombreProducto">
         </Component>
-        <Component class="javax.swing.JTextField" name="Btn_precioProducto">
+        <Component class="javax.swing.JTextField" name="JTextField_precioProducto">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -206,7 +206,7 @@
             <Property name="text" type="java.lang.String" value="Stock"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Btn_StockProducto">
+        <Component class="javax.swing.JTextField" name="JTextField_StockProducto">
         </Component>
         <Component class="javax.swing.JComboBox" name="ComboBoxCategoria">
           <Properties>

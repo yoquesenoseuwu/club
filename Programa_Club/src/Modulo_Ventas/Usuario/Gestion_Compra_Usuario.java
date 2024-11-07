@@ -40,7 +40,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
         Btn_Nombre.setEnabled(false);
         Btn_Categoria.setEnabled(false);
         Btn_Precio.setEnabled(false);
-        Compra_Usuario compra_usuario = new Compra_Usuario(); // Inicializar compra_usuario
+        Funciones_Usuario compra_usuario = new Funciones_Usuario(); // Inicializar compra_usuario
         compra_usuario.MostrarProductos(TablaProductos); // Mostrar productos   
         
     }
@@ -242,7 +242,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
             datechooser_Fecha.setDate(new java.util.Date());
 
             // Llama a SeleccionarProducto y pasa los JTextField
-            Compra_Usuario objetoUsuario = new Compra_Usuario();
+            Funciones_Usuario objetoUsuario = new Funciones_Usuario();
             objetoUsuario.SeleccionarProducto(TablaProductos, Btn_ID, Btn_Nombre, Btn_Precio, Btn_Categoria);
         }
         
@@ -267,7 +267,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
             }
 
             // Verificar stock disponible
-            Compra_Usuario compraUsuario = new Compra_Usuario();
+            Funciones_Usuario compraUsuario = new Funciones_Usuario();
             int idProducto = Integer.parseInt(productoID);
             int stockDisponible = compraUsuario.obtenerStockProducto(idProducto);
             System.out.println("Stock disponible: " + stockDisponible);
@@ -330,7 +330,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
         }
 
         if (productoID != null && !productoID.isEmpty()) {
-            Compra_Usuario compraUsuario = new Compra_Usuario();
+            Funciones_Usuario compraUsuario = new Funciones_Usuario();
             int idProducto = Integer.parseInt(productoID);
             int stockDisponible = compraUsuario.obtenerStockProducto(idProducto);
             System.out.println("Stock disponible: " + stockDisponible);
