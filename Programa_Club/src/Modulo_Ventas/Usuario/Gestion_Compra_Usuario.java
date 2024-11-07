@@ -24,7 +24,7 @@ import java.util.logging.Level;
  * @author thiag
  */
 public class Gestion_Compra_Usuario extends javax.swing.JFrame {
-
+    
     private String usuarioID; // Variable para almacenar el ID del usuario
     private String productoID;
     private String fecha; 
@@ -33,16 +33,17 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     /**
      * Creates new form Gestion_Compra_Reembolso_Usuario
      */
-    public Gestion_Compra_Usuario() {
+    public Gestion_Compra_Usuario(String IDUsuario) {
         initComponents();
-        this.usuarioID = usuarioID; // Almacena el ID del usuario en la variable
+        usuarioID = IDUsuario;
         datechooser_Fecha.setDate(new java.util.Date()); 
         datechooser_Fecha.setVisible(false); 
         Btn_ID.setVisible(false); 
         Btn_Nombre.setEnabled(false);
         Btn_Categoria.setEnabled(false);
         Btn_Precio.setEnabled(false);
-        Compra_Usuario compra_usuario = new Compra_Usuario(); // Inicializar compra_usuario
+        
+        Funciones_Usuario compra_usuario = new Funciones_Usuario(); // Inicializar compra_usuario
         compra_usuario.MostrarProductos(TablaProductos); // Mostrar productos   
         
     }
@@ -231,11 +232,11 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverPantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverPantallaActionPerformed
-        Gestion_Compra_Usuario vCU = new Gestion_Compra_Usuario();
+        Ingreso_Usuario  vIU = new Ingreso_Usuario();
         this.setVisible(false);
-        vCU.setSize(1000, 600);
-        vCU.setLocationRelativeTo(null);
-        vCU.setVisible(true); 
+        vIU.setSize(350,370);
+        vIU.setLocationRelativeTo(null);
+        vIU.setVisible(true);
     }//GEN-LAST:event_VolverPantallaActionPerformed
 
     private void TablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductosMouseClicked
@@ -248,7 +249,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
             datechooser_Fecha.setDate(new java.util.Date());
 
             // Llama a SeleccionarProducto y pasa los JTextField
-            Compra_Usuario objetoUsuario = new Compra_Usuario();
+            Funciones_Usuario objetoUsuario = new Funciones_Usuario();
             objetoUsuario.SeleccionarProducto(TablaProductos, Btn_ID, Btn_Nombre, Btn_Precio, Btn_Categoria);
         }
         
@@ -273,7 +274,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
             }
 
             // Verificar stock disponible
-            Compra_Usuario compraUsuario = new Compra_Usuario();
+            Funciones_Usuario compraUsuario = new Funciones_Usuario();
             int idProducto = Integer.parseInt(productoID);
             int stockDisponible = compraUsuario.obtenerStockProducto(idProducto);
             System.out.println("Stock disponible: " + stockDisponible);
@@ -310,6 +311,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     }
 
     System.out.println("Finalizando Btn_ComprarActionPerformed.");
+    System.out.println("Id del usuario: " + usuarioID);
 
 
     
@@ -334,7 +336,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
         }
 
         if (productoID != null && !productoID.isEmpty()) {
-            Compra_Usuario compraUsuario = new Compra_Usuario();
+            Funciones_Usuario compraUsuario = new Funciones_Usuario();
             int idProducto = Integer.parseInt(productoID);
             int stockDisponible = compraUsuario.obtenerStockProducto(idProducto);
             System.out.println("Stock disponible: " + stockDisponible);
@@ -367,38 +369,6 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Compra_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Compra_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Compra_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gestion_Compra_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Gestion_Compra_Usuario().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Btn_Categoria;
