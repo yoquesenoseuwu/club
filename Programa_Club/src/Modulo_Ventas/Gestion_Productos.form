@@ -96,7 +96,7 @@
                               <Component id="JTextField_StockProducto" min="-2" pref="88" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="Btn_Modificar" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
+                      <Component id="Btn_Mod" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
                       <Component id="Btn_Eliminar" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -109,7 +109,7 @@
                               <Component id="JTextField_IDProducto" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="Btn_Agregar" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
+                      <Component id="Btn_Guardar" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="153" max="32767" attributes="0"/>
               </Group>
@@ -141,9 +141,9 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="ComboBoxCategoria" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Btn_Agregar" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_Guardar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Btn_Modificar" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_Mod" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Btn_Eliminar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -152,20 +152,20 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="Btn_Agregar">
+        <Component class="javax.swing.JButton" name="Btn_Guardar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar producto"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_AgregarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_GuardarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Btn_Modificar">
+        <Component class="javax.swing.JButton" name="Btn_Mod">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar producto"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_ModificarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_ModActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Btn_Eliminar">

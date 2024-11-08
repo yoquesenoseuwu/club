@@ -6,7 +6,12 @@
 package Modulo_Ventas;
 import javax.swing.JOptionPane; // Para el uso de diálogos
 import Modulo_Ventas.CrudProducto; // Ajusta el paquete según sea necesario
-
+import javax.swing.*;
+import javax.swing.text.*;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.text.AbstractDocument;
+import javax.swing.JTextField;
 
 /**
  *
@@ -23,8 +28,124 @@ public class Gestion_Productos extends javax.swing.JFrame {
         crudProducto.cargarProductos(ComboBoxCategoria); // Cargar categorías
         crudProducto.MostrarProductos(TablaProductos); // Mostrar productos       
         JTextField_IDProducto.setEnabled(false);
+        ((AbstractDocument) JTextField_nombreProducto.getDocument()).setDocumentFilter(new LimitDocumentFilter(30));
+    ((AbstractDocument) JTextField_precioProducto.getDocument()).setDocumentFilter(new LimitDocumentFilter(15));
+    ((AbstractDocument) JTextField_StockProducto.getDocument()).setDocumentFilter(new LimitDocumentFilter(5));
+    ((AbstractDocument) JTextField_nombreProducto.getDocument()).setDocumentFilter(new LetrasSoloFilter());
+    ((AbstractDocument) JTextField_StockProducto.getDocument()).setDocumentFilter(new NumerosSoloFilter()); // Filtro para stock
+        // Aplicar filtro para solo números y punto decimal en precioProducto
+        ((AbstractDocument) JTextField_precioProducto.getDocument()).setDocumentFilter(new NumerosYDecimalesFilter());
+    // Añadir DocumentListener para habilitar el botón Guardar
+    ((AbstractDocument) JTextField_nombreProducto.getDocument()).addDocumentListener(new DocumentListener() {
+        public void insertUpdate(DocumentEvent e) { validarCampos(); }
+        public void removeUpdate(DocumentEvent e) { validarCampos(); }
+        public void changedUpdate(DocumentEvent e) { validarCampos(); }
+    });
+
+    ((AbstractDocument) JTextField_precioProducto.getDocument()).addDocumentListener(new DocumentListener() {
+        public void insertUpdate(DocumentEvent e) { validarCampos(); }
+        public void removeUpdate(DocumentEvent e) { validarCampos(); }
+        public void changedUpdate(DocumentEvent e) { validarCampos(); }
+    });
+
+    ((AbstractDocument) JTextField_StockProducto.getDocument()).addDocumentListener(new DocumentListener() {
+        public void insertUpdate(DocumentEvent e) { validarCampos(); }
+        public void removeUpdate(DocumentEvent e) { validarCampos(); }
+        public void changedUpdate(DocumentEvent e) { validarCampos(); }
+    });
+
+        Btn_Guardar.setEnabled(false); // Deshabilitar inicialmente el botón Guardar
+        Btn_Mod.setEnabled(false);
+        Btn_Eliminar.setEnabled(false);
+        
+    }
+    
+    public class LimitDocumentFilter extends DocumentFilter {
+    private int limit;
+
+    public LimitDocumentFilter(int limit) {
+        this.limit = limit;
+    }
+    
+    
+    @Override
+    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+        if ((fb.getDocument().getLength() + string.length()) <= limit) {
+            super.insertString(fb, offset, string, attr);
+        }
+    }
+    
+    @Override
+    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+        if ((fb.getDocument().getLength() - length + text.length()) <= limit) {
+            super.replace(fb, offset, length, text, attrs);
+        }
+    }
+    }
+    public class LetrasSoloFilter extends DocumentFilter {
+    @Override
+    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+        if (string.matches("[a-zA-Z\\s]+")) { // Permitir letras y espacios
+            super.insertString(fb, offset, string, attr);
+        } else {
+            JOptionPane.showMessageDialog(null, "Solo se permiten letras.");
+        }
     }
 
+    @Override
+    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+        if (text.matches("[a-zA-Z\\s]+")) { // Permitir letras y espacios
+            super.replace(fb, offset, length, text, attrs);
+        } else {
+            JOptionPane.showMessageDialog(null, "Solo se permiten letras.");
+        }
+    }
+}
+    public class NumerosYDecimalesFilter extends DocumentFilter {
+    @Override
+    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+        String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
+        String newText = new StringBuilder(currentText).insert(offset, string).toString();
+
+        if (newText.matches("\\d*\\.?\\d{0,2}")) { // Permitir números con hasta 2 decimales y un solo punto
+            super.insertString(fb, offset, string, attr);
+        } else {
+            JOptionPane.showMessageDialog(null, "Formato incorrecto. Ejemplo válido: 123.45");
+        }
+    }
+
+    @Override
+    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+        String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
+        String newText = new StringBuilder(currentText).replace(offset, offset + length, text).toString();
+
+        if (newText.matches("\\d*\\.?\\d{0,2}")) { // Permitir números con hasta 2 decimales y un solo punto
+            super.replace(fb, offset, length, text, attrs);
+        } else {
+            JOptionPane.showMessageDialog(null, "Formato incorrecto. Ejemplo válido: 123.45");
+        }
+    }
+}
+
+    public class NumerosSoloFilter extends DocumentFilter {
+    @Override
+    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+        if (string.matches("\\d+")) { // Permitir solo dígitos
+            super.insertString(fb, offset, string, attr);
+        } else {
+            JOptionPane.showMessageDialog(null, "Solo se permiten números.");
+        }
+    }
+
+    @Override
+    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+        if (text.matches("\\d+")) { // Permitir solo dígitos
+            super.replace(fb, offset, length, text, attrs);
+        } else {
+            JOptionPane.showMessageDialog(null, "Solo se permiten números.");
+        }
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,8 +157,8 @@ public class Gestion_Productos extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        Btn_Agregar = new javax.swing.JButton();
-        Btn_Modificar = new javax.swing.JButton();
+        Btn_Guardar = new javax.swing.JButton();
+        Btn_Mod = new javax.swing.JButton();
         Btn_Eliminar = new javax.swing.JButton();
         JTextField_IDProducto = new javax.swing.JTextField();
         JTextField_nombreProducto = new javax.swing.JTextField();
@@ -60,17 +181,17 @@ public class Gestion_Productos extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de Producto"));
 
-        Btn_Agregar.setText("Agregar producto");
-        Btn_Agregar.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Guardar.setText("Agregar producto");
+        Btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_AgregarActionPerformed(evt);
+                Btn_GuardarActionPerformed(evt);
             }
         });
 
-        Btn_Modificar.setText("Modificar producto");
-        Btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Mod.setText("Modificar producto");
+        Btn_Mod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_ModificarActionPerformed(evt);
+                Btn_ModActionPerformed(evt);
             }
         });
 
@@ -118,7 +239,7 @@ public class Gestion_Productos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JTextField_precioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JTextField_StockProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(Btn_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_Mod, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -128,7 +249,7 @@ public class Gestion_Productos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(JTextField_nombreProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                             .addComponent(JTextField_IDProducto)))
-                    .addComponent(Btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Btn_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(153, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,9 +274,9 @@ public class Gestion_Productos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Btn_Agregar)
+                .addComponent(Btn_Guardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Btn_Modificar)
+                .addComponent(Btn_Mod)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_Eliminar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -240,7 +361,26 @@ public class Gestion_Productos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void validarCampos() {
+    String nombre = JTextField_nombreProducto.getText().trim();
+    String precio = JTextField_precioProducto.getText().trim();
+    String stock = JTextField_StockProducto.getText().trim();
+    
+    boolean habilitar = !nombre.isEmpty() && esNumerico(precio) && esNumerico(stock);
+    Btn_Guardar.setEnabled(habilitar);
+}
 
+private boolean esNumerico(String cadena) {
+    if (cadena == null || cadena.isEmpty()) {
+        return false;
+    }
+    try {
+        Double.parseDouble(cadena);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
         CrudProducto objetoProducto = new CrudProducto();
         objetoProducto.EliminarCategoria(JTextField_IDProducto);
@@ -249,21 +389,33 @@ public class Gestion_Productos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
-    private void Btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ModificarActionPerformed
-        CrudProducto objetoProducto = new CrudProducto();
-        objetoProducto.ModificarProducto(JTextField_IDProducto, JTextField_nombreProducto, JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
-        objetoProducto.MostrarProductos(TablaProductos); // Actualizar la tabla
-        objetoProducto.LimpiarCampos(JTextField_IDProducto, JTextField_nombreProducto, JTextField_precioProducto,JTextField_StockProducto,  ComboBoxCategoria);
+    private void Btn_ModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ModActionPerformed
+        String nombreOriginal = crudProducto.obtenerNombreOriginal(JTextField_IDProducto.getText());
+    String precioOriginal = crudProducto.obtenerPrecioOriginal(JTextField_IDProducto.getText());
+    String stockOriginal = crudProducto.obtenerStockOriginal(JTextField_IDProducto.getText());
 
-    }//GEN-LAST:event_Btn_ModificarActionPerformed
+    if (nombreOriginal.equals(JTextField_nombreProducto.getText()) &&
+        precioOriginal.equals(JTextField_precioProducto.getText()) &&
+        stockOriginal.equals(JTextField_StockProducto.getText())) {
+        JOptionPane.showMessageDialog(null, "No se detectaron cambios en el producto.");
+    } else {
+        crudProducto.ModificarProducto(JTextField_IDProducto, JTextField_nombreProducto, JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
+        actualizarVista();
+    }
 
-    private void Btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AgregarActionPerformed
-        CrudProducto objetoProducto = new CrudProducto();
-        objetoProducto.InsertarProducto(JTextField_nombreProducto, JTextField_precioProducto,JTextField_StockProducto, ComboBoxCategoria);
-        objetoProducto.MostrarProductos(TablaProductos); // Actualizar la tabla
-        objetoProducto.LimpiarCampos(JTextField_IDProducto, JTextField_nombreProducto,JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
+    }//GEN-LAST:event_Btn_ModActionPerformed
 
-    }//GEN-LAST:event_Btn_AgregarActionPerformed
+    private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
+        if (JTextField_nombreProducto.getText().isEmpty() || JTextField_precioProducto.getText().isEmpty() || JTextField_StockProducto.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Completar los datos faltantes.");
+    } else if (crudProducto.existeProductoConNombre(JTextField_nombreProducto.getText())) {
+        JOptionPane.showMessageDialog(null, "El producto con este nombre ya existe.");
+    } else {
+        crudProducto.InsertarProducto(JTextField_nombreProducto, JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
+        actualizarVista();
+    }
+
+    }//GEN-LAST:event_Btn_GuardarActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         Pantalla_Ventas vV= new Pantalla_Ventas();
@@ -282,10 +434,25 @@ public class Gestion_Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_JTextField_IDProductoMouseClicked
 
     private void TablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductosMouseClicked
-       CrudProducto objetoProducto = new CrudProducto();
-       objetoProducto.SeleccionarProducto(TablaProductos, JTextField_IDProducto, JTextField_nombreProducto,JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
+       crudProducto.SeleccionarProducto(TablaProductos, JTextField_IDProducto, JTextField_nombreProducto, JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
+        habilitarBotones();
     }//GEN-LAST:event_TablaProductosMouseClicked
-
+    
+    private void actualizarVista() {
+    crudProducto.MostrarProductos(TablaProductos);
+    crudProducto.LimpiarCampos(JTextField_IDProducto, JTextField_nombreProducto, JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
+    deshabilitarBotones();
+    }
+    
+    private void deshabilitarBotones() {
+    Btn_Mod.setEnabled(false);
+    Btn_Eliminar.setEnabled(false);
+    }
+    
+    private void habilitarBotones() {
+    Btn_Mod.setEnabled(true);
+    Btn_Eliminar.setEnabled(true);
+    }
     /**
      * @param args the command line arguments
      */
@@ -322,9 +489,9 @@ public class Gestion_Productos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Agregar;
     private javax.swing.JButton Btn_Eliminar;
-    private javax.swing.JButton Btn_Modificar;
+    private javax.swing.JButton Btn_Guardar;
+    private javax.swing.JButton Btn_Mod;
     private javax.swing.JComboBox ComboBoxCategoria;
     private javax.swing.JTextField JTextField_IDProducto;
     private javax.swing.JTextField JTextField_StockProducto;
