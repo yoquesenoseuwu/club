@@ -99,7 +99,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="TablaDescuentos">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="0" rowCount="4"/>
@@ -112,7 +112,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TablaDescuentosMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -140,14 +140,14 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="textfield_Descuento" min="-2" pref="68" max="-2" attributes="0"/>
+                                  <Component id="JTextField_Descuento" min="-2" pref="68" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel2" min="-2" pref="32" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="JTextField_ID" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="26" max="32767" attributes="0"/>
@@ -173,10 +173,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="btn_GuardarDescuento" max="32767" attributes="0"/>
-                      <Component id="btn_ModificarDescuento" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btn_EliminarDescuento" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btn_AplicarDescuento" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
+                      <Component id="Btn_Guardar" max="32767" attributes="0"/>
+                      <Component id="Btn_Modificar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="Btn_Eliminar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="Btn_Aplicar" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -187,12 +187,12 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTextField_ID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="textfield_Descuento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTextField_Descuento" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -207,20 +207,20 @@
                       <Component id="datechooser_FechaFinal" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="btn_GuardarDescuento" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_Guardar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btn_ModificarDescuento" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_Modificar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btn_EliminarDescuento" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_Eliminar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btn_AplicarDescuento" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_Aplicar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="JTextField_ID">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -238,7 +238,7 @@
             <Property name="text" type="java.lang.String" value="Descuento"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textfield_Descuento">
+        <Component class="javax.swing.JTextField" name="JTextField_Descuento">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -268,36 +268,36 @@
             <Property name="text" type="java.lang.String" value="Fecha Final"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_GuardarDescuento">
+        <Component class="javax.swing.JButton" name="Btn_Guardar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar Descuento"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_GuardarDescuentoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_GuardarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_ModificarDescuento">
+        <Component class="javax.swing.JButton" name="Btn_Modificar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar Descuento"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ModificarDescuentoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_ModificarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_EliminarDescuento">
+        <Component class="javax.swing.JButton" name="Btn_Eliminar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Descuento"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EliminarDescuentoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_EliminarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_AplicarDescuento">
+        <Component class="javax.swing.JButton" name="Btn_Aplicar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Aplicar Descuento"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_AplicarDescuentoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_AplicarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

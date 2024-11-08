@@ -6,6 +6,7 @@
 package Modulo_Ventas;
 import javax.swing.*;
 import javax.swing.text.*;
+import java.awt.Toolkit;
 
 import Modulo_Ventas.CrudCategoria;
 /**
@@ -75,26 +76,21 @@ public class Gestion_Categorias extends javax.swing.JFrame {
         }
     }
     public class LetrasSoloFilter extends DocumentFilter {
-    
-    // Método para permitir solo letras
     @Override
     public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-        if (string.matches("[a-zA-Z]+")) { // Verifica si solo contiene letras
+        if (string.matches("[a-zA-Z]+")) {
             super.insertString(fb, offset, string, attr);
         } else {
-            // Si no es una letra, no permite insertarlo
-            JOptionPane.showMessageDialog(null, "Solo se permiten letras.");
+            Toolkit.getDefaultToolkit().beep(); // Simplemente da una señal, no bloquea.
         }
     }
 
-    // Método para reemplazar texto, también permitiendo solo letras
     @Override
     public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-        if (text.matches("[a-zA-Z]+")) { // Verifica si solo contiene letras
+        if (text.matches("[a-zA-Z]+")) {
             super.replace(fb, offset, length, text, attrs);
         } else {
-            // Si no es una letra, no permite reemplazarlo
-            JOptionPane.showMessageDialog(null, "Solo se permiten letras.");
+            Toolkit.getDefaultToolkit().beep(); // Simplemente da una señal.
         }
     }
 }
@@ -337,21 +333,37 @@ public class Gestion_Categorias extends javax.swing.JFrame {
     
     private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
          CrudCategoria objetoCategoria = new CrudCategoria();
-        try {
-            if (JTextField_nombreCategoria.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "El nombre de la categoría no puede estar vacío", "Advertencia", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            
-            objetoCategoria.InsertarCategoria(JTextField_nombreCategoria);
-            objetoCategoria.MostrarCategorias(TablaCategorias);
-            objetoCategoria.LimpiarCampos(JTextField_IDCategoria, JTextField_nombreCategoria);
-            nombreOriginalCategoria = ""; // Restablecer el nombre original
-            toggleModificarButton();
-            toggleEliminarButton();
-        } catch (Exception e) {
-            System.err.println("Error al guardar categoría: " + e.getMessage());
+    try {
+        // Validar que el campo de nombre no esté vacío
+        if (JTextField_nombreCategoria.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El nombre de la categoría no puede estar vacío", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+        
+        // Insertar la nueva categoría
+        objetoCategoria.InsertarCategoria(JTextField_nombreCategoria);
+        
+        // Mostrar las categorías actualizadas en la tabla
+        objetoCategoria.MostrarCategorias(TablaCategorias);
+        
+        // Limpiar los campos de texto
+        objetoCategoria.LimpiarCampos(JTextField_IDCategoria, JTextField_nombreCategoria);
+        JTextField_nombreCategoria.setText("");
+
+        // Restablecer variables y botones
+        nombreOriginalCategoria = ""; // Restablecer el nombre original
+        toggleModificarButton();
+        toggleEliminarButton();
+        
+        // Mensaje de confirmación
+        JOptionPane.showMessageDialog(this, "Categoría guardada exitosamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+        
+    } catch (Exception e) {
+        // Mostrar mensaje de error en un JOptionPane y loguearlo en la consola
+        JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la categoría: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        System.err.println("Error al guardar categoría: " + e.getMessage());
+        e.printStackTrace(); // Imprimir más detalles del error
+    }
         
     }//GEN-LAST:event_Btn_GuardarActionPerformed
 

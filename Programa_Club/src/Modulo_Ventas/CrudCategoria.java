@@ -209,8 +209,10 @@ public class CrudCategoria {
         }
     }
     public void LimpiarCampos(JTextField paramID, JTextField paramNombre) {
-        paramID.setText("");
-        paramNombre.setText("");
+    paramID.setText("");
+    paramNombre.setText("");
+
+}
+
         
-    }
 }
