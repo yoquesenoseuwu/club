@@ -2,6 +2,7 @@ package Modulo_Ventas;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -34,4 +35,5 @@ public class ConexionBDD {
             JOptionPane.showMessageDialog(null, "No se pudo cerrar la conexión: " + e.toString());
         }
     }
+
 }

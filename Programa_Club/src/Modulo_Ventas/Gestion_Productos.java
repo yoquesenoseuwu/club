@@ -22,7 +22,7 @@ public class Gestion_Productos extends javax.swing.JFrame {
         crudProducto = new CrudProducto();
         crudProducto.cargarProductos(ComboBoxCategoria); // Cargar categorías
         crudProducto.MostrarProductos(TablaProductos); // Mostrar productos       
-        Btn_IDProducto.setEnabled(false);
+        JTextField_IDProducto.setEnabled(false);
     }
 
     /**
@@ -39,14 +39,14 @@ public class Gestion_Productos extends javax.swing.JFrame {
         Btn_Agregar = new javax.swing.JButton();
         Btn_Modificar = new javax.swing.JButton();
         Btn_Eliminar = new javax.swing.JButton();
-        Btn_IDProducto = new javax.swing.JTextField();
-        Btn_nombreProducto = new javax.swing.JTextField();
-        Btn_precioProducto = new javax.swing.JTextField();
+        JTextField_IDProducto = new javax.swing.JTextField();
+        JTextField_nombreProducto = new javax.swing.JTextField();
+        JTextField_precioProducto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        Btn_StockProducto = new javax.swing.JTextField();
+        JTextField_StockProducto = new javax.swing.JTextField();
         ComboBoxCategoria = new javax.swing.JComboBox();
         Volver = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -81,14 +81,14 @@ public class Gestion_Productos extends javax.swing.JFrame {
             }
         });
 
-        Btn_IDProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+        JTextField_IDProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Btn_IDProductoMouseClicked(evt);
+                JTextField_IDProductoMouseClicked(evt);
             }
         });
-        Btn_IDProducto.addActionListener(new java.awt.event.ActionListener() {
+        JTextField_IDProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_IDProductoActionPerformed(evt);
+                JTextField_IDProductoActionPerformed(evt);
             }
         });
 
@@ -116,8 +116,8 @@ public class Gestion_Productos extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Btn_precioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Btn_StockProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(JTextField_precioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTextField_StockProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Btn_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -126,8 +126,8 @@ public class Gestion_Productos extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Btn_nombreProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                            .addComponent(Btn_IDProducto)))
+                            .addComponent(JTextField_nombreProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                            .addComponent(JTextField_IDProducto)))
                     .addComponent(Btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(153, Short.MAX_VALUE))
         );
@@ -136,19 +136,19 @@ public class Gestion_Productos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Btn_IDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTextField_IDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Btn_nombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTextField_nombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(Btn_precioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTextField_precioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Btn_StockProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTextField_StockProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,25 +243,25 @@ public class Gestion_Productos extends javax.swing.JFrame {
 
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
         CrudProducto objetoProducto = new CrudProducto();
-        objetoProducto.EliminarCategoria(Btn_IDProducto);
+        objetoProducto.EliminarCategoria(JTextField_IDProducto);
         objetoProducto.MostrarProductos(TablaProductos); // Actualizar la tabla
-        objetoProducto.LimpiarCampos(Btn_IDProducto, Btn_nombreProducto, Btn_StockProducto, Btn_precioProducto, ComboBoxCategoria);
+        objetoProducto.LimpiarCampos(JTextField_IDProducto, JTextField_nombreProducto,JTextField_precioProducto, JTextField_StockProducto,  ComboBoxCategoria);
 
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
     private void Btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ModificarActionPerformed
         CrudProducto objetoProducto = new CrudProducto();
-        objetoProducto.ModificarProducto(Btn_IDProducto, Btn_nombreProducto, Btn_precioProducto, Btn_StockProducto, ComboBoxCategoria);
+        objetoProducto.ModificarProducto(JTextField_IDProducto, JTextField_nombreProducto, JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
         objetoProducto.MostrarProductos(TablaProductos); // Actualizar la tabla
-        objetoProducto.LimpiarCampos(Btn_IDProducto, Btn_nombreProducto, Btn_StockProducto, Btn_precioProducto, ComboBoxCategoria);
+        objetoProducto.LimpiarCampos(JTextField_IDProducto, JTextField_nombreProducto, JTextField_precioProducto,JTextField_StockProducto,  ComboBoxCategoria);
 
     }//GEN-LAST:event_Btn_ModificarActionPerformed
 
     private void Btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AgregarActionPerformed
         CrudProducto objetoProducto = new CrudProducto();
-        objetoProducto.InsertarProducto(Btn_nombreProducto, Btn_StockProducto, Btn_precioProducto, ComboBoxCategoria);
+        objetoProducto.InsertarProducto(JTextField_nombreProducto, JTextField_precioProducto,JTextField_StockProducto, ComboBoxCategoria);
         objetoProducto.MostrarProductos(TablaProductos); // Actualizar la tabla
-        objetoProducto.LimpiarCampos(Btn_IDProducto, Btn_nombreProducto, Btn_StockProducto, Btn_precioProducto, ComboBoxCategoria);
+        objetoProducto.LimpiarCampos(JTextField_IDProducto, JTextField_nombreProducto,JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
 
     }//GEN-LAST:event_Btn_AgregarActionPerformed
 
@@ -273,17 +273,17 @@ public class Gestion_Productos extends javax.swing.JFrame {
         vV.setVisible(true);
     }//GEN-LAST:event_VolverActionPerformed
 
-    private void Btn_IDProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_IDProductoActionPerformed
+    private void JTextField_IDProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextField_IDProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_IDProductoActionPerformed
+    }//GEN-LAST:event_JTextField_IDProductoActionPerformed
 
-    private void Btn_IDProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_IDProductoMouseClicked
+    private void JTextField_IDProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTextField_IDProductoMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_IDProductoMouseClicked
+    }//GEN-LAST:event_JTextField_IDProductoMouseClicked
 
     private void TablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductosMouseClicked
        CrudProducto objetoProducto = new CrudProducto();
-       objetoProducto.SeleccionarProducto(TablaProductos, Btn_IDProducto, Btn_nombreProducto,Btn_precioProducto, Btn_StockProducto, ComboBoxCategoria);
+       objetoProducto.SeleccionarProducto(TablaProductos, JTextField_IDProducto, JTextField_nombreProducto,JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
     }//GEN-LAST:event_TablaProductosMouseClicked
 
     /**
@@ -324,12 +324,12 @@ public class Gestion_Productos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Agregar;
     private javax.swing.JButton Btn_Eliminar;
-    private javax.swing.JTextField Btn_IDProducto;
     private javax.swing.JButton Btn_Modificar;
-    private javax.swing.JTextField Btn_StockProducto;
-    private javax.swing.JTextField Btn_nombreProducto;
-    private javax.swing.JTextField Btn_precioProducto;
     private javax.swing.JComboBox ComboBoxCategoria;
+    private javax.swing.JTextField JTextField_IDProducto;
+    private javax.swing.JTextField JTextField_StockProducto;
+    private javax.swing.JTextField JTextField_nombreProducto;
+    private javax.swing.JTextField JTextField_precioProducto;
     private javax.swing.JTable TablaProductos;
     private javax.swing.JButton Volver;
     private javax.swing.JLabel jLabel2;
