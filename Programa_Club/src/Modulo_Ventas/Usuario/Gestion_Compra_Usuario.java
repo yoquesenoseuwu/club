@@ -287,7 +287,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
                 Ventana_FormaEntrega ventanaCompra = new Ventana_FormaEntrega(usuarioID, productoID, fechaString, cantidadSeleccionada);
 
                 // Configura y muestra la nueva ventana
-                ventanaCompra.setSize(500, 500);
+                ventanaCompra.setSize(500, 600);
                 ventanaCompra.setLocationRelativeTo(null);
                 ventanaCompra.setVisible(true);
 

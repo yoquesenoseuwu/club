@@ -26,12 +26,18 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
         this.cantidadSeleccionada = cantSeleccionada;
         initComponents();
         
-        Funciones_Usuario compra_usuario = new Funciones_Usuario(); // Inicializar compra_usuario
-        compra_usuario.MostrarDirecciones(usuarioID, textField_DireccionUsuario); // Mostrar productos 
+        //Muestra la direccion del usuario
+        Funciones_Usuario compra_usuario = new Funciones_Usuario(); 
+        compra_usuario.MostrarDatos(usuarioID, textField_DireccionUsuario, textField_DireccionRetiro, textField_PrecioEnvio);  
         
+        //Deshabilita los textfield
         textField_DireccionUsuario.setEnabled(false);
         textField_PrecioEnvio.setEnabled(false);
         textField_DireccionRetiro.setEnabled(false);
+        
+        //Añade las opciones al combobox
+        cmbox_OpcionEntrega.addItem("Envío a Domicilio");
+        cmbox_OpcionEntrega.addItem("Retiro en el Club");
     }
 
     /**
@@ -56,9 +62,9 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         textField_DireccionRetiro = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbox_OpcionEntrega = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btn_Continuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,14 +157,14 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+        cmbox_OpcionEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
 
         jLabel6.setText(" SELECCIONE FORMA");
 
-        jButton2.setText("CONTINUAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_Continuar.setText("CONTINUAR");
+        btn_Continuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_ContinuarActionPerformed(evt);
             }
         });
 
@@ -170,7 +176,7 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbox_OpcionEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +192,7 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_Continuar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -202,10 +208,10 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbox_OpcionEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btn_Continuar)
                 .addContainerGap())
         );
 
@@ -237,13 +243,18 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
         vCU.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Ventana_TarjetaUsuario vTU = new Ventana_TarjetaUsuario(usuarioID, productoID, fecha, cantidadSeleccionada);
+    private void btn_ContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ContinuarActionPerformed
+        String opcionFormaEntrega;
+        opcionFormaEntrega = cmbox_OpcionEntrega.getSelectedItem().toString();
+        
+        Ventana_TarjetaUsuario vTU = new Ventana_TarjetaUsuario(usuarioID, productoID, fecha, cantidadSeleccionada, opcionFormaEntrega);
         this.setVisible(false);
         vTU.setSize(550, 650);
         vTU.setLocationRelativeTo(null);
         vTU.setVisible(true); 
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+        
+    }//GEN-LAST:event_btn_ContinuarActionPerformed
     
     
     /**
@@ -251,9 +262,9 @@ public class Ventana_FormaEntrega extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Continuar;
+    private javax.swing.JComboBox<String> cmbox_OpcionEntrega;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

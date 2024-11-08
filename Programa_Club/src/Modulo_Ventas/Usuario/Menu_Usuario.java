@@ -69,27 +69,27 @@ public class Menu_Usuario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Btn_Comprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Btn_PedirReembolso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Btn_CancelarReembolso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(113, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Btn_Comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_PedirReembolso, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_CancelarReembolso))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Volver)
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(Btn_Comprar)
-                .addGap(40, 40, 40)
+                .addGap(26, 26, 26)
                 .addComponent(Btn_PedirReembolso)
-                .addGap(40, 40, 40)
+                .addGap(30, 30, 30)
                 .addComponent(Btn_CancelarReembolso)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         pack();
@@ -120,11 +120,11 @@ public class Menu_Usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_CancelarReembolsoActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        Pantalla_Ventas vV= new Pantalla_Ventas();
+        Ingreso_Usuario  vIU = new Ingreso_Usuario();
         this.setVisible(false);
-        vV.setSize(500,500);
-        vV.setLocationRelativeTo(null);
-        vV.setVisible(true);
+        vIU.setSize(350,370);
+        vIU.setLocationRelativeTo(null);
+        vIU.setVisible(true); 
     }//GEN-LAST:event_VolverActionPerformed
 
     /**

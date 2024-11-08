@@ -17,6 +17,7 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
     public Gestion_VentaProductos() {
         initComponents();
         Modulo_Ventas.CrudVentaProductos objetoVentaProductos = new Modulo_Ventas.CrudVentaProductos();
+        
         objetoVentaProductos.MostrarProductos(table_productosVenta);
         
         objetoVentaProductos.MostrarProductosNoDisponibles(table_productos);
@@ -40,10 +41,10 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         table_productos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        textField_ProductoID = new javax.swing.JTextField();
         textField_ProductoNombre = new javax.swing.JTextField();
         btn_PonerVenta = new javax.swing.JButton();
         btn_QuitarVenta = new javax.swing.JButton();
+        textField_ProductoID = new javax.swing.JTextField();
         btn_volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,6 +62,11 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
 
             }
         ));
+        table_productosVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_productosVentaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_productosVenta);
 
         jLabel1.setText("PRODUCTOS A LA VENTA");
@@ -69,14 +75,14 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(352, 352, 352)
+                .addComponent(jLabel1)
+                .addContainerGap(412, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(238, 238, 238)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,34 +107,33 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
 
             }
         ));
+        table_productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_productosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(table_productos);
 
-        jLabel2.setText("BUSQUEDA DE PRODUCTOS");
+        jLabel2.setText(" PRODUCTOS NO EN VENTA");
 
-        textField_ProductoID.addActionListener(new java.awt.event.ActionListener() {
+        btn_PonerVenta.setText("PONER A LA VENTA");
+        btn_PonerVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField_ProductoIDActionPerformed(evt);
+                btn_PonerVentaActionPerformed(evt);
             }
         });
 
-        btn_PonerVenta.setText("PONER A LA VENTA");
-
         btn_QuitarVenta.setText("QUITAR DE LA VENTA");
+        btn_QuitarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QuitarVentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(89, 89, 89))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(textField_ProductoID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textField_ProductoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -140,6 +145,17 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
                             .addComponent(btn_PonerVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btn_QuitarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(textField_ProductoID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textField_ProductoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(92, 92, 92))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,8 +166,8 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textField_ProductoID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textField_ProductoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textField_ProductoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_ProductoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(btn_PonerVenta)
                 .addGap(18, 18, 18)
@@ -174,11 +190,13 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_volver)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_volver))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,15 +207,11 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textField_ProductoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField_ProductoIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField_ProductoIDActionPerformed
 
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
         Pantalla_Ventas vV= new Pantalla_Ventas();
@@ -206,6 +220,26 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
         vV.setLocationRelativeTo(null);
         vV.setVisible(true);
     }//GEN-LAST:event_btn_volverActionPerformed
+
+    private void table_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_productosMouseClicked
+        Modulo_Ventas.CrudVentaProductos objetoVentaProductos = new Modulo_Ventas.CrudVentaProductos();
+        objetoVentaProductos.SeleccionarProductos(table_productos, textField_ProductoID,textField_ProductoNombre);
+    }//GEN-LAST:event_table_productosMouseClicked
+
+    private void btn_PonerVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PonerVentaActionPerformed
+        Modulo_Ventas.CrudVentaProductos objetoVentaProductos = new Modulo_Ventas.CrudVentaProductos();
+        objetoVentaProductos.PonerProductosVenta(textField_ProductoID);
+    }//GEN-LAST:event_btn_PonerVentaActionPerformed
+
+    private void btn_QuitarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QuitarVentaActionPerformed
+        Modulo_Ventas.CrudVentaProductos objetoVentaProductos = new Modulo_Ventas.CrudVentaProductos();
+        objetoVentaProductos.EliminarDescuentoProducto(textField_ProductoID);
+    }//GEN-LAST:event_btn_QuitarVentaActionPerformed
+
+    private void table_productosVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_productosVentaMouseClicked
+        Modulo_Ventas.CrudVentaProductos objetoVentaProductos = new Modulo_Ventas.CrudVentaProductos();
+        objetoVentaProductos.SeleccionarProductos(table_productosVenta, textField_ProductoID,textField_ProductoNombre);
+    }//GEN-LAST:event_table_productosVentaMouseClicked
 
     /**
      * @param args the command line arguments

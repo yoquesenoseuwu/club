@@ -173,25 +173,50 @@ public class Funciones_Usuario {
     return stock; // Retornar el stock obtenido
 }
     
-    //Funciones para la ventana Ventan_TarjetaUsuario
-    public void MostrarDirecciones(String usuarioID, JTextField direccion_usuario) {
+    //Funciones para la ventana Ventana_FormaEntrega==============================================
+    public void MostrarDatos(String usuarioID, JTextField direccion_usuario, JTextField direccion_club, JTextField precioEnvio) {
         ConexionBDD objetoConexion = new ConexionBDD();
-        String sql = "SELECT Direccion FROM Usuario WHERE IDUsuario = ?";
+        String sql  = "SELECT Direccion FROM Usuario WHERE IDUsuario = ?";
+        String sql2 = "SELECT Direccion FROM Estadio LIMIT 1;";
+        String sql3 = "SELECT PrecioEnvio FROM Envio WHERE Activo=1";
         try {
+            //Mostrar direccion del usuario
             CallableStatement st = (CallableStatement) objetoConexion.Conectar().prepareCall(sql);
             st.setString(1, usuarioID);
             ResultSet rs = st.executeQuery();
-
+            
             if (rs.next()) {
-                String direccion = rs.getString("Direccion");
+                String direccionUser = rs.getString("Direccion");
 
-                if (direccion != null) {
-                    direccion_usuario.setText(direccion);
+                if (direccionUser != null) {
+                    direccion_usuario.setText(direccionUser);
                 } else {
                     direccion_usuario.setText("Dirección no disponible.");
                 }
             } else {
                 direccion_usuario.setText("Usuario no encontrado.");
+            }
+            //Mostrar direccion del club
+            CallableStatement st2 = (CallableStatement) objetoConexion.Conectar().prepareCall(sql2);
+            ResultSet rs2 = st2.executeQuery();
+            if(rs2.next()){
+                String direccionClub = rs2.getString("Direccion");
+                if(direccionClub != null){
+                    direccion_club.setText(direccionClub);
+                }else{
+                    direccion_usuario.setText("Dirección no disponible.");
+                }
+            }
+            //Mostrar Precio del envio
+            CallableStatement st3 = (CallableStatement) objetoConexion.Conectar().prepareCall(sql3);
+            ResultSet rs3 = st3.executeQuery();
+            if(rs3.next()){
+                String precio = rs3.getString("PrecioEnvio");
+                if(precio != null){
+                    precioEnvio.setText(precio);
+                }else{
+                    precioEnvio.setText("El precio de envio no está disponible.");
+                }
             }
 
         } catch (Exception e) {
@@ -201,7 +226,8 @@ public class Funciones_Usuario {
             objetoConexion.cerrarConexion();
         }
     }
-
+    
+    
 
 }
 
