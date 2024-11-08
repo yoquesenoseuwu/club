@@ -14,14 +14,16 @@ public class Ventana_FinalizarCompra extends javax.swing.JFrame {
     private String productoID;
     private String fecha; 
     private int cantidadSeleccionada;
+    private String opcFormaEntrega;
     /**
      * Creates new form Ventana_FinalizarCompra
      */
-    public Ventana_FinalizarCompra(String usuarioID, String productoID, String fecha, int cantidadSeleccionada) {
+    public Ventana_FinalizarCompra(String usuarioID, String productoID, String fecha, int cantidadSeleccionada, String opcionFormaEntrega) {
         this.usuarioID = usuarioID;
         this.productoID = productoID;
         this.fecha = fecha;
         this.cantidadSeleccionada = cantidadSeleccionada;
+        this.opcFormaEntrega = opcionFormaEntrega;
         initComponents();
     }
 
@@ -228,7 +230,7 @@ public class Ventana_FinalizarCompra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Ventana_TarjetaUsuario vTU = new Ventana_TarjetaUsuario(usuarioID, productoID, fecha, cantidadSeleccionada);
+        Ventana_TarjetaUsuario vTU = new Ventana_TarjetaUsuario(usuarioID, productoID, fecha, cantidadSeleccionada, opcFormaEntrega);
         this.setVisible(false);
         vTU.setSize(550, 650);
         vTU.setLocationRelativeTo(null);
