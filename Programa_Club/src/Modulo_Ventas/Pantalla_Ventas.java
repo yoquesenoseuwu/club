@@ -163,7 +163,7 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
     private void Btn_Gestionar_VentaProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_VentaProductosActionPerformed
         Gestion_VentaProductos vGVP = new Gestion_VentaProductos();
         this.setVisible(false);
-        vGVP.setSize(1270,600);
+        vGVP.setSize(1000,600);
         vGVP.setLocationRelativeTo(null);
         vGVP.setVisible(true);
     }//GEN-LAST:event_Btn_Gestionar_VentaProductosActionPerformed

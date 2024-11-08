@@ -475,7 +475,7 @@ private void validarCampos() {
     private void Btn_AplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AplicarActionPerformed
         Pantalla_AplicarDescuento vAD = new Pantalla_AplicarDescuento();
         this.setVisible(false);
-        vAD.setSize(1250,670);
+        vAD.setSize(1250,600);
         vAD.setLocationRelativeTo(null);
         vAD.setVisible(true);
     }//GEN-LAST:event_Btn_AplicarActionPerformed

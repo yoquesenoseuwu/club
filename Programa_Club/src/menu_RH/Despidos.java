@@ -59,11 +59,6 @@ public class Despidos extends javax.swing.JFrame {
 
         Listo_despidos.setFont(new java.awt.Font("Waree", 0, 15)); // NOI18N
         Listo_despidos.setText("Listo");
-        Listo_despidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Listo_despidosActionPerformed(evt);
-            }
-        });
 
         Volver_despidos.setText("<-");
         Volver_despidos.addActionListener(new java.awt.event.ActionListener() {
@@ -140,14 +135,6 @@ public class Despidos extends javax.swing.JFrame {
         
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_ing_id_despidosKeyTyped
-
-    private void Listo_despidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Listo_despidosActionPerformed
-        Noti_despido newframe = new Noti_despido();
-        
-        newframe.setVisible(true);
-        
-        this.dispose();
-    }//GEN-LAST:event_Listo_despidosActionPerformed
 
     /**
      * @param args the command line arguments

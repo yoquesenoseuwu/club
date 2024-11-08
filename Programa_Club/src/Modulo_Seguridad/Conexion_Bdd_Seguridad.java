@@ -222,11 +222,11 @@ public class Conexion_Bdd_Seguridad {
         try{
             ArrayList<String> array = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            String query="SELECT e.idempleado, e.nombre, c.cargos FROM Empleado e, Cargo c WHERE e.idcargo=c.idcargo and (e.idcargo=1) group by e.nombre;";
+            String query="SELECT e.nombre, zg.ID_Guardia from Z_Guardia zg INNER JOIN Empleado e ON zg.ID_Guardia=e.idempleado Group by zg.ID_Guardia ;";
             Statement  sele = miConexion.createStatement();
             ResultSet result=sele.executeQuery(query);
             while(result.next()){
-                String Item=result.getInt("e.idempleado") + "/" + result.getString("e.nombre");
+                String Item=result.getInt("zg.ID_Guardia") + "/" + result.getString("e.nombre");
                 array.add(Item);
             }
             
@@ -345,8 +345,7 @@ public class Conexion_Bdd_Seguridad {
             return null;    
         }
        
-    }
-    
+    }   
     public Boolean Delete_Z_Guardias(int id){
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
@@ -368,9 +367,7 @@ public class Conexion_Bdd_Seguridad {
             return(false);
 
         }
-    }
-    
-    
+    } 
     public void Eliminar_equipo_de_x(int id){
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
@@ -383,6 +380,31 @@ public class Conexion_Bdd_Seguridad {
         }catch(Exception e){
             System.out.println("No funca");
             e.printStackTrace();
+        }
+    }
+    
+    public ArrayList Mostrar_Equipo_sin_Usar(){
+        try{ //
+            ArrayList<String> array = new ArrayList<String>();
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String query="SELECT * FROM Equipamiento where ID NOT IN (SELECT Id_Equipamiento FROM Guardia_Equipamiento)";
+            Statement sele = miConexion.createStatement();
+            ResultSet result=sele.executeQuery(query);
+            while(result.next()){
+                String Item=result.getInt("ID") + " // " + result.getString("Nombre");
+                array.add(Item);
+            }
+            
+            miConexion.close();
+            return array;
+            
+        }catch(Exception e){
+            System.out.println("No funca");
+            
+            e.printStackTrace();
+            
+            return null;    
+            
         }
     }
 
@@ -623,16 +645,34 @@ public class Conexion_Bdd_Seguridad {
         }
 
     }   
+    public void Insert_equipo(int id_equipo, int id_guardia){
+        try{
+            Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
+            String consigna="INSERT INTO Guardia_Equipamiento(Id_Guardia,Id_Equipamiento ) VALUES (?,?)";
+            PreparedStatement sele= miConexion.prepareStatement(consigna);
+            sele.setInt(1, id_guardia);
+            sele.setInt(2,id_equipo);
+            sele.executeUpdate();
+            miConexion.close();
+            
+        }catch(Exception e){
+             System.out.println("No funca");
+            
+            e.printStackTrace();
+        }
+
+    }
+    
     public ArrayList Select_equipo_de_guardia_x(int Id){
         try{
             ArrayList<String> array = new ArrayList<String>();
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            PreparedStatement sele = miConexion.prepareStatement("SELECT E.Nombre,GE.Id_Guardia,GE.Id_Equipamiento FROM Equipamiento E, Guardia_Equipamiento GE, Z_Guardia ZG WHERE E.ID=GE.Id_Equipamiento AND GE.Id_Guardia=? group by E.Nombre");
+            PreparedStatement sele = miConexion.prepareStatement("SELECT E.Nombre,E.ID FROM Equipamiento E, Guardia_Equipamiento GE WHERE E.ID=GE.Id_Equipamiento AND GE.Id_Guardia=? group by E.Nombre");
             sele.setInt(1,Id);
             ResultSet result = sele.executeQuery();
             
             while(result.next()){
-                array.add(result.getString("E.Nombre") + "//" +result.getInt("GE.Id_Guardia") + "//" + result.getInt("GE.Id_Equipamiento"));
+                array.add(result.getString("E.Nombre") + "//" + result.getInt("E.ID"));
             }
             
             miConexion.close();
@@ -645,10 +685,6 @@ public class Conexion_Bdd_Seguridad {
         }
         
     }
-    //"INSERT INTO Equipamiento(Nombre, Tipo_id) VALUES (?,?)"
-    
-
-    
     public ArrayList Select_tipo_Equipo(){
         try{
             ArrayList<String> resultados = new ArrayList<String>();
