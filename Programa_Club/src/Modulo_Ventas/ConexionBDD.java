@@ -2,6 +2,7 @@ package Modulo_Ventas;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -17,9 +18,11 @@ public class ConexionBDD {
 
             // Intenta establecer la conexión
             miConexion = DriverManager.getConnection(url, user, password);
-            JOptionPane.showMessageDialog(null, "Se conectó correctamente a la BDD");        
+            //JOptionPane.showMessageDialog(null, "Se conectó correctamente a la BDD");   
+            System.out.println("Se conecto a la bdd");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No se conectó correctamente a la BDD: " + e.toString());
+            //JOptionPane.showMessageDialog(null, "No se conectó correctamente a la BDD: " + e.toString());
+            System.out.println("No se conectó correctamente a la BDD:" + e.toString());
         }
         return miConexion; // Retorna la conexión (puede ser nula si hubo un error)
     }
@@ -34,4 +37,5 @@ public class ConexionBDD {
             JOptionPane.showMessageDialog(null, "No se pudo cerrar la conexión: " + e.toString());
         }
     }
+
 }

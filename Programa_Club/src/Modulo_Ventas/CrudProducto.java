@@ -90,6 +90,53 @@ public class CrudProducto {
             return nombreCategoria; // Este es el nombre que se mostrará en el JComboBox
         }
     }
+    public boolean existeProductoConNombre(String nombreProducto) {
+    ConexionBDD objetoConexion = new ConexionBDD();
+    String consulta = "SELECT COUNT(*) AS total FROM Productos WHERE Nombre = ?;";
+
+    try (PreparedStatement ps = objetoConexion.Conectar().prepareStatement(consulta)) {
+        ps.setString(1, nombreProducto);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next() && rs.getInt("total") > 0) {
+            return true; // Ya existe un producto con el mismo nombre
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al verificar la existencia del producto: " + e.getMessage());
+    } finally {
+        objetoConexion.cerrarConexion();
+    }
+    return false; // No existe producto con ese nombre
+    }
+
+    public String obtenerNombreOriginal(String idProducto) {
+        return obtenerValorOriginal(idProducto, "Nombre");
+    }
+
+    public String obtenerPrecioOriginal(String idProducto) {
+        return obtenerValorOriginal(idProducto, "Precio");
+    }
+
+    public String obtenerStockOriginal(String idProducto) {
+        return obtenerValorOriginal(idProducto, "Stock");
+    }
+
+    private String obtenerValorOriginal(String idProducto, String columna) {
+        ConexionBDD objetoConexion = new ConexionBDD();
+        String consulta = "SELECT " + columna + " FROM Productos WHERE ProductoID = ?;";
+
+        try (PreparedStatement ps = objetoConexion.Conectar().prepareStatement(consulta)) {
+            ps.setString(1, idProducto);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString(columna);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener " + columna + ": " + e.getMessage());
+        } finally {
+            objetoConexion.cerrarConexion();
+        }
+        return "";
+    }
 
     // Insertar
 public void InsertarProducto(JTextField paramNombreProducto, JTextField paramPrecioProducto, JTextField paramStockProducto, JComboBox<CategoriaItem> comboBoxCategorias) {

@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class Pantalla_G_Unique extends javax.swing.JFrame {
     
     Pantalla_G_Unique_Codigo pGuC=new Pantalla_G_Unique_Codigo();
-    ArrayList<String> array;
+    ArrayList<String> array_usado;
+    ArrayList<String> array_sin_usar;
     String Nombre;
     int Id;
     public Pantalla_G_Unique() {
@@ -31,13 +32,13 @@ public class Pantalla_G_Unique extends javax.swing.JFrame {
         Equipo3 = new javax.swing.JLabel();
         Equipo1 = new javax.swing.JLabel();
         Equipo2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         Combo3 = new javax.swing.JComboBox<>();
         Combo2 = new javax.swing.JComboBox<>();
         Eliminar1 = new javax.swing.JButton();
         Combo1 = new javax.swing.JComboBox<>();
         Eliminar2 = new javax.swing.JButton();
         Eliminar3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,16 +60,19 @@ public class Pantalla_G_Unique extends javax.swing.JFrame {
 
         Equipo2.setText("jLabel2");
 
-        jButton1.setText("Agregar nuevo equipamiento");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Combo3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ponga un nuevo equipo" }));
+        Combo3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Combo3ActionPerformed(evt);
             }
         });
 
-        Combo3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        Combo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Combo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ponga un nuevo equipo" }));
+        Combo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Combo2ActionPerformed(evt);
+            }
+        });
 
         Eliminar1.setText("Eliminar equipamiento1");
         Eliminar1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +81,7 @@ public class Pantalla_G_Unique extends javax.swing.JFrame {
             }
         });
 
-        Combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ponga un nuevo equipo" }));
         Combo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Combo1ActionPerformed(evt);
@@ -98,6 +102,13 @@ public class Pantalla_G_Unique extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Quitar todo el Equipo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,63 +116,72 @@ public class Pantalla_G_Unique extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Volver1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Jnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Equipo3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Combo3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(Eliminar3))
+                                .addComponent(Eliminar3, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Equipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Combo2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(Eliminar2))
-                            .addComponent(jButton1)
+                                .addComponent(Eliminar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Equipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(Eliminar1))))
-                    .addComponent(btn_Volver1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 139, Short.MAX_VALUE))
+                                .addComponent(Eliminar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(52, 128, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_Volver1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(Jnombre)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(Jnombre)
-                        .addGap(38, 38, 38)
+                        .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Equipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Eliminar1))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Eliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(82, 82, 82)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Equipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Combo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Eliminar2))
-                        .addGap(18, 18, 18)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(Eliminar2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(72, 72, 72)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Equipo3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Combo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Eliminar3))
-                        .addGap(59, 59, 59)
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(Combo3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Eliminar3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(195, 195, 195)
+                        .addComponent(Combo2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(267, 267, 267))))
         );
 
         pack();
@@ -175,24 +195,45 @@ public class Pantalla_G_Unique extends javax.swing.JFrame {
         pG.setSize(915,395);
     }//GEN-LAST:event_btn_Volver1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void Combo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo1ActionPerformed
-        // TODO add your handling code here:
+        Object itemSeleccionado = Combo1.getSelectedItem();
+        String[] Elemento = (itemSeleccionado.toString()).split(" // ");
+        
+        pGuC.Insertar_equipo(Integer.parseInt(Elemento[0]),Id);
+        
+        Equipo1.setText(Elemento[0]+"//"+Elemento[1]);
+        
+        Eliminar2.setEnabled(true);
+        Eliminar3.setEnabled(true);
+ 
+        
+        
+        
     }//GEN-LAST:event_Combo1ActionPerformed
 
     private void Eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar1ActionPerformed
         Combo1.setEnabled(true);
-        
+        Combo2.setEnabled(false);
+        Combo3.setEnabled(false);
+        Eliminar2.setEnabled(false);
+        Eliminar3.setEnabled(false);
+        if (Equipo1.getText()=="Sin Equipo"){
+            
+        }
+        else{
         Equipo1.setText("Sin Equipo");
-        String[] stri = array.toArray(new String[0]);
+        String[] stri = array_usado.toArray(new String[0]);
         
         String valor1=stri[0];
         String[] valor2 = valor1.split("//");
         
-        pGuC.Eliminar_datos(Integer.parseInt(valor2[2]));
+        pGuC.Eliminar_datos(Integer.parseInt(valor2[1]));
+        }
+        array_sin_usar=pGuC.mostrar_equipo();
+        for (String equipo:array_sin_usar){
+            Combo1.addItem(equipo);
+        }
+        
         
         
         
@@ -201,20 +242,104 @@ public class Pantalla_G_Unique extends javax.swing.JFrame {
     }//GEN-LAST:event_Eliminar1ActionPerformed
 
     private void Eliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar2ActionPerformed
-        // TODO add your handling code here:
+        Combo2.setEnabled(true);
+        Combo1.setEnabled(false);
+        Combo3.setEnabled(false);
+        Eliminar1.setEnabled(false);
+        Eliminar3.setEnabled(false);
+        if (Equipo2.getText()=="Sin Equipo"){
+            
+        }
+        else{
+        Equipo2.setText("Sin Equipo");
+        String[] stri = array_usado.toArray(new String[0]);
+        
+        String valor1=stri[1];
+        String[] valor2 = valor1.split("//");
+        
+        pGuC.Eliminar_datos(Integer.parseInt(valor2[1]));
+        }
+                
+        array_sin_usar=pGuC.mostrar_equipo();
+        for (String equipo:array_sin_usar){
+            Combo2.addItem(equipo);
+        }
     }//GEN-LAST:event_Eliminar2ActionPerformed
 
     private void Eliminar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar3ActionPerformed
-        // TODO add your handling code here:
+        Combo2.setEnabled(false);
+        Combo1.setEnabled(false);
+        Combo3.setEnabled(true);
+        Eliminar1.setEnabled(false);
+        Eliminar2.setEnabled(false);
+        if (Equipo3.getText()=="Sin Equipo"){
+            
+        }
+        else{
+        Equipo3.setText("Sin Equipo");
+        String[] stri = array_usado.toArray(new String[0]);
+        
+        String valor1=stri[2];
+        String[] valor2 = valor1.split("//");
+        
+        pGuC.Eliminar_datos(Integer.parseInt(valor2[1]));
+        }
+               
+        array_sin_usar=pGuC.mostrar_equipo();
+        for (String equipo:array_sin_usar){
+            Combo3.addItem(equipo);
+        }
     }//GEN-LAST:event_Eliminar3ActionPerformed
 
+    private void Combo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo2ActionPerformed
+        Object itemSeleccionado = Combo2.getSelectedItem();
+        String[] Elemento = (itemSeleccionado.toString()).split(" // ");
+        
+        pGuC.Insertar_equipo(Integer.parseInt(Elemento[0]),Id);
+        
+        Equipo2.setText(Elemento[0]+"//"+Elemento[1]);
+        
+        Eliminar1.setEnabled(true);
+        Eliminar3.setEnabled(true);
+    }//GEN-LAST:event_Combo2ActionPerformed
+
+    private void Combo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo3ActionPerformed
+        Object itemSeleccionado = Combo3.getSelectedItem();
+        String[] Elemento = (itemSeleccionado.toString()).split(" // ");
+        
+        pGuC.Insertar_equipo(Integer.parseInt(Elemento[0]),Id);
+        
+        Equipo3.setText(Elemento[0]+"//"+Elemento[1]);
+        
+        Eliminar2.setEnabled(true);
+        Eliminar1.setEnabled(true);
+    }//GEN-LAST:event_Combo3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Equipo1.setText("Sin Equipo");
+        Equipo2.setText("Sin Equipo");
+        Equipo3.setText("Sin Equipo");
+        Combo1.setEnabled(false);
+        Combo2.setEnabled(false);
+        Combo3.setEnabled(false);
+        
+        for (int i=0; i<2;i++){
+            String[] stri = array_usado.toArray(new String[0]);
+
+            String valor1=stri[i];
+            String[] valor2 = valor1.split("//");
+
+            pGuC.Eliminar_datos(Integer.parseInt(valor2[1]));
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void Cargar_Datos(int Id,String nombre){
-        array =pGuC.cargar_datos(Id);
+        array_usado =pGuC.cargar_datos(Id);
         this.Id=Id;
         Jnombre.setText(Nombre);
          
-        System.out.println(array.size());
-        String[] stri = array.toArray(new String[0]);
+        System.out.println(array_usado.size());
+        String[] stri = array_usado.toArray(new String[0]);
         
         try{
             Equipo1.setText(stri[0]);

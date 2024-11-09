@@ -31,16 +31,16 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     /**
      * Creates new form Gestion_Compra_Reembolso_Usuario
      */
-    public Gestion_Compra_Usuario() {
+    public Gestion_Compra_Usuario(String usuarioID) {
+        this.usuarioID = usuarioID;
         initComponents();
-        this.usuarioID = usuarioID; // Almacena el ID del usuario en la variable
         datechooser_Fecha.setDate(new java.util.Date()); 
         datechooser_Fecha.setVisible(false); 
         Btn_ID.setVisible(false); 
         Btn_Nombre.setEnabled(false);
         Btn_Categoria.setEnabled(false);
         Btn_Precio.setEnabled(false);
-        Compra_Usuario compra_usuario = new Compra_Usuario(); // Inicializar compra_usuario
+        Funciones_Usuario compra_usuario = new Funciones_Usuario(); // Inicializar compra_usuario
         compra_usuario.MostrarProductos(TablaProductos); // Mostrar productos   
         
     }
@@ -225,7 +225,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverPantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverPantallaActionPerformed
-        Menu_Usuario mU= new Menu_Usuario();
+        Menu_Usuario mU= new Menu_Usuario(usuarioID);
         this.setVisible(false);
         mU.setSize(500,500);
         mU.setLocationRelativeTo(null);
@@ -242,7 +242,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
             datechooser_Fecha.setDate(new java.util.Date());
 
             // Llama a SeleccionarProducto y pasa los JTextField
-            Compra_Usuario objetoUsuario = new Compra_Usuario();
+            Funciones_Usuario objetoUsuario = new Funciones_Usuario();
             objetoUsuario.SeleccionarProducto(TablaProductos, Btn_ID, Btn_Nombre, Btn_Precio, Btn_Categoria);
         }
         
@@ -267,7 +267,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
             }
 
             // Verificar stock disponible
-            Compra_Usuario compraUsuario = new Compra_Usuario();
+            Funciones_Usuario compraUsuario = new Funciones_Usuario();
             int idProducto = Integer.parseInt(productoID);
             int stockDisponible = compraUsuario.obtenerStockProducto(idProducto);
             System.out.println("Stock disponible: " + stockDisponible);
@@ -284,10 +284,10 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
                 String fechaString = formatoFecha.format(datechooser_Fecha.getDate());
 
                 // Crear la siguiente ventana, pasando los datos necesarios
-                Gestion_CompraTarjeta_Usuario ventanaCompra = new Gestion_CompraTarjeta_Usuario(usuarioID, productoID, fechaString, cantidadSeleccionada);
+                Ventana_FormaEntrega ventanaCompra = new Ventana_FormaEntrega(usuarioID, productoID, fechaString, cantidadSeleccionada);
 
                 // Configura y muestra la nueva ventana
-                ventanaCompra.setSize(500, 500);
+                ventanaCompra.setSize(500, 600);
                 ventanaCompra.setLocationRelativeTo(null);
                 ventanaCompra.setVisible(true);
 
@@ -330,7 +330,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
         }
 
         if (productoID != null && !productoID.isEmpty()) {
-            Compra_Usuario compraUsuario = new Compra_Usuario();
+            Funciones_Usuario compraUsuario = new Funciones_Usuario();
             int idProducto = Integer.parseInt(productoID);
             int stockDisponible = compraUsuario.obtenerStockProducto(idProducto);
             System.out.println("Stock disponible: " + stockDisponible);
@@ -388,12 +388,7 @@ public class Gestion_Compra_Usuario extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Gestion_Compra_Usuario().setVisible(true);
-            }
-        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

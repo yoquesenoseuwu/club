@@ -12,22 +12,26 @@ import Modulo_Ventas.Pantalla_Ventas;
  * @author tm_galli
  */
 public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
+    private Reembolso_Usuario objetoReembolso = new Reembolso_Usuario();
     private String usuarioID; // Variable para almacenar el ID del usuario
+    private String IDPedidoSeleccionado;
     private Reembolso_Usuario reembolsoUsuario;
     /**
      * Creates new form Gestion_Reembolso_Usuario
      */
-    public Solicitud_Reembolso_Usuario() {
+    public Solicitud_Reembolso_Usuario(String usuarioID) {
         initComponents();
         this.usuarioID = usuarioID;
         reembolsoUsuario = new Reembolso_Usuario();
-        reembolsoUsuario.MostrarProductos(TablaPedidos);
+        reembolsoUsuario.MostrarProductos(TablaPedidos, usuarioID);
         datechooser_Fecha.setDate(new java.util.Date()); 
         datechooser_Fecha.setVisible(false);
         JTextField_ID.setVisible(false); 
         JTextField_Nombre.setEnabled(false);
         JTextField_Categoria.setEnabled(false);
         JTextField_Precio.setEnabled(false);
+        JTextField_Cantidad.setEnabled(false); 
+
     }
 
     /**
@@ -51,6 +55,8 @@ public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
         Btn_Confirmar = new javax.swing.JButton();
         JTextField_Categoria = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        JTextField_Cantidad = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaPedidos = new javax.swing.JTable();
@@ -75,12 +81,17 @@ public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
 
         jLabel5.setText("Categoria");
 
+        jLabel6.setText("Cantidad");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(datechooser_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -104,23 +115,24 @@ public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
                                     .addComponent(JTextField_Categoria, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addComponent(JTextField_Precio, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
+                                    .addComponent(JTextField_Precio, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(JTextField_Cantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel4)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel5))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(Btn_Confirmar)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(datechooser_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))))
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(Btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel5)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -140,6 +152,10 @@ public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JTextField_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JTextField_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,12 +241,11 @@ public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Btn_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ConfirmarActionPerformed
-        Reembolso_Usuario objetoReembolso = new Reembolso_Usuario();
-        objetoReembolso.InsertarMotivo(JTextField_Motivo);
+        objetoReembolso.InsertarMotivo(JTextField_Motivo, datechooser_Fecha);
     }//GEN-LAST:event_Btn_ConfirmarActionPerformed
 
     private void VolverPantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverPantallaActionPerformed
-        Menu_Usuario mU= new Menu_Usuario();
+        Menu_Usuario mU= new Menu_Usuario(usuarioID);
         this.setVisible(false);
         mU.setSize(500,500);
         mU.setLocationRelativeTo(null);
@@ -240,10 +255,12 @@ public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
     private void TablaPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPedidosMouseClicked
         int filaSeleccionada = TablaPedidos.getSelectedRow();
         if (filaSeleccionada != -1) {
-            // Llama a SeleccionarProducto y pasa los JTextField
-            Reembolso_Usuario objetoReembolso = new Reembolso_Usuario();
-            objetoReembolso.SeleccionarProducto(TablaPedidos, JTextField_ID, JTextField_Nombre, JTextField_Precio, JTextField_Categoria);
-        }
+            int idPedido = Integer.parseInt(TablaPedidos.getValueAt(filaSeleccionada, 0).toString());
+            System.out.println("IDPedido seleccionado: " + idPedido);
+
+            objetoReembolso.setIDPedidoSeleccionado(idPedido);
+            objetoReembolso.SeleccionarProducto(TablaPedidos, JTextField_ID, JTextField_Nombre, JTextField_Precio, JTextField_Categoria, JTextField_Cantidad);
+    }
     }//GEN-LAST:event_TablaPedidosMouseClicked
 
     /**
@@ -275,15 +292,12 @@ public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Solicitud_Reembolso_Usuario().setVisible(true);
-            }
-        });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Confirmar;
+    private javax.swing.JTextField JTextField_Cantidad;
     private javax.swing.JTextField JTextField_Categoria;
     private javax.swing.JTextField JTextField_ID;
     private javax.swing.JTextField JTextField_Motivo;
@@ -296,6 +310,7 @@ public class Solicitud_Reembolso_Usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

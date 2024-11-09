@@ -143,6 +143,29 @@ public class Ver_Reembolso {
             objetoConexion.cerrarConexion();
         }
     }
+    public void EliminarReembolso(JTextField paramID){
+        //Declarar parametros
+        setCodigo(Integer.parseInt(paramID.getText()));
+        ConexionBDD objetoConexion= new ConexionBDD();
+        //Consulta SQL
+        String consulta="DELETE FROM Reembolso_Pedido WHERE IDReembolso=?;";
+        try{
+            //Conectar BDD
+            CallableStatement cs= objetoConexion.Conectar().prepareCall(consulta);
+            //Adquirir parametros
+            cs.setInt(1, getCodigo());
+            //Ejecutar
+            cs.execute();
+            
+            JOptionPane.showMessageDialog(null,"Se eliminó correctamente el reembolso");
+            
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"No se eliminó correctamente el registro, error:"+ e.toString())  ;
+        }finally{
+            objetoConexion.cerrarConexion();
+        }
+    }
 
     // Método auxiliar para obtener el estado actual del reembolso
     private int obtenerEstadoActual(int reembolsoID) {
