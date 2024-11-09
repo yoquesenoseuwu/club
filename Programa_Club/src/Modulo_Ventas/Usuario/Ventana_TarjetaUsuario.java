@@ -5,6 +5,7 @@
  */
 package Modulo_Ventas.Usuario;
 import Modulo_Ventas.Usuario.Gestion_Compra_Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +17,14 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
     private String fecha; 
     private int cantidadSeleccionada;
     private String opcFormaEntrega;
+    
+    private String tipoTarjeta;
+    private String nombreTitular;
+    private String codigoSeguridad;
+    private String numerinTarjeta;
+    //estas variables verifican que la tarjeta sea valida y no este vencida para pasar a la siguiente ventana
+    private boolean condicion1 = false;
+    private boolean condicion2 = false;
     /**
      * Creates new form Ventana_TarjetaDebito
      */
@@ -25,15 +34,45 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
         this.fecha = fecha;
         this.cantidadSeleccionada = cantidadSeleccionada;
         this.opcFormaEntrega = opcionFormaEntrega;
-        initComponents();
         
+        
+        initComponents();
         //Añáde los items al combobox del tipo de tarjeta
         cmbox_TipoTarjeta.addItem("Debito");
         cmbox_TipoTarjeta.addItem("Credito");
+        
+        /*esto sirve para llamar a la funcion de validacion cuando el usuario termino de escribir el numero
+        de tarjeta*/
+        textField_NumTarjeta.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent e) {
+                String inputText = textField_NumTarjeta.getText();
+                
+                if (inputText.length() == 16) {
+                    Tarjeta_Usuario tarjetitaUsuario = new Tarjeta_Usuario();
+                    if(tarjetitaUsuario.AnalizarEmpresa(textField_NumTarjeta)){
+                        condicion1 = true;
+                    }
+                }
+            }
+        });
+        //=============
+        //lo siguiente hace lo mismo que lo anterior pero con la fecha de vencimiento
+        textField_Anio.addKeyListener(new java.awt.event.KeyAdapter() {
+                @Override
+                public void keyReleased(java.awt.event.KeyEvent e) {
+                            String mes = textField_Mes.getText();
+                            String anio = textField_Anio.getText();
+                            // Verificamos si ambos campos están completos: mes tiene 2 caracteres y año 4
+                            if (mes.length() == 2 && anio.length() == 2) {
+                                        Tarjeta_Usuario tarjetitaUsuario = new Tarjeta_Usuario();       
+                                        if(tarjetitaUsuario.VerificarVencimiento(textField_Mes, textField_Anio)){
+                                            condicion2 = true;
+                                        }
+                            }
+                }
+        });
     }
-
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +90,7 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
         textField_NumTarjeta = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        textField_NombreTitular = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         textField_Mes = new javax.swing.JTextField();
@@ -60,7 +99,7 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        textField_CodigoSeguridad = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -117,7 +156,7 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_NombreTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(29, 29, 29)))
@@ -129,7 +168,7 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textField_NombreTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -188,7 +227,7 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textField_CodigoSeguridad, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -198,7 +237,7 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textField_CodigoSeguridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
 
@@ -302,7 +341,9 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //=======================================================================================
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Ventana_FormaEntrega ventanaFormaEntrega = new Ventana_FormaEntrega(usuarioID, productoID, fecha, cantidadSeleccionada);
         this.setVisible(false);
@@ -312,20 +353,26 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        /*Ventana_FinalizarCompra ventanaFinCompra = new Ventana_FinalizarCompra(usuarioID, productoID, fecha, cantidadSeleccionada);
-        this.setVisible(false);
-        ventanaFinCompra.setSize(550, 650);
-        ventanaFinCompra.setLocationRelativeTo(null);
-        ventanaFinCompra.setVisible(true); */
-        
-        Tarjeta_Usuario tarjetitaUsuario = new Tarjeta_Usuario();
-        //tarjetitaUsuario.AnalizarEmpresa(textField_NumTarjeta);
-        
-        tarjetitaUsuario.VerificarVencimiento(textField_Mes, textField_Anio);
-        
-        
+        //System.out.println("condicion1 : "+condicion1 + "--" + "condicion2 :" + condicion2);
+        //Esto sirve para que si la tarjeta es valida y no está vencida pueda continuar
+        if(condicion1 == true && condicion2 == true){
+                  tipoTarjeta = (String)cmbox_TipoTarjeta.getSelectedItem();
+                  numerinTarjeta = textField_NumTarjeta.getText();
+                  nombreTitular = textField_NombreTitular.getText();
+                  codigoSeguridad = textField_CodigoSeguridad.getText();
+            
+                  Ventana_FinalizarCompra ventanaFinCompra = new Ventana_FinalizarCompra(usuarioID, productoID, fecha, cantidadSeleccionada, opcFormaEntrega,tipoTarjeta, numerinTarjeta, nombreTitular, codigoSeguridad);
+                  this.setVisible(false);
+                  ventanaFinCompra.setSize(550, 650);
+                  ventanaFinCompra.setLocationRelativeTo(null);
+                  ventanaFinCompra.setVisible(true); 
+            condicion1 = false;
+            condicion2 = false;
+        }else{
+            JOptionPane.showMessageDialog(null,"Ups, verifica que los datos de la tarjeta sean correctos para continuar");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    //========================================================================================
     /**
      * @param args the command line arguments
      */
@@ -373,10 +420,10 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField textField_Anio;
+    private javax.swing.JTextField textField_CodigoSeguridad;
     private javax.swing.JTextField textField_Mes;
+    private javax.swing.JTextField textField_NombreTitular;
     private javax.swing.JTextField textField_NumTarjeta;
     // End of variables declaration//GEN-END:variables
 }

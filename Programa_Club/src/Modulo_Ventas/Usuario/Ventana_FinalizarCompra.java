@@ -5,6 +5,12 @@
  */
 package Modulo_Ventas.Usuario;
 
+import Modulo_Ventas.ConexionBDD;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gabiv
@@ -15,16 +21,26 @@ public class Ventana_FinalizarCompra extends javax.swing.JFrame {
     private String fecha; 
     private int cantidadSeleccionada;
     private String opcFormaEntrega;
-    /**
-     * Creates new form Ventana_FinalizarCompra
-     */
-    public Ventana_FinalizarCompra(String usuarioID, String productoID, String fecha, int cantidadSeleccionada, String opcionFormaEntrega) {
-        this.usuarioID = usuarioID;
-        this.productoID = productoID;
-        this.fecha = fecha;
-        this.cantidadSeleccionada = cantidadSeleccionada;
+    
+    private String tipoTarjeta;
+    private String nombreTitular;
+    private String codigoSeguridad;
+    private String numerinTarjeta;
+    public Ventana_FinalizarCompra(String userID, String productID, String dates, int cantSeleccionada,String opcionFormaEntrega, String tiTarjeta, String nTarjeta, String nomTitular, String codSeguridad) throws SQLException {
+        this.usuarioID = userID;
+        this.productoID = productID;
+        this.fecha = dates;
+        this.cantidadSeleccionada = cantSeleccionada;
         this.opcFormaEntrega = opcionFormaEntrega;
+        this.tipoTarjeta = tiTarjeta;
+        this.nombreTitular= nomTitular;
+        this.codigoSeguridad= codSeguridad;
+        this.numerinTarjeta = nTarjeta;
+        
+        
         initComponents();
+        MostrarTodo();
+        
     }
 
     /**
@@ -41,26 +57,26 @@ public class Ventana_FinalizarCompra extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        textField_Producto = new javax.swing.JTextField();
+        textField_PrecioOriginal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        textField_Descuento = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        textField_PrecioFinal = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        textField_Cantidad = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        textField_Categoria = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        textField_FormaEntrega = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        textField_Direccion = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        textField_PrecioEnvio = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        textField_TotalPagar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,21 +145,17 @@ public class Ventana_FinalizarCompra extends javax.swing.JFrame {
                                             .addComponent(jLabel3))
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField6)
-                                            .addComponent(jTextField5)
-                                            .addComponent(jTextField4)
-                                            .addComponent(jTextField2)
-                                            .addComponent(jTextField3)
-                                            .addComponent(jTextField7)
-                                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(textField_Categoria)
+                                            .addComponent(textField_Cantidad)
+                                            .addComponent(textField_PrecioFinal)
+                                            .addComponent(textField_PrecioOriginal)
+                                            .addComponent(textField_Descuento)
+                                            .addComponent(textField_FormaEntrega)
+                                            .addComponent(textField_PrecioEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField8))))
+                                        .addComponent(textField_Direccion))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(148, 148, 148)
                                 .addComponent(jButton2))
@@ -151,7 +163,12 @@ public class Ventana_FinalizarCompra extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(textField_TotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textField_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -164,46 +181,46 @@ public class Ventana_FinalizarCompra extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_PrecioOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_PrecioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textField_FormaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textField_PrecioEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textField_TotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
@@ -228,7 +245,59 @@ public class Ventana_FinalizarCompra extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void MostrarTodo() throws SQLException{
+        ConexionBDD objetoConexion = new ConexionBDD();
+        //Mostrar Datos del Producto Elejido===========================================================================
+        String consultaProducto  = "SELECT p.ProductoID, p.Nombre, p.Precio AS Precio, p.Stock, c.NombreCategoria, COALESCE(d.CantidadDescuento, 'Ningun') AS Descuento, COALESCE(dp.PrecioFinal, p.Precio) AS PrecioFinal FROM Productos p LEFT JOIN DescuentoProductos dp ON p.ProductoID = dp.ProductoID LEFT JOIN Descuento d ON dp.DescuentoID = d.DescuentoID AND CURDATE() BETWEEN d.Fecha_Inicio AND d.Fecha_Final LEFT JOIN Categorias c ON p.CategoriaID = c.CategoriaID WHERE p.ProductoID = ?;";
+        try {
+            CallableStatement st = (CallableStatement) objetoConexion.Conectar().prepareCall(consultaProducto);
+            st.setString(1, productoID);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                String nomProduct = rs.getString("Nombre");
+                String nomCategori = rs.getString("NombreCategoria");
+                String preOriginal = rs.getString("Precio");
+                String descuent = rs.getString("Descuento");
+                String preFin = rs.getString("PrecioFinal");
+                
+                if (nomProduct != null) {
+                    textField_Producto.setText(nomProduct);
+                    textField_Categoria.setText(nomCategori);
+                    textField_PrecioOriginal.setText(preOriginal);
+                    textField_Descuento.setText(descuent);
+                    textField_PrecioFinal.setText(preFin);
+                } else {
+                    textField_Producto.setText("nombre no disponible.");
+                }
+            } else {
+                textField_Producto.setText("producto no encontrado.");
+            } 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al mostrar todos los datos: " + e.toString());
+        } finally {
+            objetoConexion.cerrarConexion();
+        }
+        //Mostrar Datos Restantes===========================================================================
+        //Cantidad del producto----------------------------------------------
+        String auxCantSeleccionada = "" + cantidadSeleccionada;
+        textField_Cantidad.setText(auxCantSeleccionada);
+        //Forma de Entrega----------------------------------------------
+        textField_FormaEntrega.setText(opcFormaEntrega);
+        //Precio de envio----------------------------------------------
+        String sql3 = "SELECT PrecioEnvio FROM Envio WHERE Activo=1";     
+        CallableStatement st3 = (CallableStatement) objetoConexion.Conectar().prepareCall(sql3);
+        ResultSet rs3 = st3.executeQuery();
+        if(rs3.next()){
+            String precio = rs3.getString("PrecioEnvio");
+            if(precio != null){
+                textField_PrecioEnvio.setText(precio);
+            }else{
+                textField_PrecioEnvio.setText("El precio de envio no está disponible.");
+            }
+        }
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Ventana_TarjetaUsuario vTU = new Ventana_TarjetaUsuario(usuarioID, productoID, fecha, cantidadSeleccionada, opcFormaEntrega);
         this.setVisible(false);
@@ -254,15 +323,15 @@ public class Ventana_FinalizarCompra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField textField_Cantidad;
+    private javax.swing.JTextField textField_Categoria;
+    private javax.swing.JTextField textField_Descuento;
+    private javax.swing.JTextField textField_Direccion;
+    private javax.swing.JTextField textField_FormaEntrega;
+    private javax.swing.JTextField textField_PrecioEnvio;
+    private javax.swing.JTextField textField_PrecioFinal;
+    private javax.swing.JTextField textField_PrecioOriginal;
+    private javax.swing.JTextField textField_Producto;
+    private javax.swing.JTextField textField_TotalPagar;
     // End of variables declaration//GEN-END:variables
 }

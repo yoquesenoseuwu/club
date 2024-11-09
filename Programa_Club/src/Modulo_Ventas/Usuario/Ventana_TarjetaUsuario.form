@@ -179,7 +179,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField3" min="-2" pref="230" max="-2" attributes="0"/>
+                          <Component id="textField_NombreTitular" min="-2" pref="230" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
@@ -195,7 +195,7 @@
                       <EmptySpace pref="19" max="32767" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textField_NombreTitular" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="37" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -207,7 +207,7 @@
                 <Property name="text" type="java.lang.String" value="APELLIDO Y NOMBRE DEL TITULAR"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
+            <Component class="javax.swing.JTextField" name="textField_NombreTitular">
             </Component>
           </SubComponents>
         </Container>
@@ -300,7 +300,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jTextField5" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="textField_CodigoSeguridad" min="-2" pref="80" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -314,7 +314,7 @@
                       <EmptySpace pref="22" max="32767" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTextField5" min="-2" max="-2" attributes="0"/>
+                      <Component id="textField_CodigoSeguridad" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -326,7 +326,7 @@
                 <Property name="text" type="java.lang.String" value="CODIGO DE SEGURIDAD"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField5">
+            <Component class="javax.swing.JTextField" name="textField_CodigoSeguridad">
             </Component>
           </SubComponents>
         </Container>

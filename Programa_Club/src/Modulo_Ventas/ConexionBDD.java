@@ -31,10 +31,12 @@ public class ConexionBDD {
         try {
             if (miConexion != null && !miConexion.isClosed()) {
                 miConexion.close(); // Cierra la conexión
-                JOptionPane.showMessageDialog(null, "Conexión cerrada");
+                //JOptionPane.showMessageDialog(null, "Conexión cerrada");
+                System.out.println("Conexion Cerrada");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No se pudo cerrar la conexión: " + e.toString());
+            //JOptionPane.showMessageDialog(null, "No se pudo cerrar la conexión: " + e.toString());
+            System.out.println("No se pudo cerrar la conexión: " + e.toString());
         }
     }
 
