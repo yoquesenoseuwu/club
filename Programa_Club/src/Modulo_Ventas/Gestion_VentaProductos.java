@@ -21,6 +21,9 @@ public class Gestion_VentaProductos extends javax.swing.JFrame {
         objetoVentaProductos.MostrarProductos(table_productosVenta);
         
         objetoVentaProductos.MostrarProductosNoDisponibles(table_productos);
+        textField_ProductoID.setEnabled(false);
+        textField_ProductoNombre.setEnabled(false);
+
         
     }
 
