@@ -22,12 +22,14 @@ public class Ver_Zonas extends javax.swing.JFrame {
     Ver_Zonas_codigo vZc = new Ver_Zonas_codigo();
     DefaultListModel modelo = new DefaultListModel();
     public String Nomopc;
+    
 
     /**
      * Creates new form Ver_Zonas
      */
-    public Ver_Zonas() {
+    public Ver_Zonas() {//Ingresa las zonas al list_zonas
         initComponents();
+        this.setResizable(false);
         modelo=vZc.mostrar(modelo);
         list_zonas.setModel(modelo);
         list_zonas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -36,16 +38,19 @@ public class Ver_Zonas extends javax.swing.JFrame {
                 if (!e.getValueIsAdjusting()) {
                     String itemSeleccionado = list_zonas.getSelectedValue();
                     String[] separado=itemSeleccionado.split("-");
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + separado[1]);
                     int id=Integer.parseInt(separado[0]);
-                    vZc.Pantalla_Zona(id);
+                    Esconder(id);
+                    
+                    
                     
                 }
             }
         });
     }
-    public String Nom(){
-        return(Nomopc);
+
+    private void Esconder(int id){//Cierra la pantalla y abre la pantalla de la zona elegida
+        this.setVisible(false);
+        vZc.Pantalla_Zona(id);
     }
 
     /**
@@ -57,17 +62,22 @@ public class Ver_Zonas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn_Volver = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btn_Agregar_Zona = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         list_zonas = new javax.swing.JList<>();
-        btn_Agregar_Zona = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btn_Volver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btn_Volver.setText("<--");
-        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(47, 94, 141));
+
+        btn_Agregar_Zona.setText("Agregar zona");
+        btn_Agregar_Zona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_VolverActionPerformed(evt);
+                btn_Agregar_ZonaActionPerformed(evt);
             }
         });
 
@@ -78,56 +88,95 @@ public class Ver_Zonas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(list_zonas);
 
-        btn_Agregar_Zona.setText("Agregar zona");
-        btn_Agregar_Zona.addActionListener(new java.awt.event.ActionListener() {
+        jPanel2.setBackground(new java.awt.Color(31, 50, 69));
+
+        btn_Volver.setBackground(new java.awt.Color(47, 94, 141));
+        btn_Volver.setText("<--");
+        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Agregar_ZonaActionPerformed(evt);
+                btn_VolverActionPerformed(evt);
             }
         });
+
+        jLabel1.setBackground(new java.awt.Color(229, 232, 236));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(229, 232, 236));
+        jLabel1.setText("Zonas de Seguridad");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(198, 198, 198)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(btn_Volver))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                .addComponent(btn_Agregar_Zona)
+                .addGap(104, 104, 104))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Agregar_Zona))
+                .addGap(65, 65, 65))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(btn_Volver)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btn_Agregar_Zona)
-                .addContainerGap(12, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(btn_Volver)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(btn_Agregar_Zona)))
-                .addGap(0, 62, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Boton para volver a la pantalla principal
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
         Pantalla_Seguridad pM = new Pantalla_Seguridad();
         pM.setVisible(true);
         this.setVisible(false);
-        pM.setSize(1530,900);
+        pM.setSize(700, 430);
         pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
-
+    
+    //Boton para abrir pantalla para crear una nueva zona
     private void btn_Agregar_ZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Agregar_ZonaActionPerformed
         Agregar_Zona aZ=new Agregar_Zona();
         aZ.setVisible(true);
         this.setVisible(false);
+        aZ.setSize(600, 430);
+        aZ.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_Agregar_ZonaActionPerformed
 
     /**
@@ -168,6 +217,9 @@ public class Ver_Zonas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Agregar_Zona;
     private javax.swing.JButton btn_Volver;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> list_zonas;
     // End of variables declaration//GEN-END:variables
