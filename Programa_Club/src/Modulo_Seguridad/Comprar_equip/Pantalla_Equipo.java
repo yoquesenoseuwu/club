@@ -163,7 +163,7 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
         //Se selecciona para comprar
         int canti = Integer.parseInt(cant.getText());
         conexion.Insert_pedido_equipamiento(nombre_vec[1],canti,ID_Guardar,Precio);
-        cant.setText("Cant. a comprar");
+        btn_Volver1ActionPerformed(evt);
     }//GEN-LAST:event_btn_comprarActionPerformed
 
     /**
