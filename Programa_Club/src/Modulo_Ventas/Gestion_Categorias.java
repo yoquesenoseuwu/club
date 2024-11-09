@@ -326,7 +326,8 @@ public class Gestion_Categorias extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println("Error al modificar categoría: " + e.getMessage());
         }
-       
+        TablaCategorias.clearSelection();
+
 
     }//GEN-LAST:event_Btn_ModActionPerformed
 
@@ -364,7 +365,8 @@ public class Gestion_Categorias extends javax.swing.JFrame {
         System.err.println("Error al guardar categoría: " + e.getMessage());
         e.printStackTrace(); // Imprimir más detalles del error
     }
-        
+    TablaCategorias.clearSelection();
+
     }//GEN-LAST:event_Btn_GuardarActionPerformed
 
     private void TablaCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaCategoriasMouseClicked
@@ -395,6 +397,8 @@ public class Gestion_Categorias extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println("Error al eliminar categoría: " + e.getMessage());
         }
+        TablaCategorias.clearSelection();
+
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
     /**

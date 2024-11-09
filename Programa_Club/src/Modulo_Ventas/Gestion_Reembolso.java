@@ -22,6 +22,8 @@ public class Gestion_Reembolso extends javax.swing.JFrame {
         VerReembolso.MostrarReembolsos(TablaReembolso); // Mostrar productos 
         paramID.setVisible(false); 
         add(paramID);
+        Btn_Guardar.setEnabled(false);
+        Btn_Eliminar.setEnabled(false);
 
     }
 
@@ -37,8 +39,8 @@ public class Gestion_Reembolso extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         VolverPantalla = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        Btn_Aplicar = new javax.swing.JButton();
-        Btn_Borrar = new javax.swing.JButton();
+        Btn_Guardar = new javax.swing.JButton();
+        Btn_Eliminar = new javax.swing.JButton();
         paramID = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaReembolso = new javax.swing.JTable();
@@ -54,17 +56,17 @@ public class Gestion_Reembolso extends javax.swing.JFrame {
             }
         });
 
-        Btn_Aplicar.setText("Actualizar estado de  reembolso");
-        Btn_Aplicar.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Guardar.setText("Actualizar estado de  reembolso");
+        Btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_AplicarActionPerformed(evt);
+                Btn_GuardarActionPerformed(evt);
             }
         });
 
-        Btn_Borrar.setText("Borrar Reembolso");
-        Btn_Borrar.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Eliminar.setText("Borrar Reembolso");
+        Btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_BorrarActionPerformed(evt);
+                Btn_EliminarActionPerformed(evt);
             }
         });
 
@@ -75,16 +77,16 @@ public class Gestion_Reembolso extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Btn_Aplicar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Btn_Borrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Btn_Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Btn_Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(98, 98, 98))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(Btn_Aplicar)
+                .addComponent(Btn_Guardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Btn_Borrar)
+                .addComponent(Btn_Eliminar)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -150,21 +152,30 @@ public class Gestion_Reembolso extends javax.swing.JFrame {
     }//GEN-LAST:event_VolverPantallaActionPerformed
 
     private void TablaReembolsoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaReembolsoMouseClicked
+        Btn_Guardar.setEnabled(true);
+        Btn_Eliminar.setEnabled(true);
         VerReembolso.SeleccionarReembolso(TablaReembolso, paramID);
     }//GEN-LAST:event_TablaReembolsoMouseClicked
 
-    private void Btn_AplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AplicarActionPerformed
+    private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
         VerReembolso.ModificarEstadoReembolso(paramID);
 
         // Refresca la tabla después de la actualización
         VerReembolso.MostrarReembolsos(TablaReembolso); 
-    }//GEN-LAST:event_Btn_AplicarActionPerformed
+        Btn_Guardar.setEnabled(false);
+        Btn_Eliminar.setEnabled(false);
+        TablaReembolso.clearSelection();
+    }//GEN-LAST:event_Btn_GuardarActionPerformed
 
-    private void Btn_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BorrarActionPerformed
+    private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
         VerReembolso.EliminarReembolso(paramID);
         VerReembolso.MostrarReembolsos(TablaReembolso);
+        Btn_Guardar.setEnabled(false);
+        Btn_Eliminar.setEnabled(false);
+        TablaReembolso.clearSelection();
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_BorrarActionPerformed
+    }//GEN-LAST:event_Btn_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,8 +213,8 @@ public class Gestion_Reembolso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Aplicar;
-    private javax.swing.JButton Btn_Borrar;
+    private javax.swing.JButton Btn_Eliminar;
+    private javax.swing.JButton Btn_Guardar;
     private javax.swing.JTable TablaReembolso;
     private javax.swing.JButton VolverPantalla;
     private javax.swing.JPanel jPanel1;

@@ -14,7 +14,7 @@ public class Cancelar_Reembolso_Usuario extends javax.swing.JFrame {
     private Reembolso_Usuario objetoReembolso = new Reembolso_Usuario();
     private String usuarioID; // Variable para almacenar el ID del usuario
     private Reembolso_Usuario reembolsoUsuario;
-
+    
     /**
      * Creates new form Cancelar_Reembolso_Usuario
      */
@@ -24,6 +24,7 @@ public class Cancelar_Reembolso_Usuario extends javax.swing.JFrame {
         reembolsoUsuario = new Reembolso_Usuario();
         reembolsoUsuario.MostrarReembolso(TablaReembolso, usuarioID);
         JTextField_ID.setVisible(false); 
+        Btn_Eliminar.setEnabled(false);
 
     }
 
@@ -157,6 +158,8 @@ public class Cancelar_Reembolso_Usuario extends javax.swing.JFrame {
 
         objetoReembolso.EliminarReembolso(JTextField_ID);
         objetoReembolso.MostrarReembolso(TablaReembolso, usuarioID);
+        Btn_Eliminar.setEnabled(false);
+        TablaReembolso.clearSelection();
 // TODO add your handling code here:
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
@@ -165,7 +168,7 @@ public class Cancelar_Reembolso_Usuario extends javax.swing.JFrame {
         if (filaSeleccionada != -1) {
             int idPedido = Integer.parseInt(TablaReembolso.getValueAt(filaSeleccionada, 0).toString());
             System.out.println("IDPedido seleccionado: " + idPedido);
-
+            Btn_Eliminar.setEnabled(true);
             objetoReembolso.setIDPedidoSeleccionado(idPedido);
             objetoReembolso.SeleccionarReembolso(TablaReembolso, JTextField_ID);
             }

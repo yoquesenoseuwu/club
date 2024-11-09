@@ -5,21 +5,33 @@
  */
 package Modulo_Ventas.Usuario;
 import Modulo_Ventas.Pantalla_Ventas;
+import Modulo_Ventas.Usuario.VerificarBotonMenuUsuario;
+
 /**
  *
  * @author tm_galli
  */
 public class Menu_Usuario extends javax.swing.JFrame {
     private String usuarioID;
-    /**
-     * Creates new form Menu_Usuario
-     */
+    private final VerificarBotonMenuUsuario consultasBDD = new VerificarBotonMenuUsuario();
+
+    
     public Menu_Usuario(String usuarioID) {
         this.usuarioID = usuarioID;
         initComponents();
+        verificarBotones();
         System.out.println("ID del usuario en Menu_Usuario: " + this.usuarioID);
+        
     }
+    private void verificarBotones() {
+        Btn_Comprar.setEnabled(consultasBDD.existeProducto());
 
+        boolean hayProductos = consultasBDD.existePedidoUsuario(usuarioID);
+        Btn_PedirReembolso.setEnabled(hayProductos);
+        
+        boolean hayReembolsos = consultasBDD.existeReembolsoUsuario(usuarioID);
+        Btn_CancelarReembolso.setEnabled(hayReembolsos);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

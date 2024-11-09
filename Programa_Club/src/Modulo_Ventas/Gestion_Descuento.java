@@ -431,6 +431,8 @@ private void validarCampos() {
         Modulo_Ventas.CrudDescuento objetoDescuento = new Modulo_Ventas.CrudDescuento();
         objetoDescuento.AgregarDescuento(JTextField_Descuento, datechooser_FechaInicio, datechooser_FechaFinal);
         objetoDescuento.MostrarDescuentos(TablaDescuentos);
+        TablaDescuentos.clearSelection();
+
     }//GEN-LAST:event_Btn_GuardarActionPerformed
 
     private void Btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ModificarActionPerformed
@@ -455,13 +457,16 @@ private void validarCampos() {
     } else {
         JOptionPane.showMessageDialog(null, "No se ha realizado ningún cambio para modificar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
     }
-        
+    TablaDescuentos.clearSelection();
+    
     }//GEN-LAST:event_Btn_ModificarActionPerformed
 
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
         Modulo_Ventas.CrudDescuento objetoDescuento = new Modulo_Ventas.CrudDescuento();
         objetoDescuento.EliminarDescuento(JTextField_ID);
         objetoDescuento.MostrarDescuentos(TablaDescuentos);
+        TablaDescuentos.clearSelection();
+
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
     private void Volver_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Volver_BtnActionPerformed

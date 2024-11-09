@@ -100,7 +100,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="table_productosVenta">
+            <Component class="javax.swing.JTable" name="Tabla_productosVenta">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="0" rowCount="4"/>
@@ -113,7 +113,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_productosVentaMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Tabla_productosVentaMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -146,8 +146,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btn_PonerVenta" max="32767" attributes="0"/>
-                              <Component id="btn_QuitarVenta" min="-2" pref="169" max="-2" attributes="0"/>
+                              <Component id="Btn_Guardar" max="32767" attributes="0"/>
+                              <Component id="Btn_Eliminar" min="-2" pref="169" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -157,9 +157,9 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="textField_ProductoID" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="JTextField_IDProducto" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="textField_ProductoNombre" min="-2" pref="207" max="-2" attributes="0"/>
+                          <Component id="JTextField_ProductoNombre" min="-2" pref="207" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -179,13 +179,13 @@
                   <Component id="jScrollPane2" min="-2" pref="267" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="textField_ProductoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textField_ProductoID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTextField_ProductoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTextField_IDProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="btn_PonerVenta" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_Guardar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btn_QuitarVenta" min="-2" max="-2" attributes="0"/>
+                  <Component id="Btn_Eliminar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -199,7 +199,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="table_productos">
+            <Component class="javax.swing.JTable" name="Tabla_Productos">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="0" rowCount="4"/>
@@ -212,7 +212,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_productosMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Tabla_ProductosMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -222,25 +222,25 @@
             <Property name="text" type="java.lang.String" value=" PRODUCTOS NO EN VENTA"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textField_ProductoNombre">
+        <Component class="javax.swing.JTextField" name="JTextField_ProductoNombre">
         </Component>
-        <Component class="javax.swing.JButton" name="btn_PonerVenta">
+        <Component class="javax.swing.JButton" name="Btn_Guardar">
           <Properties>
             <Property name="text" type="java.lang.String" value="PONER A LA VENTA"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_PonerVentaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_GuardarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_QuitarVenta">
+        <Component class="javax.swing.JButton" name="Btn_Eliminar">
           <Properties>
             <Property name="text" type="java.lang.String" value="QUITAR DE LA VENTA"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_QuitarVentaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_EliminarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="textField_ProductoID">
+        <Component class="javax.swing.JTextField" name="JTextField_IDProducto">
         </Component>
       </SubComponents>
     </Container>

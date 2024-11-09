@@ -386,6 +386,7 @@ private boolean esNumerico(String cadena) {
         objetoProducto.EliminarCategoria(JTextField_IDProducto);
         objetoProducto.MostrarProductos(TablaProductos); // Actualizar la tabla
         objetoProducto.LimpiarCampos(JTextField_IDProducto, JTextField_nombreProducto,JTextField_precioProducto, JTextField_StockProducto,  ComboBoxCategoria);
+        TablaProductos.clearSelection();
 
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
@@ -402,6 +403,8 @@ private boolean esNumerico(String cadena) {
         crudProducto.ModificarProducto(JTextField_IDProducto, JTextField_nombreProducto, JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
         actualizarVista();
     }
+    TablaProductos.clearSelection();
+
 
     }//GEN-LAST:event_Btn_ModActionPerformed
 
@@ -414,6 +417,7 @@ private boolean esNumerico(String cadena) {
         crudProducto.InsertarProducto(JTextField_nombreProducto, JTextField_precioProducto, JTextField_StockProducto, ComboBoxCategoria);
         actualizarVista();
     }
+    TablaProductos.clearSelection();
 
     }//GEN-LAST:event_Btn_GuardarActionPerformed
 

@@ -401,6 +401,11 @@ private void verificarSelecciones() {
          objetoDescuento.MostrarProductos(Tabla_Productos);
          objetoDescuento.MostrarDescuentos(Tabla_Descuentos);
          objetoDescuento.MostrarDescuentosAplicados(Tabla_DescuentosAplicados);
+         Tabla_Productos.clearSelection();
+         Tabla_Descuentos.clearSelection();
+         Tabla_DescuentosAplicados.clearSelection();
+
+
 
 
     }//GEN-LAST:event_Btn_GuardarActionPerformed
@@ -439,6 +444,9 @@ private void verificarSelecciones() {
     objetoDescuento.MostrarProductos(Tabla_Productos);
     objetoDescuento.MostrarDescuentos(Tabla_Descuentos);
     objetoDescuento.MostrarDescuentosAplicados(Tabla_DescuentosAplicados);
+    Tabla_Productos.clearSelection();
+    Tabla_Descuentos.clearSelection();
+    Tabla_DescuentosAplicados.clearSelection();
 // TODO add your handling code here:
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
