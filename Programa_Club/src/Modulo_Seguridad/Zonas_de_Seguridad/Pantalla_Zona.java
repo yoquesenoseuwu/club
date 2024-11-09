@@ -29,6 +29,7 @@ public class Pantalla_Zona extends javax.swing.JFrame {
      */
     public Pantalla_Zona() {
         initComponents();
+        this.setResizable(false);
     }
     
     
@@ -183,7 +184,8 @@ public class Pantalla_Zona extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Boton para eliminar la zona elegida y volver para atras
     private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
         modelo.removeAllElements();
         ArrayList array=conexion.Select_unique_zona(id_zona);
@@ -198,7 +200,8 @@ public class Pantalla_Zona extends javax.swing.JFrame {
         vZ.setSize(700,430);
         vZ.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_EliminarActionPerformed
-
+    
+    //Boton para abrir la pantalla de modificar zona
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
 
         this.setVisible(false);
@@ -206,7 +209,8 @@ public class Pantalla_Zona extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_btn_ModificarActionPerformed
-
+    
+    //Boton para volver a la pantalla de zonas
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
         Ver_Zonas vZ = new Ver_Zonas();
         vZ.setVisible(true);
@@ -249,7 +253,7 @@ public class Pantalla_Zona extends javax.swing.JFrame {
             }
         });
     }
-    public void mostrarZona(int id){
+    public void mostrarZona(int id){//Muestra los datos de la zona en la pantalla
         modelo.removeAllElements();
         ArrayList array=conexion.Select_unique_zona(id);
         

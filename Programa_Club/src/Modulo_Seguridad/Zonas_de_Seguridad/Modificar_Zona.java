@@ -25,6 +25,7 @@ public class Modificar_Zona extends javax.swing.JFrame {
      */
     public Modificar_Zona() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**
@@ -175,7 +176,8 @@ public class Modificar_Zona extends javax.swing.JFrame {
     private void txtField_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtField_NombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtField_NombreActionPerformed
-
+    
+    //Boton para guardar los datos modificados
     private void btn_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EnviarActionPerformed
         Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
         Nombre=txtField_Nombre.getText();
@@ -188,7 +190,8 @@ public class Modificar_Zona extends javax.swing.JFrame {
         vZ.setSize(700,430);
         vZ.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_EnviarActionPerformed
-
+    
+    //Boton para volver para atras
     private void btn_Volver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Volver1ActionPerformed
         Ver_Zonas vZ = new Ver_Zonas();
         vZ.setVisible(true);
@@ -231,6 +234,8 @@ public class Modificar_Zona extends javax.swing.JFrame {
             }
         });
     }
+    
+    //obtiene el id de la zona
     public void mostrarId(int id){
         modelo.removeAllElements();
         ArrayList array=conexion.Select_unique_zona(id);

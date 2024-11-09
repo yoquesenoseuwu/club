@@ -27,8 +27,9 @@ public class Ver_Zonas extends javax.swing.JFrame {
     /**
      * Creates new form Ver_Zonas
      */
-    public Ver_Zonas() {
+    public Ver_Zonas() {//Ingresa las zonas al list_zonas
         initComponents();
+        this.setResizable(false);
         modelo=vZc.mostrar(modelo);
         list_zonas.setModel(modelo);
         list_zonas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -46,11 +47,8 @@ public class Ver_Zonas extends javax.swing.JFrame {
             }
         });
     }
-    public String Nom(){
-        return(Nomopc);
-    }
-    
-    private void Esconder(int id){
+
+    private void Esconder(int id){//Cierra la pantalla y abre la pantalla de la zona elegida
         this.setVisible(false);
         vZc.Pantalla_Zona(id);
     }
@@ -162,7 +160,8 @@ public class Ver_Zonas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Boton para volver a la pantalla principal
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
         Pantalla_Seguridad pM = new Pantalla_Seguridad();
         pM.setVisible(true);
@@ -170,7 +169,8 @@ public class Ver_Zonas extends javax.swing.JFrame {
         pM.setSize(700, 430);
         pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
-
+    
+    //Boton para abrir pantalla para crear una nueva zona
     private void btn_Agregar_ZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Agregar_ZonaActionPerformed
         Agregar_Zona aZ=new Agregar_Zona();
         aZ.setVisible(true);

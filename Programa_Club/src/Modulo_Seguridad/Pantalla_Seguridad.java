@@ -47,7 +47,7 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(99, 140, 181));
+        jPanel1.setBackground(new java.awt.Color(47, 94, 141));
 
         btn_posicionar.setText("Posicionar Guardias");
         btn_posicionar.addActionListener(new java.awt.event.ActionListener() {

@@ -19,6 +19,7 @@ public class Agregar_Zona extends javax.swing.JFrame {
      */
     public Agregar_Zona() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**
@@ -168,7 +169,8 @@ public class Agregar_Zona extends javax.swing.JFrame {
     private void txtField_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtField_NombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtField_NombreActionPerformed
-
+    
+    //Acepta y guarda la nueva zona
     private void btn_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EnviarActionPerformed
         Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
         Nombre=txtField_Nombre.getText();
@@ -181,7 +183,8 @@ public class Agregar_Zona extends javax.swing.JFrame {
         VerZonas.setSize(700,430);
         VerZonas.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_EnviarActionPerformed
-
+    
+    //Boton para volver a la pantalla de zonas
     private void btn_Volver2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Volver2ActionPerformed
         Ver_Zonas vZ = new Ver_Zonas();
         vZ.setVisible(true);
