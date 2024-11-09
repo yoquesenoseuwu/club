@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Modulo_Seguridad.Equip_G;
+import Modulo_Seguridad.Abrir_Seguridad;
 import Modulo_Seguridad.Comprar_equip.Com_equip;
 import Modulo_Seguridad.Pantalla_Seguridad;
 import javax.swing.DefaultListModel;
@@ -134,11 +135,9 @@ public class Pantalla_Guardias extends javax.swing.JFrame {
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
         //Boton para volver atras
-        Pantalla_Seguridad pM = new Pantalla_Seguridad();
-        pM.setVisible(true);
+        Abrir_Seguridad Seguridad = new Abrir_Seguridad();
+        Seguridad.Open_Security();
         this.setVisible(false);
-        pM.setSize(1530,900);
-        pM.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_btn_VolverActionPerformed
 

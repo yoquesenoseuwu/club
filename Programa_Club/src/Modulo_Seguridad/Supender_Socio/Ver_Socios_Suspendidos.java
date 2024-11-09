@@ -5,6 +5,7 @@
  */
 package Modulo_Seguridad.Supender_Socio;
 
+import Modulo_Seguridad.Abrir_Seguridad;
 import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -94,11 +95,9 @@ public class Ver_Socios_Suspendidos extends javax.swing.JFrame {
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
         //Boton para volver atras
-        Pantalla_Seguridad pM = new Pantalla_Seguridad();
-        pM.setVisible(true);
+        Abrir_Seguridad Seguridad = new Abrir_Seguridad();
+        Seguridad.Open_Security();
         this.setVisible(false);
-        pM.setSize(1530,900);
-        pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
 
     /**

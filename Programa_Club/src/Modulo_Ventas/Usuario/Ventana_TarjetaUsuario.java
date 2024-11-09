@@ -361,11 +361,12 @@ public class Ventana_TarjetaUsuario extends javax.swing.JFrame {
                   nombreTitular = textField_NombreTitular.getText();
                   codigoSeguridad = textField_CodigoSeguridad.getText();
             
-                  Ventana_FinalizarCompra ventanaFinCompra = new Ventana_FinalizarCompra(usuarioID, productoID, fecha, cantidadSeleccionada, opcFormaEntrega,tipoTarjeta, numerinTarjeta, nombreTitular, codigoSeguridad);
+                  /*Ventana_FinalizarCompra ventanaFinCompra = new Ventana_FinalizarCompra(usuarioID, productoID, fecha, cantidadSeleccionada, opcFormaEntrega,tipoTarjeta, numerinTarjeta, nombreTitular, codigoSeguridad);
                   this.setVisible(false);
                   ventanaFinCompra.setSize(550, 650);
                   ventanaFinCompra.setLocationRelativeTo(null);
                   ventanaFinCompra.setVisible(true); 
+                  */
             condicion1 = false;
             condicion2 = false;
         }else{

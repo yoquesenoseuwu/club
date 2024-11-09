@@ -5,6 +5,7 @@
  */
 package Modulo_Seguridad.Posicionar_Guardias;
 
+import Modulo_Seguridad.Abrir_Seguridad;
 import Modulo_Seguridad.Pantalla_Seguridad;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -51,6 +52,7 @@ public class Ver_Zonas_Guardia extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         Lista_Zonas = new javax.swing.JList<>();
+        btn_Volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,25 +63,47 @@ public class Ver_Zonas_Guardia extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Lista_Zonas);
 
+        btn_Volver.setText("<--");
+        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btn_Volver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
+        //Boton para volver atras
+        Abrir_Seguridad Seguridad = new Abrir_Seguridad();
+        Seguridad.Open_Security();
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btn_VolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,6 +142,7 @@ public class Ver_Zonas_Guardia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> Lista_Zonas;
+    private javax.swing.JButton btn_Volver;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

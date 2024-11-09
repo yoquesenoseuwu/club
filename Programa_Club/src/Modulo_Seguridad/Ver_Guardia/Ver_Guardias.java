@@ -5,6 +5,7 @@
  */
 package Modulo_Seguridad.Ver_Guardia;
 
+import Modulo_Seguridad.Abrir_Seguridad;
 import Modulo_Seguridad.Pantalla_Seguridad;
 import Modulo_Seguridad.Pantalla_Seguridad;
 import javax.swing.DefaultListModel;
@@ -28,16 +29,6 @@ public class Ver_Guardias extends javax.swing.JFrame {
         modelo=vGc.mostrar(modelo);
         list_Guardias.setModel(modelo);
         list_Guardias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list_Guardias.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    String itemSeleccionado = list_Guardias.getSelectedValue();
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
-                    
-                    
-                }
-            }
-        });
     }
 
     
@@ -100,11 +91,9 @@ public class Ver_Guardias extends javax.swing.JFrame {
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
         //Boton para volver atras
-        Pantalla_Seguridad pM = new Pantalla_Seguridad();
-        pM.setVisible(true);
+        Abrir_Seguridad Seguridad = new Abrir_Seguridad();
+        Seguridad.Open_Security();
         this.setVisible(false);
-        pM.setSize(1530,900);
-        pM.setLocationRelativeTo(null);
         
     }//GEN-LAST:event_btn_VolverActionPerformed
 
