@@ -11,11 +11,11 @@ import Modulo_Seguridad.Pantalla_Seguridad;
  *
  * @author PC
  */
-public class Abrir_Seguridad {
+public class Abrir_Seguridad {//Abre la pantalla principal de seguridad
     public void Open_Security(){
         Pantalla_Seguridad vS= new Pantalla_Seguridad();
         vS.setVisible(true);
-        vS.setSize(1530,900);
+        vS.setSize(700,430);
         vS.setLocationRelativeTo(null);
     }
 }

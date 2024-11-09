@@ -36,10 +36,14 @@ public class Ver_Zonas_codigo {
         Pantalla_Zona Pz = new Pantalla_Zona();
         Pz.mostrarZona(id);
         Pz.setVisible(true);
+        Pz.setSize(700,430);
+        Pz.setLocationRelativeTo(null);
     }
     public void Modificar_Zona(int id){
         Modificar_Zona mZ = new Modificar_Zona();
         mZ.mostrarId(id);
         mZ.setVisible(true);
+        mZ.setSize(600, 430);
+        mZ.setLocationRelativeTo(null);
     }
 }
