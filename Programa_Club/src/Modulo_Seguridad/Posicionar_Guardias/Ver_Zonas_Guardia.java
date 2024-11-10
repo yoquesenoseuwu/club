@@ -43,8 +43,8 @@ public class Ver_Zonas_Guardia extends javax.swing.JFrame {
     }
     //Esconde la pantalla y abre la pantalla de la zona seleccionada (Pantalla_Zona_Guardias)
     public void Esconder(int id){
-        this.setVisible(false);
         vZc.Pantalla_Zona_Guardias(id);
+        this.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.

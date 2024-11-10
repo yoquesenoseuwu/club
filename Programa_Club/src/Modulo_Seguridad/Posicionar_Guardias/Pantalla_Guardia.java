@@ -171,18 +171,15 @@ public class Pantalla_Guardia extends javax.swing.JFrame {
     //Boton para desasignar al guardia seleccionado
     private void btn_desasignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_desasignarActionPerformed
         conexion.Delete_Z_Guardias(id_guardia);
-        Ver_Zonas_Guardia vZg = new Ver_Zonas_Guardia();
+        vZc.Pantalla_Zona_Guardias(ID_ZONA);
         this.setVisible(false);
-        vZg.setVisible(true);
-        
-        vZg.setSize(500,430);
-        vZg.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_desasignarActionPerformed
     
     //Boton para volver para atras
     private void btn_Volver3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Volver3ActionPerformed
-        this.setVisible(false);
+        
         vZc.Pantalla_Zona_Guardias(ID_ZONA);
+        this.setVisible(false);
         
         
     }//GEN-LAST:event_btn_Volver3ActionPerformed

@@ -54,8 +54,9 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
     
     //esconde la pantalla y abre la pantalla de guardia
     public void Esconder(int id, int id_zona, String nombre){
-        this.setVisible(false);
+        
         vZc.Pantalla_Zona_Guardia_info(id, id_zona, nombre);
+        this.setVisible(false);
     }
     
     /**
@@ -226,8 +227,9 @@ public class Pantalla_Zona_Guardias extends javax.swing.JFrame {
     
     //Boton para abrir la pantalla de asignar guardia
     private void btn_asignarGuardiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_asignarGuardiasActionPerformed
-        this.setVisible(false);
+        
         vZc.Asignar_Guardia_C(id_zona);
+        this.setVisible(false);
         
     }//GEN-LAST:event_btn_asignarGuardiasActionPerformed
     

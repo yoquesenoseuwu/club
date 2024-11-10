@@ -42,6 +42,7 @@ public class Asignar_Guardia extends javax.swing.JFrame {
                     int id_Guardia=Integer.parseInt(separado[0]);
                     Asignar_Z_Guardia(id_Zona,  id_Guardia);
                     
+                    
                    
                 }
             }
@@ -144,10 +145,13 @@ public class Asignar_Guardia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+
+    
     //Boton para volver para atras
     private void btn_Volver3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Volver3ActionPerformed
-        this.setVisible(false);
+        
         vZc.Pantalla_Zona_Guardias(id_Zona);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_Volver3ActionPerformed
 
     /**
@@ -193,7 +197,6 @@ public class Asignar_Guardia extends javax.swing.JFrame {
     //Asigna el guardia seleccionado a la zona
     public void Asignar_Z_Guardia(int id_Zona, int id_Guardia){
         conexion.Insert_Z_Guardia(id_Zona, id_Guardia);
-        
     
     }
     
