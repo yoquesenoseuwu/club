@@ -48,6 +48,7 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         Btn_Gestionar_Categoria = new javax.swing.JButton();
         Btn_Gestionar_Reembolso = new javax.swing.JButton();
         Btn_Gestionar_VistaUsuario = new javax.swing.JButton();
+        Btn_Gestionar_Pedidos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +103,13 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
             }
         });
 
+        Btn_Gestionar_Pedidos.setText("Gestionar Pedidos");
+        Btn_Gestionar_Pedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Gestionar_PedidosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,7 +125,8 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
                             .addComponent(Btn_Gestionar_Descuento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_Gestionar_Categoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Btn_Gestionar_Reembolso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_Gestionar_VistaUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(Btn_Gestionar_VistaUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_Gestionar_Pedidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -137,13 +146,15 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
                 .addComponent(Btn_Gestionar_Productos)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_Gestionar_Descuento)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_Gestionar_VentaProductos)
                 .addGap(18, 18, 18)
+                .addComponent(Btn_Gestionar_Pedidos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Btn_Gestionar_Reembolso)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_Gestionar_VistaUsuario)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,6 +229,10 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
         vIU.setVisible(true); 
     }//GEN-LAST:event_Btn_Gestionar_VistaUsuarioActionPerformed
 
+    private void Btn_Gestionar_PedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gestionar_PedidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_Gestionar_PedidosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -256,6 +271,7 @@ public class Pantalla_Ventas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Gestionar_Categoria;
     private javax.swing.JButton Btn_Gestionar_Descuento;
+    private javax.swing.JButton Btn_Gestionar_Pedidos;
     private javax.swing.JButton Btn_Gestionar_Productos;
     private javax.swing.JButton Btn_Gestionar_Reembolso;
     private javax.swing.JButton Btn_Gestionar_VentaProductos;

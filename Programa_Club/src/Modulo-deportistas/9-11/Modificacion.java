@@ -5,22 +5,36 @@
  */
 package proyectojava;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author tm_galli
  */
 public class Modificacion extends javax.swing.JFrame {
-
+    private String idJugador;
     /**
-     * Creates new form Modificacion
+     * Creates new form 
      */
-    public Modificacion() {
-        initComponents();
+    public Modificacion(String id) {
+         initComponents();
+        this.idJugador = id; // Se asigna el parámetro correctamente.
+    System.out.println("ID recibido en Modificacion: " + idJugador);
+        label_aviso.setVisible(false);
+        label_aviso2.setVisible(false);
+        label_aviso3.setVisible(false);
+        label_aviso4.setVisible(false);
+        label_aviso5.setVisible(false);
+        label_aviso6.setVisible(false);
+    
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +44,7 @@ public class Modificacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButton1 = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -51,6 +66,14 @@ public class Modificacion extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtGmail = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        label_aviso2 = new javax.swing.JLabel();
+        label_aviso3 = new javax.swing.JLabel();
+        label_aviso4 = new javax.swing.JLabel();
+        label_aviso6 = new javax.swing.JLabel();
+        label_aviso = new javax.swing.JLabel();
+        label_aviso5 = new javax.swing.JLabel();
+
+        jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,7 +81,7 @@ public class Modificacion extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setForeground(new java.awt.Color(254, 254, 254));
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Waree", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(254, 254, 254));
         jLabel1.setText("Modificar deportista");
 
@@ -180,11 +203,38 @@ public class Modificacion extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtGmailKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtGmailKeyReleased(evt);
+            }
         });
 
         jLabel10.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(254, 254, 254));
         jLabel10.setText("Mail:");
+
+        label_aviso2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        label_aviso2.setForeground(new java.awt.Color(255, 0, 0));
+        label_aviso2.setText("CAMPO OBLIGATORIO");
+
+        label_aviso3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        label_aviso3.setForeground(new java.awt.Color(255, 0, 0));
+        label_aviso3.setText("CAMPO OBLIGATORIO");
+
+        label_aviso4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        label_aviso4.setForeground(new java.awt.Color(255, 0, 0));
+        label_aviso4.setText("CAMPO OBLIGATORIO");
+
+        label_aviso6.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        label_aviso6.setForeground(new java.awt.Color(255, 0, 0));
+        label_aviso6.setText("CAMPO OBLIGATORIO");
+
+        label_aviso.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        label_aviso.setForeground(new java.awt.Color(255, 0, 0));
+        label_aviso.setText("MAIL INVALIDO (*)");
+
+        label_aviso5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        label_aviso5.setForeground(new java.awt.Color(255, 0, 0));
+        label_aviso5.setText("CAMPO OBLIGATORIO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,39 +242,57 @@ public class Modificacion extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(248, 248, 248)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnVolverABM1)
+                .addGap(143, 143, 143)
+                .addComponent(jLabel1)
+                .addGap(0, 189, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(label_aviso2))
+                                .addComponent(txtNom)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(label_aviso3))
+                                .addComponent(jLabel5)
+                                .addComponent(txtApe, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label_aviso4)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label_aviso))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel6)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(label_aviso5))
+                                .addComponent(jTextField2)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(label_aviso6))
+                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField5)
+                                .addComponent(txtGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnVolverABM1)
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(352, 352, 352)
-                        .addComponent(jLabel10)))
-                .addGap(0, 189, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2)
-                        .addComponent(txtNom, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel5)
-                        .addComponent(txtApe))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
-                    .addComponent(jComboBox2, 0, 241, Short.MAX_VALUE)
-                    .addComponent(jTextField5)
-                    .addComponent(txtGmail))
+                        .addGap(262, 262, 262)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -237,10 +305,11 @@ public class Modificacion extends javax.swing.JFrame {
                     .addComponent(btnVolverABM1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(label_aviso2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,15 +317,18 @@ public class Modificacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(label_aviso3)
+                    .addComponent(label_aviso5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(label_aviso6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,14 +336,16 @@ public class Modificacion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(label_aviso4)
+                    .addComponent(label_aviso))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtGmail)
-                    .addComponent(jTextField6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(81, 81, 81))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -282,12 +356,16 @@ public class Modificacion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        
+    
     private void txtNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomActionPerformed
@@ -337,14 +415,121 @@ public class Modificacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextField5KeyTyped
 
+    private boolean validarCampos() {
+    // Verifica si todos los campos obligatorios no están vacíos
+    return !txtNom.getText().trim().isEmpty() && 
+           !txtApe.getText().trim().isEmpty() &&
+           !jTextField2.getText().trim().isEmpty() &&
+           !jTextField5.getText().trim().isEmpty() &&
+           !jTextField6.getText().trim().isEmpty() &&
+           !txtGmail.getText().trim().isEmpty();
+}
+    
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        MensajeModificacion newframe = new MensajeModificacion();
+        if (!validarCampos()) {
+        // Si hay algún campo vacío, muestra un mensaje de advertencia
+        JOptionPane.showMessageDialog(null, "Por favor, llene todos los campos obligatorios", "Error", JOptionPane.WARNING_MESSAGE);
 
-        newframe.setVisible(true);
+        // Mostrar las etiquetas de aviso
+        label_aviso.setVisible(true);
+        label_aviso2.setVisible(true);
+        label_aviso3.setVisible(true);
+        label_aviso4.setVisible(true);
+        label_aviso5.setVisible(true);
+        label_aviso6.setVisible(true);
 
-        this.dispose();
+    } else if (!verificar_Mail(txtGmail.getText())) {  // Verifica si el correo es válido
+        // Si el correo no es válido, muestra un mensaje de advertencia
+        JOptionPane.showMessageDialog(null, "El correo electrónico debe ser de la forma 'usuario@dominio.com'", "Error", JOptionPane.WARNING_MESSAGE);
+        
+        // Muestra el aviso del correo inválido
+        label_aviso.setVisible(true);  
+        }else{
+        String nombre = txtNom.getText();
+        String apellido = txtApe.getText();
+        String club = jTextField2.getText();
+        int edad = Integer.parseInt((String) jComboBox1.getSelectedItem());
+        String estado = (String) jComboBox2.getSelectedItem();
+        String contacto = jTextField5.getText();
+        String dni = jTextField6.getText();
+        String gmail = txtGmail.getText();
+    
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    
+        try {
+        // Aquí debes cargar el controlador JDBC y obtener la conexión
+        
+        connection = DriverManager.getConnection(
+            "jdbc:mysql://bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb", 
+            "uwwqerjcglxxweor", 
+            "vWobxeLnCiH11WTJg6N"
+                
+        );
+        // Preparar la consulta SQL
+        String sql = "UPDATE Jugadores SET nombre = ?, apellido = ?, club = ?, edad = ?, estado = ?, contacto = ?, gmail = ?, dni = ? WHERE IdJugador = ?";
+        preparedStatement = connection.prepareStatement(sql);
+        
+        // Establecer los valores de la consulta
+           preparedStatement.setString(1, nombre);
+        preparedStatement.setString(2, apellido);
+        preparedStatement.setString(3, club);
+        preparedStatement.setInt(4, edad);
+        preparedStatement.setString(5, estado);
+        preparedStatement.setString(6, contacto);
+        preparedStatement.setString(7, gmail);
+        preparedStatement.setString(8, dni);
+        preparedStatement.setString(9, this.idJugador);
+        ;
+        // Ejecutar la consulta
+        int filasInsertadas = preparedStatement.executeUpdate();
+        if (filasInsertadas > 0) {
+            JOptionPane.showMessageDialog(this, "Datos insertados correctamente");
+            
+            MensajeModificacion newframe = new MensajeModificacion();
+
+            newframe.setVisible(true);
+
+            this.dispose();
+        } else {
+        JOptionPane.showMessageDialog(this, "No se pudo actualizar los datos.");
+        System.out.println("ID Jugador: " + this.idJugador);
+System.out.println("Nombre: " + nombre);
+System.out.println("Apellido: " + apellido);
+System.out.println("Club: " + club);
+System.out.println("Edad: " + edad);
+System.out.println("Estado: " + estado);
+System.out.println("Contacto: " + contacto);
+System.out.println("DNI: " + dni);
+System.out.println("Gmail: " + gmail);
+    }
+    } catch (SQLException e) {
+        
+        JOptionPane.showMessageDialog(this, "Error al actualizar los datos: " + e.getMessage());
+    } finally {
+        // Cerrar la conexión y el PreparedStatement
+        try {
+            if (preparedStatement != null) preparedStatement.close();
+            if (connection != null) connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_btnModificarActionPerformed
-
+    }
+    public boolean verificar_Mail(String correo){
+   
+    Pattern patron = Pattern.compile("^[a-z0-9_+&*-]+(?:\\.[a-z0-9_+&*-]+)*@[a-z0-9-]+(?:\\.[a-z0-9-]+)*(?:\\.[a-z]{2,})$");
+    
+    Matcher mat = patron.matcher(correo);
+    return mat.matches();  // Usa matches para validar toda la cadena
+}
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
@@ -372,9 +557,19 @@ public class Modificacion extends javax.swing.JFrame {
 
     private void txtGmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGmailKeyPressed
 
-        Pattern pattern = Pattern.compile("(\\W|^)[\\w.\\-]{0,25}@(hotmail|gmail|yahoo|gob)\\.com(\\W|$)");
-        Matcher matcher = pattern.matcher(txtGmail.getText());
     }//GEN-LAST:event_txtGmailKeyPressed
+
+    private void txtGmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGmailKeyReleased
+if(verificar_Mail(txtGmail.getText())){
+    
+            label_aviso.setVisible(false);
+        
+    }else{
+        
+        label_aviso.setVisible(true);
+    
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGmailKeyReleased
 
     /**
      * @param args the command line arguments
@@ -406,7 +601,7 @@ public class Modificacion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Modificacion().setVisible(true);
+                new Modificacion("idJugador").setVisible(true);
             }
         });
     }
@@ -426,10 +621,17 @@ public class Modificacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel label_aviso;
+    private javax.swing.JLabel label_aviso2;
+    private javax.swing.JLabel label_aviso3;
+    private javax.swing.JLabel label_aviso4;
+    private javax.swing.JLabel label_aviso5;
+    private javax.swing.JLabel label_aviso6;
     private javax.swing.JTextField txtApe;
     private javax.swing.JTextField txtGmail;
     private javax.swing.JTextField txtNom;
