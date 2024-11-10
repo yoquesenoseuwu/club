@@ -616,11 +616,12 @@ private void verificarCampos() {
                   ventanaFinCompra.setLocationRelativeTo(null);
                   ventanaFinCompra.setVisible(true); 
                   */
-            condicion1 = false;
+            /*condicion1 = false;
             condicion2 = false;
         }else{
             JOptionPane.showMessageDialog(null,"Ups, verifica que los datos de la tarjeta sean correctos para continuar");
-        }*/
+        }
+        */
     }//GEN-LAST:event_Btn_GuardarActionPerformed
     //========================================================================================
     /**
@@ -651,6 +652,7 @@ private void verificarCampos() {
         //</editor-fold>
         //</editor-fol
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Guardar;

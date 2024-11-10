@@ -40,9 +40,7 @@ public class Mod_equip_codigo {
     }
     
     public void Delete(String itemSeleccionado){
-        //Elimina el equipo seleccionado
         String[] separado=itemSeleccionado.split(" / ");
-        JOptionPane.showMessageDialog(null, "Seleccionaste: " + separado);
         int id=Integer.parseInt(separado[0]);
         conexion.Delete_tipo_equipo(id);
         

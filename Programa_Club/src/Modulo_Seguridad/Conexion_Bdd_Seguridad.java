@@ -574,7 +574,7 @@ public class Conexion_Bdd_Seguridad {
     public void Delete_tipo_equipo(int Id){
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            PreparedStatement sele= miConexion.prepareStatement("DELETE FROM Tipo_Equipamiento WHERE Tipo_Id=?");
+            PreparedStatement sele= miConexion.prepareStatement("DELETE FROM Tipo_Equipamiento WHERE Tipo_Id=?;");
             sele.setInt(1, Id);
             sele.executeUpdate();
             miConexion.close();
@@ -631,10 +631,11 @@ public class Conexion_Bdd_Seguridad {
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
                 PreparedStatement sele= miConexion.prepareStatement("INSERT INTO Pedido_Compra (Mensaje, Id_Equipamiento,Cant_Comprar,Precio) VALUES (?,?,?,?)");
-                sele.setString(1,"Pedido de compra del modulo de seguridad: Se solicita comprar el material "+Nombre+" en una cantidad de "+cant+" con un precio de "+ cant*Precio+".");
+                int Total=cant*Precio;
+                sele.setString(1,"Pedido de compra del modulo de seguridad: Se solicita comprar el material "+Nombre+" en una cantidad de "+cant+" con un precio de "+ Total+".");
                 sele.setInt(2, id);
                 sele.setInt(3, cant);
-                sele.setInt(4, cant*Precio);
+                sele.setInt(4, Total);
                 sele.executeUpdate();
             miConexion.close();
             
