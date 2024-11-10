@@ -200,15 +200,16 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
         Main vM = new Main();
-        vM.setVisible(true);
         this.setVisible(false);
+        vM.setVisible(true);
+        
         
     }//GEN-LAST:event_btn_VolverActionPerformed
     
     private void btn_suspenderSociosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suspenderSociosActionPerformed
         Suspender_socio_interface vS= new Suspender_socio_interface();
-        vS.setVisible(true);
         this.setVisible(false);
+        vS.setVisible(true);
         vS.setSize(700,430);
         vS.setLocationRelativeTo(null);
         
@@ -216,8 +217,8 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
 
     private void btn_verGuardiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verGuardiasActionPerformed
         Ver_Guardias VerGuardias=new Ver_Guardias();
-        VerGuardias.setVisible(true);
         this.setVisible(false);
+        VerGuardias.setVisible(true);
         VerGuardias.setSize(700,430);
         VerGuardias.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_verGuardiasActionPerformed
@@ -225,49 +226,49 @@ public class Pantalla_Seguridad extends javax.swing.JFrame {
     private void btn_verZonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verZonasActionPerformed
         
         Ver_Zonas VerZonas=new Ver_Zonas();
-        VerZonas.setVisible(true);
         this.setVisible(false);
+        VerZonas.setVisible(true);
         VerZonas.setSize(700,430);
         VerZonas.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_verZonasActionPerformed
 
     private void btn_v_s_sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_v_s_sActionPerformed
         Ver_Socios_Suspendidos V_S_S=new Ver_Socios_Suspendidos();
-        V_S_S.setVisible(true);
         this.setVisible(false);
+        V_S_S.setVisible(true);
         V_S_S.setSize(700,430);
         V_S_S.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_v_s_sActionPerformed
 
     private void btn_comprarEquipamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_comprarEquipamientoActionPerformed
         Pantalla_eleccion cE=new Pantalla_eleccion();
-        cE.setVisible(true);
         this.setVisible(false);
+        cE.setVisible(true);
         cE.setSize(700,430);
         cE.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_comprarEquipamientoActionPerformed
 
     private void btn_mostrarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mostrarInformeActionPerformed
         Mostrar_Informe mI=new Mostrar_Informe();
-        mI.setVisible(true);
         this.setVisible(false);
+        mI.setVisible(true);
         mI.setSize(700,430);
         mI.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_mostrarInformeActionPerformed
 
     private void btn_equiparGuardiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_equiparGuardiasActionPerformed
         Pantalla_Guardias pG=new Pantalla_Guardias();
-        pG.setVisible(true);
         this.setVisible(false);
+        pG.setVisible(true);
         pG.setSize(700,430);
         pG.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_equiparGuardiasActionPerformed
 
     private void btn_posicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_posicionarActionPerformed
         Ver_Zonas_Guardia vZg=new Ver_Zonas_Guardia();
-        vZg.setVisible(true);
         this.setVisible(false);
-        vZg.setSize(700,430);
+        vZg.setVisible(true);
+        vZg.setSize(500,450);
         vZg.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_posicionarActionPerformed
 

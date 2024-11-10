@@ -21,7 +21,7 @@ public class Posicionar_Guardias_Codigo {
     public Posicionar_Guardias_Codigo (){
         
     }
-    
+    //Guarda todas las zonas de seguridad en un DefaultListModel
     public DefaultListModel mostrar(DefaultListModel modelo){
         modelo.removeAllElements();
         ArrayList array=conexion.Select_Zona_de_Seguridad();
@@ -32,6 +32,8 @@ public class Posicionar_Guardias_Codigo {
         return modelo;
         
     }
+    
+    //Muestra informacion de la zona seleccionada y de los guardias asignados
     public void Pantalla_Zona_Guardias(int id){
         
         
@@ -44,9 +46,12 @@ public class Posicionar_Guardias_Codigo {
         Pantalla_Zona_Guardias Pz = new Pantalla_Zona_Guardias();
         Pz.ID_ZONA_GET(id);
         Pz.setVisible(true);
-        Pz.mostrarZona(Id, Nombre, Tamaño, Descripcion, id_Zona);
+        Pz.setLocationRelativeTo(null);
+        Pz.setSize(700,450);
+        Pz.mostrarZona(Id, Nombre, Tamaño, Descripcion);
     }
     
+    //Guarda en un DefaultListModel todos los guardias que no tienen asignado una zona
     public DefaultListModel mostrar_Guardias(DefaultListModel modelo){
         modelo.removeAllElements();
         ArrayList array=conexion.Select_Guardias_Disponibles();
@@ -57,6 +62,8 @@ public class Posicionar_Guardias_Codigo {
         return modelo;
         
     }
+    
+    //Guarda en un DefaultListModel todos los guardias asignados a una zona
     public DefaultListModel mostrar_Guardias_Zona(DefaultListModel modelo, int id){
         modelo.removeAllElements();
         ArrayList array=conexion.Select_Z_Guardias(id);
@@ -68,22 +75,23 @@ public class Posicionar_Guardias_Codigo {
         
     }
     
+    //Abre la pantalla para asignar guardias a una zona
     public void Asignar_Guardia_C(int id){
         Asignar_Guardia aG=new Asignar_Guardia();
         aG.setVisible(true);
         aG.setLocationRelativeTo(null);
         aG.ID_ZONA_GET(id);
-        aG.setSize(500,500);
+        aG.setSize(500,400);
     }
     
+    //Abre la pantalla Pantalla_Guardia
     public void Pantalla_Zona_Guardia_info(int id, int id_zona, String nombre){
-        
-        
         int id_Guardia=id;
         String Id= id_zona+"";
         Pantalla_Guardia pZg = new Pantalla_Guardia();
         pZg.setVisible(true);
-        pZg.mostrarZona(Id, nombre, id_Guardia);
+        pZg.setLocationRelativeTo(null);
+        pZg.mostrarZona(Id, nombre, id_Guardia, id_zona);
     }
     
 }
