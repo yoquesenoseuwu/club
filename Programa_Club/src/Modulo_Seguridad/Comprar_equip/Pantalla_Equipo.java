@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Base64;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -162,8 +163,16 @@ public class Pantalla_Equipo extends javax.swing.JFrame {
     private void btn_comprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_comprarActionPerformed
         //Se selecciona para comprar
         int canti = Integer.parseInt(cant.getText());
+        
+        if (canti>0){
         conexion.Insert_pedido_equipamiento(nombre_vec[1],canti,ID_Guardar,Precio);
         btn_Volver1ActionPerformed(evt);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Cantidad invalida, por favor no ingrese un numero negativo");
+            cant.setText("Cant. a comprar");
+            bandera = true;
+        }
     }//GEN-LAST:event_btn_comprarActionPerformed
 
     /**

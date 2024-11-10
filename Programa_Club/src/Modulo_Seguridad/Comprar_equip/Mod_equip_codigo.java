@@ -41,6 +41,7 @@ public class Mod_equip_codigo {
     
     public void Delete(String itemSeleccionado){
         String[] separado=itemSeleccionado.split(" / ");
+        JOptionPane.showMessageDialog(null,"El equipo se a borrado\n Esto no significa que el equipo comprado tambien.");
         int id=Integer.parseInt(separado[0]);
         conexion.Delete_tipo_equipo(id);
         

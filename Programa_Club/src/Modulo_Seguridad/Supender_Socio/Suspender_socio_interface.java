@@ -29,7 +29,6 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
                 if (!e.getValueIsAdjusting()) {
                     String itemSeleccionado = jListSocio.getSelectedValue();
                     String[] separado=itemSeleccionado.split("-");
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
                     int id=Integer.parseInt(separado[0]);
                     S_S_C.Pantalla_socio(id);
                     Suspender_socio_interface.this.setVisible(false);

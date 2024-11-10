@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 import java.time.LocalDate;
 import java.sql.Date;
+import javax.swing.JOptionPane;
 /**
  *
  * @author HP OMEN
@@ -212,12 +213,20 @@ public class Pantalla_socio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Boton para enviar datos, pregunta si el usuario puso tiempo o puso para de por vida. Luego envia los datos a la bdd
         if (Tiempo_s.isEnabled()){
-            String Razon= Razon_s.getText();
             int tiempo= Integer.parseInt(Tiempo_s.getText());
-            LocalDate fechaActual = LocalDate.now();
-            Date sqlDate = Date.valueOf(fechaActual);
-            Boolean resul=conexion.Insert_socio_mal(id_usuario,Razon,tiempo,sqlDate);
-            lomismoqueelbotonparaatras();
+            if (tiempo>0){
+                String Razon= Razon_s.getText();
+                LocalDate fechaActual = LocalDate.now();
+                Date sqlDate = Date.valueOf(fechaActual);
+                Boolean resul=conexion.Insert_socio_mal(id_usuario,Razon,tiempo,sqlDate);
+                lomismoqueelbotonparaatras();
+            }
+            else{
+                Tiempo_s.setText("Cant. de tiempo suspendido (Dias)");
+                JOptionPane.showMessageDialog(null,"Cantidad invalida, por favor no ingrese un numero negativo");
+                Bandera2 = true;
+                
+            }
         }
         else{
             String Razon= Razon_s.getText();

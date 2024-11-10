@@ -346,6 +346,9 @@ public class Mod_equip extends javax.swing.JFrame {
         jTextField4.setText("");
         modelo=mec.Cargar_datos(modelo);
         Lista_equipamiento.setModel(modelo);
+        if (!btn_imagen.isEnabled()){
+            btn_imagen.setEnabled(true);
+        }
         
     }//GEN-LAST:event_Btn_EnvioActionPerformed
 
