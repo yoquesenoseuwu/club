@@ -349,7 +349,7 @@ public class Conexion_Bdd_Seguridad {
     public Boolean Delete_Z_Guardias(int id){
         try{
             Connection miConexion=DriverManager.getConnection("jdbc:mysql://uwwqerjcglxxweor:vWobxeLnCiH11WTJg6N@bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb","uwwqerjcglxxweor","vWobxeLnCiH11WTJg6N");
-            PreparedStatement sele= miConexion.prepareStatement("CALL `bbbx7cdcbcl53xxmjyxb`.`Eliminar_Guardia_En_Zona`(?);");
+            PreparedStatement sele= miConexion.prepareStatement("DELETE FROM Z_Guardia WHERE ID_Guardia=?;");
 
             
             sele.setInt(1,id);
