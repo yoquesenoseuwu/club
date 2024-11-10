@@ -5,16 +5,23 @@
  */
 package proyectojava;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tm_galli
  */
-public class BuscarTalentos extends javax.swing.JFrame {
+public class Modificacion1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form BuscarTalentos
+     *
      */
-    public BuscarTalentos() {
+    public Modificacion1() {
         initComponents();
     }
 
@@ -41,7 +48,7 @@ public class BuscarTalentos extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel1.setText("Buscar Talentos");
+        jLabel1.setText("MODIFICACIÓN");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,10 +63,10 @@ public class BuscarTalentos extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel2.setText("Ingrese DNI(Talento que desea buscar):");
+        jLabel2.setText("Ingrese ID(Persona que desea modificar):");
 
         jButton1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jButton1.setText("Buscar");
+        jButton1.setText("Enviar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -87,7 +94,7 @@ public class BuscarTalentos extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 49, Short.MAX_VALUE)
+                        .addGap(0, 36, Short.MAX_VALUE)
                         .addComponent(jLabel2)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -137,29 +144,71 @@ public class BuscarTalentos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-
-        char c = evt.getKeyChar();
-
-        if(c<'0' || c>'9') evt.consume();
-
-    }//GEN-LAST:event_jTextField1KeyTyped
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MostrarTalentos newframe = new MostrarTalentos();
-
-        newframe.setVisible(true);
-
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Menu newframe = new Menu();
-
+        ABM newframe = new ABM();
+        
         newframe.setVisible(true);
-
+        
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       String id = jTextField1.getText(); // Obtener el ID ingresado
+       System.out.println("ID ingresado: " + id); // Verificar el valor del ID
+
+    // Conexión a la base de datos
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+
+    try {
+        // Cargar el controlador JDBC y obtener la conexión
+        connection = DriverManager.getConnection("jdbc:mysql://bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb", "uwwqerjcglxxweor", "vWobxeLnCiH11WTJg6N");
+        
+        // Preparar la consulta SQL para verificar si el ID existe
+        String sql = "SELECT * FROM Jugadores WHERE IdJugador = ?";
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, id);
+        
+        resultSet = preparedStatement.executeQuery();
+
+        // Si existe un resultado, abrir la ventana de modificación
+        if (resultSet.next()) {
+            // Aquí pasas el ID a la ventana de modificación
+            Modificacion newframe = new Modificacion(id); // Pasar el ID como parámetro
+            newframe.setVisible(true);
+            this.dispose();
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "El ID no existe en la base de datos.");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al verificar el ID: " + e.getMessage());
+    } finally {
+        // Cerrar la conexión y los recursos
+        try {
+            if (resultSet != null) resultSet.close();
+            if (preparedStatement != null) preparedStatement.close();
+            if (connection != null) connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        if(jTextField1.getText().length() >= 3)
+        {
+            evt.consume();
+
+        }
+
+        char c = evt.getKeyChar();
+        
+        if(c<'0' || c>'9') evt.consume();
+        
+        
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     /**
      * @param args the command line arguments
@@ -178,20 +227,20 @@ public class BuscarTalentos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarTalentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarTalentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarTalentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarTalentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarTalentos().setVisible(true);
+                new Modificacion1().setVisible(true);
             }
         });
     }

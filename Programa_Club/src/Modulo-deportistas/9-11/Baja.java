@@ -5,6 +5,12 @@
  */
 package proyectojava;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tm_galli
@@ -32,7 +38,7 @@ public class Baja extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btnVolverABM2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        idCampo = new javax.swing.JTextField();
         btnEnviarBajaDNI = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,16 +60,16 @@ public class Baja extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Waree", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel2.setText("Ingrese el DNI de la persona que quieres modificar:");
+        jLabel2.setText("Ingrese el ID de la persona que quieres dar de baja:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        idCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                idCampoActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        idCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                idCampoKeyTyped(evt);
             }
         });
 
@@ -80,22 +86,15 @@ public class Baja extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnVolverABM2)
-                .addGap(147, 147, 147)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(jLabel2)
-                .addContainerGap(101, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEnviarBajaDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(269, 269, 269))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnVolverABM2)
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel1))
+                    .addComponent(jLabel2)
+                    .addComponent(idCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEnviarBajaDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 189, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,13 +106,13 @@ public class Baja extends javax.swing.JFrame {
                     .addComponent(btnVolverABM2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel2)
-                .addGap(53, 53, 53)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
+                .addComponent(idCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnEnviarBajaDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -138,21 +137,53 @@ public class Baja extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverABM2ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void idCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idCampoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_idCampoActionPerformed
 
     private void btnEnviarBajaDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarBajaDNIActionPerformed
-        MensajeBaja newframe = new MensajeBaja();
+       String id = idCampo.getText();
+       if (id.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID válido.");
+        return;
+       }
+       
+       Connection connection = null;
+        PreparedStatement preparedStatement = null;
+    
+        try {
+            // Conexión a la base de datos
+            connection = DriverManager.getConnection("jdbc:mysql://bbbx7cdcbcl53xxmjyxb-mysql.services.clever-cloud.com:21748/bbbx7cdcbcl53xxmjyxb", "uwwqerjcglxxweor", "vWobxeLnCiH11WTJg6N");
+    
+             // Consulta SQL
+            String sql = "DELETE FROM Jugadores WHERE idJugador = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, id);
+    
+            // Ejecutar la consulta
+            int filasInsertadas = pstmt.executeUpdate();
+            if (filasInsertadas > 0) {
+                JOptionPane.showMessageDialog(this, "El deportista ha sido dado de baja exitosamente.");
+        
+                MensajeBaja newframe = new MensajeBaja();
+                newframe.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró el deportista con el ID especificado.");
+                }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar dar de baja al deportista. " + e.getMessage());
+        }
+        /*MensajeBaja newframe = new MensajeBaja();
         
         newframe.setVisible(true);
         
-        this.dispose();
+        this.dispose(); */
         
     }//GEN-LAST:event_btnEnviarBajaDNIActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-       if(jTextField1.getText().length() >= 8)
+    private void idCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCampoKeyTyped
+       if(idCampo.getText().length() >= 3)
         {
             evt.consume();
 
@@ -161,7 +192,7 @@ public class Baja extends javax.swing.JFrame {
         char c = evt.getKeyChar();
 
         if(c<'0' || c>'9') evt.consume();
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_idCampoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -201,10 +232,10 @@ public class Baja extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviarBajaDNI;
     private javax.swing.JButton btnVolverABM2;
+    private javax.swing.JTextField idCampo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

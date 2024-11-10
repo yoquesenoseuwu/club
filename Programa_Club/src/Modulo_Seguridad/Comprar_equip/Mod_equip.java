@@ -6,6 +6,7 @@
 package Modulo_Seguridad.Comprar_equip;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -345,6 +346,9 @@ public class Mod_equip extends javax.swing.JFrame {
         jTextField4.setText("");
         modelo=mec.Cargar_datos(modelo);
         Lista_equipamiento.setModel(modelo);
+        if (!btn_imagen.isEnabled()){
+            btn_imagen.setEnabled(true);
+        }
         
     }//GEN-LAST:event_Btn_EnvioActionPerformed
 
@@ -382,10 +386,13 @@ public class Mod_equip extends javax.swing.JFrame {
          try {
              //Se devuelve la imagen en binario
             ByteImagen=mec.Crear_file();
-            
+            btn_imagen.setEnabled(false);
+            btn_imagen.setText("Imagen Ingresada");
+             
          } catch (IOException ex) {
              Logger.getLogger(Mod_equip.class.getName()).log(Level.SEVERE, null, ex);
          }
+         
     }//GEN-LAST:event_btn_imagenActionPerformed
 
     /**
