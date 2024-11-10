@@ -5,6 +5,7 @@
  */
 package Modulo_Seguridad.Comprar_equip;
 
+import Modulo_Seguridad.Abrir_Seguridad;
 import Modulo_Seguridad.Pantalla_Seguridad;
 
 
@@ -96,11 +97,9 @@ public class Pantalla_eleccion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
-        Pantalla_Seguridad pM = new Pantalla_Seguridad();
-        pM.setVisible(true);
+        Abrir_Seguridad Seguridad = new Abrir_Seguridad();
+        Seguridad.Open_Security();
         this.setVisible(false);
-        pM.setSize(1530,900);
-        pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

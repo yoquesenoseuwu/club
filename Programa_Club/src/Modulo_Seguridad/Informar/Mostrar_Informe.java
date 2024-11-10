@@ -5,6 +5,7 @@
  */
 package Modulo_Seguridad.Informar;
 
+import Modulo_Seguridad.Abrir_Seguridad;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -180,6 +181,9 @@ public class Mostrar_Informe extends javax.swing.JFrame {
         cI.setLocationRelativeTo(null);
         
         cI.setSize(500,430);
+        Abrir_Seguridad Seguridad = new Abrir_Seguridad();
+        Seguridad.Open_Security();
+        this.setVisible(false);
     }//GEN-LAST:event_btn_crearInformeActionPerformed
     
     //Combobox para elegir metodo de ordenamiento

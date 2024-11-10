@@ -26,7 +26,6 @@ public class Com_equip extends javax.swing.JFrame {
                 if (!e.getValueIsAdjusting()) {
                     String itemSeleccionado = Lista_equipo.getSelectedValue();
                     String[] separado=itemSeleccionado.split(" / ");
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
                     int id=Integer.parseInt(separado[0]);
                     mec.Pantalla_equipo(id);
                     Com_equip.this.setVisible(false);

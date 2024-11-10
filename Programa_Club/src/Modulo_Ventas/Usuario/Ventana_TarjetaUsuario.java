@@ -610,16 +610,18 @@ private void verificarCampos() {
                   nombreTitular = textField_NombreTitular.getText();
                   codigoSeguridad = textField_CodigoSeguridad.getText();
             
-                  Ventana_FinalizarCompra ventanaFinCompra = new Ventana_FinalizarCompra(usuarioID, productoID, fecha, cantidadSeleccionada, opcFormaEntrega,tipoTarjeta, numerinTarjeta, nombreTitular, codigoSeguridad);
+                  /*Ventana_FinalizarCompra ventanaFinCompra = new Ventana_FinalizarCompra(usuarioID, productoID, fecha, cantidadSeleccionada, opcFormaEntrega,tipoTarjeta, numerinTarjeta, nombreTitular, codigoSeguridad);
                   this.setVisible(false);
                   ventanaFinCompra.setSize(550, 650);
                   ventanaFinCompra.setLocationRelativeTo(null);
                   ventanaFinCompra.setVisible(true); 
-            condicion1 = false;
+                  */
+            /*condicion1 = false;
             condicion2 = false;
         }else{
             JOptionPane.showMessageDialog(null,"Ups, verifica que los datos de la tarjeta sean correctos para continuar");
-        }*/
+        }
+        */
     }//GEN-LAST:event_Btn_GuardarActionPerformed
     //========================================================================================
     /**
@@ -650,6 +652,7 @@ private void verificarCampos() {
         //</editor-fold>
         //</editor-fol
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Guardar;

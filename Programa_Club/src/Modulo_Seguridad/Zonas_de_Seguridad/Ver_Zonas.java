@@ -5,6 +5,7 @@
  */
 package Modulo_Seguridad.Zonas_de_Seguridad;
 
+import Modulo_Seguridad.Abrir_Seguridad;
 import Modulo_Seguridad.Pantalla_Seguridad;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -163,11 +164,9 @@ public class Ver_Zonas extends javax.swing.JFrame {
     
     //Boton para volver a la pantalla principal
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
-        Pantalla_Seguridad pM = new Pantalla_Seguridad();
-        pM.setVisible(true);
+        Abrir_Seguridad Seguridad = new Abrir_Seguridad();
+        Seguridad.Open_Security();
         this.setVisible(false);
-        pM.setSize(700, 430);
-        pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
     
     //Boton para abrir pantalla para crear una nueva zona

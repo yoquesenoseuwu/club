@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import Modulo_Seguridad.Conexion_Bdd_Seguridad;
 import java.time.LocalDate;
 import java.sql.Date;
+import javax.swing.JOptionPane;
 /**
  *
  * @author HP OMEN
@@ -19,6 +20,8 @@ public class Pantalla_socio extends javax.swing.JFrame {
     DefaultListModel modelo = new DefaultListModel();
     Conexion_Bdd_Seguridad conexion= new Conexion_Bdd_Seguridad();
     int id_usuario;
+    boolean Bandera1=true;
+    boolean Bandera2=true;
     public Pantalla_socio() {
         initComponents();
     }
@@ -47,6 +50,11 @@ public class Pantalla_socio extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         btn_Volver.setText("<--");
         btn_Volver.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +91,14 @@ public class Pantalla_socio extends javax.swing.JFrame {
         });
 
         Tiempo_s.setText("Cant. de tiempo suspendido (Dias)");
+        Tiempo_s.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                Tiempo_sFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                Tiempo_sFocusLost(evt);
+            }
+        });
         Tiempo_s.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Tiempo_sActionPerformed(evt);
@@ -197,12 +213,20 @@ public class Pantalla_socio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Boton para enviar datos, pregunta si el usuario puso tiempo o puso para de por vida. Luego envia los datos a la bdd
         if (Tiempo_s.isEnabled()){
-            String Razon= Razon_s.getText();
             int tiempo= Integer.parseInt(Tiempo_s.getText());
-            LocalDate fechaActual = LocalDate.now();
-            Date sqlDate = Date.valueOf(fechaActual);
-            Boolean resul=conexion.Insert_socio_mal(id_usuario,Razon,tiempo,sqlDate);
-            lomismoqueelbotonparaatras();
+            if (tiempo>0){
+                String Razon= Razon_s.getText();
+                LocalDate fechaActual = LocalDate.now();
+                Date sqlDate = Date.valueOf(fechaActual);
+                Boolean resul=conexion.Insert_socio_mal(id_usuario,Razon,tiempo,sqlDate);
+                lomismoqueelbotonparaatras();
+            }
+            else{
+                Tiempo_s.setText("Cant. de tiempo suspendido (Dias)");
+                JOptionPane.showMessageDialog(null,"Cantidad invalida, por favor no ingrese un numero negativo");
+                Bandera2 = true;
+                
+            }
         }
         else{
             String Razon= Razon_s.getText();
@@ -225,12 +249,36 @@ public class Pantalla_socio extends javax.swing.JFrame {
     }//GEN-LAST:event_S_DActionPerformed
 
     private void Razon_sFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Razon_sFocusGained
-        // TODO add your handling code here:
+        if (Bandera1) {
+            Razon_s.setText("");
+            Bandera1 = false;
+                } 
     }//GEN-LAST:event_Razon_sFocusGained
 
     private void Razon_sFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Razon_sFocusLost
-        // TODO add your handling code here:
+        if(Razon_s.getText().isEmpty()){
+            Razon_s.setText("Escriba la razon para su suspención");
+            Bandera1 = true;
+        }
     }//GEN-LAST:event_Razon_sFocusLost
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+
+    }//GEN-LAST:event_formFocusGained
+
+    private void Tiempo_sFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Tiempo_sFocusGained
+        if (Bandera2) {
+            Tiempo_s.setText("");
+            Bandera2 = false;
+                } 
+    }//GEN-LAST:event_Tiempo_sFocusGained
+
+    private void Tiempo_sFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Tiempo_sFocusLost
+        if(Tiempo_s.getText().isEmpty()){
+            Tiempo_s.setText("Cant. de tiempo suspendido (Dias)");
+            Bandera2 = true;
+        }
+    }//GEN-LAST:event_Tiempo_sFocusLost
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

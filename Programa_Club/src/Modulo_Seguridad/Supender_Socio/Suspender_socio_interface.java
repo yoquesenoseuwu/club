@@ -1,6 +1,7 @@
 
 
 package Modulo_Seguridad.Supender_Socio;
+import Modulo_Seguridad.Abrir_Seguridad;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.*;
@@ -28,7 +29,6 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
                 if (!e.getValueIsAdjusting()) {
                     String itemSeleccionado = jListSocio.getSelectedValue();
                     String[] separado=itemSeleccionado.split("-");
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + itemSeleccionado);
                     int id=Integer.parseInt(separado[0]);
                     S_S_C.Pantalla_socio(id);
                     Suspender_socio_interface.this.setVisible(false);
@@ -102,11 +102,9 @@ public class Suspender_socio_interface extends javax.swing.JFrame {
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
         //Boton para volver atras
-        Pantalla_Seguridad pM = new Pantalla_Seguridad();
-        pM.setVisible(true);
+        Abrir_Seguridad Seguridad = new Abrir_Seguridad();
+        Seguridad.Open_Security();
         this.setVisible(false);
-        pM.setSize(1530,900);
-        pM.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_VolverActionPerformed
 
   
