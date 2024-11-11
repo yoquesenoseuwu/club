@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Modulo_GestionDeFinanzas;
+import programa_club.Main;
 import Modulo_GestionDeFinanzas.ControlDeRiesgosFinancieros;
 import Modulo_GestionDeFinanzas.GestionDeImpuestos;
 import Modulo_GestionDeFinanzas.GestionDePagosYCambios;
@@ -504,6 +505,7 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
     }//GEN-LAST:event_PagosYCambiosButtonActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        new programa_club.Main().setVisible(true);
         dispose();
 
     }//GEN-LAST:event_SalirActionPerformed

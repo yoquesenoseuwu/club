@@ -90,11 +90,11 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addComponent(jButton4)
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addComponent(jButton5)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
