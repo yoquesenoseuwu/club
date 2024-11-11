@@ -807,7 +807,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="ControlPresupuestoButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gestion de pagos y cambios"/>
+            <Property name="text" type="java.lang.String" value="Control de presupuesto"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor Por defecto"/>
             </Property>

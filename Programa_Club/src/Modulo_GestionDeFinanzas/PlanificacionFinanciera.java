@@ -429,7 +429,7 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
             }
         });
 
-        ControlPresupuestoButton.setText("Gestion de pagos y cambios");
+        ControlPresupuestoButton.setText("Control de presupuesto");
         ControlPresupuestoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ControlPresupuestoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
