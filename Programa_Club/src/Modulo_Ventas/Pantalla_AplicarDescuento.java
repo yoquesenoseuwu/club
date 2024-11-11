@@ -33,16 +33,16 @@ public class Pantalla_AplicarDescuento extends javax.swing.JFrame {
 
         Tabla_Productos.getSelectionModel().addListSelectionListener(e -> verificarSelecciones());
         Tabla_DescuentosAplicados.getSelectionModel().addListSelectionListener(e -> {
-    // Verificar que hay una selección y que el evento no sea parte de un ajuste
-    if (!e.getValueIsAdjusting()) {
-        int selectedRow = Tabla_DescuentosAplicados.getSelectedRow();
-        if (selectedRow != -1) {
-            Btn_Eliminar.setEnabled(true); // Habilitar botón si hay una fila seleccionada
-        } else {
-            Btn_Eliminar.setEnabled(false); // Deshabilitar botón si no hay selección
-        }
-    }
-});
+        // Verificar que hay una selección y que el evento no sea parte de un ajuste
+            if (!e.getValueIsAdjusting()) {
+                int selectedRow = Tabla_DescuentosAplicados.getSelectedRow();
+                if (selectedRow != -1) {
+                    Btn_Eliminar.setEnabled(true); // Habilitar botón si hay una fila seleccionada
+                } else {
+                    Btn_Eliminar.setEnabled(false); // Deshabilitar botón si no hay selección
+                }
+            }
+        });
     }
 private void verificarSelecciones() {
     boolean productoSeleccionado = Tabla_Productos.getSelectedRow() != -1;

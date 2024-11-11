@@ -41,8 +41,25 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
         initComponents();
         
         Object[] CobrosColums = new Object[]{"id_cobro", "monto", "fk_medio", "motivo"};
-
         mostrarTablasFunc.MostrarTabla(CobrosTable, CobrosColums, "SELECT * FROM Cobros;");
+        
+        Object[] PagosColums = new Object[]{"id_pago", "monto", "fk_medio", "motivo"};
+        mostrarTablasFunc.MostrarTabla(PagosTable, PagosColums, "SELECT * FROM Pagos;");
+        
+        Object[] MovimientosColums = new Object[]{"id_movimiento", "fk_cuenta", "descripcion"};
+        mostrarTablasFunc.MostrarTabla(MovimientoTable, MovimientosColums, "SELECT * FROM Movimientos;");
+        
+        Object[] MedioColums = new Object[]{"id_medio", "tipo"};
+        mostrarTablasFunc.MostrarTabla(MedioTable, MedioColums, "SELECT * FROM Medio;");
+        
+        Object[] CuentaColums = new Object[]{"id_cuenta", "saldo", "cbu", "alias"};
+        mostrarTablasFunc.MostrarTabla(CuentaTable, CuentaColums, "SELECT * FROM Cuenta;");
+        
+        Object[] ImpuestosColums = new Object[]{"id_impuesto", "nombre", "porcentaje"};
+        mostrarTablasFunc.MostrarTabla(ImpuestosTable, ImpuestosColums, "SELECT * FROM Impuestos;");
+        
+        Object[] InversionesColums = new Object[]{"id_inversion", "monto", "descripcion", "estado"};
+        mostrarTablasFunc.MostrarTabla(InversionesTable, InversionesColums, "SELECT * FROM Inversiones;");
         
         this.setTitle("Plnaficacion financiera");
         
@@ -92,6 +109,7 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
         Salir = new javax.swing.JButton();
         RiesgosButton = new javax.swing.JButton();
         PagosYCambiosButton = new javax.swing.JButton();
+        ControlPresupuestoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -411,6 +429,14 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
             }
         });
 
+        ControlPresupuestoButton.setText("Gestion de pagos y cambios");
+        ControlPresupuestoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ControlPresupuestoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ControlPresupuestoButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -425,11 +451,15 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
                             .addComponent(PagosYCambiosButton, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                             .addComponent(RiesgosButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(97, 97, 97)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ImpuestosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ImpuestosButton, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(ControlPresupuestoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(248, 248, 248)
+                .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,8 +472,10 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
                     .addComponent(RiesgosButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Salir)
-                    .addComponent(PagosYCambiosButton))
+                    .addComponent(PagosYCambiosButton)
+                    .addComponent(ControlPresupuestoButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Salir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -459,8 +491,7 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -488,6 +519,10 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
         new ControlDeRiesgosFinancieros().setVisible(true);
         dispose();
     }//GEN-LAST:event_RiesgosButtonActionPerformed
+
+    private void ControlPresupuestoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlPresupuestoButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ControlPresupuestoButtonActionPerformed
 
     
     /**
@@ -528,6 +563,7 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable CobrosTable;
+    private javax.swing.JButton ControlPresupuestoButton;
     public javax.swing.JTable CuentaTable;
     private javax.swing.JButton ImpuestosButton;
     public javax.swing.JTable ImpuestosTable;
