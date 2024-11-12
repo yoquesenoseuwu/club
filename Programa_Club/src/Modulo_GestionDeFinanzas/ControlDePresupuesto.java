@@ -21,18 +21,13 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
     public ControlDePresupuesto() {
         MostrarTabla mostrarTablasFunc = new MostrarTabla();
         initComponents();
-        AceptarButton.setEnabled(false);
-        RechazarButton.setEnabled(false);
+        //AceptarButton.setEnabled(false);
         
-        jtext.setVisible(false);
+        Object[] CuentaColums = new Object[]{"id_cuenta", "saldo", "cbu", "alias"};
+        mostrarTablasFunc.MostrarTabla(CuentasTable, CuentaColums, "SELECT * FROM Cuenta;");
         
-        Object[] PagosColums = new Object[]{"id_pago", "monto", "fk_medio", "motivo"};
-        mostrarTablasFunc.MostrarTabla(PagosTable, PagosColums, "SELECT * FROM Pagos;");
-        
-        Object[] SugerenciasColums = new Object[]{"Id", "Mensaje", "Id_Equipamiento", "Cant_Comprar", "Precio"};
-        mostrarTablasFunc.MostrarTabla(SugerenciasTable, SugerenciasColums, "SELECT * FROM Pedido_Compra;");
-        
-        
+           
+        /*
         SugerenciasTable.getSelectionModel().addListSelectionListener(e -> {
         // Verificar que hay una selección y que el evento no sea parte de un ajuste
             if (!e.getValueIsAdjusting()) {
@@ -47,6 +42,7 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
                 }
             }
         });
+        */
         
     }
     
@@ -63,18 +59,17 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        PagosTable = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        RechazarButton = new javax.swing.JButton();
+        CuentasTable = new javax.swing.JTable();
         AceptarButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         SalirButton = new javax.swing.JButton();
-        jtext = new javax.swing.JTextField();
+        textSacar = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jtext1 = new javax.swing.JTextField();
+        textMeter = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        textMonto = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -86,7 +81,7 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
         jLabel5.setText("TABLA DE CUENTAS");
         jLabel5.setPreferredSize(new java.awt.Dimension(180, 17));
 
-        PagosTable.setModel(new javax.swing.table.DefaultTableModel(
+        CuentasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null}
             },
@@ -102,22 +97,9 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(PagosTable);
+        jScrollPane4.setViewportView(CuentasTable);
 
-        jLabel6.setBackground(new java.awt.Color(31, 50, 69));
-        jLabel6.setFont(new java.awt.Font("Waree", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(31, 50, 69));
-        jLabel6.setText("PELIGRA EL PRESUPUESTO DE LA EMPRESA?");
-        jLabel6.setPreferredSize(new java.awt.Dimension(180, 17));
-
-        RechazarButton.setText("Rechazar");
-        RechazarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RechazarButtonActionPerformed(evt);
-            }
-        });
-
-        AceptarButton.setText("Aceptar");
+        AceptarButton.setText("Aplicar");
         AceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AceptarButtonActionPerformed(evt);
@@ -127,7 +109,7 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(31, 50, 69));
         jLabel7.setFont(new java.awt.Font("Waree", 1, 10)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(31, 50, 69));
-        jLabel7.setText("Rechazar o aceptar sugerencia");
+        jLabel7.setText("ID de cuenta a sacar dinero");
         jLabel7.setPreferredSize(new java.awt.Dimension(180, 17));
 
         SalirButton.setText("Salir");
@@ -137,16 +119,22 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
             }
         });
 
+        textSacar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSacarActionPerformed(evt);
+            }
+        });
+
         jLabel8.setBackground(new java.awt.Color(31, 50, 69));
         jLabel8.setFont(new java.awt.Font("Waree", 1, 10)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(31, 50, 69));
-        jLabel8.setText("Rechazar o aceptar sugerencia");
+        jLabel8.setText("Aplicar cambios");
         jLabel8.setPreferredSize(new java.awt.Dimension(180, 17));
 
         jLabel9.setBackground(new java.awt.Color(31, 50, 69));
         jLabel9.setFont(new java.awt.Font("Waree", 1, 10)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(31, 50, 69));
-        jLabel9.setText("Rechazar o aceptar sugerencia");
+        jLabel9.setText("ID de cuenta a ingresar dinero");
         jLabel9.setPreferredSize(new java.awt.Dimension(180, 17));
 
         jLabel10.setBackground(new java.awt.Color(31, 50, 69));
@@ -155,74 +143,69 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
         jLabel10.setText("MOVER DINERO DE UNA CUENTA A OTRA");
         jLabel10.setPreferredSize(new java.awt.Dimension(180, 17));
 
-        jLabel11.setBackground(new java.awt.Color(31, 50, 69));
-        jLabel11.setFont(new java.awt.Font("Waree", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(31, 50, 69));
-        jLabel11.setText("Si no");
-        jLabel11.setPreferredSize(new java.awt.Dimension(180, 17));
+        jLabel12.setBackground(new java.awt.Color(31, 50, 69));
+        jLabel12.setFont(new java.awt.Font("Waree", 1, 10)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(31, 50, 69));
+        jLabel12.setText("Monto");
+        jLabel12.setPreferredSize(new java.awt.Dimension(180, 17));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SalirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SalirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(1, 1, 1)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtext, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textSacar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtext1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(AceptarButton)
-                                .addGap(61, 61, 61)
-                                .addComponent(RechazarButton))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(94, Short.MAX_VALUE))
+                            .addComponent(textMeter, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AceptarButton)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtext1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RechazarButton)
-                    .addComponent(AceptarButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(SalirButton)
-                .addGap(24, 24, 24))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textSacar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textMeter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(AceptarButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(SalirButton)
+                        .addGap(22, 22, 22))))
         );
 
         jPanel6.setBackground(new java.awt.Color(31, 50, 69));
@@ -230,7 +213,7 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Waree", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(245, 246, 247));
-        jLabel4.setText("GESTION DE PAGOS Y CAMBIOS");
+        jLabel4.setText("CONTROL DE PRESUPUESTO");
         jLabel4.setPreferredSize(new java.awt.Dimension(180, 17));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -268,16 +251,6 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RechazarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechazarButtonActionPerformed
-        // TODO add your handling code here:
-        CrudTablas crudtabla = new CrudTablas();
-        Object[] SugerenciasColums = new Object[]{"Id", "Mensaje", "Id_Equipamiento", "Cant_Comprar", "Precio"};
-        
-        MostrarTabla mostrarTablasFunc = new MostrarTabla();
-        crudtabla.EliminarCategoria(jtext, "DELETE FROM Pedido_Compra WHERE Pedido_Compra.Id=?;");
-        mostrarTablasFunc.MostrarTabla(SugerenciasTable, SugerenciasColums, "SELECT * FROM Pedido_Compra;");
-    }//GEN-LAST:event_RechazarButtonActionPerformed
-
     private void SalirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirButtonActionPerformed
         // TODO add your handling code here:
         PlanificacionFinanciera GesFin= new PlanificacionFinanciera();
@@ -289,15 +262,16 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
     }//GEN-LAST:event_SalirButtonActionPerformed
 
     private void AceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarButtonActionPerformed
-        CrudTablas crudtabla = new CrudTablas();
-        Object[] SugerenciasColums = new Object[]{"Id", "Mensaje", "Id_Equipamiento", "Cant_Comprar", "Precio"};
-        
-        
-        
         MostrarTabla mostrarTablasFunc = new MostrarTabla();
-        crudtabla.EliminarCategoria(jtext, "DELETE FROM Pedido_Compra WHERE Pedido_Compra.Id=?;");
-        mostrarTablasFunc.MostrarTabla(SugerenciasTable, SugerenciasColums, "SELECT * FROM Pedido_Compra;");
+        CrudTablas crudtabla = new CrudTablas();
+        crudtabla.MoverDinero(textSacar, textMeter, Float.parseFloat(textMonto.getText()));
+        Object[] CuentaColums = new Object[]{"id_cuenta", "saldo", "cbu", "alias"};
+        mostrarTablasFunc.MostrarTabla(CuentasTable, CuentaColums, "SELECT * FROM Cuenta;");
     }//GEN-LAST:event_AceptarButtonActionPerformed
+
+    private void textSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSacarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSacarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,21 +311,20 @@ public class ControlDePresupuesto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarButton;
-    private javax.swing.JTable PagosTable;
-    private javax.swing.JButton RechazarButton;
+    private javax.swing.JTable CuentasTable;
     private javax.swing.JButton SalirButton;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jtext;
-    private javax.swing.JTextField jtext1;
+    private javax.swing.JTextField textMeter;
+    private javax.swing.JTextField textMonto;
+    private javax.swing.JTextField textSacar;
     // End of variables declaration//GEN-END:variables
 }

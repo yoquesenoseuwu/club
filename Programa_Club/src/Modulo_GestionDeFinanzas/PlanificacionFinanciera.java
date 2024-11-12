@@ -524,6 +524,8 @@ public class PlanificacionFinanciera extends javax.swing.JFrame {
 
     private void ControlPresupuestoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControlPresupuestoButtonActionPerformed
         // TODO add your handling code here:
+        new ControlDePresupuesto().setVisible(true);
+        dispose();
     }//GEN-LAST:event_ControlPresupuestoButtonActionPerformed
 
     

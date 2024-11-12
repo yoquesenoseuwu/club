@@ -18,15 +18,24 @@ import java.sql.*;
 public class CrudTablas {
     //Declaracion de variables a usar
     int codigo;
+    int codigo2;
     String nombreCategoria;
     
     //GET y SET para los parametros
     public int getCodigo() {
         return codigo;
     }
+    
+    public int getCodigo2() {
+        return codigo2;
+    }
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+    
+    public void setCodigo2(int codigo2) {
+        this.codigo2 = codigo2;
     }
 
     public String getNombreCategoria() {
@@ -145,14 +154,39 @@ public class CrudTablas {
     }
 }
 
+    public void MoverDinero(JTextField paramCodigo1, JTextField paramCodigo2, float monto){
+        //Declarar parametros
+        setCodigo(Integer.parseInt(paramCodigo1.getText()));
+        setCodigo2(Integer.parseInt(paramCodigo2.getText()));
+        ConexionBDD objetoConexion= new ConexionBDD();
+        
+        
+        String consulta1 = "UPDATE Cuenta SET saldo = saldo - "+String.valueOf(monto)+" WHERE id_cuenta = ?;";
+        String consulta2 = "UPDATE Cuenta SET saldo = saldo + "+String.valueOf(monto)+" WHERE id_cuenta = ?;";
+
+
+        try (PreparedStatement ps1 = objetoConexion.Conectar().prepareStatement(consulta1);
+             PreparedStatement ps2 = objetoConexion.Conectar().prepareStatement(consulta2)){
+
+            ps1.setInt(1, getCodigo());
+            ps1.executeUpdate();
+
+            ps2.setInt(1, getCodigo2());
+            ps2.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Se eliminó correctamente el registro");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"No se eliminó correctamente el registro, error:"+ e.toString())  ;
+        }finally{
+            objetoConexion.cerrarConexion();
+        }
+    }    //Eliminar
     
-    //Eliminar
     public void EliminarCategoria(JTextField paramCodigo, String consulta){
         //Declarar parametros
         setCodigo(Integer.parseInt(paramCodigo.getText()));
         ConexionBDD objetoConexion= new ConexionBDD();
-        //Consulta SQL
-        //String consulta="DELETE FROM Categorias WHERE Categorias.CategoriaID=?;";
+        
         try{
             //Conectar BDD
             CallableStatement cs= objetoConexion.Conectar().prepareCall(consulta);
